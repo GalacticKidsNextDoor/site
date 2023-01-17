@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Galactic Translator</title>
+</head>
+<body>
+<h3>Terse Galactic Language to Earth Language Translation</h3>
+<input type="text" value="" placeholder="enter earthling text here" id="earth-text-input-container"/>
+<input type="button" value="translate" id="tgl-to-earth-translate-button-container" />
+<div container="galactic-output-container">
+    
+</div>
+<script>
+    document.getElementById("tgl-to-earth-translate-button-container").addEventListener("click", function(){
+        let rawTextInput = document.getElementById("earth-text-input-container").value;
+        console.log(rawTextInput);
+        let totalCharCount = rawTextInput.length;
+    })
+</script>
+</body>
+</html>
