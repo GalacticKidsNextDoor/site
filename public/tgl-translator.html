@@ -1,21 +1,261 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Galactic Translator</title>
+    <title>Galactic Translator 9</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html{
+            width: 100%;
+            height: 100%;
+        }
+        
+        #earth-text-input-container{
+            width: 720px;
+            height: 480px;
+            display: block;
+            margin: 2% 0 auto 2%;
+        }
+        
+        .galactic-letter-block-container{
+            width: 60px;
+            height: 85px;
+            border: 0;
+            border-radius: 5px;
+            margin: 5px 10px;
+            display: inline-block;
+            background-size: 100% 100%;
+        }
+        
+        .tgl-letter-a-container{
+            background-image: url(./media/img/galactic-a.png);
+        }
+        
+        .tgl-letter-b-container{
+            background-image: url(./media/img/galactic-b.png);
+        }
+        
+        .tgl-letter-c-container{
+            background-image: url(./media/img/galactic-c.png);
+        }
+        
+        .tgl-letter-d-container{
+            background-image: url(./media/img/galactic-d.png);
+        }
+        
+        .tgl-letter-e-container{
+            background-image: url(./media/img/galactic-e.png);
+        }
+        
+        .tgl-letter-f-container{
+            background-image: url(./media/img/galactic-f.png);
+        }
+        
+        .tgl-letter-g-container{
+            background-image: url(./media/img/galactic-g.png);
+        }
+        
+        .tgl-letter-h-container{
+            background-image: url(./media/img/galactic-h.png);
+        }
+        
+        .tgl-letter-i-container{
+            background-image: url(./media/img/galactic-i.png);
+        }
+        
+        
+        .tgl-letter-j-container{
+            background-image: url(./media/img/galactic-j.png);
+        }
+        
+        
+        .tgl-letter-k-container{
+            background-image: url(./media/img/galactic-k.png);
+        }
+        
+        .tgl-letter-l-container{
+            background-image: url(./media/img/galactic-l.png);
+        }
+        
+        .tgl-letter-m-container{
+            background-image: url(./media/img/galactic-m.png);
+        }
+        
+        .tgl-letter-n-container{
+            background-image: url(./media/img/galactic-n.png);
+        }
+        
+        .tgl-letter-o-container{
+            background-image: url(./media/img/galactic-o.png);
+        }
+        
+        
+        .tgl-letter-p-container{
+            background-image: url(./media/img/galactic-p.png);
+        }
+        
+        .tgl-letter-q-container{
+            background-image: url(./media/img/galactic-q.png);
+        }
+        
+        .tgl-letter-r-container{
+            background-image: url(./media/img/galactic-r.png);
+        }
+        
+        
+        .tgl-letter-s-container{
+            background-image: url(./media/img/galactic-s.png);
+        }
+        
+        
+        .tgl-letter-t-container{
+            background-image: url(./media/img/galactic-t.png);
+        }
+        
+        
+        .tgl-letter-u-container{
+            background-image: url(./media/img/galactic-u.png);
+        }
+        
+        
+        .tgl-letter-v-container{
+            background-image: url(./media/img/galactic-v.png);
+        }
+        
+        
+        .tgl-letter-w-container{
+            background-image: url(./media/img/galactic-w.png);
+        }
+        
+        
+        .tgl-letter-x-container{
+            background-image: url(./media/img/galactic-x.png);
+        }
+        
+        
+        .tgl-letter-y-container{
+            background-image: url(./media/img/galactic-y.png);
+        }
+        
+        
+        .tgl-letter-z-container{
+            background-image: url(./media/img/galactic-z.png);
+        }
+        
+        
+        .tgl-letter-SPACE-container{
+            background-color: black;
+        }
+        
+        .tgl-letter-0-container{
+            background-image: url(./media/img/galactic-0.png);
+        }
+        
+        .tgl-letter-1-container{
+            background-image: url(./media/img/galactic-1.png);
+        }
+        
+        .tgl-letter-2-container{
+            background-image: url(./media/img/galactic-2.png);
+        }
+        
+        .tgl-letter-3-container{
+            background-image: url(./media/img/galactic-3.png);
+        }
+        
+        .tgl-letter-4-container{
+            background-image: url(./media/img/galactic-4.png);
+        }
+        
+        .tgl-letter-5-container{
+            background-image: url(./media/img/galactic-5.png);
+        }
+        
+        .tgl-letter-6-container{
+            background-image: url(./media/img/galactic-6.png);
+        }
+        
+        .tgl-letter-7-container{
+            background-image: url(./media/img/galactic-7.png);
+        }
+        
+        .tgl-letter-8-container{
+            background-image: url(./media/img/galactic-8.png);
+        }
+        
+        .tgl-letter-9-container{
+            background-image: url(./media/img/galactic-9.png);
+        }
+        
+        .tgl-letter-COLON-container{
+            background-color: black;
+        }
+        
+        .tgl-letter-OTHER-container{
+            background-color: black;
+        }
+        
+        #galactic-output-container{
+            display: block;
+            margin: 2% 0 auto 2%;
+            width: 720px;
+            height: auto;
+        }
+        
+        @media only screen and (max-width: 720px){
+            #earth-text-input-container{
+                width: 80%;
+                height: 40%;
+                margin: 2% auto;
+            }
+        }
+    </style>
 </head>
 <body>
 <h3>Terse Galactic Language to Earth Language Translation</h3>
-<input type="text" value="" placeholder="enter earthling text here" id="earth-text-input-container"/>
-<input type="button" value="translate" id="tgl-to-earth-translate-button-container" />
-<div container="galactic-output-container">
-    
-</div>
+    <textarea value="" placeholder="enter earthling text here..." rows="12" cols="50" id="earth-text-input-container"></textarea>
+    <input type="button" value="translate" id="tgl-to-earth-translate-button-container" />
+    <input type="button" value="clear" id="clear-current-translation-button-container" />
+    <div id="galactic-output-container">
+
+    </div>
 <script>
     document.getElementById("tgl-to-earth-translate-button-container").addEventListener("click", function(){
         let rawTextInput = document.getElementById("earth-text-input-container").value;
-        console.log(rawTextInput);
+        //console.log(rawTextInput);
+        let charArray = [];
         let totalCharCount = rawTextInput.length;
-    })
+        for(var onChar = 0; onChar < totalCharCount; onChar++){
+            if(rawTextInput.charAt(onChar)===" "){
+                charArray.push("SPACE");
+            }
+            else{
+                charArray.push(rawTextInput.charAt(onChar).toLowerCase());
+            }
+        }
+        console.log(charArray); 
+        loadTGL(charArray);
+    });
+    
+    document.getElementById("clear-current-translation-button-container").addEventListener("click", function(){
+        document.getElementById("galactic-output-container").innerHTML = ""; 
+        document.getElementById("earth-text-input-container").value = ""; 
+    });
+    
+    function loadTGL(rawCharArray){
+        let starter = rawCharArray;
+        for(const property in starter) {
+            console.log(`${property}: ${starter[property]}`);
+            let currentTGL = document.createElement("div");
+            currentTGL.classList.add(`tgl-letter-${starter[property]}-container`);
+            currentTGL.classList.add("galactic-letter-block-container");
+            document.getElementById("galactic-output-container").append(currentTGL);
+        }
+    }
+    
 </script>
 </body>
 </html>
