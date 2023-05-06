@@ -69,6 +69,31 @@ body, html, #main-app-container{
     height: 120px;
 }
 
+#tgl-subtitles-container{
+    padding-left: 15px;
+    padding-top: 5px;
+    width: 360px;
+    height: 40px;
+    position: absolute;
+    bottom: 2%;
+    left: 50%;
+    border-radius: 10px 10px 0 0;
+    border-top: 2px white solid;
+    border-left: 1px white solid;
+    border-right: 1px white solid;
+    border-bottom: 2px black solid;
+    margin-left: -160px;
+    z-index: 999;
+    background-color: black;
+    display: none;
+    cursor: pointer;
+    transition: width 0.25s, height 0.35s;
+}
+
+#tgl-subtitles-container:hover{
+    height: 100px;
+}
+
 @media only screen and (max-width: 640px){
     #main-scene-container{
         width: 100%;
