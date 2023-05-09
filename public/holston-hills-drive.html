@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Holston Hills Drive</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body, html{
+            background-color: rgba(255, 255, 255, 1.0);
+            color: black;
+        }
+        
+        #main-app-container{
+            width: 400px;
+            height: auto;
+            position: absolute;
+            top: 5%;
+            left: 50%;
+            margin-left: -200px;
+        }
+        
+        #album-cover-container{
+            background-image: url(./media/img/holston-hills-drive-cover.png);
+            background-size: cover;
+            width: 325px;
+            height: 325px;
+            margin: 0 auto 12px auto;
+            display: block;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        #feature-block-container{
+            width: 275px;
+            margin: 25px auto 0 auto;
+            font-size: 18px;
+            line-height: 22px;
+            font-family: Arial, sans-serif;
+        }
+        
+        .publication-title-container{
+            display: block;
+            text-align: center;
+            width: 100%;
+            margin: 0 auto;
+            font-size: 18px;
+            line-height: 24px;
+            font-family: Arial, sans-serif;
+            text-transform: uppercase;
+        }
+        
+        #if-youre-listening-container{
+            display: block;
+            width: 100%;
+            margin: 10px auto;
+            font-size: 0;
+            height: 30px;
+            background-image: url(./media/img/if-youre-listening.png);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+        }
+        
+        #youre-early-container{
+            display: block;
+            width: 100%;
+            margin: 10px auto;
+            font-size: 0;
+            height: 30px;
+            background-image: url(./media/img/to-this-youre-early.png);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+        }
+        /*background-image: url(./media/img/play-button.png);
+            background-size: 100% 100%;
+            opacity: 0.2;
+            z-index: 50;
+            position: absolute;
+            width: 175px;
+            height: 175px;
+            top: 50%;
+            left: 50%;
+            margin: -87px 0 0 -87px;
+            border: 0;
+            border-radius: 50%;
+            transition: opacity 0.25s;*/
+        
+        #play-album-button-container, #download-album-button-container{
+            display: block;
+            width: 250px;
+            height: 50px;
+            border-radius: 15px;
+            margin: 2% auto;
+            cursor: pointer;
+            outline: none;
+            text-align: center;
+            font-size: 18px;
+            text-transform: uppercase;
+            background-color: white;
+            color: black;
+            transition: background-color 0.25s, color 0.25s;
+        }
+        
+        #play-album-button-container:hover{
+            color: blue;
+            background-color: aquamarine;
+        }
+        
+        #download-album-button-container:hover{
+            color: white;
+            background-color: red;
+        }
+        
+        @media only screen and (max-width: 640px){
+             #main-app-container{
+                width: 100%;
+                height: auto;
+                position: absolute;
+                top: 5%;
+                left: 0;
+                margin-left: 0px;
+            }
+            
+            #if-youre-listening-container{
+                display: block;
+                width: 90%;
+                margin: 10px auto;
+                font-size: 0;
+                height: 25px;
+                background-image: url(./media/img/if-youre-listening.png);
+                background-size: 100% 100%;
+                background-repeat: no-repeat;
+            }
+
+            #youre-early-container{
+                display: block;
+                width: 90%;
+                margin: 10px auto;
+                font-size: 0;
+                height: 25px;
+                background-image: url(./media/img/to-this-youre-early.png);
+                background-size: 100% 100%;
+                background-repeat: no-repeat;
+            }
+        }
+    </style>
+      <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            document.getElementById("download-album-button-container").addEventListener("click", function(){
+                window.open("https://soundcloud.com/oldrowmaryland/holston-hills-drive-travis-scott-x-21savage-ai", "_blank");
+            });
+            
+            document.getElementById("play-album-button-container").addEventListener("click", function(){
+               window.open("https://youtu.be/As5qirSsxzs", "_blank");
+            });
+        });  
+      </script>
+  </head>
+  <body>
+      <div id="main-app-container">
+          <!--<div class="publication-title-container">If youre listening to this...</div>
+          <div class="publication-title-container">Youre Early</div>-->
+          <div id="if-youre-listening-container"></div>
+          <div id="youre-early-container"></div>
+          <div id="album-cover-container">
+          </div>
+          <input type="button" value="listen" id="play-album-button-container" />
+          <input type="button" value="free download" id="download-album-button-container" />
+          <div id="feature-block-container">
+              <div>Featuring songs from:</div>
+              <ul>
+                <li>DR.AI.KE</li>
+                  <li>Fin de SemAIne</li>
+                  <li>CrAIg the Destroyer</li>
+                  <li>Ravish Thots</li>
+              </ul>
+        </div>
+      </div>
+  </body>
+</html>

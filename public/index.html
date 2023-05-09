@@ -4,98 +4,621 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <title>Codename: Galactic Kids Next Door</title>
-    <link rel="stylesheet" type="text/css" href="./css/gknd.css" />
-    <link rel="stylesheet" type="text/css" href="./css/TGL-glyphs.css" />
-    <script src="./js/aframe1.3.0.min.js"></script>
-    <script src="./js/GalacticKidsNextDoor.Series.js"></script>
-    <script src="./js/Series.Lyoko.js"></script>
+    <title>CODENAME: Galactic Kids Next Door</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Braah+One&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html, #main-app-container{
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background-color: rgba(0, 0, 0, 1.0);
+        }
+
+        #main-app-container{
+            position: relative;
+            background-color: rgba(0, 0, 0, 1.0);
+            color: white;
+        }
+
+        .hidden-scene{
+            opacity: 0;
+        }
+
+        .visible-scene{
+            opacity: 1.0;
+        }
+
+        #gknd-logo-button-container{
+            position: absolute;
+            background-image: url(../media/img/gknd-logo.png);
+            background-size: 110% 100%;
+            background-color: black;
+            background-position: center center;
+            background-repeat: no-repeat no-repeat;
+            border: 0;
+            cursor: pointer;
+            z-index: 10;
+            transition: top 2.5s, left 2.5s, width 2.5s, height 2.5s, margin 2.5s;
+        }
+
+        .loading-screen-logo-container{
+            width: 350px;
+            height: 350px;
+            top: 45%;
+            left: 50%;
+            margin: -175px 0 0 -175px;
+        }
+
+        .corner-logo-container{
+            width: 75px;
+            height: 75px;
+            top: 5%;
+            left: 7%;
+            margin: -50px 0 0 -50px;
+        }
+
+        .corner-logo-container:hover{
+            width: 120px;
+            height: 120px;
+        }
+        
+        #desktop-navigation-options-container{
+            font-family: "Braah One", sans-serif;
+            width: 315px;
+            height: max(10%, 50px);
+            z-index: 10;
+            font-size: 42px;
+            letter-spacing: 1px;
+            background-color: rgba(0, 0, 0, 1.0);
+            color: white;
+            font-weight: 400;
+            margin: 2% auto 0 auto;
+        }
+        
+        #daria-header-container{
+            font-family: "Braah One", sans-serif;
+            position: absolute;
+            top: 0;
+            left: 100px;
+            width: 200px;
+            height: max(10%, 50px);
+            line-height: max(10%, 50px);
+            text-align: center;
+            font-size: 40px;
+        }
+        
+        #get-started-main-container{
+            position: relative;
+            font-family: "Braah One", sans-serif;
+            width: 500px;
+            height: 225px;
+            border-radius: 50px;
+            background-color: rgba(255, 255, 255, 1.0);
+            color: darkblue;
+            margin: 10% auto 0 auto;
+        }
+        
+        #create-anything-text-container{
+            padding: 5% 0% 0% 0%;
+            text-align: center;
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+        
+        #get-started-description-container{
+            width: 90%;
+            margin: 10px auto 2% auto;
+            text-align: center;
+            font-size: 18px;
+            letter-spacing: 0px;
+            text-transform: uppercase;
+        }
+        
+        #get-started-button-container{
+            font-family: "Braah One", sans-serif;
+            width: 80%;
+            height: 50px;
+            display: block;
+            margin: 2% auto;
+            background-color: darkblue;
+            color: white;
+            line-height: 50px;
+            text-align: center;
+            font-size: 20px;
+            cursor: pointer;
+            outline: none;
+            box-shadow: 0 0 0 white;
+            transition: box-shadow 0.25s, width 0.25s, height 0.25s;
+            border-radius: 15px;
+        }
+        
+        #get-started-button-container:hover{
+            box-shadow: 5px 5px 5px white;
+            text-transform: uppercase;
+            width: 90%;
+            height: 65px;
+        }
+        
+        #current-media-type-container{
+            display: inline;
+        }
+        
+        .navigation-button-container{
+            font-family: "Braah One", sans-serif;
+            font-size: 24px;
+            text-transform: uppercase;
+            line-height: 42px;
+            height: 42px;
+            width: auto;
+            outline: none;
+            cursor: pointer;
+            color: white;
+            border: 0;
+            background-color: black;
+            display: inline-block;
+            margin: 0 1%;
+        }
+        
+        #avatar-sam-container{
+            position: absolute;
+            width: 350px;
+            height: 450px;
+            background-image: url(./media/img/travis-head-0.png);
+            background-size: 120% auto;
+            background-repeat: no-repeat;
+            background-position: center center;
+            right: -260px;
+            top: -125px;
+            /*top: 10%;
+            right: 50%;
+            margin-right: calc(150px - 50%);*/
+            cursor: pointer;
+        }
+        
+        #ai-loader-container{
+            position: absolute;
+            width: 240px;
+            height: 135px;
+            bottom: 0;
+            left: 50%;
+            margin-left: -120px;
+        }
+        
+        .trending-post-container{
+            font-family: "Braah One", sans-serif;
+            width: 268px;
+            height: 268px;
+            margin: 15px;
+            border-radius: 15px;
+            background-color: white;
+            background-repeat: no-repeat;
+            line-height: 50px;
+            font-size: 20px;
+            text-align: center;
+            vertical-align: bottom;
+            color: darkblue;
+        }
+        
+        #trending-list-post-container{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+        }
+        
+        #trending-list-title-container{
+            font-family: "Braah One", sans-serif;
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        #main-scene-container{
+            width: 900px;
+            display: block;
+            margin: 8% auto 0 auto;
+            transition: opacity 0.5s;
+        }
+    </style>
 </head>
 <body>
     <div id="main-app-container">
         <input id="gknd-logo-button-container" class="loading-screen-logo-container" value="" type="button"/>
-        <div id="tgl-subtitles-container">
-            <!--<div class="galactic-letter-block-size-10-container tgl-letter-e-container"></div>
-            <div class="galactic-letter-block-size-10-container tgl-letter-r-container"></div>
-            <div class="galactic-letter-block-size-10-container tgl-letter-t-container"></div>-->
+        <div id ="daria-header-container">
         </div>
-        <!--
-        earth  ERT A
-        terre  ERT 
-        tierra ERT I
-        terra  ERT A
-        -->
+        <div id="desktop-navigation-options-container">
+            <input type="button" value="Home" id="home-navigation-button-container" class="navigation-button-container" />
+            <input type="button" value="Features" id="home-navigation-button-container" class="navigation-button-container" />
+            <input type="button" value="Pricing" id="home-navigation-button-container" class="navigation-button-container" />
+        </div>
+        <div id="get-started-main-container">
+            <div id="create-anything-text-container">
+                <div id="current-media-type-container">Create Music</div> with AI 
+            </div>
+            <div id="get-started-description-container">
+                <p>Augment your productions with DARIA AI.</p>
+                <p>The world is your desktop!</p>
+            </div>
+            <input id="get-started-button-container" type="button" value="Get Started"/>
+            <div id="avatar-sam-container">
+                <video id="ai-loader-container" width="240" height="135" muted autoplay loop>
+                    <source src="./media/img/loading-anim.webm" type="video/webm">
+                </video>
+            </div>
+        </div>
+        
+        <div id="main-scene-container" class="hidden-scene">
+            <div id="trending-list-title-container">
+                Trending Posts
+            </div>
+            <div id="trending-list-post-container">
+                <!--<div id="trending-post-0-container" class="trending-post-container"></div>
+                <div id="trending-post-1-container" class="trending-post-container"></div>
+                <div id="trending-post-2-container" class="trending-post-container"></div>-->
+            </div>
+        </div>
     </div>
-    <a-scene id="main-scene-container" embedded width="720" height="480" class="hidden-scene">
-        <a-assets timeout="60000">
-            <img id="earth-texture" src="./media/img/earth-texture.png" />
-            <img id="earth-moon-texture" src="./media/img/2k_moon.jpeg" />
-            <img id="starry-sky-texture" src="./media/img/starry-sky-texture.avif" />
-
-        </a-assets>
-
-        <a-sphere id="planet-earth-body-object-subject-container"
-                position="0 1.25 0"
-                radius="64"
-                rotation="0 0 0"
-                material="src: #earth-texture; side: double;"
-                animation="property: rotation; from: 0 0 0; to: 0 360 0; loop: true; dur: 96000; easing: linear; pauseEvents: pauseInitialEarthRotation;">
-        </a-sphere>
-        
-       
-        
-        <a-entity rotation="0 0 0" animation="property: rotation; to: 0 360 0; loop: true; dur: 96000; easing: linear;">
-             <a-sphere id="earth-moon-body-object-subject-container"
-                position="448 1.25 0"
-                radius="17.44"
-                rotation="0 0 0"
-                material="src: #earth-moon-texture; side: double;">
-            </a-sphere>    
-            <!--<a-sphere radius="17.44" position="5 0 0" color="mediumseagreen"></a-sphere>
-
-animation="property: position; from: 0 1.25 64; to: 10 1.25 64; loop: false; dur: 2000; easing: linear;"-->
-        </a-entity>
-
-        <a-entity id="rig" position="0 1 30" rotation="0 0 0">
-          <a-camera id="camera"></a-camera>
-        </a-entity>
-        <a-sky id="sky-container" src="#starry-sky-texture"></a-sky>
-    </a-scene>
-    <script src="./js/TGL-min.js"></script>
-    <script src="./js/message.js"></script>
     <script>
+        var mediaTypes = [
+            {
+                action: "Create Music",
+            },
+            {
+                action: "Give Speeches",
+            },
+            {
+                action: "Edit Videos",
+            },
+            {
+                action: "Cover Songs",
+            },
+            {
+                action: "Post TikToks",
+            },
+            {
+                action: "Share Memes",
+            }
+        ];
+        
+        
+        var personas = [
+            {
+                name: "Travis",
+                src: "./media/img/travis-head-0.png",
+                bgSize: "130% auto"
+            },
+            {
+                name: "Obama",
+                src: "./media/img/obama-head-2.png",
+                bgSize: "120% auto"
+            },
+            {
+                name: "Trump",
+                src: "./media/img/trump-head-0.png",
+                bgSize: "100% auto"
+            },
+            {
+                name: "Drake",
+                src: "./media/img/drake-head-1.png",
+                bgSize: "130% auto"
+            },
+            {
+                name: "Biden",
+                src: "./media/img/biden-head-2.png",
+                bgSize: "130% auto"
+            },
+            {
+                name: "eminem",
+                src: "./media/img/eminem-head-2.png",
+                bgSize: "95% auto"
+            }
+        ];
+        
+         var trendingApps = [
+            {
+                name: "AVATAR SAM",
+                src: "./media/img/avatar-sam-cover.png",
+                bgSize: "auto 100%",
+                bgPosition: "center center",
+                target: "./avatar-sam",
+                type: "Application",
+                ranking: 1
+            },
+            {
+                name: "ATL: AI THE LABEL",
+                src: "./media/img/be-the-label.png",
+                bgSize: "100% auto",
+                bgPosition: "center center",
+                target: "./atl",
+                type: "Application",
+                ranking: 2
+            },
+            {
+                name: "FINDING TIME",
+                src: "./media/img/finding-time-cover.png",
+                bgSize: "110% auto",
+                bgPosition: "center center",
+                target: "./finding-time",
+                color: "rgba(255,255,255,0)",
+                type: "Music",
+                ranking: 3
+            },
+            {
+                name: "AVATAR SAM PODCAST",
+                src: "./media/img/avatar-sam-cover-1.png",
+                bgSize: "auto 100%",
+                bgPosition: "center center",
+                target: "./avatar-sam",
+                color: "white",
+                type: "Application",
+                ranking: 4
+            },
+             {
+                name: "YO NO SE MAÑANA",
+                src: "./media/img/YO-NO-SE-COVER.png",
+                bgSize: "auto 100%",
+                bgPosition: "center center",
+                target: "./avatar-sam",
+                type: "Application",
+                color: "rgba(255,255,255,0)",
+                ranking: 5
+            },
+             {
+                name: "A LA FAVEUR",
+                src: "./media/img/a-la-faveur.png",
+                bgSize: "auto 100%",
+                bgPosition: "center center",
+                target: "./avatar-sam",
+                type: "Application",
+                color: "rgba(255,255,255,0)",
+                ranking: 6
+            },
+            {
+                name: "HOLSTON HILLS DRIVE",
+                src: "./media/img/holston-hills-drive-cover.png",
+                bgSize: "100% 100%",
+                bgPosition: "center center",
+                target: "./holston-hills-drive",
+                color: "rgba(255,255,255,0)",
+                type: "Music",
+                ranking: 7
+            },
+            {
+                name: "DRAKE AI COMP ALBUM",
+                src: "./media/img/infinite.gif",
+                bgSize: "60% auto",
+                bgPosition: "center center",
+                target: "./9-ai-compilation-album",
+                color: "white",
+                type: "Music",
+                ranking: 8
+            },
+            {
+                name: "WHAT HAS VIOLENCE EVER ACCOMPLISHED?",
+                src: "./media/img/what-has-violence.avif",
+                bgSize: "auto 100%",
+                bgPosition: "center",
+                target: "./what-has-violence-ever-accomplished",
+                type: "Application",
+                color: "rgba(255,255,255,0)",
+                ranking: 9
+            },
+            {
+                name: "IM SAIAN",
+                src: "./media/img/IMSAIAN.png",
+                bgSize: "auto 100%",
+                bgPosition: "center center",
+                target: "./im-saian",
+                color: "rgba(255,255,255,0)",
+                type: "Application",
+                ranking: 10
+            },
+            {
+                name: "SINCERELY AUBREY (LEAK)",
+                src: "./media/img/sincerely-aubrey-cover.png",
+                bgSize: "110% auto",
+                bgPosition: "center center",
+                target: "./sincerely-aubrey",
+                color: "black",
+                type: "Music",
+                ranking: 11
+            },
+             {
+                name: "SINCERELY AUBREY (LEAK)",
+                src: "./media/img/sincerely-aubrey-cover.png",
+                bgSize: "110% auto",
+                bgPosition: "center center",
+                target: "./sincerely-aubrey",
+                color: "black",
+                type: "Music",
+                ranking: 12
+            },
+             {
+                name: "SINCERELY AUBREY (LEAK)",
+                src: "./media/img/sincerely-aubrey-cover.png",
+                bgSize: "110% auto",
+                bgPosition: "center center",
+                target: "./sincerely-aubrey",
+                color: "black",
+                type: "Music",
+                ranking: 13
+            },
+            {
+                name: "DRAKE AI COMP ALBUM",
+                src: "./media/img/infinite.gif",
+                bgSize: "60% auto",
+                bgPosition: "center center",
+                target: "./9-ai-compilation-album",
+                color: "black",
+                type: "Music"
+            },
+              {
+                name: "AVATAR SAM",
+                src: "./media/img/avatar-sam-cover.png",
+                bgSize: "auto 100%",
+                bgPosition: "center center",
+                target: "./avatar-sam",
+                type: "Application"
+            },
+            {
+                name: "ATL: AI THE LABEL",
+                src: "./media/img/be-the-label.png",
+                bgSize: "100% auto",
+                bgPosition: "center center",
+                target: "./atl",
+                type: "Application"
+            },
+            {
+                name: "FINDING TIME",
+                src: "./media/img/finding-time-cover.png",
+                bgSize: "110% auto",
+                bgPosition: "center center",
+                target: "./finding-time",
+                color: "white",
+                type: "Music"
+            },
+            {
+                name: "AVATAR SAM PODCAST",
+                src: "./media/img/avatar-sam-cover-1.png",
+                bgSize: "auto 100%",
+                bgPosition: "center center",
+                target: "./avatar-sam",
+                color: "white",
+                type: "Application"
+            },
+            {
+                name: "HOLSTON HILLS DRIVE",
+                src: "./media/img/holston-hills-drive-cover.png",
+                bgSize: "100% 100%",
+                bgPosition: "center center",
+                target: "./holston-hills-drive",
+                color: "white",
+                type: "Music"
+            },
+            {
+                name: "DRAKE AI COMP ALBUM",
+                src: "./media/img/infinite.gif",
+                bgSize: "60% auto",
+                bgPosition: "center center",
+                target: "./9-ai-compilation-album",
+                color: "black",
+                type: "Music"
+            },
+              {
+                name: "AVATAR SAM",
+                src: "./media/img/avatar-sam-cover.png",
+                bgSize: "auto 100%",
+                bgPosition: "center center",
+                target: "./avatar-sam",
+                type: "Application"
+            },
+            {
+                name: "ATL: AI THE LABEL",
+                src: "./media/img/be-the-label.png",
+                bgSize: "100% auto",
+                bgPosition: "center center",
+                target: "./atl",
+                type: "Application"
+            },
+            {
+                name: "FINDING TIME",
+                src: "./media/img/finding-time-cover.png",
+                bgSize: "110% auto",
+                bgPosition: "center center",
+                target: "./finding-time",
+                color: "white",
+                type: "Music"
+            },
+            {
+                name: "A LA FAVEUR",
+                src: "./media/img/sincerely-aubrey-cover.png",
+                bgSize: "auto 100%",
+                bgPosition: "center center",
+                target: "./avatar-sam",
+                color: "white",
+                type: "Application"
+            },
+            {
+                name: "HOLSTON HILLS DRIVE",
+                src: "./media/img/holston-hills-drive-cover.png",
+                bgSize: "100% 100%",
+                bgPosition: "center center",
+                target: "./holston-hills-drive",
+                color: "white",
+                type: "Music"
+            },
+            {
+                name: "DRAKE AI COMP ALBUM",
+                src: "./media/img/infinite.gif",
+                bgSize: "60% auto",
+                bgPosition: "center center",
+                target: "./9-ai-compilation-album",
+                color: "black",
+                type: "Music"
+            }
+        ];
+        
+        var onPersona = 0;
+        
         document.addEventListener("DOMContentLoaded", function(){
-            var RigBody = {
-                position: {
-                    x: 0,
-                    y: 308,
-                    z: 0
-                },
-                lastPosStr: "0 308 0"
-            };
-            const helloWorld = new Message("Hello World", document.getElementById("tgl-subtitles-container"));
-            helloWorld.display();
+            document.getElementById("gknd-logo-button-container").classList.remove("loading-screen-logo-container");
+            document.getElementById("gknd-logo-button-container").classList.add("corner-logo-container");
             
-            document.addEventListener("keydown", (event) => {
-              if (event.isComposing || event.keyCode === 229) {
-                return;
-              }
-                let currentKey = event.code;
-                if(currentKey==="KeyQ"){
-                    RigBody.position.y++;
-                    RigBody.lastPosStr = RigBody.position.x+" "+RigBody.position.y+" "+RigBody.position.z;
-                    document.getElementById("rig").setAttribute("position", RigBody.lastPosStr);
-                }
-                if(currentKey==="KeyE"){
-                    RigBody.position.y--;
-                    RigBody.lastPosStr = RigBody.position.x+" "+RigBody.position.y+" "+RigBody.position.z;
-                    document.getElementById("rig").setAttribute("position", RigBody.lastPosStr);
-                }
-              // do something
-            });
+            document.getElementById("main-scene-container").classList.remove("hidden-scene")
+            document.getElementById("main-scene-container").classList.add("visible-scene")
+
+            var pLoop = setInterval(function(){
+                onPersona++;
+                document.getElementById("avatar-sam-container").style.backgroundImage = `url(${personas[onPersona].src})`;
+                document.getElementById("avatar-sam-container").style.backgroundSize = personas[onPersona].bgSize;
+                
+                document.getElementById("current-media-type-container").innerText = mediaTypes[onPersona].action;
+                
+                if(onPersona===personas.length-1)onPersona = -1;
+                
+                
+            }, 8000);
+            
+            for(var appCount = 0; appCount < trendingApps.length; appCount++){
+                let counterA = appCount;
+                (function(){
+                    //console.log(trendingApps[appCount].src);
+                    let curr = document.createElement("div");
+                    curr.classList.add("trending-post-container");
+                    
+                    curr.setAttribute("id", `trending-post-${counterA}-container`);
+                    
+                    curr.style.backgroundImage = `url(${trendingApps[counterA].src})`;
+                    
+                    curr.style.backgroundSize = trendingApps[counterA].bgSize;
+                    
+                    curr.style.backgroundPosition = trendingApps[counterA].bgPosition;
+                    
+                    curr.innerText = trendingApps[counterA].name;
+                    
+                    curr.addEventListener("click", function(){
+                        window.location.href = trendingApps[counterA].target;
+                    });
+                    
+                    if(trendingApps[counterA].color)curr.style.color = trendingApps[counterA].color;
+                    
+                    document.getElementById("trending-list-post-container").appendChild(curr);
+                })();
+            }
         });
-        
-        
     </script>
 </body>
 </html>

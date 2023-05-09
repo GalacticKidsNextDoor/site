@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Codename: Galactic Kids Next Door</title>
+    <link rel="stylesheet" type="text/css" href="./css/gknd.css" />
+    <link rel="stylesheet" type="text/css" href="./css/TGL-glyphs.css" />
+    <script src="./js/aframe1.3.0.min.js"></script>
+    <script src="./js/GalacticKidsNextDoor.Series.js"></script>
+    <script src="./js/Series.Lyoko.js"></script>
+</head>
+<body>
+    <div id="main-app-container">
+        <input id="gknd-logo-button-container" class="loading-screen-logo-container" value="" type="button"/>
+        <div id="tgl-subtitles-container">
+            <!--<div class="galactic-letter-block-size-10-container tgl-letter-e-container"></div>
+            <div class="galactic-letter-block-size-10-container tgl-letter-r-container"></div>
+            <div class="galactic-letter-block-size-10-container tgl-letter-t-container"></div>-->
+        </div>
+        <!--
+        earth  ERT A
+        terre  ERT 
+        tierra ERT I
+        terra  ERT A
+        -->
+    </div>
+    <a-scene id="main-scene-container" embedded width="720" height="480" class="hidden-scene">
+        <a-assets timeout="60000">
+            <img id="earth-texture" src="./media/img/earth-texture.png" />
+            <img id="earth-moon-texture" src="./media/img/2k_moon.jpeg" />
+            <img id="starry-sky-texture" src="./media/img/starry-sky-texture.avif" />
+
+        </a-assets>
+
+        <a-sphere id="planet-earth-body-object-subject-container"
+                position="0 1.25 0"
+                radius="64"
+                rotation="0 0 0"
+                material="src: #earth-texture; side: double;"
+                animation="property: rotation; from: 0 0 0; to: 0 360 0; loop: true; dur: 96000; easing: linear; pauseEvents: pauseInitialEarthRotation;">
+        </a-sphere>
+        
+       
+        
+        <a-entity rotation="0 0 0" animation="property: rotation; to: 0 360 0; loop: true; dur: 96000; easing: linear;">
+             <a-sphere id="earth-moon-body-object-subject-container"
+                position="448 1.25 0"
+                radius="17.44"
+                rotation="0 0 0"
+                material="src: #earth-moon-texture; side: double;">
+            </a-sphere>    
+            <!--<a-sphere radius="17.44" position="5 0 0" color="mediumseagreen"></a-sphere>
+
+animation="property: position; from: 0 1.25 64; to: 10 1.25 64; loop: false; dur: 2000; easing: linear;"-->
+        </a-entity>
+
+        <a-entity id="rig" position="0 1 100" rotation="0 0 0">
+          <a-camera id="camera"></a-camera>
+        </a-entity>
+        <a-sky id="sky-container" src="#starry-sky-texture"></a-sky>
+    </a-scene>
+    <script src="./js/TGL-min.js"></script>
+    <script src="./js/message.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            var RigBody = {
+                position: {
+                    x: 0,
+                    y: 308,
+                    z: 0
+                },
+                lastPosStr: "0 308 0"
+            };
+            const helloWorld = new Message("Hello World", document.getElementById("tgl-subtitles-container"));
+            helloWorld.display();
+            
+            document.addEventListener("keydown", (event) => {
+              if (event.isComposing || event.keyCode === 229) {
+                return;
+              }
+                let currentKey = event.code;
+                if(currentKey==="KeyQ"){
+                    RigBody.position.y++;
+                    RigBody.lastPosStr = RigBody.position.x+" "+RigBody.position.y+" "+RigBody.position.z;
+                    document.getElementById("rig").setAttribute("position", RigBody.lastPosStr);
+                }
+                if(currentKey==="KeyE"){
+                    RigBody.position.y--;
+                    RigBody.lastPosStr = RigBody.position.x+" "+RigBody.position.y+" "+RigBody.position.z;
+                    document.getElementById("rig").setAttribute("position", RigBody.lastPosStr);
+                }
+              // do something
+            });
+        });
+        
+        
+    </script>
+</body>
+</html>
