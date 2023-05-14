@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <title>CODENAME: Galactic Kids Next Door</title>
+    <title>Galactic Kids Next Door</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Braah+One&display=swap" rel="stylesheet">
@@ -18,12 +18,13 @@
             width: 100%;
             height: 100%;
             z-index: 0;
-            background-color: rgba(0, 0, 0, 1.0);
+            background-image: url(./media/img/starry-sky-texture.avif);
+            background-size: cover;
         }
 
         #main-app-container{
             position: relative;
-            background-color: rgba(0, 0, 0, 1.0);
+            background-color: rgba(0, 0, 0, 0);
             color: white;
         }
 
@@ -232,6 +233,75 @@
             margin: 8% auto 0 auto;
             transition: opacity 0.5s;
         }
+        
+        @media only screen and (max-width: 640px){
+            
+            #desktop-navigation-options-container{
+                font-family: "Braah One", sans-serif;
+                width: 315px;
+                height: 10%;
+                font-size: 24px;
+                /*z-index: 10;
+                font-size: 42px;
+                letter-spacing: 1px;
+                background-color: rgba(0, 0, 0, 1.0);
+                color: white;
+                font-weight: 400;
+                margin: 2% auto 0 auto;*/
+            }
+            
+            #gknd-logo-button-container{
+                background-color: rgba(0, 0, 0, 0);
+            }
+
+            .corner-logo-container{
+                width: 65px;
+                height: 65px;
+                top: 5%;
+                left: 50%;
+                margin: 0;/*-50px 0 0 -50px;*/
+                margin-left: -33px;
+            }
+
+            .corner-logo-container:hover{
+                width: 70px;
+                height: 70px;
+            }
+            
+            #get-started-main-container{
+                position: relative;
+                /*font-family: "Braah One", sans-serif;*/
+                width: 90%;
+                height: auto;
+                min-height: 300px;
+                border-radius: 5px;
+                /*background-color: rgba(255, 255, 255, 1.0);
+                color: darkblue;*/
+                margin: 10% auto 0 auto;
+            }
+
+            #avatar-sam-container{
+                width: 350px;
+                height: 450px;
+                right: 0;
+                top: 225px;
+            }
+
+            #main-scene-container {
+                width: 100%;
+                display: block;
+                margin: 97% auto 0 auto;
+            }
+            
+            #trending-list-title-container {
+                text-align: center;
+            }
+            
+            .trending-post-container{
+                display: block;
+                margin: 30px auto;
+            }
+        }
     </style>
 </head>
 <body>
@@ -241,8 +311,8 @@
         </div>
         <div id="desktop-navigation-options-container">
             <input type="button" value="Home" id="home-navigation-button-container" class="navigation-button-container" />
-            <input type="button" value="Features" id="home-navigation-button-container" class="navigation-button-container" />
-            <input type="button" value="Pricing" id="home-navigation-button-container" class="navigation-button-container" />
+            <input type="button" value="Features" id="features-navigation-button-container" class="navigation-button-container" />
+            <input type="button" value="Pricing" id="pricing-navigation-button-container" class="navigation-button-container" />
         </div>
         <div id="get-started-main-container">
             <div id="create-anything-text-container">
@@ -329,6 +399,94 @@
         
          var trendingApps = [
             {
+                name: "SINCERELY AUBREY",
+                src: "./media/img/sincerely-aubrey-cover.png",
+                bgSize: "110% auto",
+                bgPosition: "center center",
+                target: "./sincerely-aubrey",
+                color: "black",
+                type: "Music",
+                ranking: 1
+            },{
+                name: "IM SAIAN",
+                src: "./media/img/IMSAIAN.png",
+                bgSize: "auto 100%",
+                bgPosition: "center center",
+                target: "./im-saian",
+                color: "rgba(255,255,255,0)",
+                type: "Application",
+                ranking: 2
+            },
+             {
+                name: "HOLSTON HILLS DRIVE",
+                src: "./media/img/holston-hills-drive-cover.png",
+                bgSize: "100% 100%",
+                bgPosition: "center center",
+                target: "./holston-hills-drive",
+                color: "rgba(255,255,255,0)",
+                type: "Music",
+                ranking: 3
+            },
+            {
+                name: "DRAKE AI COMP ALBUM",
+                src: "./media/img/infinite.gif",
+                bgSize: "60% auto",
+                bgPosition: "center center",
+                target: "./9-ai-compilation-album",
+                color: "white",
+                type: "Music",
+                ranking: 4
+            },
+            {
+                name: "FINDING TIME",
+                src: "./media/img/finding-time-cover.png",
+                bgSize: "110% auto",
+                bgPosition: "center center",
+                target: "./finding-time",
+                color: "rgba(255,255,255,0)",
+                type: "Music",
+                ranking: 5
+            },
+             {
+                name: "YO NO SE MAÑANA",
+                src: "./media/img/YO-NO-SE-COVER.png",
+                bgSize: "auto 100%",
+                bgPosition: "center center",
+                target: "./yo-no-se",
+                type: "Application",
+                color: "rgba(255,255,255,0)",
+                ranking: 6
+            },
+             {
+                name: "A LA FAVEUR",
+                src: "./media/img/a-la-faveur.png",
+                bgSize: "auto 100%",
+                bgPosition: "center center",
+                target: "./a-la-faveur",
+                type: "Application",
+                color: "rgba(255,255,255,0)",
+                ranking: 7
+            },
+            {
+                name: "WHAT HAS VIOLENCE EVER ACCOMPLISHED?",
+                src: "./media/img/what-has-violence.avif",
+                bgSize: "auto 100%",
+                bgPosition: "center",
+                target: "./what-has-violence-ever-accomplished",
+                type: "Application",
+                color: "rgba(255,255,255,0)",
+                ranking: 8
+            },
+             {
+                name: "AVATAR SAM",
+                src: "./media/img/avatar-sam-cover.png",
+                bgSize: "auto 100%",
+                bgPosition: "center center",
+                target: "./avatar-sam",
+                type: "Application",
+                ranking: 9
+            }
+            /*{
                 name: "AVATAR SAM",
                 src: "./media/img/avatar-sam-cover.png",
                 bgSize: "auto 100%",
@@ -345,78 +503,7 @@
                 target: "./atl",
                 type: "Application",
                 ranking: 2
-            },
-            {
-                name: "FINDING TIME",
-                src: "./media/img/finding-time-cover.png",
-                bgSize: "110% auto",
-                bgPosition: "center center",
-                target: "./finding-time",
-                color: "rgba(255,255,255,0)",
-                type: "Music",
-                ranking: 3
-            },
-            {
-                name: "AVATAR SAM PODCAST",
-                src: "./media/img/avatar-sam-cover-1.png",
-                bgSize: "auto 100%",
-                bgPosition: "center center",
-                target: "./avatar-sam",
-                color: "white",
-                type: "Application",
-                ranking: 4
-            },
-             {
-                name: "YO NO SE MAÑANA",
-                src: "./media/img/YO-NO-SE-COVER.png",
-                bgSize: "auto 100%",
-                bgPosition: "center center",
-                target: "./avatar-sam",
-                type: "Application",
-                color: "rgba(255,255,255,0)",
-                ranking: 5
-            },
-             {
-                name: "A LA FAVEUR",
-                src: "./media/img/a-la-faveur.png",
-                bgSize: "auto 100%",
-                bgPosition: "center center",
-                target: "./avatar-sam",
-                type: "Application",
-                color: "rgba(255,255,255,0)",
-                ranking: 6
-            },
-            {
-                name: "HOLSTON HILLS DRIVE",
-                src: "./media/img/holston-hills-drive-cover.png",
-                bgSize: "100% 100%",
-                bgPosition: "center center",
-                target: "./holston-hills-drive",
-                color: "rgba(255,255,255,0)",
-                type: "Music",
-                ranking: 7
-            },
-            {
-                name: "DRAKE AI COMP ALBUM",
-                src: "./media/img/infinite.gif",
-                bgSize: "60% auto",
-                bgPosition: "center center",
-                target: "./9-ai-compilation-album",
-                color: "white",
-                type: "Music",
-                ranking: 8
-            },
-            {
-                name: "WHAT HAS VIOLENCE EVER ACCOMPLISHED?",
-                src: "./media/img/what-has-violence.avif",
-                bgSize: "auto 100%",
-                bgPosition: "center",
-                target: "./what-has-violence-ever-accomplished",
-                type: "Application",
-                color: "rgba(255,255,255,0)",
-                ranking: 9
-            },
-            {
+            },{
                 name: "IM SAIAN",
                 src: "./media/img/IMSAIAN.png",
                 bgSize: "auto 100%",
@@ -427,36 +514,6 @@
                 ranking: 10
             },
             {
-                name: "SINCERELY AUBREY (LEAK)",
-                src: "./media/img/sincerely-aubrey-cover.png",
-                bgSize: "110% auto",
-                bgPosition: "center center",
-                target: "./sincerely-aubrey",
-                color: "black",
-                type: "Music",
-                ranking: 11
-            },
-             {
-                name: "SINCERELY AUBREY (LEAK)",
-                src: "./media/img/sincerely-aubrey-cover.png",
-                bgSize: "110% auto",
-                bgPosition: "center center",
-                target: "./sincerely-aubrey",
-                color: "black",
-                type: "Music",
-                ranking: 12
-            },
-             {
-                name: "SINCERELY AUBREY (LEAK)",
-                src: "./media/img/sincerely-aubrey-cover.png",
-                bgSize: "110% auto",
-                bgPosition: "center center",
-                target: "./sincerely-aubrey",
-                color: "black",
-                type: "Music",
-                ranking: 13
-            },
-            {
                 name: "DRAKE AI COMP ALBUM",
                 src: "./media/img/infinite.gif",
                 bgSize: "60% auto",
@@ -464,6 +521,17 @@
                 target: "./9-ai-compilation-album",
                 color: "black",
                 type: "Music"
+            },
+            
+            {
+                name: "AVATAR SAM PODCAST",
+                src: "./media/img/avatar-sam-cover-1.png",
+                bgSize: "auto 100%",
+                bgPosition: "center center",
+                target: "./avatar-sam",
+                color: "white",
+                type: "Application",
+                ranking: 4
             },
               {
                 name: "AVATAR SAM",
@@ -498,24 +566,6 @@
                 target: "./avatar-sam",
                 color: "white",
                 type: "Application"
-            },
-            {
-                name: "HOLSTON HILLS DRIVE",
-                src: "./media/img/holston-hills-drive-cover.png",
-                bgSize: "100% 100%",
-                bgPosition: "center center",
-                target: "./holston-hills-drive",
-                color: "white",
-                type: "Music"
-            },
-            {
-                name: "DRAKE AI COMP ALBUM",
-                src: "./media/img/infinite.gif",
-                bgSize: "60% auto",
-                bgPosition: "center center",
-                target: "./9-ai-compilation-album",
-                color: "black",
-                type: "Music"
             },
               {
                 name: "AVATAR SAM",
@@ -568,12 +618,29 @@
                 target: "./9-ai-compilation-album",
                 color: "black",
                 type: "Music"
-            }
+            }*/
         ];
         
         var onPersona = 0;
         
         document.addEventListener("DOMContentLoaded", function(){
+            
+            document.getElementById("features-navigation-button-container").addEventListener("click", function(){
+                window.alert("COMING SOON !\n\n SUNDAY MAY 14, 2023 @ 07:30 PM ET");
+            });
+            
+            document.getElementById("pricing-navigation-button-container").addEventListener("click", function(){
+                window.alert("COMING SOON !\n\n SUNDAY MAY 14, 2023 @ 07:30 PM ET");
+            });
+            
+            document.getElementById("home-navigation-button-container").addEventListener("click", function(){
+                window.location.href = "https://galactickidsnextdoor.com";
+            });
+            
+            document.getElementById("get-started-button-container").addEventListener("click", function(){
+                window.alert("COMING SOON !\n\n SUNDAY MAY 14, 2023 @ 07:30 PM ET");
+            });
+            
             document.getElementById("gknd-logo-button-container").classList.remove("loading-screen-logo-container");
             document.getElementById("gknd-logo-button-container").classList.add("corner-logo-container");
             
