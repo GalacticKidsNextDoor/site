@@ -18,7 +18,7 @@
             width: 100%;
             height: 100%;
             z-index: 0;
-            background-image: url(./media/img/starry-sky-texture.avif);
+            background-image: url(./media/img/starry-sky-texture.png);
             background-size: cover;
         }
 
@@ -40,7 +40,7 @@
             position: absolute;
             background-image: url(../media/img/gknd-logo.png);
             background-size: 110% 100%;
-            background-color: black;
+            background-color: rgba(0, 0, 0, 0);
             background-position: center center;
             background-repeat: no-repeat no-repeat;
             border: 0;
@@ -77,22 +77,10 @@
             z-index: 10;
             font-size: 42px;
             letter-spacing: 1px;
-            background-color: rgba(0, 0, 0, 1.0);
+            background-color: rgba(0, 0, 0, 0);
             color: white;
             font-weight: 400;
             margin: 2% auto 0 auto;
-        }
-        
-        #daria-header-container{
-            font-family: "Braah One", sans-serif;
-            position: absolute;
-            top: 0;
-            left: 100px;
-            width: 200px;
-            height: max(10%, 50px);
-            line-height: max(10%, 50px);
-            text-align: center;
-            font-size: 40px;
         }
         
         #get-started-main-container{
@@ -160,14 +148,14 @@
             text-transform: uppercase;
             line-height: 42px;
             height: 42px;
-            width: auto;
+            width: 30%;
             outline: none;
             cursor: pointer;
             color: white;
             border: 0;
-            background-color: black;
+            background-color: rgba(0, 0, 0, 0);
             display: inline-block;
-            margin: 0 1%;
+            margin: 0;
         }
         
         #avatar-sam-container{
@@ -238,9 +226,9 @@
             
             #desktop-navigation-options-container{
                 font-family: "Braah One", sans-serif;
-                width: 315px;
+                width: 303px;
                 height: 10%;
-                font-size: 24px;
+                font-size: 20px;
                 /*z-index: 10;
                 font-size: 42px;
                 letter-spacing: 1px;
@@ -248,6 +236,11 @@
                 color: white;
                 font-weight: 400;
                 margin: 2% auto 0 auto;*/
+            }
+            
+            .navigation-button-container{
+                font-size: 20px;
+                width: 30%;
             }
             
             #gknd-logo-button-container{
@@ -307,11 +300,9 @@
 <body>
     <div id="main-app-container">
         <input id="gknd-logo-button-container" class="loading-screen-logo-container" value="" type="button"/>
-        <div id ="daria-header-container">
-        </div>
         <div id="desktop-navigation-options-container">
             <input type="button" value="Home" id="home-navigation-button-container" class="navigation-button-container" />
-            <input type="button" value="Features" id="features-navigation-button-container" class="navigation-button-container" />
+            <input type="button" value="Tech" id="features-navigation-button-container" class="navigation-button-container" />
             <input type="button" value="Pricing" id="pricing-navigation-button-container" class="navigation-button-container" />
         </div>
         <div id="get-started-main-container">
@@ -469,7 +460,7 @@
             },
             {
                 name: "WHAT HAS VIOLENCE EVER ACCOMPLISHED?",
-                src: "./media/img/what-has-violence.avif",
+                src: "./media/img/what-has-violence.png",
                 bgSize: "auto 100%",
                 bgPosition: "center",
                 target: "./what-has-violence-ever-accomplished",
@@ -622,23 +613,34 @@
         ];
         
         var onPersona = 0;
+        var loggedIn = false;
         
         document.addEventListener("DOMContentLoaded", function(){
             
             document.getElementById("features-navigation-button-container").addEventListener("click", function(){
-                window.alert("COMING SOON !\n\n MONDAY MAY 15, 2023 @ 09:30 PM ET");
+                window.location.href = "./features";
             });
             
             document.getElementById("pricing-navigation-button-container").addEventListener("click", function(){
-                window.alert("COMING SOON !\n\n MONDAY MAY 15, 2023 @ 09:30 PM ET");
+                window.location.href = "./pricing";
             });
             
             document.getElementById("home-navigation-button-container").addEventListener("click", function(){
                 window.location.href = "https://galactickidsnextdoor.com";
             });
             
+            
+            document.getElementById("gknd-logo-button-container").addEventListener("click", function(){
+                window.location.href = "https://galactickidsnextdoor.com";
+            });
+            
             document.getElementById("get-started-button-container").addEventListener("click", function(){
-                window.alert("COMING SOON !\n\n MONDAY MAY 15, 2023 @ 09:30 PM ET");
+                if(loggedIn){
+                    window.location.href = "./create";
+                }
+                else{
+                    document.getElementById("pricing-navigation-button-container").click();
+                }
             });
             
             document.getElementById("gknd-logo-button-container").classList.remove("loading-screen-logo-container");
@@ -657,7 +659,7 @@
                 if(onPersona===personas.length-1)onPersona = -1;
                 
                 
-            }, 8000);
+            }, 6000);
             
             for(var appCount = 0; appCount < trendingApps.length; appCount++){
                 let counterA = appCount;
