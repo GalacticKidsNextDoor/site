@@ -144,7 +144,7 @@
         }
         
         .trending-post-container{
-            /*font-family: "Braah One", sans-serif;
+            font-family: "Braah One", sans-serif;
             width: 268px;
             height: 268px;
             margin: 15px;
@@ -155,32 +155,32 @@
             font-size: 20px;
             text-align: center;
             vertical-align: bottom;
-            color: darkblue;*/
+            color: darkblue;
+        /*
             font-family: "Braah One", sans-serif;
             font-size: 20px;
             height: 300px;
             flex-grow: 1;
             flex-shrink: 1;
-            flex-basis: auto;/*calc(30.33% - 20px);*/
+            flex-basis: auto;
             margin: 0 5px 20px 5px;
             border-radius: 52px;
             padding: 20px;
-            /*background-color: #782dc8; var(--raised-bg);*/
             box-shadow: 0 0 10px rgba(112,42,187,.4), 0 1px 3px rgba(112,42,187,.1);
             border: 2px solid #702abb;
             display: flex;
             flex-direction: column;
-            min-width: 250px;
+            min-width: 250px;*/
         }
         
-        #trending-list-post-container{
+        #public-apps-block-container{
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
             justify-content: flex-start;
         }
         
-        #trending-list-title-container{
+        .tech-page-section-header-container{
             font-family: "Braah One", sans-serif;
             width: 100%;
             height: 50px;
@@ -193,8 +193,45 @@
         #main-scene-container{
             width: 95%;
             display: block;
-            margin: 8% auto 0 auto;
+            margin: 4% auto 0 auto;
             transition: opacity 0.5s;
+        }
+
+        #all-features-block-container{
+            font-family: "Braah One", sans-serif;
+            display: block;
+            width: 90%;
+            margin: 2% auto;
+        }
+        
+        .tier-title-container{
+            border-radius: 14px;
+            text-align: center;
+            border: 2px solid transparent;
+            display: inline-flex;
+            flex-shrink: 0;
+            vertical-align: middle;
+            position: relative;
+            overflow: visible;
+        }
+        
+        .tier-price-container{
+            /*display: inline-block;*/
+            width: auto;
+            font-size: 40px;
+            font-weight: 700;
+        }
+        
+        .tier-price-addendum-container{
+            /*display: inline-block;*/
+            width: auto;
+            font-size: 18px;
+            font-weight: 300;
+        }
+        
+        .inline-feature-item{
+            display: inline;
+            font-size: 18px;
         }
         
         @media only screen and (max-width: 640px){
@@ -234,7 +271,7 @@
             #main-scene-container {
                 width: 100%;
                 display: block;
-                margin: 97% auto 0 auto;
+                margin: 8% auto 0 auto;
             }
             
             #trending-list-title-container {
@@ -258,20 +295,71 @@
         </div>
         
         <div id="main-scene-container" class="hidden-scene">
-            <div id="trending-list-title-container">
-                Tiers
+            <div class="tech-page-section-header-container">
+                Features
             </div>
-            <div id="trending-list-post-container">
+            <div id="all-features-block-container">
+            </div>
+            <div class="tech-page-section-header-container">
+                Public Apps
+            </div>
+            <div id="public-apps-block-container">
+            </div>
+            <div class="tech-page-section-header-container">
+                Private Apps
+            </div>
+            <div id="private-apps-block-container">
             </div>
         </div>
     </div>
     <script>
-        var trendingApps = [
+        var publicApps = [
             {
                 name: "AVATAR SAM",
                 src: "./media/img/avatar-sam-cover.png",
                 bgSize: "auto 100%",
                 bgPosition: "center center",
+                color: "red",
+                bgColor: "rgba(255, 255, 255, 1.0)",
+                target: "./avatar-sam",
+                type: "Application",
+                tier: "Public",
+                ranking: 9
+            },
+            {
+                name: "AVATAR SAM PODCAST",
+                src: "./media/img/avatar-sam-cover-1.png",
+                bgSize: "auto 100%",
+                bgPosition: "center center",
+                color: "blue",
+                bgColor: "rgba(255, 255, 255, 1.0)",
+                target: "./avatar-sam-podcast",
+                type: "Application",
+                tier: "Public",
+                ranking: 9
+            },
+            {
+                name: "AI The Label",
+                src: "./media/img/be-the-label.png",
+                bgSize: "auto 100%",
+                bgPosition: "center center",
+                bgColor: "rgba(255, 255, 255, 1.0)",
+                color: "black",
+                target: "./avatar-sam",
+                type: "Application",
+                tier: "Public",
+                ranking: 9
+            }
+        ];
+        
+        var privateApps = [
+            {
+                name: "HONEYPOT",
+                src: "./media/img/avatar-sam-cover.png",
+                bgSize: "auto 100%",
+                bgPosition: "center center",
+                color: "red",
+                bgColor: "rgba(255, 255, 255, 1.0)",
                 target: "./avatar-sam",
                 type: "Application",
                 tier: "Public",
@@ -280,6 +368,41 @@
         ];
         
         var onPersona = 0;
+        
+        var features = [
+            {
+                name: "Tokens Never Expire",
+                tier: "All"
+            },
+            {
+                name: "Access Public Voice Apps",
+                tier: "All"
+            },
+            {
+                name: "Unlimited Productions",
+                tier: "Creator"
+            },
+            {
+                name: "Priority Access to New Voice Apps",
+                tier: "Creator"
+            },
+            {
+                name: "Private Folder for Productions",
+                tier: "Creator"
+            },
+            {
+                name: "Tech Support",
+                tier: "Creator"
+            },
+            {
+                name: "Developer Access to DARIA",
+                tier: "Enterprise"
+            },
+            {
+                name: "Early Access to New Features",
+                tier: "Enterprise"
+            }
+        ];
         
         document.addEventListener("DOMContentLoaded", function(){
             
@@ -305,31 +428,130 @@
             document.getElementById("main-scene-container").classList.remove("hidden-scene")
             document.getElementById("main-scene-container").classList.add("visible-scene")
 
-            for(var appCount = 0; appCount < trendingApps.length; appCount++){
+            let currFeatureBlock = document.getElementById("all-features-block-container");
+            
+            for(var featureCount = 0; featureCount < features.length; featureCount++){
+                let counterF = featureCount;
+                (function(){
+                    let featureRow = document.createElement("div");
+                    let featureRowText = document.createElement("div");
+
+                    let checkMark = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                    checkMark.setAttribute("width", 24);
+                    checkMark.setAttribute("height", 24);
+                    checkMark.setAttribute("stroke-width", 1.5);
+                    checkMark.setAttribute("viewBox", "0 0 24 24");
+                    checkMark.setAttribute("fill", "none");
+                    //checkMark.setAttribute("xmlns","http://www.w3.org/2000/svg");
+                    checkMark.setAttribute("color","#000000");
+
+                    let checkPath = document.createElementNS('http://www.w3.org/2000/svg','path');
+                    checkPath.setAttribute("d","M5 13l4 4L19 7");
+                    checkPath.setAttribute("stroke","#06AD86");
+                    checkPath.setAttribute("stroke-width", 3)
+                    checkPath.setAttribute("stroke-linecap", "round")
+                    checkPath.setAttribute("stroke-linejoin", "round");
+
+                    checkMark.classList.add("inline-feature-item");
+                    featureRowText.classList.add("inline-feature-item");
+
+                    checkMark.appendChild(checkPath);
+                    
+                    if(features[counterF].tier==="All"){
+                        featureRowText.innerText = features[counterF].name;
+                    }
+                    else{
+                        featureRowText.innerText = `${features[counterF].name} (${features[counterF].tier})`;
+                    }
+                    
+                    featureRow.appendChild(checkMark);
+                    featureRow.appendChild(featureRowText);
+                    currFeatureBlock.appendChild(featureRow);
+                })();
+            }
+            
+            for(var appCount = 0; appCount < publicApps.length; appCount++){
                 let counterA = appCount;
                 (function(){
-                    //console.log(trendingApps[appCount].src);
                     let curr = document.createElement("div");
                     curr.classList.add("trending-post-container");
                     
                     curr.setAttribute("id", `trending-post-${counterA}-container`);
                     
-                    curr.style.backgroundImage = `url(${trendingApps[counterA].src})`;
+                    curr.style.backgroundImage = `url(${publicApps[counterA].src})`;
                     
-                    curr.style.backgroundSize = trendingApps[counterA].bgSize;
+                    curr.style.backgroundSize = publicApps[counterA].bgSize;
                     
-                    curr.style.backgroundPosition = trendingApps[counterA].bgPosition;
+                    curr.style.backgroundPosition = publicApps[counterA].bgPosition;
                     
-                    curr.innerText = trendingApps[counterA].name;
+                    curr.innerText = publicApps[counterA].name;
                     
                     curr.addEventListener("click", function(){
-                        window.location.href = trendingApps[counterA].target;
+                        window.location.href = publicApps[counterA].target;
                     });
                     
-                    if(trendingApps[counterA].color)curr.style.color = trendingApps[counterA].color;
+                    if(publicApps[counterA].color)curr.style.color = publicApps[counterA].color;
+                    if(publicApps[counterA].bgColor)curr.style.backgroundColor = publicApps[counterA].bgColor;
                     
-                    document.getElementById("trending-list-post-container").appendChild(curr);
+                    document.getElementById("public-apps-block-container").appendChild(curr);
                 })();
+            }
+            
+            if(loggedIn){
+                for(var privateAppCount = 0; privateAppCount < privateApps.length; privateAppCount++){
+                    let counterA = privateAppCount;
+                    (function(){
+                        let curr = document.createElement("div");
+                        curr.classList.add("trending-post-container");
+
+                        curr.setAttribute("id", `trending-post-${counterA}-container`);
+
+                        curr.style.backgroundImage = `url(${publicApps[counterA].src})`;
+
+                        curr.style.backgroundSize = publicApps[counterA].bgSize;
+
+                        curr.style.backgroundPosition = publicApps[counterA].bgPosition;
+
+                        curr.innerText = publicApps[counterA].name;
+
+                        curr.addEventListener("click", function(){
+                            window.location.href = publicApps[counterA].target;
+                        });
+
+                        if(publicApps[counterA].color)curr.style.color = publicApps[counterA].color;
+                        if(publicApps[counterA].bgColor)curr.style.backgroundColor = publicApps[counterA].bgColor;
+
+                        document.getElementById("public-apps-block-container").appendChild(curr);
+                    })();
+                }
+            }
+            else{
+                for(var appCount = 0; appCount < publicApps.length; appCount++){
+                let counterA = appCount;
+                (function(){
+                    let curr = document.createElement("div");
+                    curr.classList.add("trending-post-container");
+                    
+                    curr.setAttribute("id", `trending-post-${counterA}-container`);
+                    
+                    curr.style.backgroundImage = `url(${publicApps[counterA].src})`;
+                    
+                    curr.style.backgroundSize = publicApps[counterA].bgSize;
+                    
+                    curr.style.backgroundPosition = publicApps[counterA].bgPosition;
+                    
+                    curr.innerText = publicApps[counterA].name;
+                    
+                    curr.addEventListener("click", function(){
+                        window.location.href = publicApps[counterA].target;
+                    });
+                    
+                    if(publicApps[counterA].color)curr.style.color = publicApps[counterA].color;
+                    if(publicApps[counterA].bgColor)curr.style.backgroundColor = publicApps[counterA].bgColor;
+                    
+                    document.getElementById("public-apps-block-container").appendChild(curr);
+                })();
+            }
             }
         });
     </script>
