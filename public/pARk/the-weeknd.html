@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name='viewport' content='width=device-width,initial-scale=1.0' />
+    <title>The Weeknd's Trilogy | Immersive Album | 0.6.1.3</title>
+    <link rel="stylesheet" type="text/css" href="../css/CreativeAugmentedRealityDesktop.css" />
+    <link rel="stylesheet" type="text/css" href="../css/lyoko-viewer.css" />
+    <link rel="stylesheet" type="text/css" href="../css/the-weeknd.css" />
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+</head>
+<body style="margin : 0px; overflow: hidden;">
+    <input type="button" id="toggle-menu-visibility-button-container" value="+" />
+    <input type="button" id="toggle-player-visibility-button-container" value="i" />
+    <input type="button" id="select-previous-track-button-container" class="select-track-button-container" value="<" />
+    <input type="button" id="select-next-track-button-container" class="select-track-button-container" value=">" />
+    <div id="song-list-container">
+
+    </div>
+    <audio id="lyoko-hypermedia-player" controls>
+      <source src="../media/aud/HighForThis-snippet.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <div id="environment-settings-menu-container">
+      <input type="button" id="white-background-color-setting-button-container" class="selected-color-setting color-setting-button-container" value="" />
+      <input type="button" id="black-background-color-setting-button-container" class="color-setting-button-container" value="" />
+      <input type="button" id="red-background-color-setting-button-container" class="color-setting-button-container" value="" />
+      <input type="button" id="yellow-background-color-setting-button-container" class="color-setting-button-container" value="" />
+      <input type="button" id="toggle-floor-visibility-button-container" class="floor-setting-button-container" value="" />
+      <input type="button" id="view-in-ar-button-container" class="setting-button-container" value="" />
+    </div>
+    <div id="lyoko-hypermedia-title-container">Content Title</div>
+    <div id="lyoko-hypermedia-label-container">Toronto R&B enigma Abel Tesfaye presents his landmark trifecta of mixtapes in one bleak, oozy stretch.</div>
+    <a-scene
+        vr-mode-ui="enabled: false;"
+        renderer="logarithmicDepthBuffer: true;"
+        embedded
+        arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
+    >
+        <a-assets>
+            <!--<a-asset-item id="model-obj" src="../media/model/Amber-AGO-House.obj"></a-asset-item>
+            <a-asset-item id="model-mtl" src="../media/model/Amber-AGO-House.mtl"></a-asset-item>
+            <img id="model-png" src="../media/model/Amber-AGO-House.png" />
+-->
+            <img id="trilogy-cover-texture" src="../media/img/trilogy-cover-texture.png" />
+            <img id="default-floor-pattern-texture" src="../media/img/grid-pattern.png" />
+        </a-assets>
+            <a-entity id="floor-container"
+                      geometry="primitive: plane; width: 100; height: 100;"
+                      material="src: #default-floor-pattern-texture; repeat: 50 50; side: double;"
+                      rotation="-90 0 0"
+                      position="0 0 0"
+                      visible="false">
+            </a-entity>
+
+            <a-entity id="lyoko-hypermedia-block-container"
+                      geometry="primitive: plane; width: 5; height: 5;"
+                      material="src: #trilogy-cover-texture; repeat: 1 1; side: double;"
+                      rotation="0 0 0"
+                      position="0 4 -6"
+                      visible="true"
+                      animation="property: rotation; from: 0 0 0; to: 0 360 0; dur: 6000; easing: linear; loop: true; pauseEvents: playerPausedStopAnimation; startEvents: playerResumeStartAnimation;">
+            </a-entity>
+
+            <a-sky id="sky-background-container" color="white"></a-sky>
+            <a-entity position="0 1.9 0" camera wasd-controls look-controls></a-entity>
+      </a-scene>
+      <script src="../js/lyoko-viewer.js"></script>
+      <script>
+      /*
+      *   https://houseofven.us/pARk/the-weeknd
+      */
+
+      class AudioTrack{
+        constructor(authorName, title, description, audioURL){
+          this.AuthorName = authorName;
+          this.Title = title;
+          this.Description = description;
+          this.AudioURL = audioURL;
+        }
+      }
+
+      class AudioCollection{
+         constructor(title, audioTracks, player, HMTitle, HMLabel){
+           this.Title = title;
+           this.tracks = audioTracks || [];
+           this.trackInFocus = -1;
+           this.isStreaming = false;
+           this.Player = player;
+           this.HyperMediaTitle = document.getElementById("lyoko-hypermedia-title-container") || HMTitle;
+           this.HyperMediaLabel = document.getElementById("lyoko-hypermedia-label-container") || HMLabel;
+           console.log(`Lyoko AudioCollection \n version 0.1.0 \nTitle ${this.Title} \n${this.tracks.length} tracks enclosed. Player target: ${this.Player.getAttribute("id")}`);
+           console.log(audioTracks);
+           this.HyperMediaTitle.textContent = title;
+           this.Player.addEventListener("pause", function(){
+             document.getElementById("lyoko-hypermedia-block-container").emit("playerPausedStopAnimation");
+           });
+           this.Player.addEventListener("playing", function(){
+             document.getElementById("lyoko-hypermedia-block-container").emit("playerResumeStartAnimation");
+           });
+         }
+         playPreviousTrack(mediaPlayerID){
+           //lyoko-hypermedia-player
+           if(mediaPlayerID!=null){
+             this.Player = document.getElementById(mediaPlayerID);
+           }
+           if(this.trackInFocus<1){
+             console.log("already at first track");
+           }
+           else{
+             this.Player.pause();
+             this.trackInFocus-=1;
+             this.Player.src = this.tracks[this.trackInFocus].AudioURL;
+             this.HyperMediaTitle.textContent = this.tracks[this.trackInFocus].Title;
+             this.HyperMediaLabel.textContent = this.tracks[this.trackInFocus].Description;
+             this.Player.play();
+           }
+         }
+         playNextTrack(mediaPlayerID){
+           //lyoko-hypermedia-player
+           if(mediaPlayerID!=null){
+             this.Player = document.getElementById(mediaPlayerID);
+           }
+           if(this.trackInFocus==this.tracks.length-1){
+             console.log("already at last track");
+           }
+           else{
+             //if(this.trackInFocus<0)document.getElementById("lyoko-hypermedia-block-container").emit("playerResumeStartAnimation");
+             this.Player.pause();
+             this.trackInFocus+=1;
+             this.Player.src = this.tracks[this.trackInFocus].AudioURL;
+             this.HyperMediaTitle.textContent = this.tracks[this.trackInFocus].Title;
+             this.HyperMediaLabel.textContent = this.tracks[this.trackInFocus].Description;
+             this.Player.play();
+           }
+         }
+         playCurrentTrack(mediaPlayerID){
+           //lyoko-hypermedia-player
+           if(mediaPlayerID!=null){
+             this.Player = document.getElementById(mediaPlayerID);
+           }
+           if(this.trackInFocus<0){
+             this.trackInFocus+=1;
+             this.Player.src = this.tracks[this.trackInFocus].AudioURL;
+             this.HyperMediaTitle.textContent = this.tracks[this.trackInFocus].Title;
+             this.HyperMediaLabel.textContent = this.tracks[this.trackInFocus].Description;
+           }
+           this.Player.play();
+           document.getElementById("lyoko-hypermedia-block-container").emit("playerResumeStartAnimation");
+         }
+         pauseCurrentTrack(mediaPlayerID){
+           //lyoko-hypermedia-player
+           if(mediaPlayerID!=null){
+             this.Player = document.getElementById(mediaPlayerID);
+           }
+           this.Player.pause();
+           document.getElementById("lyoko-hypermedia-block-container").emit("playerPausedStopAnimation");
+         }
+         togglePlayback(mediaPlayerID){
+           let target = mediaPlayerID;
+           if(this.isStreaming){
+             pauseCurrentTrack(target);
+             this.isStreaming = false;
+           }
+           else{
+             playCurrentTrack(target);
+             this.isStreaming = true;
+           }
+         }
+      }
+
+      let HOBTrackList = [];
+      let HOBTitle = "House Of Balloons";
+      let HOBT = HOBTitle.replace(/\s/g, '');
+      let HOBAuthor = "The Weeknd";
+      let HOBA = HOBAuthor.replace(/\s/g, '');
+
+      HOBTrackList.push(new AudioTrack("The Weeknd", "High For This", "see title", "../media/aud/"+HOBA+"/Trilogy/"+HOBT+"/HighForThis.mp3"));
+      HOBTrackList.push(new AudioTrack("The Weeknd", "What You Need", "see title", "../media/aud/"+HOBA+"/Trilogy/"+HOBT+"/WhatYouNeed.mp3"));
+      HOBTrackList.push(new AudioTrack("The Weeknd", "House of Balloons", "see title", "../media/aud/"+HOBA+"/Trilogy/"+HOBT+"/HouseOfBalloonsGlassTableGirls.mp3"));
+      HOBTrackList.push(new AudioTrack("The Weeknd", "The Morning", "see title", "../media/aud/"+HOBA+"/Trilogy/"+HOBT+"/TheMorning.mp3"));
+      HOBTrackList.push(new AudioTrack("The Weeknd", "Wicked Games", "see title", "../media/aud/"+HOBA+"/Trilogy/"+HOBT+"/WickedGames.mp3"));
+      HOBTrackList.push(new AudioTrack("The Weeknd", "The Party After & The After Party", "see title", "../media/aud/"+HOBA+"/Trilogy/"+HOBT+"/ThePartyAndTheAfterParty.mp3"));
+      HOBTrackList.push(new AudioTrack("The Weeknd", "Coming Down", "see title", "../media/aud/"+HOBA+"/Trilogy/"+HOBT+"/ComingDown.mp3"));
+      HOBTrackList.push(new AudioTrack("The Weeknd", "Loft Music", "see title", "../media/aud/"+HOBA+"/Trilogy/"+HOBT+"/LoftMusic.mp3"));
+      HOBTrackList.push(new AudioTrack("The Weeknd", "The Knowing", "see title", "../media/aud/"+HOBA+"/Trilogy/"+HOBT+"/TheKnowing.mp3"));
+      HOBTrackList.push(new AudioTrack("The Weeknd", "Twenty Eight", "see title", "../media/aud/"+HOBA+"/Trilogy/"+HOBT+"/TwentyEight.mp3"));
+
+
+        window.addEventListener("load", function(){
+            let LHMplayer = document.getElementById("lyoko-hypermedia-player");
+            let HouseOfBalloons = new AudioCollection(HOBTitle, HOBTrackList,  LHMplayer);
+            document.getElementById("view-in-ar-button-container").addEventListener("click", function(){
+                window.location.href = "./the-weeknd-ar";
+            });
+
+            document.getElementById("select-previous-track-button-container").addEventListener("click", function(){
+              HouseOfBalloons.playPreviousTrack();
+            });
+
+            document.getElementById("select-next-track-button-container").addEventListener("click", function(){
+              HouseOfBalloons.playNextTrack();
+            });
+        });
+    </script>
+</body>
+</html>

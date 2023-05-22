@@ -1,0 +1,139 @@
+/*
+  LIFE STREAM VIEWERS
+  styles defining components used to preview content stored in a life stream
+  initially used in /pARk/model-repo to preview Lyokoin Genesis Scans
+*/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body, html{
+    width: 100%;
+    height: 100%;
+}
+
+#main-app-container{
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    background-color: white;
+}
+
+#model-list-container{
+    width: 100%;
+    height: auto;
+}
+
+.preview-icon-button-wrapper{
+    width: 115px;
+    height: 115px;
+    display: inline-block;
+    background-color: white;
+    border: 0;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+.preview-icon-label-container{
+    font-size: 18px;
+    display: inline;
+    width: 100%;
+    text-align: center;
+    line-height: 22px;
+    color: black;
+    text-overflow: ellipsis;
+}
+
+.preview-icon-container{
+    background-color: black;
+    background-size: 100% 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    width: 105px;
+    height: 105px;
+    border-radius: 50%;
+    margin: 2% auto;
+    cursor: pointer;
+    display: block;
+}
+
+#feed-options-container{
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    bottom: 0;
+    height: 10%;
+    min-height: 100px;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.option-button-container{
+    width: 50px;
+    height: 50px;
+    border: 5px;
+    display: block;
+    position: absolute;
+    z-index: 5;
+    bottom: 50%;
+    background-color: rgba(255, 255, 255, 0);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#feed-array-option-button-container{
+    background-image: url(../media/img/array-icon.png);
+    left: 35%;
+    margin: 0 0 -25px -25px;
+}
+
+#feed-list-option-button-container{
+    background-image: url(../media/img/feed-icon.png);
+    right: 35%;
+    margin: 0 -25px -25px 0;
+}
+
+#preview-container{
+    display: none;
+    z-index: -1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -150px;
+    opacity: 0;
+    transition: z-index 0.5s, margin-top 0.5s, margin-left 0.5s, opacity 0.5s;
+}
+
+#close-preview-button-container{
+    background-color: red;
+}
+
+#open-experience-button-container{
+    background-color: aquamarine;
+}
+
+#preview-actions-container{
+    display: none;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    height: 20%;
+    min-height: 100px;
+    z-index: 101;
+}
+
+.preview-action-button-container{
+    cursor: pointer;
+    color: white;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    font-size: 24px;
+    text-align: center;
+    font-weight: 900;
+    letter-spacing: 1px;
+    outline: none;
+    display: block;
+}

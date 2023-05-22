@@ -1,0 +1,1133 @@
+@font-face{
+    font-family:"AuraRegular W05 Regular";
+    src: url("../css/Fonts/d83d08da-5e79-48df-a9b1-6f5acf78cb00.eot?#iefix");
+    src: url("../css/Fonts/d83d08da-5e79-48df-a9b1-6f5acf78cb00.eot?#iefix") format("eot"),url("../css/Fonts/92d5ad9f-b979-4d9b-8608-e7bef993c281.woff2") format("woff2"),url("../css/Fonts/48665d19-aff2-4022-aa29-5f4afa40c8af.woff") format("woff"),url("../css/Fonts/27cf9724-1c32-4032-b145-f082ef3ddb21.ttf") format("truetype");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body, html{
+  width: 100%;
+  height: 100%;
+}
+
+#main-app-container{
+    z-index: 0;
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    transition: background-color 0.5s;
+}
+
+#loading-overlay-container{
+    z-index: 3;
+    cursor: pointer;
+    width: 300px;
+    height: 225px;
+    background-image: url(../media/img/xana-red.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    transition: background-image 0.5s;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -150px 0 0 -150px;
+}
+
+#member-icon-container{
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    width: 250px;
+    height: 250px;
+    margin: -175px 0 0 -125px;
+    border: 0;
+    border-radius: 50%;
+    background-image: url(../media/icon/de-goma-wearing-a-blue-oxford-ralph-lauren-in-legacy-yves-saint-laurent-preview-icon.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    display: none;
+    opacity: 0;
+    background-color: rgba(255, 255, 255, 0.75);
+    cursor: pointer;
+    transition: opacity 0.5s, background-color 0.5s;
+}
+
+#login-button-container{
+  display: none;
+  margin: 2px auto;
+  width: 245px;
+  height: 245px;
+  border: 0;
+  border-radius: 50%;
+  z-index: 5;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  text-align: center;
+  line-height: 225px;
+  font-size: 24px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  opacity: 0;
+  transition: background-color 0.25s, opacity 0.25s;
+  background-size: auto 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  inline-size: 240px;
+  overflow-wrap: break-word;
+}
+
+#login-button-container:hover{
+  background-color: (0, 0, 0, 1.0);
+}
+
+#hide-login-button-container{
+  display: none;
+  opacity: 0;
+  text-align: center;
+  line-height: 25px;
+  font-size: 18px;
+  width: 50px;
+  height: 50px;
+  border: 0;
+  border-radius: 50%;
+  background-color: rgba(255, 0, 0, 0.9);
+  color: white;
+  cursor: pointer;
+  cursor: pointer;
+  z-index: 5;
+  position: absolute;
+  right: -50px;
+  top: -50px;
+  transition: opacity 0.25s;
+}
+
+#member-icon-container:hover{
+    background-color: rgba(255, 255, 255, 1.0);
+}
+
+.member-link-button-container{
+    border: 0;
+    border-radius: 50%;
+    width: 75px;
+    height: 75px;
+    background-color: rgba(255, 0, 0, 0);
+    display: none;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-position: center center;
+    cursor: pointer;
+    box-shadow: 0;
+    transition: background-image 0.25s, background-color 0.25s;
+}
+
+#pARk-link-button-container:hover{
+  background-image: url(../media/img/md-north-am.png);
+  background-color: rgba(255, 255, 255, 1.0);
+}
+
+#cv-link-button-container:hover{
+  background-image: url(../media/img/black-www-icon.png);
+  background-color: rgba(255, 255, 255, 1.0);
+}
+
+#tiktok-link-button-container:hover{
+  background-image: url(../media/img/tiktok-yt-icon.png);
+}
+
+#nav-menu-button-container:hover{
+  background-image: url(../media/img/black-profile-icon.png);
+  background-color: rgba(255, 255, 0, 1.0);
+}
+
+#pARk-link-button-container{
+    background-image: url(../media/img/hov-ig-logo.png);
+    background-size: 105% 105%;
+}
+
+#tiktok-link-button-container{
+    background-image: url(../media/img/tiktok-icon.png);
+    background-size: 105% 105%;
+}
+
+#cv-link-button-container{
+    background-color: rgba(0, 0, 255, 0.6);
+    background-image: url(../media/img/www-icon.png);
+    background-size: 125% 125%;
+    /*
+    color: white;
+    font-size: 36px;
+    font-weight: 900;
+    text-align: center;
+    line-height: 40px;*/
+}
+
+#nav-menu-button-container{
+  background-image: url(../media/img/card-profile-icon.png);
+  background-color: rgba(255, 0, 0, 0.6);
+  background-size: 90% 90%;
+}
+
+#background-video-container{
+  display: none;
+  opacity: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  transition: opacity 0.5s;
+}
+
+#member-cv-container, #nav-menu-container{
+  display: none;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: -1;
+  transition: height 0.5s, width 0.5s, opacity 0.5s;
+}
+
+#nav-menu-container{
+  overflow-y: scroll;
+}
+
+#close-member-cv-button-container, #close-nav-menu-button-container{
+  width: 50px;
+  height: 50px;
+  border: 0;
+  border-radius: 50%;
+  font-size: 24px;
+  line-height: 26px;
+  color: white;
+  background-color: rgba(255, 255, 255, 0.3);
+  text-align: center;
+  position: fixed;
+  cursor: pointer;
+  margin-left: -25px;
+  z-index: 2;
+}
+
+#close-member-cv-button-container, #close-nav-menu-button-container{
+  left: 5%;
+  top: 5%;
+}
+
+/*#close-nav-menu-button-container{
+  bottom: 5%;
+  left: 50%;
+}*/
+
+#member-cv-main-container{
+  width: 100%;
+  height: 96%;
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 2%;
+  z-index: 0;
+}
+
+#member-cv-bg-container{
+  z-index: -1; /* relative */
+  opacity: 0.6;
+  width: 100%;
+  height: 100%;
+  background-image: url(../media/img/pamo-bg.png);
+  background-size: 105% auto;
+  background-position: left center;
+  background-repeat: no-repeat;
+  position: absolute;
+}
+
+#member-cv-content-container{
+  z-index: 5; /* relative */
+  width: 100%;
+  height: 100%;
+  display: block;
+  margin: 0 auto;
+  overflow-y: scroll;
+  color: white;
+}
+
+#member-cv-content-left-header-container{
+  margin-left: 0;
+  text-align: right;
+}
+
+#member-cv-content-right-header-container{
+  position: absolute;
+  top: 100px;
+  right: 10%;
+  text-align: left;
+}
+
+.member-cv-content-header-container{
+  font-size: 172px;
+  line-height: 184px;
+  font-family: Garamond, serif;
+  font-weight: 900;
+  letter-spacing: 8px;
+  display: block;
+  width: 45%;
+  color: white;
+}
+
+#member-cv-abstract-container{
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  margin-top: max(5%, 75px);
+  font-size: 28px;
+  letter-spacing: 2px;
+  font-weight: 500;
+  z-index: 10;
+  max-width: 1100px;
+}
+
+.abstract-content-container{
+  font-family: Garamond, serif;
+  color: white;
+  width: 32%;
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 50px;
+}
+
+.cv-display-content-container{
+  font-family: Garamond, serif;
+  color: white;
+  width: 100%;
+  vertical-align: top;
+}
+
+#timeline-directions-container{
+  font-family: Garamond, serif;
+  color: white;
+  position: absolute;
+  top: -50px;
+  left: 50px;
+  font-size: 24px;
+  vertical-align: top;
+}
+
+.left-margin{
+  margin-left: max(4%, 35px);
+}
+
+#timeline-container{
+  width: 100%;
+  height: max(25%, 300px);
+  border-radius: 10px;
+  display: block;
+  margin: 75px auto 2% auto;
+  position: relative;
+}
+
+.timeline-block-container{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: white;
+  display: inline-block;
+  position: absolute;
+  transition: width 0.25s, height 0.25s;
+  cursor: pointer;
+}
+
+.timeline-block-container:hover{
+  width: 75px;
+  height: 75px;
+  background-size: 100% 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+#timeline-block-0-container{
+  top: 25%;
+  left: 5%;
+}
+
+#timeline-block-0-container:hover{
+  background-image: url(../media/icon/de-goma-wearing-a-sf-jacket-with-an-mit-t-shirt-preview-icon.png);
+}
+
+#timeline-block-1-container{
+  top: 7%;
+  left: 20%;
+}
+
+#timeline-block-1-container:hover{
+  background-image: url(../media/icon/patrice-morgan-de-goma-1-preview-icon.png);
+}
+
+#timeline-block-2-container{
+  top: 12%;
+  left: 35%;
+}
+
+#timeline-block-2-container:hover{
+  background-image: url(../media/icon/de-goma-red-solo-test-model-2-preview-icon.png);
+}
+
+#timeline-block-3-container{
+  top: 50%;
+  left: 50%;
+}
+
+#timeline-block-3-container:hover{
+  background-image: url(../media/icon/v-chillum-flipping-the-bird-preview-icon.png);
+}
+
+#timeline-block-4-container{
+  top: 34%;
+  left: 65%;
+}
+
+#timeline-block-4-container:hover{
+  background-image: url(../media/icon/de-goma-making-a-heart-sign-with-both-hands-preview-icon.png);
+}
+
+#timeline-block-5-container{
+  top: 22%;
+  left: 80%;
+}
+
+#timeline-block-5-container:hover{
+  background-image: url(../media/icon/de-goma-wearing-red-on-white-striped-ralph-lauren-polo-shirt-model-10-preview-icon.png);
+}
+
+#timeline-paragraph-container{
+  width: 80%;
+  margin: 3% auto 100px auto;
+}
+
+.timeline-paragraph{
+  margin: 3% auto 50px auto;
+  font-family: Garamond, serif;
+}
+
+#cv-icon-container{
+  display: inline;
+  /*width: 300px;
+  height: 300px;*/
+  margin: 2% auto;
+  border: 0;
+  border-radius: 50%;
+}
+
+#city-nav-container{
+  color: white;
+  width: 100%;
+  position: relative;
+  bottom: 0;
+  line-height: 50px;
+  height: 50px;
+  text-align: justify;
+}
+
+#timeline-video-container{
+  display: none;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.7;
+  z-index: -1;
+}
+
+.cv-link-container{
+  width: 50px;
+  height: 50px;
+  border: 0;
+  border-radius: 50%;
+  background-size: 105% 105%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  font-size: 0;
+  /*transition: border 0.25s;*/
+}
+
+.cv-link-container:hover{
+  border: 2px white solid;
+}
+
+#tiktok-cv-link-container{
+  background-image: url(../media/img/tiktok-icon.png);
+}
+
+#research-cv-link-container{
+  background-image: url(../media/img/card-profile-icon.png);
+  background-color: rgba(255, 255, 255, 0.3);
+  background-size: 90% 90%;
+}
+
+#linkedin-cv-link-container{
+  background-image: url(../media/img/linkedin-icon.png);
+}
+
+#cv-link-array-container{
+  /*position: absolute;
+  left: 70%;
+  margin-left: -65px;
+  top: 150px;*/
+  display: block;
+  position: relative;
+  width: 175px;
+  margin: 25px auto 0 auto;
+}
+
+#desktop-instruction-container{
+  font-family: Garamond, serif;
+  display: inline-block;
+}
+
+#mobile-instruction-container{
+  font-family: Garamond, serif;
+  display: none;
+}
+
+#login-option-button-container{
+  width: 75px;
+  height: 75px;
+  background-image: url(../media/img/card-profile-icon.png);
+  background-size: 80% 80%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+  position: absolute;
+  right: 5%;
+  top: 5%;
+  border: 0;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 35px;
+  color: white;
+  font-size: 0;
+}
+
+#cv-bio-container{
+  max-width: 960px;
+  color: white;
+}
+
+.cv-bio-paragraph{
+  vertical-align: top;
+  font-size: 18px;
+  font-family: Garamond, serif;
+  width: 40%;
+  max-width: 400px;
+/*  display: inline-block;*/
+  margin: 0 auto 2% auto;
+  /*margin-left: max(5%, 75px);*/
+  font-weight: 700;
+  line-height: 26px;
+}
+
+#model-repo-app-container{
+  width: 80%;
+  height: 500px;
+  margin: 5% auto;
+  overflow-y: scroll;
+  background-color: rgba(0,0,0,0);
+  position: relative;
+}
+
+#model-list-container{
+    width: 100%;
+    height: auto;
+}
+
+.preview-icon-button-wrapper{
+    width: 115px;
+    height: 115px;
+    display: inline-block;
+    background-color: rgba(0,0,0,0);
+    border: 0;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+.preview-icon-label-container{
+    font-size: 0;
+    display: inline;
+    width: 100%;
+    text-align: center;
+    line-height: 22px;
+    color: black;
+    text-overflow: ellipsis;
+}
+
+.preview-icon-container{
+    background-color: beige;
+    background-size: 100% 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    width: 105px;
+    height: 105px;
+    border-radius: 50%;
+    margin: 2% auto;
+    cursor: pointer;
+    display: block;
+}
+
+#feed-options-container{
+    display: none;
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    bottom: 0;
+    height: 10%;
+    min-height: 100px;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.option-button-container{
+    width: 50px;
+    height: 50px;
+    border: 5px;
+    display: block;
+    position: absolute;
+    z-index: 5;
+    bottom: 50%;
+    background-color: rgba(255, 255, 255, 0);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#feed-array-option-button-container{
+    background-image: url(../media/img/array-icon.png);
+    left: 35%;
+    margin: 0 0 -25px -25px;
+}
+
+#feed-list-option-button-container{
+    background-image: url(../media/img/card-profile-icon.png);
+    right: 35%;
+    margin: 0 -25px -25px 0;
+}
+
+#preview-container{
+    display: none;
+    z-index: -1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -150px;
+    opacity: 0;
+    transition: z-index 0.5s, margin-top 0.5s, margin-left 0.5s, opacity 0.5s;
+}
+
+#close-preview-button-container{
+    background-color: red;
+}
+
+#open-experience-button-container{
+    background-color: aquamarine;
+}
+
+#preview-actions-container{
+    display: none;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    height: 20%;
+    min-height: 100px;
+    z-index: 101;
+}
+
+.preview-action-button-container{
+    cursor: pointer;
+    color: white;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    font-size: 24px;
+    text-align: center;
+    font-weight: 900;
+    letter-spacing: 1px;
+    outline: none;
+    display: block;
+}
+
+#cv-bio-header-container{
+  font-family: Garamond, serif;
+  line-height: 200px;
+  margin-left: max(5%, 75px);
+  font-size: 26px;
+  font-weight: 700;
+  margin-top: max(10%, 50px);
+}
+
+.timeline-paragraph-header-container{
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 24px;
+}
+
+.city-block-container{
+  display: inline-block;
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  width: 33%;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.3);
+  font-family: "AuraRegular W05 Regular", Arial, sans-serif;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.city-block-container:hover{
+  color: black;
+  background-color: rgba(255, 255, 255, 1.0);
+}
+
+#paris-city-block-container{
+  left: 0;
+  /*border-right: 2px white solid;*/
+}
+
+#los-angeles-city-block-container{
+  right: 0;
+  /*border-left: 2px white solid;*/
+}
+
+#dc-city-block-container{
+  left: 33.5%;
+}
+
+.left-paragraph-container{
+  display: inline-block;
+  margin-left: max(5%, 75px);
+}
+
+.right-paragraph-container{
+  display: inline-block;
+  margin-left: 25px;
+}
+
+#cv-portfolio-header-container, #cv-resume-header-container{
+  font-family: Garamond, serif;
+  color: white;
+  line-height: 200px;
+  margin-left: max(5%, 75px);
+  font-size: 26px;
+  font-weight: 700;
+}
+
+#cv-portfolio-container, #cv-resume-container{
+  width: 100%;
+  height: auto;
+  /*height: 300px;
+  overflow-y: scroll;
+  */
+}
+
+#cv-resume-container{
+  position: relative;
+}
+
+.cv-portfolio-paragraph-container, .cv-resume-paragraph-container{
+  color: white;
+  vertical-align: top;
+  font-size: 18px;
+  font-family: Garamond, serif;
+  width: 80%;
+  display: block;
+  margin: 5px auto 0 auto;
+  margin-left: max(5%, 75px);
+  font-weight: 700;
+  line-height: 26px;
+}
+
+.cv-resume-paragraph-container{
+  margin-bottom: 45px;
+}
+
+#asset-value-container{
+  color: yellow;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.cv-action-option-button-container{
+  display: block;
+  width: 250px;
+  height: 50px;
+  text-align: center;
+  line-height: 35px;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  margin: 2% auto;
+  font-size: 24px;
+  font-weight: 700;
+  border:0;
+  border-radius: 10px;
+  font-family: Garamond, serif;
+  background-color: white;
+  color: black;
+}
+
+.cv-action-option-button-container:hover{
+  background-color: aquamarine;
+  color: white;
+}
+/*
+#browse-portfolio-button-container{
+
+}
+
+#curriculum-vitae-button-container{
+
+}*/
+
+.right-options-block-container, .left-options-block-container, .center-options-block-container{
+  height: auto;
+  display: inline-block;
+  font-family: Garamond, serif;
+  vertical-align: top;
+  margin-top: max(10%, 25px);
+}
+
+.left-options-block-container{
+  width: 36%;
+  padding-left: max(2%, 50px);
+}
+
+.right-options-block-container{
+  width: 30%;
+}
+
+.center-options-block-container{
+    width: min(20%, 205px);
+}
+
+#action-options-container{
+  margin-top: 25px;
+}
+
+#cv-resume-options-container{
+  width: 200px;
+  height: 65px;
+  line-height: 65px;
+  margin-left: max(5%, 75px);
+}
+
+.resume-option-button-container{
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border: 0;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  margin: 2%;
+  cursor: pointer;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.resume-option-button-container:hover{
+  border: 2px white solid;
+  width: 55px;
+  height: 55px;
+  /*border-radius: 50%;
+  margin: 2%;
+  cursor: pointer;
+  background-position: center center;
+  background-size: 100% 100%;*/
+}
+
+#extended-resume-button-container{
+  background-image: url(../media/img/white-extended-resume-icon.png);
+  background-size: 85% 85%;
+}
+
+#download-resume-button-container{
+  background-image: url(../media/img/white-download-icon.png);
+  background-size: 80% 80%;
+}
+
+#linkedin-resume-button-container{
+  background-image: url(../media/img/linkedin-icon.png);
+  background-size: 105% 105%;
+}
+
+#extended-resume-button-container:hover{
+  background-image: url(../media/img/extended-resume-icon.png);
+  background-color: white;
+}
+
+#download-resume-button-container:hover{
+  background-image: url(../media/img/download-icon.png);
+  background-color: white;
+}
+
+.zoom-on-mobile{
+  font-size: 20px;
+}
+
+@media only screen and (max-width: 600px){
+  body,html{
+    overflow: hidden;
+  }
+
+  .zoom-on-mobile{
+    font-size: 22px;
+  }
+
+  #member-cv-main-container{
+    background-size: auto 105%;
+  }
+
+  #member-cv-content-left-header-container{
+    margin-left: 0;
+    text-align: right;
+  }
+
+  #member-cv-content-right-header-container{
+    position: absolute;
+    top: 120px;
+    left: 0;
+    text-align: left;
+  }
+
+  .member-cv-content-header-container{
+    font-size: 144px;
+    width: 100%;
+    /*
+    line-height: 184px;
+    font-family: Garamond, serif;
+    font-weight: 900;
+    letter-spacing: 8px;
+    display: block;
+    color: white;*/
+  }
+
+  .left-margin{
+    margin-left: 0;
+    margin-bottom: max(5%, 50px);
+  }
+
+  .abstract-content-container{
+    width: 100%;
+    /*font-family: Garamond, serif;
+    color: white;
+    width: 32%;
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 50px;*/
+  }
+
+  .cv-link-container{
+    width: 45px;
+    height: 45px;
+    /*border: 0;
+    border-radius: 50%;
+    background-size: 105% 105%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    cursor: pointer;*/
+  }
+
+  #cv-link-array-container{
+    /*left: 90%;
+    width: 50px;
+    height: 155px;
+    margin-top: 105px;*/
+    width: 154px;
+  }
+
+  #cv-icon-container{
+    display: block;
+    width: 225px;
+    height: 250px;
+    /*margin-top: 75px;
+    display: inline;
+    margin: 2% auto;
+    border: 0;
+    border-radius: 50%;*/
+  }
+
+  #close-member-cv-button-container, #close-nav-menu-button-container{
+    left: 9%;
+    top: 3%;
+  }
+
+  #desktop-instruction-container{
+    display: none;
+  }
+
+  #mobile-instruction-container{
+    display: inline-block;
+  }
+
+  #cv-bio-header-container, #cv-portfolio-header-container, #cv-resume-header-container{
+    /*font-family: Garamond, serif;
+    line-height: 200px;*/
+    margin-left: 0;
+    width: 100%;
+    text-align: center;
+    /*font-size: 26px;
+    font-weight: 700;*/
+  }
+
+  .cv-portfolio-paragraph-container, .cv-resume-paragraph-container{
+    /*color: white;
+    vertical-align: top;
+    font-size: 18px;
+    font-family: Arial, sans-serif;
+    width: 80%;
+    display: block;
+    margin: 5px auto 0 auto;*/
+    margin-left: 0;
+    margin: 5px auto 4% auto;
+    /*font-weight: 700;
+    line-height: 26px;*/
+  }
+
+  .cv-bio-paragraph{
+    width: 80%;
+  }
+
+  .left-paragraph-container, .right-paragraph-container{
+    display: block;
+    margin-left: 0;
+    margin: 2% auto 8% auto;
+  }
+
+  #model-repo-app-container{
+    width: 380px;
+    height: 500px;
+    margin: 5% auto;
+    /*overflow-y: scroll;
+    background-color: rgba(0,0,0,0);
+    position: relative;*/
+  }
+
+  #member-cv-bg-container{
+    z-index: -1; /* relative */
+    opacity: 0.6;
+    width: 100%;
+    height: 100%;
+    /*background-image: url(../media/img/de-goma.png);*/
+    background-size: auto 100%;
+    object-fit: cover;
+    /*background-position: left center;
+    background-repeat: no-repeat;
+    position: absolute;*/
+  }
+
+  #login-option-button-container{
+    font-size: 0;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.3);
+    /*background-image: url(../media/img/card-profile-icon.png);
+    background-size: 80% 80%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-color: rgba(0, 0, 0, 0);
+    cursor: pointer;
+    position: absolute;*/
+    right: 9%;
+    top: 3%;
+    /*border: 0;
+    border-radius: 50%;
+    text-align: center;*/
+    line-height: 35px;
+    /*color: white;*/
+  }
+
+  .right-options-block-container, .left-options-block-container, .center-options-block-container{
+    /*height: auto;
+    display: inline-block;
+    font-family: Garamond, serif;
+    vertical-align: top;
+    margin-top: max(10%, 25px);*/
+    display: block;
+    margin: 0 auto;
+  }
+
+  .left-options-block-container{
+    /*margin-top: max(10%, 25px);*/
+    padding-left: 0;
+    width: 80%;
+    text-align: center;
+    /*width: 36%;
+    padding-left: max(2%, 50px);*/
+  }
+
+  .right-options-block-container{
+    /*width: 30%;*/
+    width: 80%;
+  }
+
+  .center-options-block-container{
+      width: min(20%, 205px);
+  }
+
+  .left-options-text-container{
+    margin-bottom: 50px;
+  }
+
+  .cv-display-content-container{
+    /*font-family: Garamond, serif;
+    color: white;
+    width: 100%;
+    vertical-align: top;
+    font-size: 22px;*/
+  }
+
+  #member-cv-abstract-container{
+    /*position: relative;
+    display: block;
+    margin: 0 auto;*/
+    margin-top: 105px;
+    /*font-size: 28px;
+    letter-spacing: 2px;
+    font-weight: 500;
+    z-index: 10;
+    max-width: 1100px;*/
+  }
+
+  #cv-icon-container{
+    /*display: inline;*/
+    width: 205px;
+    height: 205px;
+    /*margin: 2% auto;
+    border: 0;
+    border-radius: 50%;*/
+  }
+
+  #cv-resume-options-container{
+    margin-left: 0;
+    margin: 5% auto 25px auto;
+  }
+}
+
+@media only screen and (min-width: 1100px){
+  #cv-icon-container{
+    display: inline;
+    width: 300px;
+    height: 300px;
+    margin: 2% auto;
+    border: 0;
+    border-radius: 50%;
+  }
+}

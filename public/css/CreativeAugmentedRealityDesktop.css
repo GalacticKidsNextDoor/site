@@ -1,0 +1,804 @@
+@font-face{
+    font-family:"AuraRegular W05 Regular";
+    src: url("../css/Fonts/d83d08da-5e79-48df-a9b1-6f5acf78cb00.eot?#iefix");
+    src: url("../css/Fonts/d83d08da-5e79-48df-a9b1-6f5acf78cb00.eot?#iefix") format("eot"),url("../css/Fonts/92d5ad9f-b979-4d9b-8608-e7bef993c281.woff2") format("woff2"),url("../css/Fonts/48665d19-aff2-4022-aa29-5f4afa40c8af.woff") format("woff"),url("../css/Fonts/27cf9724-1c32-4032-b145-f082ef3ddb21.ttf") format("truetype");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'AuraRegular W05 Regular', Fallback, sans-serif;
+}
+
+input[type="button"]{
+    border: 0;
+    outline: 0;
+    -webkit-appearance: none;
+    user-select: none;
+}
+
+body, html{
+    width: 100%;
+    height: 100%;
+    text-transform: lowercase;
+    overflow: hidden;
+}
+
+#card-app-title-container{
+    color: white;
+    font-size: 26px;
+    width: 100%;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+}
+
+#card-app-sub-title-container{
+    color: white;
+    font-size: 22px;
+    width: 100%;
+    height: 50px;
+    line-height: 35px;
+    text-align: center;
+}
+
+.card-app-flat-menu-button-container{
+    width: 200px;
+    height: 300px;
+    margin: 1% auto;
+}
+
+.card-app-flat-menu-icon-container{
+    width: 196px;
+    height: 196px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    display: block;
+    margin: 2px auto;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.card-app-flat-menu-label-container{
+    text-align: center;
+    font-size: 22px;
+    text-transform: uppercase;
+    height: 50px;
+    line-height: 50px;
+    width: 100%;
+    color: white;
+}
+
+#information-menu-button-container{
+    width: 50px;
+    height: 50px;
+    /*border: 2px solid white;*/
+    border-radius: 50%;
+    text-align: center;
+    line-height: 35px;
+    font-weight: 600;
+    /*font-style: italic;*/
+    font-size: 22px;
+    text-transform: lowercase;
+    color: white;
+    display: block;
+    position: absolute;
+    left: 5%;
+    bottom: 5%;/*
+    margin-left: -25px;
+    margin-bottom: -25px;*/
+    background-image: url(../media/img/mobile-menu-icon-white.png);
+    background-color: rgba(255, 255, 255, 0.3);
+    z-index: 999;
+}
+
+#left-indent-information-menu-button-container{
+    display: block;
+    position: absolute;
+    left: 5%;
+    bottom: 7%;
+    margin-left: -18px;
+    width: 50px;
+    height: 50px;
+    border: 2px solid white;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 35px;
+    font-weight: 600;
+    /*font-style: italic;*/
+    font-size: 22px;
+    text-transform: lowercase;
+    color: white;
+    background-image: url(../media/img/mobile-menu-icon-white.png);
+    background-color: rgba(255, 255, 255, 0);
+    z-index: 999;
+}
+
+#profile-menu-button-container{
+    width: 35px;
+    height: 35px;
+    border: 2px solid white;
+    border-radius: 50%;
+    display: block;
+    position: absolute;
+    left: 50%;
+    bottom: 3%;
+    margin-left: -18px;
+    background-image: url(../media/img/profile-icon-standin.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    z-index: 999;
+}
+
+.card-option-button-container{
+    color: white;
+    font-size: 20px;
+    text-transform: uppercase;
+    width: 100px;
+    position: absolute;
+    bottom: 4%;
+    background-color: black;
+    cursor: pointer;
+}
+
+#application-portion-container{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 100;
+}
+
+#create-card-input-container{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding-top: 25%;
+}
+
+#phone-number-label-container{
+    width: 100%;
+    padding-top: 10%;
+    font-size: 30px;
+    color: white;
+    text-align: center;
+    margin: 5% auto;
+}
+
+#phone-number-input-container{
+    display: block;
+    margin: 5% auto;
+    width: 300px;
+    height: 40px;
+    border-radius: 10px;
+    font-size: 24px;
+}
+
+#phone-number-button-container{
+    color: white;
+    background-color: rgba(255, 255,255, 0);
+    border: 2px white solid;
+    outline: none;
+    width: 75px;
+    height: 35px;
+    border-radius: 10px;
+    display: block;
+    margin: 0 auto;
+}
+
+#phone-number-button-container:hover{
+    color: black;
+    background-color: white;
+}
+
+#scan-portion-container{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+#scan-instructions-container, #scan-counter-container{
+    display: block;
+    color: white;
+    font-size: 30px;
+    margin: 0 auto;
+    width: 100%;
+    line-height: 35px;
+    height: auto;
+    text-align: center;
+    padding-top: 20%;
+}
+
+#scan-complete-container{
+    z-index: 300;
+    width: 100%;
+    height: 100%;
+    background-color: greenyellow;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+#scan-video-container{
+    position: absolute;
+    width: 480px;
+    display: block;
+    padding-top: 20%;
+    left: 50%;
+    margin-left: -240px;
+    height: auto;
+    outline: none;
+}
+
+#seconds-remaining-container{
+    color: red;
+    font-weight: 600;
+    font-size: 40px;
+}
+#create-menu-button-container{
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -200px 0 0 -150px;
+}
+
+.portal-social-media-link-button-container{
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    background-color: rgba(255, 255, 255,0);
+    color: white;
+    background-size: 100% 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    border-radius: 15px;
+    cursor: pointer;
+    outline: none;
+    margin: 2%;
+    display: inline-block;
+}
+
+#tiktok-link-container{
+    background-image: url(../media/img/tiktok-icon.png);
+    border: 2px solid white;
+}
+
+#instagram-link-container{
+    background-image: url(../media/img/instagram-texture.png);
+}
+
+#youtube-link-container{
+    background-image: url(../media/img/play-button.png);
+    background-size: 110% 110%;
+}
+
+#website-link-container{
+    background-image: url(../media/img/profile-icon-standin.png);
+}
+
+#create-icon-container{
+    background-size: 100% auto;
+    margin-top: 25%;
+    background-image: url(../media/img/body-scan-icon.png);
+}
+
+#deliver-icon-container{
+    background-size: 50% 50%;
+    /*background-image: url(../media/img/send-icon.png);*/
+    background-image: url(../media/img/drone-icon.png);
+    border: 3px white solid;
+    background-size: 105% 105%;
+}
+
+#mods-icon-container{
+    background-size: 50% 50%;
+    /*background-image: url(../media/img/send-icon.png);*/
+    background-image: url(../media/img/mods-icon.png);
+    border: 3px white solid;
+    background-color: white;
+    background-size: 80% 80%;
+}
+
+#host-pong-icon-container{
+    border: 2px solid white;
+    background-color: rgba(255, 255, 255, 0);
+    background-size: 70% 75%;
+    background-image: url(../media/img/pong-logo.png);
+}
+
+#buy-icon-container{
+    border: 2px solid white;
+    background-color: rgba(255, 255, 255, 0);
+    background-size: 60% 60%;
+    background-image: url(../media/img/buy-icon.png);
+}
+
+#halloween-icon-container{
+    border-width: 0px;
+    background-color: rgba(255, 165, 0, 0.6);
+    background-size: 75% 75%;
+    background-image: url(../media/img/halloween-icon-white.png);
+}
+
+#unicef-icon-container{
+    border-width: 0px;
+    background-color: rgba(0, 174,239,0.6);
+    background-size: 80% auto;
+    background-position: center center;
+    background-image: url(../media/img/unicef-white-icon.png);
+}
+
+#experience-icon-container{
+    background-size: 90% 90%;
+    background-image: url(../media/img/vr-icon.png);
+    background-color: rgba(255, 255, 255, 0);
+}
+
+#fs-experience-icon-container{
+    background-size: 40% auto;
+    background-image: url(../media/img/nutrition-icon-white.png);
+    background-color: rgba(255, 255, 255, 0);
+}
+
+#shop-experience-icon-container{
+    background-size: 60% auto;
+    background-image: url(../media/img/shop-icon-white.png);
+    background-color: rgba(255, 255, 255, 0);
+}
+
+#intro-card-option-button-container{
+    text-align: left;
+    left: 5%;
+}
+
+#store-card-option-button-container{
+    text-align: right;
+    right: 5%;
+}
+
+#more-information-container{
+    position: absolute;
+    padding: 10%;
+    left: 0;
+    top: 0;
+    width: 80%;
+    height: 80%;
+    display: none;
+    z-index: 200;
+    background-color: rgba(0, 0, 0, 0.95);
+    border-radius: 20px;
+    font-size: 22px;
+    text-align: left;
+    line-height: 30px;
+    color: white;
+}
+
+.app-header-line-container{
+    color: white;
+    text-align: center;
+    width: 100%;
+    line-height: 50px;
+    font-size: 20px;
+}
+
+/*animation: name duration timing-function delay iteration-count direction fill-mode play-state*/
+
+.typewriter{ /* now loading */
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: .15em solid white; /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: .15em; /* Adjust as needed */
+  animation:
+    typing 0.25s steps(10, end),
+    blink-caret .25s step-end 0s 8, /*infinite*/
+    hide-caret .25s step-end 1s infinite;
+}
+
+.typewriter-1{  /* kids next door mission */
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: .15em solid white; /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: .15em; /* Adjust as needed */
+  animation:
+      typingone 0.5s steps(10, end) 1s,
+      blink-caret .25s step-end 1s 4, /*infinite*/
+      hide-caret .25s step-end 2s infinite;
+}
+
+.typewriter-2{  /*  operation: */
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: .15em solid white; /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: .15em; /* Adjust as needed */
+  animation:
+      typingtwo 0.5s steps(15, end) 2s,
+      blink-caret .25s step-end 2s 5, /*infinite*/
+      hide-caret .25s step-end 3.25s infinite;
+}
+
+.typewriter-3{  /* p.o.r.t.a.l.   */
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: .15em solid white; /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: .15em; /* Adjust as needed */
+  animation:
+    typingthree 1s steps(15, end) 3.25s,
+    blink-caret .25s step-end 3.25s 20; /*infinite*/
+}
+
+/* The typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 230px }
+}
+
+@keyframes typingone {
+  from { width: 0 }
+  to { width: 370px }
+}
+
+@keyframes typingtwo {
+  from { width: 0 }
+  to { width: 160px }
+}
+
+@keyframes typingthree {
+  from { width: 0 }
+  to { width: 300px }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent; border-width: 0px; }
+  50% { border-color: white; border-width: 15px; }
+}
+
+@keyframes hide-caret {
+    from {border-right: 0}
+    to { border-right: 0; }
+}
+
+.acrostic-header{
+    height: 30px;
+    display: inline;
+    text-align: 'left';
+    vertical-align: top;
+    line-height: 30px;
+}
+
+.acrostic-reveal{
+    display: none;
+}
+
+#premier-reveal{    /*  people */
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid white; /* The typwriter cursor */
+    white-space: nowrap; /* Keeps the content on a single line */
+    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .15em; /* Adjust as needed */
+    animation:
+        premier-ar 0.5s steps(4, end),
+        blink-caret .125s step-end 8,
+        hide-caret .25s step-end 0.5s infinite;
+}
+
+#deuxieme-reveal{   /* observe */
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid white; /* The typwriter cursor */
+    white-space: nowrap; /* Keeps the content on a single line */
+    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .15em; /* Adjust as needed */
+    animation:
+        deuxieme-ar 0.5s steps(25, end),
+        blink-caret .125s step-end 8,
+        hide-caret .25s step-end 0.5s infinite;
+}
+
+#troisieme-reveal{  /* reality */
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid white; /* The typwriter cursor */
+    white-space: nowrap; /* Keeps the content on a single line */
+    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .15em; /* Adjust as needed */
+    animation:
+        troisieme-ar 0.5s steps(25, end),
+        blink-caret .125s step-end 8,
+        hide-caret .25s step-end 0.5s infinite;
+}
+
+#quatrieme-reveal{  /* through */
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid white; /* The typwriter cursor */
+    white-space: nowrap; /* Keeps the content on a single line */
+    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .15em; /* Adjust as needed */
+    animation:
+        quatrieme-ar 0.5s steps(25, end),
+        blink-caret .125s step-end 8,
+        hide-caret .25s step-end 0.5s infinite;
+}
+
+#cinquieme-reveal{  /* a */
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid white; /* The typwriter cursor */
+    white-space: nowrap; /* Keeps the content on a single line */
+    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .15em; /* Adjust as needed */
+    animation:
+        cinquieme-ar 0.5s steps(25, end),
+        blink-caret .125s step-end 8,
+        hide-caret .25s step-end 0.5s infinite;
+}
+
+#sixieme-reveal{  /* lens */
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid white; /* The typwriter cursor */
+    white-space: nowrap; /* Keeps the content on a single line */
+    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .15em; /* Adjust as needed */
+    animation:
+        sixieme-ar 0.5s steps(25, end),
+        blink-caret .125s step-end 20,
+        hide-caret .25s step-end 3s infinite;
+}
+
+@keyframes premier-ar{ /* people */
+    from { width: 0 }
+    to { width: 120px }
+}
+
+@keyframes deuxieme-ar{ /* observe */
+    from { width: 0 }
+    to { width: 130px }
+}
+
+@keyframes troisieme-ar{ /* reality */
+    from { width: 0 }
+    to { width: 100px }
+}
+
+@keyframes quatrieme-ar{    /* through */
+    from { width: 0 }
+    to { width: 140px }
+}
+
+@keyframes cinquieme-ar{    /* a */
+    from { width: 0 }
+    to { width: 10px }
+}
+
+@keyframes sixieme-ar{    /* lens */
+    from { width: 0 }
+    to { width: 60px }
+}
+
+.acrostic-letter{
+    height: 30px;
+    line-height: 30px;
+}
+
+#comments-options-menu-container{
+    color: white;
+}
+
+#tiktok-comment-option-container{
+    color: white;
+}
+
+#tiktok-comment-image-container{
+    background-image: url(../media/img/tiktok-icon.png);
+    background-size: 100% 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    width: 50px;
+    height: 50px;
+    margin: 2% auto;
+    display: block;
+    border: 2px solid white;
+    cursor: pointer;
+    transition: box-shadow 0.25s;
+    box-shadow: none;
+    border-radius: 50%;
+}
+
+#tiktok-comment-image-container:hover{
+    box-shadow: 2px 2px 2px white;
+}
+
+#tiktok-comment-label-container{
+    color: white;
+    text-align: center;
+}
+
+.arjs-loader {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.arjs-loader div {
+    text-align: center;
+    font-size: 1.25em;
+    color: white;
+}
+
+#card-overlay-container{
+    display: none;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    transition: height 0.5s, width 0.5s, opacity 0.25s;
+}
+
+#card-overlay-wrapper-container{
+    display: none;
+}
+
+#toggle-card-menu-button-container{
+    -webkit-appearance: none;
+    z-index: 999;
+    border: 0;
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 50px;
+    outline: none;
+    bottom: 7%;
+    right: 5%;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+#select-toggle-card-menu-button-container{
+    -webkit-appearance: none;
+    z-index: 999;
+    border: 0;
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 0;
+    outline: none;
+    bottom: 7%;
+    left: 50%;
+    margin-left: -40px;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.big-select-toggle{
+    width: 125px;
+    height: 125px;
+}
+#secondary-toggle-card-menu-button-container{
+    -webkit-appearance: none;
+    z-index: 999;
+    border: 0;
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 50px;
+    outline: none;
+    bottom: 7%;
+    left: 5%;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+
+.card-option-button-container{
+    -webkit-appearance: none;
+    background-color: rgba(255, 255, 255, 0);
+    color: white;
+    display: block;
+}
+
+
+#return-to-pangaea-map-button-container{ /* potential redundant overlap in some markup files; this id is also listed in "grocery-storefront.css"  */
+    background-image: url(../media/img/hov-ig-logo.png);
+    background-size: 105% 105%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    position: absolute;
+    top: 3%;
+    left: 3%;
+    z-index: 999;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    border: 0;
+    border-radius: 50%;
+    outline: none;
+}
+
+#go-to-pangaea-shop-button-container{
+  background-image: url(../media/img/pangaea-app-icon.png);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  position: absolute;
+  bottom: 3%;
+  left: 5%;
+  z-index: 999;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  border: 1px solid white;
+  border-radius: 50%;
+  margin-left: -26px;
+  outline: none;
+}
+
+.currently-on-this-page-highlight{
+    background-color: black !important;
+    color: white !important;
+}
+
+@media only screen
+and (min-device-width : 375px)
+and (max-device-width : 667px) {
+    .card-app-flat-menu-button-container{
+        width: 200px;
+        height: 250px;
+        margin: 1% auto;
+    }
+
+    #create-menu-button-container{
+        width: 100%;
+        margin-left: 0;
+        left: 0;
+    }
+
+    .card-app-flat-menu-icon-container{
+        width: 176px;
+        height: 176px;
+        background-position: center center;
+        background-repeat: no-repeat;
+        border-radius: 50%;
+        display: block;
+        margin: 2px auto;
+        background-color: rgba(255, 255, 255, 1.0);
+    }
+
+    .app-header-line-container{
+
+        line-height: 30px;
+        font-size: 18px;
+    }
+
+    #drone-shot-map-container{
+        width: 100% !important;
+        height: auto;
+        /*box-shadow: 3px 3px 3px white;*/
+    }
+
+}

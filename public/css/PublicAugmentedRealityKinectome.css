@@ -1,0 +1,1117 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,800&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800&display=swap');
+
+/*
+*   PUBLIC AUGMENTED REALITY KINECTOME STYLESHEET
+*
+*   version 0.10.0.5
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body, html, #main-app-container{
+    background-color: white;
+    /*overflow-y: scroll;*/
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+#d3-capture-button-container{
+    background-image: url(../media/img/body-scan-icon.png);
+}
+
+#d2-capture-button-container{
+    background-image: url(../media/img/left-hand-icon-white.png);
+    background-position: center center;
+    background-size: 80% auto;
+    background-repeat: no-repeat;
+    background-color: rgba(0, 0, 0, 1.0);
+}
+
+#d2-capture-button-container:hover{
+    background-image: url(../media/img/left-hand-icon.png);
+    background-color: rgba(255, 255, 255, 1.0);
+}
+
+#film-capture-button-container{
+    background-image: url(../media/img/film-icon-white.png);
+    background-position: center center;
+    background-size: 50% auto;
+    background-repeat: no-repeat;
+    background-color: rgba(0, 0, 0, 1.0);
+}
+
+#film-capture-button-container:hover{
+    background-image: url(../media/img/film-icon.png);
+    background-color: rgba(255, 255, 255, 1.0);
+}
+
+#delivery-capture-button-container{
+    background-image: url(../media/img/drone-icon-white.png);
+    background-color: rgba(0, 0, 0, 1.0);
+    background-position: center center;
+    background-size: 80% auto;
+    background-repeat: no-repeat;
+}
+
+#delivery-capture-button-container:hover{
+    background-image: url(../media/img/drone-icon.png);
+    background-color: rgba(255, 255, 255, 1.0);
+}
+
+#dps2-call-button-container{
+    background-image: url(../media/img/dps2-icon.png);
+    background-color: rgba(0, 0, 0, 1.0);
+    background-position: center center;
+    background-size: 70% auto;
+    background-repeat: no-repeat;
+}
+
+#dps2-call-button-container:hover{
+    background-image: url(../media/img/dps2-icon-white.png);
+    background-color: rgba(255, 255, 255, 1.0);
+}
+
+.park-module-container{
+    display: none;
+    position: absolute;
+    z-index: 100;
+}
+
+#film-module-container{
+    width: 400px;
+    height: 450px;
+    border: 0;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+.start-scheduling-button-container{
+    width: 150px;
+    height: 50px;
+    border: 0;
+    border-radius: 5px;
+    line-height: 50px;
+    font-size: 20px;
+    letter-spacing: 2px;
+    background-color: red;
+    transition: color 0.25s;
+    color: white;
+}
+
+.schedule-instructions-title-container{
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: black;
+    margin: 5% auto;
+}
+
+.start-scheduling-button-container:hover{
+    background-color: aquamarine;
+    color: black;
+}
+
+#start-scheduling-delivery-button-container{
+    
+}
+
+.park-module-instruction-paragraph-container{
+    text-align: center;
+    width: 80%;
+    line-height: 22px;
+    font-size: 18px;
+    letter-spacing: 1px;
+    margin: 2% auto 5% auto;
+    font-weight: 600;
+}
+
+#rank1t-input-button-container{
+    background-image: url(../media/img/tiktok-icon.png);
+    background-size: 80% 80%;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.instructions-block{
+    width: 500px;
+    margin: 2% auto;
+    display: block;
+    vertical-align: top;
+    text-align: justify;
+}
+
+.instruction-graphic-container{
+    width: 350px;
+    height: 200px;
+    background-color: white;
+    background-size: 100% 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    border-radius: 5px;
+    margin: 5% auto;
+    display: block;
+}
+
+#instruction-graphic-0-container{
+    background-image: url(../media/img/instruction-0.png);
+}
+
+#instruction-graphic-1-container{
+    background-image: url(../media/img/bike-card.gif);
+    background-size: 130% 130%;
+}
+
+#instructions-wrapper-container{
+    width: 850px; /*400px;*/
+    height: 300px;
+    display: block;
+    margin: 5% auto 0 auto;
+    font-size: 24px;
+}
+
+#user-access-layer-container{
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow-y: scroll;
+}
+
+.page-container{
+    width: 100%;
+    height: 100%;
+    transition: height 0.5s, opacity 0.5s;
+    font-family: "Open Sans", sans-serif;
+}
+
+#logo-container{
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    margin: -150px 0 0-150px;
+}
+
+#map{
+    height: 100%;
+    display: block;
+}
+
+#logo-container-symbol{
+    width: 40%;
+    height: 40%;
+    background-image: url("../media/img/delivery-icon.png");
+    background-size: 150% 150%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    margin: 1% auto;
+    border-radius: 50%;
+}
+
+#logo-container-label{
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 30px;
+    color: black;
+}
+
+#logo-container-sub-label{
+    text-align: center;
+    text-transform: lowercase;
+    font-size: 16px;
+    color: black;
+    width: 210px;
+    z-index: 5;
+    margin: 5% auto 0 auto;
+}
+
+#page-0-container, #page-1-container, #page-2-container {
+    height: 0;
+    display: none;
+}
+
+.item-count-container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    text-align: center;
+    margin: -25px 0 0 -25px;
+}
+
+#page-2-container{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 50;
+    border-radius: 25px 25px 0 0;
+    background-color: rgba(255, 255, 255, 0.7);
+    color: black;
+}
+
+#restaurant-logo-container{
+    width: 150px;
+    height: 150px;
+    margin: 2% auto 1% auto;
+    border-radius: 50%;
+    border: 0;
+    background-size: 100% 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    /*background-color: black;*/
+}
+
+#restaurant-name-container{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    text-transform: capitalize;
+    text-align: center;
+    font-weight: 900;
+    font-size: 24px;
+}
+
+#restaurant-rating-container{
+    width: 100%;
+    text-align: center;
+    color: yellow;
+    font-weight: 900;
+    font-size: 20px;
+}
+
+.centered-paragraph-container{
+    text-align: center;
+}
+
+#restaurant-description-container{
+    width: 75%;
+    margin: 2% auto;
+    font-size: 18px;
+    font-weight: 600;
+    color: black;
+    max-height: 150px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.info-details-container, .info-details-section-container{
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.info-details-section-container{
+    font-size: 0;
+    width: 33%;
+    display: inline-block;
+    height: 100px;
+}
+
+#restaurant-details-menu-container{
+    overflow-x: scroll;
+    width: 100%;
+    height: 0;
+}
+
+#detail-wrapper-container{
+    width: 1250px;
+}
+
+.preview-detail-item-container{
+    width: 150px;
+    height: 150px;
+    display: inline-block;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 20px;
+    background-size: 100% 100%;
+    color: black;
+    margin: 25px;
+}
+
+#restaurant-menu-icon-container{
+    background-image: url("../media/img/");
+
+}
+
+#restaurant-reviews-icon-container{
+    background-image: url("../media/img/reviews-icon.png");
+}
+
+#restaurant-summary-icon-container{
+    background-image: url("../media/img/summary-icon.png");
+}
+
+#restaurant-menu-label-container, #restaurant-reviews-label-container, #restaurant-summary-label-container{
+    width: 100%;
+    line-height: 100px;
+    text-align: center;
+    font-size: 20px;
+}
+
+#see-tables-button-container, #close-preview-button-container{
+    min-width: 200px;
+    width: 80%;
+    height: 75px;
+    border-radius: 5px;
+    margin: 5% auto;
+    text-align: center;
+    text-transform: uppercase;
+    line-height: 75px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+#access-hyperreal-space-button-container{
+    outline: none;
+    background-color: white;
+    border: 0;
+    background-image: url("../media/img/eye-icon.png");
+    background-size: auto 50%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    right: 2%;
+    top: 5%;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#see-tables-button-container{
+    background-color: aquamarine;
+    background-image: url("../media/img/send-icon.png");
+    background-size: auto 50%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#close-preview-button-container{
+    background-color: red;
+    color: white;
+}
+
+#add-to-cart-overlay-container{
+    font-family: "Open Sans", sans-serif;
+    width: 300px;
+    height: 300px;
+    border-radius: 5px;
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -150px;
+    margin-top: -150px;
+    display: none;
+    cursor: pointer;
+    opacity: 0;
+    text-align: center;
+    background-color: white;
+    font-size: 16px;
+    transition: top 1s, opacity 1s;
+}
+
+#added-item-name-container{
+    font-family: "Open Sans", sans-serif;
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    font-size: 26px;
+    color: black;
+    line-height: 75px;
+}
+
+#success-indicator-container{
+    width: 130px;
+    height: 175px;
+    margin: 0 auto;
+    background-image: url("../media/img/success.png");
+    background-size: 100% 100%;
+}
+
+#success-indicator-label-container{
+    width: 150px;
+    height: 50px;
+    line-height: 50px;
+}
+
+#checkout-cart-button-container{
+    width: 50px;
+    height: 50px;
+    z-index: 99;
+    position: absolute;
+    top: 7%;
+    right: 3%;
+    display: none;
+    opacity: 0;
+    transition: opacity 1s;
+    cursor: pointer;
+    background-image: url("../media/img/cart-icon.png");
+    background-size: 80% 80%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.checkout-cart-button-page-container{
+    position: absolute;
+    width: 100%;
+    height: 0;
+    opacity: 0;
+    z-index: 200;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    text-align: center;
+    font-family: "Open Sans", sans-serif;
+    transition: height 1s, opacity 1s;
+    overflow-y: scroll;
+}
+
+.cart-item-container{
+    width: 100%;
+    height: 20%;
+    text-align: center;
+    font-size: 20px;
+    color: white;
+    font-family: "Montserrat", sans-serif;
+    line-height: 50px;
+    font-weight: 900;
+    position: relative;
+}
+
+.decrease-item-count-button-container, .increase-item-count-button-container{
+    width: 15%;
+    height: 100%;
+    border-radius: 5px;
+    text-align: center;
+    background-color: white;
+    color: black;
+    display: inline-block;
+    cursor: pointer;
+    font-weight: 900;
+    margin: 0 1%;
+}
+
+.increase-item-count-button-container{
+
+}
+
+.decrease-item-count-button-container{
+
+}
+
+.item-name-container{
+    display: inline-block;
+    width: 60%;
+    height: 100%;
+    text-align: center;
+}
+
+#submit-cart-for-checkout-button-container, #hide-cart-button-container{
+    color: white;
+    text-align: center;
+    width: 250px;
+    height: 75px;
+    border-radius: 10px;
+    font-size: 20px;
+    line-height: 75px;
+    cursor: pointer;
+    margin: 1% auto;
+}
+
+#submit-cart-for-checkout-button-container{
+    background-color: aquamarine;
+}
+
+#hide-cart-button-container{
+    background-color: salmon;
+}
+
+.payment-options-page-container{    /* page-4-container*/
+    z-index: 300;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background-color: black;
+    transition: height 0.5s, opacity 0.5s;
+}
+
+#apple-pay-payment-option-container{
+    background-image: url("../media/img/apple-pay-option-icon.svg");
+    background-size: 140% 60%;
+    background-color: black;
+}
+
+.payment-option-container{
+    display: inline-block;
+    width: 95%;
+    height: 46%;
+    margin: 2%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#paypal-payment-option-container{
+    background-image: url("../media/img/paypal-option-button-icon.png");
+    background-size: 60% 60%;
+    background-color: white;
+}
+
+.payment-loading-page-container{    /*  page-5-container    */
+    width: 100%;
+    height: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.7);
+    z-index: 400;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s, height 0.5s;
+}
+
+#payment-loader-container{
+    background-image: url("../media/img/loading.gif");
+    background-size: 100% 100%;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -25px 0 0 -25px;
+    cursor: pointer;
+    transition: background-image 0.5s;
+}
+
+#payment-loader-container:hover{
+    background-image: url("../media/img/loading.gif");
+}
+
+#hypermedia-input-button-container{
+    background-image: url(../media/img/hypermedia-icon.png);
+}
+
+#clearamid-input-button-container{
+    background-image: url(../media/img/tiktok-yt-icon.png);
+    color: black;
+}
+
+#experience-button-container{
+    background-image: url(../media/img/vr-icon.png);
+}
+
+#main-menu-button-container{
+    background-image: url(../media/img/hov-ig-logo.png);
+}
+
+.create-input-container{
+    display: none;
+    position: absolute;
+    width: 340px;
+    height: 450px;
+    top: 50%;
+    left: 50%;
+    margin: -250px auto 0 -170px;
+    border: 0;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px white;
+    color: black;
+    opacity: 0;
+    z-index: 48;
+
+    background-color: rgba(255,255,255, 0.4);
+
+    transition: opacity 0.5s;
+}
+
+#publish-creation-input-button-container{
+    background-image: url(../media/img/publish-icon.png);
+}
+
+.close-create-input-button-container{
+    background-color: rgba(255, 255, 255, 1.0);
+    border: 0;
+    width: 100%;
+    height: 75px;
+    border-radius: 0;
+    text-align: center;
+    font-size: 20px;
+    line-height: 75px;
+    display: block;
+    margin: 0;
+    cursor: pointer;
+    transition: background-color 0.25s, color 0.25s;
+}
+
+.create-input-option-button-container{
+    background-position: center center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    width: 150px;
+    height: 150px;
+    border: 0;
+    border-radius: 0;
+    text-align: center;
+    display: inline-block;
+    margin: 25px 5px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background-color 0.25s, color 0.25s;
+    color: white;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 600;
+    transition: background-color 0.25s;
+}
+
+/*.create-input-option-button-container:hover{
+    background-color: rgba(0, 0, 0, 1.0);
+    color: white;
+}*/
+
+#register-for-pARk-button-container{
+    background-color: rgba(255, 255, 255, 0);
+    border: 0;
+    width: 75px;
+    height: 75px;
+    position: absolute;
+    top: 3%;
+    left: 3%;
+    z-index: 99;
+    cursor: pointer;
+    outline: none;
+    background-image: url(../media/img/sign-up-icon.png);
+    background-size: 80% 80%;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+#gps-lock-container{
+  display: block;
+  position: absolute;
+  z-index: 99;
+  left: 5%;
+  bottom: 5%;
+  background-color: rgba(255, 255, 255, 0);
+  width: 250px;
+  height: 100px;
+  font-size: 18px;
+  color: white;
+  font-weight: 900;
+}
+
+.create-button-container{
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.7);
+    color: black;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+    display: block;
+    line-height: 75px;
+    cursor: pointer;
+    box-shadow: none;
+    transition: background-color 0.25s, box-shadow 0.25s;
+    position: absolute;
+    bottom: 3%;
+    left: 50%;
+    margin-left: -38px;
+    z-index: 49;
+}
+
+#create-account-input-container{
+    background-color: rgba(255, 255, 255, 0);
+    box-shadow: none;
+}
+
+#create-account-button-container{
+    width: 100px;
+    height: 100px;
+    margin-left: -50px;
+    bottom: 5%;
+    background-color: rgba(255, 255, 255, 0.7);
+    transition: backgroundColor 0.5s;
+}
+
+.create-button-container:hover{
+    background-color: rgba(255, 255, 255, 1.0);
+    box-shadow: 2px 2px 2px white;
+}
+
+.name-input-container{
+    border: 0;
+    display: block;
+    width: 70%;
+    height: 35px;
+    line-height: 35px;
+    border-radius: 5px;
+    margin: 8% auto 2% auto;
+}
+
+#account-name-input-container{
+
+}
+
+#marker-name-input-container{
+
+}
+
+#account-phone-input-container{
+    border: 0;
+    width: 40%;
+    height: 35px;
+    border-radius: 5px;
+    line-height: 35px;
+    display: block;
+    margin: 2% auto;
+}
+
+.description-input-container{
+    border: 0;
+    border-radius: 5px;
+    display: block;
+    width: 80%;
+    height: 150px;
+    margin: 2% auto;
+}
+
+#welcome-instruction-header-container{
+    text-align: center;
+    margin-bottom: 5%;
+    font-size: 30px;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.instructions-link-container:link, .instructions-link-container:visited{
+    text-decoration: none;
+    color: salmon;
+    font-weight: 700;
+    font-style: italic
+}
+
+.instructions-link-container:hover{
+    color: aquamarine;
+    font-style: normal;
+}
+
+#preview-media-container{
+    position: relative;
+    width: 400px;
+    height: 300px;
+    margin: 2%;
+    border-radius: 10px;
+    background-image: url(../media/img/yktv-static.gif);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    /*background-color: black;*/
+    display: inline-block;
+    vertical-align: top;
+}
+
+#preview-media-meta-data-container{
+    display: inline-block;
+    width: 400px;
+    height: auto;
+    vertical-align: top;
+}
+
+#preview-wrapper-container{
+    width: 850px;
+    margin: 2% auto;
+    vertical-align: top;
+}
+
+.send-package-widget-container{
+    z-index: 500;
+    background-color: rgba(255, 255, 255, 1);
+    color: black;
+    display: none;
+    /*opacity: 0;*/
+    width: 500px;
+    height: 500px;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -250px 0 0 -250px;
+}
+
+#close-send-package-widget-button-container{
+    display: block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: white;
+    color: black;
+    text-align: center;
+    line-height: 50px;
+    outline: none;
+    position: absolute;
+    right: 3%;
+    top: 3%;
+    border: 2px solid black;
+    font-size: 20px;
+    font-weight: 200;
+    cursor: pointer;
+}
+
+#loading-drone-container{
+    font-family: Arial, sans-serif;
+    text-transform: uppercase;
+    font-size: 18px;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 350px;
+    margin: -175px 0 0 -100px;
+    opacity: 0;
+    display: none;
+    line-height: 25px;
+    text-align: center;
+    font-size: 18px;
+    transition: opacity 0.5s;
+}
+
+#loading-drone-gif{
+    width: 100%;
+    height: 200px;
+    background-image: url("../media/img/loading.gif");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+#hide-this-when-loading-is-done-container{
+
+}
+
+#successfully-starting-route-container{
+    background-image: url("../media/img/success.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 120px;
+    height: 150px;
+    margin: 10% auto 0 auto;
+    display: none;
+}
+
+#show-this-when-loading-is-done-container{
+    display: none;
+}
+
+label, .delivery-option-button-container{
+    font-size: 24px;
+}
+
+#launch-drone-delivery-button-container{
+    width: 200px;
+    height: 50px;
+    border-radius: 10px;
+    display: block;
+    margin: 5% auto 0 auto;
+    outline: none;
+    font-size: 20px;
+    text-align: center;
+    line-height: 50px;
+    background-color: aquamarine;
+    border: 0;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.25s;
+}
+
+.widget-option-button-container{
+    font-size: 20px;
+    height: 75px;
+    line-height: 75px;
+    background-color: white;
+    color: black;
+    width: 75%;
+    margin: 1% auto;
+    display: none;
+    text-align: center;
+    font-weight: 700;
+    font-family: Arial, sans-serif;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: color 0.25s, background-color 0.25s, border 0.25s;
+}
+
+.widget-option-button-container:hover{
+    color: white;
+    background-color: black;
+    border: 2px black solid;
+}
+
+.top-widget-option-button-container{
+    margin: 15% auto 1% auto;
+}
+
+#tap-to-start-title-container{
+    text-align: center;
+    margin-top: 5%;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+#capture-options-container{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    background-color: rgba(255, 255, 255, 0);
+    box-shadow: none;
+}
+
+@media only screen and (max-width: 600px){
+    .send-package-widget-container{
+        width: 95%;
+        height: 500px;
+        border-radius: 10px;
+        margin-left: 0;
+        left: 2%;
+    }
+
+    .instructions-block{
+        width: 295px;/*350px;*/
+        margin: 5% auto 2% auto;
+        display: block;
+        text-align: center;
+    }
+
+    .instructions-block-pangaea{
+        width: 350px;
+        margin: 10% auto 2% auto;
+        display: block;
+        text-align: center;
+    }
+
+    #welcome-instruction-header-container{
+        margin-top: 10%;
+    }
+
+    .instruction-graphic-container{
+        width: 80%;
+        min-width: 225px;
+        min-height: 175px;
+        height: 33%;
+        background-color: white;
+        background-size: 100% 100%;
+        background-position: center center;
+        background-repeat: no-repeat;
+        border-radius: 5px;
+        margin: 5% auto;
+        display: block;
+    }
+
+
+    #instructions-wrapper-container{
+      overflow-y: scroll;
+        width: 100%; /*400px;*/
+        height: 100%;
+        display: block;
+        margin: 0;
+        font-size: 20px;
+    }
+
+    #user-access-layer-container{
+        z-index: 100;
+        background-color: rgba(0, 0, 0, 0.9);
+        color: white;
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+    }
+
+    #restaurant-name-container{
+        width: 100%;
+        height: auto;
+        line-height: 40px;
+        /*text-transform: capitalize;
+        text-align: center;
+        font-weight: 900;*/
+        font-size: 20px;
+    }
+    #preview-media-meta-data-container{
+        display: inline-block;
+        width: 100%;
+        height: auto;
+    }
+
+    #preview-media-container{
+        width: 100%;
+        height: 225px;
+        margin: 0;
+        border-radius: 0px;
+    }
+
+    #preview-wrapper-container{
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    #restaurant-description-container{
+        width: 85%;
+        margin: 3% auto 5% auto;
+        font-size: 16px;
+        font-weight: 600;
+        text-align: justify;
+        color: black;
+        height: 100px;
+        background-color: rgba(255, 255, 255, 0);
+    }
+
+    #see-tables-button-container, #close-preview-button-container{
+        min-width: 0px;
+        width: 100%;
+        height: 75px;
+        border-radius: 0px;
+        margin: 0;
+        text-align: center;
+        /*text-transform: uppercase;
+        line-height: 75px;
+        cursor: pointer;
+        font-weight: 700;*/
+        font-size: 14px;
+    }
+
+    #see-tables-button-container{
+        background-color: aquamarine;
+    }
+
+    #close-preview-button-container{
+        background-color: red;
+        color: white;
+    }
+
+    #restaurant-logo-container{
+        width: 90px;
+        height: 90px;
+    }
+}

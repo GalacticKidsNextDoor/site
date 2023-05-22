@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name='viewport' content='width=device-width,initial-scale=1.0' />
+    <title>Echoes Of Silence | Immersive Album | 0.0.1.0</title>
+    <link rel="stylesheet" type="text/css" href="../css/CreativeAugmentedRealityDesktop.css" />
+    <link rel="stylesheet" type="text/css" href="../css/lyoko-viewer.css" />
+    <link rel="stylesheet" type="text/css" href="../css/the-weeknd.css" />
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+</head>
+<body style="margin : 0px; overflow: hidden;">
+    <input type="button" id="toggle-menu-visibility-button-container" value="+" />
+    <input type="button" id="toggle-player-visibility-button-container" value="i" />
+    <input type="button" id="select-previous-track-button-container" class="select-track-button-container" value="<" />
+    <input type="button" id="select-next-track-button-container" class="select-track-button-container" value=">" />
+    <div id="song-list-container">
+
+    </div>
+    <audio id="lyoko-hypermedia-player" controls>
+      <source src="../media/aud/HighForThis-snippet.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <div id="environment-settings-menu-container">
+      <input type="button" id="white-background-color-setting-button-container" class="selected-color-setting color-setting-button-container" value="" />
+      <input type="button" id="black-background-color-setting-button-container" class="color-setting-button-container" value="" />
+      <input type="button" id="red-background-color-setting-button-container" class="color-setting-button-container" value="" />
+      <input type="button" id="yellow-background-color-setting-button-container" class="color-setting-button-container" value="" />
+      <input type="button" id="toggle-floor-visibility-button-container" class="floor-setting-button-container" value="" />
+      <input type="button" id="view-in-ar-button-container" class="setting-button-container" value="" />
+    </div>
+    <div id="lyoko-hypermedia-title-container">Content Title</div>
+    <div id="lyoko-hypermedia-label-container">Toronto R&B enigma Abel Tesfaye presents his landmark trifecta of mixtapes in one bleak, oozy stretch.</div>
+    <a-scene
+        vr-mode-ui="enabled: false;"
+        renderer="logarithmicDepthBuffer: true;"
+        embedded
+        arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
+    >
+        <a-assets>
+            <img id="trilogy-cover-texture" src="../media/img/trilogy-cover-texture.png" />
+            <img id="default-floor-pattern-texture" src="../media/img/grid-pattern.png" />
+        </a-assets>
+            <a-entity id="floor-container"
+                      geometry="primitive: plane; width: 100; height: 100;"
+                      material="src: #default-floor-pattern-texture; repeat: 50 50; side: double;"
+                      rotation="-90 0 0"
+                      position="0 0 0"
+                      visible="false">
+            </a-entity>
+
+            <a-entity id="lyoko-hypermedia-block-container"
+                      geometry="primitive: plane; width: 5; height: 5;"
+                      material="src: #trilogy-cover-texture; repeat: 1 1; side: double;"
+                      rotation="0 0 0"
+                      position="0 4 -6"
+                      visible="true"
+                      animation="property: rotation; from: 0 0 0; to: 0 360 0; dur: 6000; easing: linear; loop: true; pauseEvents: playerPausedStopAnimation; startEvents: playerResumeStartAnimation;">
+            </a-entity>
+
+            <a-sky id="sky-background-container" color="white"></a-sky>
+            <a-entity position="0 1.9 0" camera wasd-controls look-controls></a-entity>
+    </a-scene>
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-storage.js"></script>
+    <script src="../js/Lyoko.Viewer.js"></script>
+    <script src="../js/Lyoko.AudioTrack.js"></script>
+    <script src="../js/Lyoko.AudioCollection.js"></script>
+    <script src="../js/Lyoko.Login.js"></script>
+    <script src="../js/Lyoko.EchoesOfSilenceDBHeaders.js"></script>
+    <script src="../js/Lyoko.Album.js"></script>
+    <script>
+      window.addEventListener("load", function(){
+          document.getElementById("view-in-ar-button-container").addEventListener("click", function(){
+              window.location.href = "./the-weeknd-ar";
+          });
+
+          windowIsLoaded = true;
+      });
+
+    </script>
+</body>
+</html>

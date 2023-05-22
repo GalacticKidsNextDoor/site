@@ -1,0 +1,81 @@
+#toggle-menu-visibility-button-container{
+    z-index: 999;
+    position: absolute;
+    bottom: 3%;
+    left: 3%;
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 30px;
+    line-height: 75px;
+    font-weight: 900;
+    cursor: pointer;
+    outline: none;
+    border: 2px white solid;
+    background-color: rgba(255, 0, 0, 0.5);
+    color: white;
+}
+
+#environment-settings-menu-container{
+    z-index: 999;
+    position: absolute;
+    bottom: 3%;
+    right: 3%;
+    display: none;
+}
+
+.color-setting-button-container, .floor-setting-button-container, .setting-button-container{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 0;
+    font-size: 0;
+    box-shadow: 0;
+    outline: none;
+}
+
+.selected-color-setting{
+    border: 4px aquamarine solid !important;
+    box-shadow: 1px 1px 1px white;
+}
+
+#white-background-color-setting-button-container{
+    background-color: white;
+}
+
+#black-background-color-setting-button-container{
+    background-color: black;
+}
+
+#red-background-color-setting-button-container{
+    background-color: red;
+}
+
+#yellow-background-color-setting-button-container{
+    background-color: yellow;
+}
+
+#toggle-floor-visibility-button-container{
+    background-image: url(../media/img/grid-pattern.png);
+    background-size: 100% 100%;
+    background-position: center center;
+}
+
+#view-in-ar-button-container{
+    background-image: url(../media/img/eye-icon.png);
+    background-size: 80% auto;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+@media only screen and (max-width: 600px){
+  .color-setting-button-container, .floor-setting-button-container, .setting-button-container{
+      width: 25px;
+      height: 25px;
+  }
+
+  .selected-color-setting{
+      box-shadow: 0;
+  }
+}
