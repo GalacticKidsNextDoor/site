@@ -2,10 +2,10 @@
 <html>
 <head>
     <meta name='viewport' content='width=device-width,initial-scale=1.0' />
-    <title>Thursday | Immersive Album | 0.1.0.0</title>
+    <title>Sincerely, Aubrey | Immersive Album | 0.0.2.0</title>
     <link rel="stylesheet" type="text/css" href="../css/CreativeAugmentedRealityDesktop.css" />
     <link rel="stylesheet" type="text/css" href="../css/lyoko-viewer.css" />
-    <link rel="stylesheet" type="text/css" href="../css/the-weeknd.css" />
+    <link rel="stylesheet" type="text/css" href="../css/sincerely-aubrey-immersive-album.css" />
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
 </head>
 <body style="margin : 0px; overflow: hidden;">
@@ -29,7 +29,7 @@
       <input type="button" id="view-in-ar-button-container" class="setting-button-container" value="" />
     </div>
     <div id="lyoko-hypermedia-title-container">Content Title</div>
-    <div id="lyoko-hypermedia-label-container">Toronto R&B enigma Abel Tesfaye presents his landmark trifecta of mixtapes in one bleak, oozy stretch.</div>
+    <div id="lyoko-hypermedia-label-container">ghostwriter's original fourteen track deluxe production</div>
     <a-scene
         vr-mode-ui="enabled: false;"
         renderer="logarithmicDepthBuffer: true;"
@@ -37,7 +37,7 @@
         arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
     >
         <a-assets>
-            <img id="trilogy-cover-texture" src="../media/img/trilogy-cover-texture.png" />
+            <img id="sincerely-aubrey-cover-texture" src="../media/img/sincerely-aubrey-cover.png" />
             <img id="default-floor-pattern-texture" src="../media/img/grid-pattern.png" />
         </a-assets>
             <a-entity id="floor-container"
@@ -50,7 +50,7 @@
 
             <a-entity id="lyoko-hypermedia-block-container"
                       geometry="primitive: plane; width: 5; height: 5;"
-                      material="src: #trilogy-cover-texture; repeat: 1 1; side: double;"
+                      material="src: #sincerely-aubrey-cover-texture; repeat: 1 1; side: double;"
                       rotation="0 0 0"
                       position="0 4 -6"
                       visible="true"
@@ -69,13 +69,13 @@
     <script src="../js/Lyoko.Viewer.js"></script>
     <script src="../js/Lyoko.AudioTrack.js"></script>
     <script src="../js/Lyoko.AudioCollection.js"></script>
-    <script src="../js/Lyoko.LoginToMain.js"></script>
-    <script src="../js/Lyoko.TrilogyDBHeaders.js"></script>
+    <script src="../js/Lyoko.Login.js"></script>
+    <script src="../js/Lyoko.SincerelyAubreyDBHeaders.js"></script>
     <script src="../js/Lyoko.Album.js"></script>
     <script>
       window.addEventListener("load", function(){
           document.getElementById("view-in-ar-button-container").addEventListener("click", function(){
-              window.location.href = "./the-weeknd-ar";
+              window.location.href = "./sincerely-aubrey-ar";
           });
 
           windowIsLoaded = true;
