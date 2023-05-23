@@ -424,6 +424,7 @@
                     
                     tierAccessButton.setAttribute("type", "button");
                     tierAccessButton.classList.add("get-tier-access-button-container");
+                    tierAccessButton.setAttribute("id", `access-tier-${counterA}-button-container`);
                     
                     tierAccessButton.value = "Get Started";
                     
@@ -488,6 +489,18 @@
                     document.getElementById("trending-list-post-container").appendChild(curr);
                 })();
             }
+            
+            document.getElementById("access-tier-0-button-container").addEventListener("click", function(){
+                window.alert("GKND Beta Launch Tier 0 is full! \n\n Please check back later or contact us for next opening. \n\n Email: ceo@dronepong.com \n IG: @ceo.hov");
+            });
+            
+            document.getElementById("access-tier-1-button-container").addEventListener("click", function(){
+                window.alert("GKND Beta Launch Tier 1 is full! \n\n Please check back later or contact us for next opening. \n\n Email: ceo@dronepong.com \n IG: @ceo.hov");
+            });
+            
+            document.getElementById("access-tier-2-button-container").addEventListener("click", function(){
+                window.alert("GKND Beta Launch Tier 2 is full! \n\n Please check back later or contact us for next opening. \n\n Email: ceo@dronepong.com \n IG: @ceo.hov");
+            });
         });
     </script>
 </body>

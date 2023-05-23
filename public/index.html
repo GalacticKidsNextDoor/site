@@ -162,7 +162,7 @@
             position: absolute;
             width: 350px;
             height: 450px;
-            background-image: url(./media/img/travis-head-0.png);
+            background-image: url(./media/img/doja-head-black-and-white.png);
             background-size: 120% auto;
             background-repeat: no-repeat;
             background-position: center center;
@@ -362,19 +362,24 @@
                 bgSize: "130% auto"
             },
             {
-                name: "Obama",
-                src: "./media/img/obama-head-2.png",
-                bgSize: "120% auto"
-            },
-            {
                 name: "Trump",
                 src: "./media/img/trump-head-0.png",
                 bgSize: "100% auto"
             },
             {
+                name: "Doja",
+                src: "./media/img/doja-head-black-and-white.png",
+                bgSize: "120% auto"
+            },
+            {
                 name: "Drake",
                 src: "./media/img/drake-head-1.png",
                 bgSize: "130% auto"
+            },
+            {
+                name: "Obama",
+                src: "./media/img/obama-head-2.png",
+                bgSize: "120% auto"
             },
             {
                 name: "Biden",
@@ -654,11 +659,13 @@
                 document.getElementById("avatar-sam-container").style.backgroundImage = `url(${personas[onPersona].src})`;
                 document.getElementById("avatar-sam-container").style.backgroundSize = personas[onPersona].bgSize;
                 
-                document.getElementById("current-media-type-container").innerText = mediaTypes[onPersona].action;
+                let rem = onPersona % mediaTypes.length;
+                document.getElementById("current-media-type-container").innerText = mediaTypes[rem].action;
                 
                 if(onPersona===personas.length-1)onPersona = -1;
                 
-                
+                console.log(onPersona);
+                console.log(rem)
             }, 6000);
             
             for(var appCount = 0; appCount < trendingApps.length; appCount++){
