@@ -20,7 +20,7 @@ body, html{
 }
 
 #album-cover-container{
-    background-image: url(./media/img/sincerely-aubrey-cover.png);
+    background-image: url(../media/img/sincerely-aubrey-cover.png);
     background-size: cover;
     width: 325px;
     height: 325px;

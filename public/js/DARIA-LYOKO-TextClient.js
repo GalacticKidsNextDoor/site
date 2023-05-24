@@ -92,6 +92,195 @@ function CollectionOfAllHumanLanguages(pointerBoolean){
       ]
     },
     "ENGLISH": {
+        "build": [
+            {
+                type: "verb",
+                use: "with object",
+                pastParticiple: "built",
+                presentParticiple: "build·ing",
+                definitions: [
+                    {
+                      main: "to construct (especially something complex) by assembling and joining parts or materials:",
+                      example: "to build a house"
+                  },
+                    {
+                      main: "to establish, increase, or strengthen (often followed by up):",
+                      example: "to build a business; to build up one's hopes."
+                  },
+                    {
+                      main: "to mold, form, or create",
+                      example: "to build students into skilled professionals."
+                  },
+                    {
+                      main: "to base; found:",
+                      example: "a relationship built on trust."
+                  },
+                    {
+                      main: "to base; found:",
+                      example: "a relationship built on trust."
+                  },
+                ]
+            },
+            {
+                type: "verb",
+                use: "without object",
+                pastParticiple: "built",
+                presentParticiple: "build·ing",
+                definitions: [
+                    {
+                      main: "to engage in the art, practice, or business of building.",
+                      example: ""
+                  },
+                    {
+                      main: "to form or construct a plan, system of thought, etc. (usually followed by on or upon):",
+                      example: "He built on the philosophies of the past."
+                  },
+                    {
+                      main: "to increase or develop toward a maximum, as of intensity, tempo, or magnitude (often followed by up):",
+                      example: "The drama builds steadily toward a climax."
+                  },
+                ]
+            },
+            {
+                type: "noun",
+                use: "improper",
+                pastParticiple: null,
+                presentParticiple: null,
+                definitions: [
+                    {
+                        main: "the physical structure, especially of a person; physique; figure:",
+                        example: "He had a strong build."
+                    },
+                    {
+                        main: "the manner or form of construction:",
+                        example: "the house was of modern build."
+                    }
+                ]
+            },
+        ],
+        "a": [
+            {
+                type: "article",
+                use: "indefinite",
+                pastParticiple: null,
+                presentParticiple: null,
+                definitions: [
+                    {
+                        main: "not any particular or certain one of a class or group:",
+                        example: "a man; a chemical; a house."
+                    },
+                    {
+                        main: "a certain; a particular:",
+                        example: "one at a time; two of a kind; A Miss Johnson called."
+                    },
+                    {
+                        main: "another; one typically resembling:",
+                        example: "a Cicero in eloquence; a Jonah."
+                    },
+                    {
+                        main: "one (used before plural nouns that are preceded by a quantifier singular in form): a hundred men (compare hundreds of men); a dozen times (compare dozens of times).",
+                        example: ""
+                    },
+                    {
+                        main: "indefinitely or nonspecifically (used with adjectives expressing number):",
+                        example: "a great many years; a few stars."
+                    },
+                    {
+                        main: "one (used before a noun expressing quantity):",
+                        example: "a yard of ribbon; a score of times."
+                    },
+                    {
+                        main: "any; a single:",
+                        example: "not a one."
+                    }
+                ]
+            }
+        ],
+        "honeypot": [
+            {
+                type: "noun",
+                use: "improper",
+                pastParticiple: null,
+                presentParticiple: null,
+                definitions: [
+                    {
+                        main: "a pot, as of glass or silver, for storing and serving honey.",
+                        example: "He found a nickel in the street."
+                    },
+                    {
+                        main: "a person or thing that acts as a lure or decoy in a trap, scam, or scheme:",
+                        example: "The senator engaged in an extramarital relationship with a honeypot set up by his political rivals. I thought my money was safe, but the other investors were all honeypots who were lying about their profits."
+                    },
+                    {
+                        main: "something or some location that is attractive or rewarding and that entices a specific group of people:",
+                        example: "The unregulated dating app was a honeypot for catfishing and predatory behaviors.; The author’s childhood home became a tourism honeypot for the small town."
+                    },
+                    {
+                        main: "Digital Technology",
+                        sub: [
+                            {
+                                def: "a computer system, isolated from the rest of its network, established as bait to lure malicious hackers into engaging with it, thereby revealing the identity or technique of the perpetrator without endangering the network or its data.",
+                                example: ""
+                            },
+                            {
+                                def: "a web page or section of hidden code in a web page that lures spammers into an interaction that identifies their content as spam or reveals its point of origin.",
+                                example:""
+                            }
+                        ]
+                    },
+                    {
+                        main: "Slang: Vulgar. the vagina.",
+                        example: ""
+                    }
+                ]
+            }
+        ],
+        "honey": [
+            {
+                type: "noun",
+                use: "with object",
+                pastParticiple: null,
+                presentParticiple: null,
+                definitions: [
+                  {
+                      main: "to construct (especially something complex) by assembling and joining parts or materials:",
+                      example: "He found a nickel in the street."
+                  },
+                ]
+            }
+        ],
+        "pot": [
+            {
+                type: "noun",
+                use: "improper",
+                pastParticiple: null,
+                presentParticiple: null,
+                definitions: [
+                  {
+                      main: "to construct (especially something complex) by assembling and joining parts or materials:",
+                      example: "He found a nickel in the street."
+                  }
+                ]
+            }
+        ],
+        "for": [
+            {
+                type: "preposition",
+                use: "with object",
+                pastParticiple: null,
+                presentParticiple: null,
+                definitions: [
+                  {
+                      main: "to construct (especially something complex) by assembling and joining parts or materials:",
+                      example: "He found a nickel in the street."
+                  },
+                  {
+                      main: "to construct (especially something complex) by assembling and joining parts or materials:",
+                      example: "He found a nickel in the street."
+                  },
+                ]
+            }
+        ],
       "find" : [
         {
           type: "verb",
@@ -658,7 +847,7 @@ class Dictionary{
   constructor(HumanOrMachineLanguageID){
     this.superSet = CollectionOfAllHumanLanguages(true);
     this.terms = CollectionOfAllHumanLanguages(false)[HumanOrMachineLanguageID];
-    console.log("Human Machine Dictionary \n version 0.0.0.1 \n by Patrice-Morgan");
+    console.log("Human Machine Dictionary \n version 0.0.0.2 \n by Patrice-Morgan");
     console.log(`Loading Language ID: ${HumanOrMachineLanguageID}`);
   }
   displayTerms(){
@@ -936,7 +1125,7 @@ class Senses{
               //  concepts relevant to the query could not be found within the blockchain headers
               //  parse the query
               if(this.sessionReader==null){ //  check to make sure the sessionReader is not null
-                this.sessionReader = new Lexicon(true, "ENGLISH");  //  if it is create a new Lexicon to use to process natural human language during this session
+                this.sessionReader = new Lexicon(true, "ENGLISH");  //  if it is create a new Lexicon to process natural human language during this session
                 parsePrompt = meaningInput.toLowerCase();
                 finalResult = this.sessionReader.parseText(parsePrompt);
                 console.log("~~~~~~~~~~~~~~~~~~~~~~~");
