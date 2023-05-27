@@ -317,6 +317,7 @@
         </div>
     </div>
     <script>
+        var loggedIn = false;
         var publicApps = [
             {
                 name: "AVATAR SAM",
@@ -349,7 +350,7 @@
                 bgPosition: "center center",
                 bgColor: "rgba(255, 255, 255, 1.0)",
                 color: "black",
-                target: "./avatar-sam",
+                target: "./ai-the-label",
                 type: "Application",
                 tier: "Public",
                 ranking: 9
@@ -486,7 +487,7 @@
                 })();
             }
             
-            for(var appCount = 0; appCount < publicApps.length; appCount++){
+            /*for(var appCount = 0; appCount < publicApps.length; appCount++){
                 let counterA = appCount;
                 (function(){
                     let curr = document.createElement("div");
@@ -511,7 +512,7 @@
                     
                     document.getElementById("public-apps-block-container").appendChild(curr);
                 })();
-            }
+            }*/
             
             if(loggedIn){
                 for(var privateAppCount = 0; privateAppCount < privateApps.length; privateAppCount++){
@@ -543,31 +544,31 @@
             }
             else{
                 for(var appCount = 0; appCount < publicApps.length; appCount++){
-                let counterA = appCount;
-                (function(){
-                    let curr = document.createElement("div");
-                    curr.classList.add("trending-post-container");
-                    
-                    curr.setAttribute("id", `trending-post-${counterA}-container`);
-                    
-                    curr.style.backgroundImage = `url(${publicApps[counterA].src})`;
-                    
-                    curr.style.backgroundSize = publicApps[counterA].bgSize;
-                    
-                    curr.style.backgroundPosition = publicApps[counterA].bgPosition;
-                    
-                    curr.innerText = publicApps[counterA].name;
-                    
-                    curr.addEventListener("click", function(){
-                        window.location.href = publicApps[counterA].target;
-                    });
-                    
-                    if(publicApps[counterA].color)curr.style.color = publicApps[counterA].color;
-                    if(publicApps[counterA].bgColor)curr.style.backgroundColor = publicApps[counterA].bgColor;
-                    
-                    document.getElementById("public-apps-block-container").appendChild(curr);
-                })();
-            }
+                    let counterA = appCount;
+                    (function(){
+                        let curr = document.createElement("div");
+                        curr.classList.add("trending-post-container");
+
+                        curr.setAttribute("id", `trending-post-${counterA}-container`);
+
+                        curr.style.backgroundImage = `url(${publicApps[counterA].src})`;
+
+                        curr.style.backgroundSize = publicApps[counterA].bgSize;
+
+                        curr.style.backgroundPosition = publicApps[counterA].bgPosition;
+
+                        curr.innerText = publicApps[counterA].name;
+
+                        curr.addEventListener("click", function(){
+                            window.location.href = publicApps[counterA].target;
+                        });
+
+                        if(publicApps[counterA].color)curr.style.color = publicApps[counterA].color;
+                        if(publicApps[counterA].bgColor)curr.style.backgroundColor = publicApps[counterA].bgColor;
+
+                        document.getElementById("public-apps-block-container").appendChild(curr);
+                    })();
+                }
             }
         });
     </script>
