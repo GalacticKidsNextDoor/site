@@ -43,7 +43,7 @@
             position: absolute;
             background-image: url(../media/img/gknd-logo.png);
             background-size: 110% 100%;
-            background-color: black;
+            background-color: rgba(0, 0, 0, 0);
             background-position: center center;
             background-repeat: no-repeat no-repeat;
             border: 0;
@@ -216,7 +216,7 @@
             background-color: white;
         }
         
-        #avatar-sam-container, #avatar-sam-1-container{
+        #avatar-sam-container, #avatar-sam-2-container{
             position: relative; /*absolute;*/
             width: 350px;
             height: 400px;
@@ -515,23 +515,23 @@
                 else{
                     secondaryPersona--;
                 }
-                document.getElementById("avatar-sam-container").style.backgroundImage = `url(${personas[secondaryPersona].src})`;
+                document.getElementById("avatar-sam-2-container").style.backgroundImage = `url(${personas[secondaryPersona].src})`;
 
-                document.getElementById("avatar-sam-container").style.backgroundSize = `${personas[secondaryPersona].bgSize}`;
+                document.getElementById("avatar-sam-2-container").style.backgroundSize = `${personas[secondaryPersona].bgSize}`;
 
             });
             
             document.getElementById("next-avatar-2-button-container").addEventListener("click", function(){
                 console.log(secondaryPersona)
-                if(secondaryPersonaPersona===personas.length-1){
+                if(secondaryPersona===personas.length-1){
                     secondaryPersona = 0;
                 }
                 else{
                     secondaryPersona++;
                 }
-                document.getElementById("avatar-sam-container").style.backgroundImage = `url(${personas[secondaryPersona].src})`;
+                document.getElementById("avatar-sam-2-container").style.backgroundImage = `url(${personas[secondaryPersona].src})`;
 
-                document.getElementById("avatar-sam-container").style.backgroundSize = `${personas[secondaryPersona].bgSize}`;
+                document.getElementById("avatar-sam-2-container").style.backgroundSize = `${personas[secondaryPersona].bgSize}`;
 
             });
 
@@ -631,7 +631,7 @@
                     <input type="button" id="previous-avatar-2-button-container" class="select-avatar-button-container" value="<" />
                     <input type="button" id="next-avatar-2-button-container" class="select-avatar-button-container" value=">" />
 
-                    <div id="avatar-sam-1-container">
+                    <div id="avatar-sam-2-container">
                         <video id="ai-loader-1-container" width="240" height="135" muted autoplay loop>
                             <source src="./media/img/loading-anim.webm" type="video/webm">
                         </video>
