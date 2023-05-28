@@ -64,7 +64,7 @@
             width: 75px;
             height: 75px;
             top: 10%;
-            left: 5%;
+            left: 7%;
             margin: -50px 0 0 -50px;
         }
 
@@ -135,15 +135,6 @@
             background-color: black;
             display: inline-block;
             margin: 0;
-        }
-        
-        #ai-loader-container{
-            position: absolute;
-            width: 240px;
-            height: 135px;
-            bottom: 0;
-            left: 50%;
-            margin-left: -120px;
         }
         
         #public-apps-block-container{
@@ -225,12 +216,12 @@
             background-color: white;
         }
         
-        #avatar-sam-container{
+        #avatar-sam-container, #avatar-sam-1-container{
             position: relative; /*absolute;*/
             width: 350px;
             height: 400px;
             background-image: url(./media/img/doja-head-black-and-white.png);
-            background-size: 120% auto;
+            background-size: 140% auto;
             background-repeat: no-repeat;
             background-position: center center;
             /*right: -260px;
@@ -242,7 +233,7 @@
              margin: 0 auto;
         }
         
-        #ai-loader-container{
+        #ai-loader-container, #ai-loader-1-container{
             position: absolute;
             width: 240px;
             height: 135px;
@@ -256,6 +247,11 @@
             margin: 2% auto;
             font-family: "Braah One", sans-serif;
             text-align: center;
+            position: relative;
+        }
+        
+        #stage-1-container, #stage-2-container{
+            min-height: 400px;
         }
         
         #enter-youtube-url-container{
@@ -271,8 +267,9 @@
         }
         
         #download-button-container{
+            display: block;
             text-transform: uppercase;
-            width: 25%;
+            width: 250px;
             height: 50px;
             border: 0;
             border-radius: 10px;
@@ -283,8 +280,10 @@
             background-color: #782dc8;
             box-shadow: none;
             transition: box-shadow 0.25s, border 0.25s;
-            display: block;
-            margin: 1% auto 4% auto;
+            position: absolute;
+            left: 50%;
+            margin-left: -125px;
+            bottom: 20px;
         }
         
         #download-button-container:hover{
@@ -302,20 +301,87 @@
         }
         
         .select-avatar-button-container{
-            
+            width: 75px;
+            height: 75px;
+            border: 2px white solid;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 75px;
+            font-size: 20px;
+            cursor: pointer;
+            outline: none;
+            position: absolute;
+            z-index: 100;
+            color: white;
+            background-color: rgba(255, 255, 255, 0);
+            transition: background-color 0.25s, color 0.25s;
+        }
+        
+        .select-avatar-button-container:hover{
+            background-color: rgba(255, 255, 255, 1.0);
+            color: black;
+        }
+        
+        #previous-avatar-button-container, #previous-avatar-2-button-container{
+            left: 10px;
+            top: 50%;
+        }
+        
+        #next-avatar-button-container, #next-avatar-2-button-container{
+            right: 10px;
+            top: 50%;
+        }
+        
+        #stage-2-container{
+            display: none;
+            opacity: 0;
+            transition: opacity 1.0s;
+        }
+        
+        #footer-container{
+            position: relative;
+            margin-top: 50px;
+        }
+        
+        #success-container{
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            z-index: 101;
+            margin: -100px 0 0 -100px;
+            background-image: url(./media/img/success-icon.png);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-position: center center;
+            display: none;
         }
         
         @media only screen and (max-width: 640px){
+            
+            .gknd-title-container{
+                margin-top: 12%
+            }
+            
             .app-page-section-header-container{
-                /*font-family: "Braah One", sans-serif;
-                width: 100%;
-                height: 50px;
-                line-height: 50px;
-                color: white;
-                font-size: 24px;
-                font-weight: 700;*/
                 margin: 1% auto 2% auto;
-                /*text-align: center;*/
+            }
+            
+            .stage-container{
+                width: 350px;
+            }
+            
+            #avatar-sam-container{
+                position: relative;
+                width: 300px;
+                height: 342px;
+                background-image: url(./media/img/doja-head-black-and-white.png);
+                background-size: 140% auto;
+                background-repeat: no-repeat;
+                background-position: center center;
+                cursor: pointer;
+                margin: 0 auto;
             }
             
             #desktop-navigation-options-container{
@@ -323,13 +389,6 @@
                 width: 315px;
                 height: 10%;
                 font-size: 24px;
-                /*z-index: 10;
-                font-size: 42px;
-                letter-spacing: 1px;
-                background-color: rgba(0, 0, 0, 1.0);
-                color: white;
-                font-weight: 400;
-                margin: 2% auto 0 auto;*/
             }
             
             #gknd-logo-button-container{
@@ -341,7 +400,7 @@
                 height: 65px;
                 top: 5%;
                 left: 50%;
-                margin: 0;/*-50px 0 0 -50px;*/
+                margin: 0;
                 margin-left: -33px;
             }
 
@@ -356,41 +415,210 @@
             
         }
     </style>
-      <script>
+    <script>
+        var personas = [
+            {
+                name: "Doja",
+                src: "./media/img/doja-head-black-and-white.png",
+                bgSize: "150% auto"
+            },
+            {
+                name: "Travis",
+                src: "./media/img/travis-head-0.png",
+                bgSize: "140% auto"
+            },
+            {
+                name: "Drake",
+                src: "./media/img/drake-head-1.png",
+                bgSize: "140% auto"
+            },
+            {
+                name: "Eminem",
+                src: "./media/img/eminem-head-2.png",
+                bgSize: "105% auto"
+            },
+            {
+                name: "Ye",
+                src: "./media/img/kanye-head-black-and-white.png",
+                bgSize: "105% auto"
+            }
+        ];
+          
+        var onPersona = 0;
+        var secondaryPersona = 0;
+        var chosenVideo = null;
         
+        function matchYoutubeUrl(url) {
+            var p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+            var matches = url.match(p);
+            if(matches){
+                return matches[1];
+            }
+            return false;
+        }
+        
+        function check(sender){
+            var url = sender;
+            var id = matchYoutubeUrl(url);
+            if(id!=false){
+                chosenVideo = id;
+                console.log("User wants to convert video @ ",chosenVideo);
+                return true;
+            }else{
+                return false;
+            }
+        }
+          
         document.addEventListener("DOMContentLoaded", function(){
             
             document.getElementById("gknd-logo-button-container").addEventListener("click", function(){
                 window.location.href = "https://galactickidsnextdoor.com";
             });
             
-            
             document.getElementById("gknd-logo-button-container").classList.remove("loading-screen-logo-container");
+            
             document.getElementById("gknd-logo-button-container").classList.add("corner-logo-container");
+            
+            document.getElementById("previous-avatar-button-container").addEventListener("click", function(){
+                console.log(onPersona)
+                if(onPersona===0){
+                    onPersona = personas.length-1;
+                }
+                else{
+                    onPersona--;
+                }
+                document.getElementById("avatar-sam-container").style.backgroundImage = `url(${personas[onPersona].src})`;
 
+                document.getElementById("avatar-sam-container").style.backgroundSize = `${personas[onPersona].bgSize}`;
+
+            });
+            
+            document.getElementById("next-avatar-button-container").addEventListener("click", function(){
+                console.log(onPersona)
+                if(onPersona===personas.length-1){
+                    onPersona = 0;
+                }
+                else{
+                    onPersona++;
+                }
+                document.getElementById("avatar-sam-container").style.backgroundImage = `url(${personas[onPersona].src})`;
+
+                document.getElementById("avatar-sam-container").style.backgroundSize = `${personas[onPersona].bgSize}`;
+
+            });
+
+            document.getElementById("previous-avatar-2-button-container").addEventListener("click", function(){
+                //console.log(secondaryPersona);
+                if(secondaryPersona===0){
+                    secondaryPersona = personas.length-1;
+                }
+                else{
+                    secondaryPersona--;
+                }
+                document.getElementById("avatar-sam-container").style.backgroundImage = `url(${personas[secondaryPersona].src})`;
+
+                document.getElementById("avatar-sam-container").style.backgroundSize = `${personas[secondaryPersona].bgSize}`;
+
+            });
+            
+            document.getElementById("next-avatar-2-button-container").addEventListener("click", function(){
+                console.log(secondaryPersona)
+                if(secondaryPersonaPersona===personas.length-1){
+                    secondaryPersona = 0;
+                }
+                else{
+                    secondaryPersona++;
+                }
+                document.getElementById("avatar-sam-container").style.backgroundImage = `url(${personas[secondaryPersona].src})`;
+
+                document.getElementById("avatar-sam-container").style.backgroundSize = `${personas[secondaryPersona].bgSize}`;
+
+            });
+
+            var rad = document.voiceForm.numOfVoices;
+            var prev = null;
+            var voiceCount = null;
+            
+            for (var i = 0; i < rad.length; i++) {
+                rad[i].addEventListener('change', function() {
+                    //(prev) ? console.log(prev.value): null;
+                    if (this !== prev) {
+                        prev = this;
+                    }
+                    voiceCount = this.value;
+                    //console.log();
+                    if(this.value==="2"){
+                        console.log(`user wants ${voiceCount} voices`);
+                        document.getElementById("stage-2-container").style.display = "block";
+
+                        setTimeout(function(){
+                            document.getElementById("stage-2-container").style.opacity = 1.0;
+                        }, 50);
+                    }
+                    else{
+                        console.log(`user wants ${voiceCount} voice`);
+                        document.getElementById("stage-2-container").style.opacity = 0;
+
+                        setTimeout(function(){
+                            document.getElementById("stage-2-container").style.display = "none";
+                        }, 505);
+                    }
+                });
+            }
+            
+            document.getElementById("download-button-container").addEventListener("click", function(){
+                var checksComplete = true;
+                let ytURL = document.getElementById("enter-youtube-url-container").value;
+                
+                if(check(ytURL)){
+                    console.log("url passes");
+                }
+                else{
+                    checksComplete = false;
+                    alert("Please complete Step 1:\n\nEnter a valid YouTube URL!")
+                }
+                
+                if(voiceCount==null){
+                    checksComplete = false;
+                    alert("Please complete Step 2:\n\nSelect how many voices you want!")
+                }
+                
+                if(voiceCount==="2"&&secondaryPersona===onPersona){
+                    checksComplete = false;
+                    alert("Please complete Step 2:\n\nYou must pick two different voices!")
+                }
+                
+                if(checksComplete){
+                    document.getElementById("success-container").style.display = "block";
+                    setTimeout(function(){
+                        window.location.replace("./atl-confirmation");
+                    }, 5000);
+                }
+            })
         });
       </script>
     </head>
     <body>
         <input id="gknd-logo-button-container" class="loading-screen-logo-container" value="" type="button"/>
         <div id="main-app-container">
+            <div id="success-container"></div>
             <div class="app-page-section-header-container">
                 Pure A.I. Cover
             </div>
-            <div id="trending-list-post-container">
+            <form id="trending-list-post-container" name="voiceForm">
                 <div id="stage-0-container" class="stage-container">
                     <div class="gknd-title-container">Enter a Youtube URL</div>
                     <input type="text" placeholder="enter url here" id="enter-youtube-url-container"/>
                 </div>
                 <div id="stage-1-container" class="stage-container">
                     <input type="button" id="previous-avatar-button-container" class="select-avatar-button-container" value="<" />
-                    <input type="button" id="next-avatar-button-container" class="select-avatar-button-container" value="<" />
+                    <input type="button" id="next-avatar-button-container" class="select-avatar-button-container" value=">" />
                     <div class="gknd-title-container">Select A.I. Voices</div>
                       <p>Number of Voices</p>
-                      <input type="radio" id="html" name="fav_language" value="HTML">
-                      <label for="html">1</label><br>
-                      <input type="radio" id="css" name="fav_language" value="CSS">
-                      <label for="css">2</label><br>
+                      <input type="radio" name="numOfVoices" id="single-voice-option-container" value="1">
+                      <label for="single-voice-option-container">1</label><br>
+                      <input type="radio" name="numOfVoices" id="dual-voice-option-container" value="2">
+                      <label for="dual-voice-option-container">2</label><br>
                   <br>  
 
                     <div id="avatar-sam-container">
@@ -399,10 +627,20 @@
                         </video>
                     </div>
                 </div>
-                <div>
+                <div id="stage-2-container" class="stage-container">
+                    <input type="button" id="previous-avatar-2-button-container" class="select-avatar-button-container" value="<" />
+                    <input type="button" id="next-avatar-2-button-container" class="select-avatar-button-container" value=">" />
+
+                    <div id="avatar-sam-1-container">
+                        <video id="ai-loader-1-container" width="240" height="135" muted autoplay loop>
+                            <source src="./media/img/loading-anim.webm" type="video/webm">
+                        </video>
+                    </div>
+                </div>
+                <div id="footer-container">
                     <input type="button" value="download" id="download-button-container"/>
                 </div>
-            </div>
+            </form>
         </div>
     </body>
 </html>

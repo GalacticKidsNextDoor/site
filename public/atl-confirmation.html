@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>"A.I. The Label" by oldrowmaryland</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Braah+One&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="./media/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./media/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./media/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="./media/img/favicon/site.webmanifest">
+    <style>
+         * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html, #main-app-container{
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background-image: url(./media/img/starry-sky-texture.avif);
+            background-size: cover;
+        }
+
+        #main-app-container{
+            position: relative;
+            background-color: rgba(0, 0, 0, 0);
+            color: white;
+        }
+
+        .hidden-scene{
+            opacity: 0;
+        }
+
+        .visible-scene{
+            opacity: 1.0;
+        }
+
+        #gknd-logo-button-container{
+            position: absolute;
+            background-image: url(../media/img/gknd-logo.png);
+            background-size: 110% 100%;
+            background-color: black;
+            background-position: center center;
+            background-repeat: no-repeat no-repeat;
+            border: 0;
+            cursor: pointer;
+            z-index: 10;
+            transition: top 2.5s, left 2.5s, width 2.5s, height 2.5s, margin 2.5s;
+        }
+
+        .loading-screen-logo-container{
+            width: 350px;
+            height: 350px;
+            top: 45%;
+            left: 50%;
+            margin: -175px 0 0 -175px;
+        }
+
+        .corner-logo-container{
+            width: 75px;
+            height: 75px;
+            top: 10%;
+            left: 7%;
+            margin: -50px 0 0 -50px;
+        }
+
+        .corner-logo-container:hover{
+            width: 120px;
+            height: 120px;
+        }
+        
+        #desktop-navigation-options-container{
+            font-family: "Braah One", sans-serif;
+            width: 315px;
+            height: max(10%, 50px);
+            z-index: 10;
+            font-size: 42px;
+            letter-spacing: 1px;
+            background-color: rgba(0, 0, 0, 1.0);
+            color: white;
+            font-weight: 400;
+            margin: 2% auto 0 auto;
+        }
+        
+        #get-started-main-container{
+            position: relative;
+            font-family: "Braah One", sans-serif;
+            width: 500px;
+            height: 225px;
+            border-radius: 50px;
+            background-color: rgba(255, 255, 255, 1.0);
+            color: darkblue;
+            margin: 10% auto 0 auto;
+        }
+        
+        #create-anything-text-container{
+            padding: 5% 0% 0% 0%;
+            text-align: center;
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+        
+        .app-page-section-header-container{
+            font-family: "Braah One", sans-serif;
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            margin: 5% auto 2% auto;
+            text-align: center;
+        }
+
+        #all-features-block-container{
+            font-family: "Braah One", sans-serif;
+            display: block;
+            width: 90%;
+            margin: 2% auto;
+        }
+        
+        .tier-title-container{
+            border-radius: 14px;
+            text-align: center;
+            border: 2px solid transparent;
+            display: inline-flex;
+            flex-shrink: 0;
+            vertical-align: middle;
+            position: relative;
+            overflow: visible;
+        }
+        
+        .tier-price-addendum-container{
+            /*display: inline-block;*/
+            width: auto;
+            font-size: 18px;
+            font-weight: 300;
+        }
+        
+        .inline-feature-item{
+            display: inline;
+            font-size: 18px;
+        }
+        
+        #avatar-sam-container, #avatar-sam-1-container{
+            position: relative; /*absolute;*/
+            width: 350px;
+            height: 400px;
+            background-image: url(./media/img/doja-head-black-and-white.png);
+            background-size: 140% auto;
+            background-repeat: no-repeat;
+            background-position: center center;
+            /*right: -260px;
+            top: -125px;
+            top: 10%;
+            right: 50%;
+            margin-right: calc(150px - 50%);*/
+            cursor: pointer;
+             margin: 0 auto;
+        }
+        
+        #ai-loader-container{
+            position: relative;
+            display: block;
+            width: 240px;
+            height: 135px;
+            margin: 5% auto;
+        }
+        
+        .gknd-title-container{
+            text-align: center;
+            font-size: 24px;
+            cursor: pointer;
+            line-height: 50px;
+            height: 50px;
+            width: 100%;
+        }
+        
+        #confirmation-title-container, #confirmation-subtitle-container{
+            width: 100%;
+            height: 50px;
+            text-align: center;
+            font-family: "Braah One", sans-serif;
+        }
+        
+        #confirmation-update-container{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 350px;
+            height: 350px;
+            margin: -175px 0 0 -175px;
+        }
+        
+        @media only screen and (max-width: 640px){
+            
+            .gknd-title-container{
+                margin-top: 12%
+            }
+            
+            .app-page-section-header-container{
+                margin: 1% auto 2% auto;
+            }
+            
+            .stage-container{
+                width: 350px;
+            }
+            
+            #gknd-logo-button-container{
+                background-color: rgba(0, 0, 0, 0);
+            }
+
+            .corner-logo-container{
+                width: 65px;
+                height: 65px;
+                top: 5%;
+                left: 50%;
+                margin: 0;
+                margin-left: -33px;
+            }
+
+            .corner-logo-container:hover{
+                width: 70px;
+                height: 70px;
+            }
+            
+            #trending-list-title-container {
+                text-align: center;
+            }
+        }
+    </style>
+    <script>
+        var chosenVideo = null;
+          
+        document.addEventListener("DOMContentLoaded", function(){
+            
+            document.getElementById("gknd-logo-button-container").addEventListener("click", function(){
+                window.location.href = "https://galactickidsnextdoor.com";
+            });
+            
+            document.getElementById("gknd-logo-button-container").classList.remove("loading-screen-logo-container");
+            
+            document.getElementById("gknd-logo-button-container").classList.add("corner-logo-container");
+            
+        });
+      </script>
+    </head>
+    <body>
+        <input id="gknd-logo-button-container" class="loading-screen-logo-container" value="" type="button"/>
+        <div id="main-app-container">
+            <div id="confirmation-update-container">
+                <div id="confirmation-title-container">
+                    <p>Your File Is Being Processed</p>
+                    <p>Once Complete You Will Receive A Text</p>
+                    <p>And Your File Will Be Emailed To You</p>
+                </div>
+                <video id="ai-loader-container" width="240" height="135" muted autoplay loop>
+                    <source src="./media/img/loading-anim.webm" type="video/webm">
+                </video>
+                <div id="confirmation-subtitle-container">
+                    <p>You May Close This Window</p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -4,106 +4,46 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>"Avatar Sam" by oldrowmaryland</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Braah+One&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="./media/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./media/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./media/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="./media/img/favicon/site.webmanifest">
     <style>
-        * {
+         * {
             margin: 0;
             padding: 0;
         }
-        
-        body, html{
+
+        body, html, #main-app-container{
             width: 100%;
             height: 100%;
-            background-color: rgba(255, 255, 255, 1.0);
-            color: black;
-        }
-        
-        #main-app-container{
-            width: 400px;
-            height: auto;
-            position: absolute;
-            top: 5%;
-            left: 50%;
-            margin-left: -200px;
-        }
-        
-        #album-cover-container{
-            background-image: url(./media/img/avatar-sam-cover.png);
+            z-index: 0;
+            background-image: url(./media/img/starry-sky-texture.avif);
             background-size: cover;
-            width: 325px;
-            height: 325px;
-            margin: 0 auto 12px auto;
-            display: block;
-            cursor: pointer;
+        }
+
+        #main-app-container{
             position: relative;
-        }
-        
-        #feature-block-container{
-            width: 275px;
-            margin: 25px auto 0 auto;
-            font-size: 14px;
-            line-height: 22px;
-            font-family: Arial, sans-serif;
-        }
-        
-        .publication-title-container{
-            display: block;
-            text-align: center;
-            width: 100%;
-            margin: 0 auto;
-            font-size: 18px;
-            line-height: 24px;
-            font-family: Arial, sans-serif;
-            text-transform: uppercase;
-        }
-        
-        #play-album-button-container, #download-album-button-container{
-            display: block;
-            width: 250px;
-            height: 50px;
-            border-radius: 15px;
-            margin: 2% auto;
-            cursor: pointer;
-            outline: none;
-            text-align: center;
-            font-size: 18px;
-            text-transform: uppercase;
-            background-color: white;
-            color: black;
-            transition: background-color 0.25s, color 0.25s;
-        }
-        
-        #play-album-button-container:hover{
-            color: blue;
-            background-color: aquamarine;
-        }
-        
-        #download-album-button-container:hover{
+            background-color: rgba(0, 0, 0, 0);
             color: white;
-            background-color: red;
         }
-        
-        
-        .artist-link-container:link, .artist-link-container:visited{
-            color: blue;
-            font-weight: 400;
-            text-decoration: none;
-            letter-spacing: 1px;
+
+        .hidden-scene{
+            opacity: 0;
         }
-        
-        .artist-link-container:hover{
-            font-weight: 700;
-            letter-spacing: 2px;
+
+        .visible-scene{
+            opacity: 1.0;
         }
-        
-        .artist-link-container:active{
-            color: red;
-        }
-        
+
         #gknd-logo-button-container{
             position: absolute;
             background-image: url(../media/img/gknd-logo.png);
             background-size: 110% 100%;
-            background-color: rgba(0, 0, 0, 0);
+            background-color: black;
             background-position: center center;
             background-repeat: no-repeat no-repeat;
             border: 0;
@@ -111,74 +51,534 @@
             z-index: 10;
             transition: top 2.5s, left 2.5s, width 2.5s, height 2.5s, margin 2.5s;
         }
+
+        .loading-screen-logo-container{
+            width: 350px;
+            height: 350px;
+            top: 45%;
+            left: 50%;
+            margin: -175px 0 0 -175px;
+        }
+
+        .corner-logo-container{
+            width: 75px;
+            height: 75px;
+            top: 10%;
+            left: 7%;
+            margin: -50px 0 0 -50px;
+        }
+
+        .corner-logo-container:hover{
+            width: 120px;
+            height: 120px;
+        }
         
-        .return-home-button-container{
-            width: 65px;
-            height: 65px;
-            top: 3%;
-            left: 3%;
+        #desktop-navigation-options-container{
+            font-family: "Braah One", sans-serif;
+            width: 315px;
+            height: max(10%, 50px);
+            z-index: 10;
+            font-size: 42px;
+            letter-spacing: 1px;
+            background-color: rgba(0, 0, 0, 1.0);
+            color: white;
+            font-weight: 400;
+            margin: 2% auto 0 auto;
+        }
+        
+        #get-started-main-container{
+            position: relative;
+            font-family: "Braah One", sans-serif;
+            width: 500px;
+            height: 225px;
+            border-radius: 50px;
+            background-color: rgba(255, 255, 255, 1.0);
+            color: darkblue;
+            margin: 10% auto 0 auto;
+        }
+        
+        #create-anything-text-container{
+            padding: 5% 0% 0% 0%;
+            text-align: center;
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+        
+        #get-started-description-container{
+            width: 90%;
+            margin: 10px auto 2% auto;
+            text-align: center;
+            font-size: 18px;
+            letter-spacing: 0px;
+            text-transform: uppercase;
+        }
+        
+        #current-media-type-container{
+            display: inline;
+        }
+        
+        .navigation-button-container{
+            font-family: "Braah One", sans-serif;
+            font-size: 24px;
+            text-transform: uppercase;
+            text-align: center;
+            line-height: 42px;
+            height: 42px;
+            width: 30%;
+            outline: none;
+            cursor: pointer;
+            color: white;
+            border: 0;
+            background-color: black;
+            display: inline-block;
+            margin: 0;
+        }
+        
+        #public-apps-block-container{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+        }
+        
+        .app-page-section-header-container{
+            font-family: "Braah One", sans-serif;
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            margin: 5% auto 2% auto;
+            text-align: center;
+        }
+
+        #all-features-block-container{
+            font-family: "Braah One", sans-serif;
+            display: block;
+            width: 90%;
+            margin: 2% auto;
+        }
+        
+        .tier-title-container{
+            border-radius: 14px;
+            text-align: center;
+            border: 2px solid transparent;
+            display: inline-flex;
+            flex-shrink: 0;
+            vertical-align: middle;
+            position: relative;
+            overflow: visible;
+        }
+        
+        .tier-price-container{
+            /*display: inline-block;*/
+            width: auto;
+            font-size: 40px;
+            font-weight: 700;
+        }
+        
+        .tier-price-addendum-container{
+            /*display: inline-block;*/
+            width: auto;
+            font-size: 18px;
+            font-weight: 300;
+        }
+        
+        .inline-feature-item{
+            display: inline;
+            font-size: 18px;
+        }
+        
+        .get-tier-access-button-container{
+            font-family: "Braah One", sans-serif;
+            width: 90%;
+            height: 50px;
+            line-height: 60px;
+            border: 0;
+            border-radius: 14px;
+            display: block;
+            margin: 2% auto;
+            text-align: center;
+            font-size: 22px;
+            font-weight: 400;
+            background-color: #782dc8;
+            color: white;
+            outline: none;
+            cursor: pointer;
+        }
+        
+        .most-popular-tier-highlight{
+            color: #782dc8;
+            background-color: white;
+        }
+        
+        #avatar-sam-container, #avatar-sam-1-container{
+            position: relative; /*absolute;*/
+            width: 350px;
+            height: 400px;
+            background-image: url(./media/img/biden-head-2.png);
+            background-size: 140% auto;
+            background-repeat: no-repeat;
+            background-position: center center;
+            /*right: -260px;
+            top: -125px;
+            top: 10%;
+            right: 50%;
+            margin-right: calc(150px - 50%);*/
+            cursor: pointer;
+             margin: 0 auto;
+        }
+        
+        #ai-loader-container, #ai-loader-1-container{
+            position: absolute;
+            width: 240px;
+            height: 135px;
+            bottom: 0;
+            left: 50%;
+            margin-left: -120px;
+        }
+        
+        .stage-container{
+            width: 450px;
+            margin: 2% auto;
+            font-family: "Braah One", sans-serif;
+            text-align: center;
+            position: relative;
+        }
+        
+        #stage-1-container, #stage-2-container{
+            min-height: 400px;
+        }
+        
+        #enter-avatar-sam-message-container{
+            width: 25em;
+            height: 20em;
+            padding: 2em;
+            border: 0;
+            border-radius: 10px;
+            cursor: pointer;
+            outline: none;
+            font-size: 14px;
+        }
+        
+        #download-button-container{
+            display: block;
+            text-transform: uppercase;
+            width: 250px;
+            height: 50px;
+            border: 0;
+            border-radius: 10px;
+            color: white;
+            text-align: center;
+            outline: none;
+            cursor: pointer;
+            background-color: #782dc8;
+            box-shadow: none;
+            transition: box-shadow 0.25s, border 0.25s;
+            position: absolute;
+            left: 50%;
+            margin-left: -125px;
+            bottom: 20px;
+        }
+        
+        #download-button-container:hover{
+            border: 2px white solid;
+            box-shadow: 3px 3px white;
+        }
+        
+        .gknd-title-container{
+            text-align: center;
+            font-size: 24px;
+            cursor: pointer;
+            line-height: 50px;
+            height: 50px;
+            width: 100%;
+        }
+        
+        .select-avatar-button-container{
+            width: 75px;
+            height: 75px;
+            border: 2px white solid;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 75px;
+            font-size: 20px;
+            cursor: pointer;
+            outline: none;
+            position: absolute;
+            z-index: 100;
+            color: white;
+            background-color: rgba(255, 255, 255, 0);
+            transition: background-color 0.25s, color 0.25s;
+        }
+        
+        .select-avatar-button-container:hover{
+            background-color: rgba(255, 255, 255, 1.0);
+            color: black;
+        }
+        
+        #previous-avatar-button-container{
+            left: 10px;
+            top: 50%;
+        }
+        
+        #next-avatar-button-container{
+            right: 10px;
+            top: 50%;
+        }
+                
+        #success-container{
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            z-index: 101;
+            margin: -100px 0 0 -100px;
+            background-image: url(./media/img/success-icon.png);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-position: center center;
+            display: none;
+        }
+        
+        #footer-container{
+            position: relative;
+            margin-top: 50px;
         }
         
         @media only screen and (max-width: 640px){
-            .return-home-button-container{
-                width: 35px;
-                height: 35px;
-                top: 3%;
-                left: 50%;
-                margin-left: -18px;
+            
+            .gknd-title-container{
+                margin-top: 12%
             }
             
-             #main-app-container{
-                width: 100%;
-                height: auto;
-                position: absolute;
+            .app-page-section-header-container{
+                margin: 1% auto 2% auto;
+            }
+            
+            .stage-container{
+                width: 350px;
+            }
+            
+            #avatar-sam-container{
+                position: relative;
+                width: 300px;
+                height: 342px;
+                background-image: url(./media/img/doja-head-black-and-white.png);
+                background-size: 140% auto;
+                background-repeat: no-repeat;
+                background-position: center center;
+                cursor: pointer;
+                margin: 0 auto;
+            }
+            
+            #desktop-navigation-options-container{
+                font-family: "Braah One", sans-serif;
+                width: 315px;
+                height: 10%;
+                font-size: 24px;
+            }
+            
+            #gknd-logo-button-container{
+                background-color: rgba(0, 0, 0, 0);
+            }
+
+            .corner-logo-container{
+                width: 65px;
+                height: 65px;
                 top: 5%;
-                left: 0;
-                margin-left: 0px;
+                left: 50%;
+                margin: 0;
+                margin-left: -33px;
+            }
+
+            .corner-logo-container:hover{
+                width: 70px;
+                height: 70px;
             }
             
-            #album-cover-container{
-                width: 305px;
-                height: 305px;
-                margin: 10% auto 5% auto;
+            #trending-list-title-container {
+                text-align: center;
+            }
+            
+            #enter-avatar-sam-message-container{
+                width: 15em;
+                height: 25em;
+                /*border: 0;
+                border-radius: 10px;
+                cursor: pointer;
+                outline: none;
+                font-size: 14px;*/
             }
         }
     </style>
-      <script>
+    </head>
+    <body>
+        <input id="gknd-logo-button-container" class="loading-screen-logo-container" value="" type="button"/>
+        <div id="main-app-container">
+            <div id="success-container"></div>
+            <div class="app-page-section-header-container">
+                Avatar Sam
+            </div>
+            <form id="trending-list-post-container" name="voiceForm">
+                <div id="stage-0-container" class="stage-container">
+                    <div class="gknd-title-container">Type Your Message</div>
+                    <div style="width: 100%; font-size: 18px; line-height: 35px; height: 35px;">1000 char. max</div>
+                    <textarea maxlength="1000" id="enter-avatar-sam-message-container">My fellow Americans...</textarea>
+                </div>
+                <div id="stage-1-container" class="stage-container">
+                    <input type="button" id="previous-avatar-button-container" class="select-avatar-button-container" value="<" />
+                    <input type="button" id="next-avatar-button-container" class="select-avatar-button-container" value=">" />
+                    <div class="gknd-title-container">Select A.I. Voice</div>
+                      
+                  <br>  
+
+                    <div id="avatar-sam-container">
+                        <video id="ai-loader-container" width="240" height="135" muted autoplay loop>
+                            <source src="./media/img/loading-anim.webm" type="video/webm">
+                        </video>
+                    </div>
+                </div>
+                <div id="footer-container">
+                    <input type="button" value="download" id="download-button-container"/>
+                </div>
+            </form>
+        </div>
+        <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-analytics.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-storage.js"></script>
+        <script>
+            const firebaseConfig = {
+                apiKey: "AIzaSyDb25cWx6pMmh2xt54c_G5hS_rTDzpnpKw",
+                authDomain: "galactic-kids-next-door.firebaseapp.com",
+                databaseURL: "https://galactic-kids-next-door-default-rtdb.europe-west1.firebasedatabase.app",
+                projectId: "galactic-kids-next-door",
+                storageBucket: "galactic-kids-next-door.appspot.com",
+                messagingSenderId: "273360155490",
+                appId: "1:273360155490:web:a752b1c28ad6156791f23b",
+                measurementId: "G-6Z2LK6Z05H"
+            };
+        </script>
+        <script>
+        var storage, database, dbRefObject;
+
+        var personas = [
+            {
+                name: "Biden",
+                src: "./media/img/biden-head-2.png",
+                bgSize: "130% auto"
+            },
+            {
+                name: "Trump",
+                src: "./media/img/trump-head-0.png",
+                bgSize: "100% auto"
+            },
+            {
+                name: "Obama",
+                src: "./media/img/obama-head-2.png",
+                bgSize: "120% auto"
+            }
+        ];
+          
+        var onPersona = 0;
+        var chosenVideo = null;
+        
+        function validateTextMessage(msg) {
+            if(msg==""||msg=="My fellow Americans..."){
+                return false;
+            }
+            return true;
+        }
+        
+        function check(sender){
+            var msg = sender;
+            var id = validateTextMessage(msg);
+            return id;
+        }
+        
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // Initialize Realtime Database and get a reference to the service
+        database = firebase.database();
+        /*
+        firebase.database().ref('users/' + userId).set({
+          username: name,
+          email: email,
+          profile_picture : imageUrl
+        }, (error) => {
+          if (error) {
+            // The write failed...
+          } else {
+            // Data saved successfully!
+          }
+        });*/
+          
         document.addEventListener("DOMContentLoaded", function(){
+            
             document.getElementById("gknd-logo-button-container").addEventListener("click", function(){
                 window.location.href = "https://galactickidsnextdoor.com";
             });
             
-            document.getElementById("download-album-button-container").addEventListener("click", function(){
-                window.alert("COMING SOON !\n\n MONDAY MAY 15, 2023 @ 07:30 PM ET");
+            document.getElementById("gknd-logo-button-container").classList.remove("loading-screen-logo-container");
+            
+            document.getElementById("gknd-logo-button-container").classList.add("corner-logo-container");
+            
+            document.getElementById("previous-avatar-button-container").addEventListener("click", function(){
+                console.log(onPersona)
+                if(onPersona===0){
+                    onPersona = personas.length-1;
+                }
+                else{
+                    onPersona--;
+                }
+                document.getElementById("avatar-sam-container").style.backgroundImage = `url(${personas[onPersona].src})`;
+
+                document.getElementById("avatar-sam-container").style.backgroundSize = `${personas[onPersona].bgSize}`;
+
             });
             
-            document.getElementById("play-album-button-container").addEventListener("click", function(){
-                window.alert("COMING SOON !\n\n MONDAY MAY 15, 2023 @ 07:30 PM ET");
+            document.getElementById("next-avatar-button-container").addEventListener("click", function(){
+                console.log(onPersona)
+                if(onPersona===personas.length-1){
+                    onPersona = 0;
+                }
+                else{
+                    onPersona++;
+                }
+                document.getElementById("avatar-sam-container").style.backgroundImage = `url(${personas[onPersona].src})`;
+
+                document.getElementById("avatar-sam-container").style.backgroundSize = `${personas[onPersona].bgSize}`;
+
             });
-        });  
+
+            document.getElementById("download-button-container").addEventListener("click", function(){
+                var checksComplete = true;
+                let messageValue = document.getElementById("enter-avatar-sam-message-container").value;
+                
+                if(check(messageValue)){
+                    console.log("Accepted: ",messageValue);
+                }
+                else{
+                    checksComplete = false;
+                    alert("Please complete Step 1:\n\nEnter a custom message!")
+                }
+                
+                if(checksComplete){
+                    document.getElementById("success-container").style.display = "block";
+                    setTimeout(function(){
+                        window.location.replace("./avatar-sam-confirmation");
+                    }, 3000);
+                }
+            })
+        });
       </script>
-  </head>
-  <body>
-          <div id="gknd-logo-button-container" class="return-home-button-container"></div>
-      <div id="main-app-container">
-          <div id="album-cover-container">
-          </div>
-          <input type="button" value="listen" id="play-album-button-container" />
-          <input type="button" value="download" id="download-album-button-container" />
-          <div id="feature-block-container">
-              <div>Produced by <a class="artist-link-container" href="https://www.instagram.com/oldrowmaryland">oldrowmaryland</a></div>
-              <br>
-              <div>Featuring the following AI voices:</div>
-              <ul>
-                <li>Trump AI</li>
-                  <li>Obama AI</li>
-                  <li>Biden AI</li>
-              </ul>
-              <br>
-              <div>Description auto-generated by DARIA AI</div>
-        </div>
-      </div>
-  </body>
+    </body>
 </html>
