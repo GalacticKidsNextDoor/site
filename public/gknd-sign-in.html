@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>"Avatar Sam" by oldrowmaryland</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Braah+One&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="./media/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./media/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./media/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="./media/img/favicon/site.webmanifest">
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.css" />
+    <style>
+         * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html, #main-app-container{
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background-image: url(./media/img/starry-sky-texture.avif);
+            background-size: cover;
+        }
+
+        #main-app-container{
+            position: relative;
+            background-color: rgba(0, 0, 0, 0);
+            color: white;
+        }
+        
+        #gknd-logo-button-container{
+            position: absolute;
+            background-image: url(../media/img/gknd-logo.png);
+            background-size: 110% 100%;
+            background-color: rgba(0, 0, 0, 0);
+            background-position: center center;
+            background-repeat: no-repeat no-repeat;
+            border: 0;
+            cursor: pointer;
+            z-index: 10;
+            transition: top 2.5s, left 2.5s, width 2.5s, height 2.5s, margin 2.5s;
+        }
+        
+        .gknd-title-container{
+            text-align: center;
+            font-size: 24px;
+            cursor: pointer;
+            line-height: 50px;
+            height: 50px;
+            width: 100%;
+        }
+        
+        .app-page-section-header-container{
+            font-family: "Braah One", sans-serif;
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            margin: 5% auto 2% auto;
+            text-align: center;
+        }
+    </style>
+    </head>
+    <body>
+        <input id="gknd-logo-button-container" class="loading-screen-logo-container" value="" type="button"/>
+        <div id="main-app-container">
+            <div id="success-container"></div>
+            <div class="app-page-section-header-container">
+                Sign In
+            </div>
+        </div>
+        
