@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GKND: Create An Account</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Braah+One&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="./media/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./media/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./media/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="./media/img/favicon/site.webmanifest">
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.css" />
+    <link rel="stylesheet" href="./css/sign-up.css" type="text/css" />
+    </head>
+    <body>
+        <input id="gknd-logo-button-container" class="loading-screen-logo-container" value="" type="button"/>
+        <div id="main-app-container">
+            <div id="success-container"></div>
+            <div class="app-page-section-header-container">
+                Create An Account
+            </div>
+            <div id="registration-details-container">
+                <form id="email-registration-container">
+                    <div id="email-row-container" class="input-row-container">
+                        <label for="email-registration-input-container" class="input-label-container">Email</label>
+                        <input type="text" name="email" placeholder="e.g. youremail@here.com" id="email-registration-input-container" class="registration-input-container" required/>
+                    </div>
+                    <div id="phone-row-container" class="input-row-container">
+                        <label for="phone-registration-input-container" class="input-label-container">Phone</label>
+                        <input type="text" name="phone" placeholder="e.g. 123 456 7890" id="phone-registration-input-container" class="registration-input-container" required/>
+                    </div>
+                    <div id="password-row-container" class="input-row-container">
+                        <label for="password-registration-input-container" class="input-label-container">Password</label>
+                        <input type="password" name="password" id="password-registration-input-container" class="registration-input-container" required/>
+                    </div>
+                    <div id="terms-row-container" class="input-row-container">
+                        <input type="checkbox" name="acceptTerms" required id="accept-terms-of-use-checkbox-container" /><label for="accept-terms-of-use-checkbox-container">Accept our Terms of Use</label>
+                        <input type="button" value="Create Account" name="createAccount" id="create-new-account-button-container" />
+                    </div>
+                    <div id="already-have-an-account-footer-container">
+                        <p>Already have an account? <a href="./sign-in" id="sign-in-redirect-link-container">Login here.</a></p>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function(){
+                
+                document.getElementById("gknd-logo-button-container").addEventListener("click", function(){
+                    window.location.href = "https://galactickidsnextdoor.com";
+                });
+                
+                document.getElementById("gknd-logo-button-container").classList.remove("loading-screen-logo-container");
+                
+                document.getElementById("gknd-logo-button-container").classList.add("corner-logo-container");
+                
+            });
+        </script>
+    </body>
+</html>

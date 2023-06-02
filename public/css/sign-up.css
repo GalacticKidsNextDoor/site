@@ -1,0 +1,198 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body, html, #main-app-container{
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background-image: url(../media/img/starry-sky-texture.avif);
+    background-size: cover;
+}
+
+
+#main-app-container{
+    position: relative;
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+}
+#gknd-logo-button-container{
+    position: absolute;
+    background-image: url(../media/img/gknd-logo.png);
+    background-size: 110% 100%;
+    background-color: rgba(0, 0, 0, 0);
+    background-position: center center;
+    background-repeat: no-repeat no-repeat;
+    border: 0;
+    cursor: pointer;
+    z-index: 10;
+    transition: top 2.5s, left 2.5s, width 1.5s, height 1.5s, margin 1.5s;
+}
+
+.loading-screen-logo-container{
+    width: 350px;
+    height: 350px;
+    top: 45%;
+    left: 50%;
+    margin: -175px 0 0 -175px;
+}
+
+.corner-logo-container{
+    width: 50px;
+    height: 50px;
+    top: 4%;
+    left: 6%;
+    margin: -25px 0 0 -25px;
+}
+
+.corner-logo-container:hover{
+    width: 90px;
+    height: 90px;
+    margin: -45px 0 0 -45px;
+}
+.gknd-title-container{
+    text-align: center;
+    font-size: 24px;
+    cursor: pointer;
+    line-height: 50px;
+    height: 50px;
+    width: 100%;
+}
+
+.app-page-section-header-container{
+    font-family: "Braah One", sans-serif;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    color: white;
+    font-size: 24px;
+    font-weight: 700;
+    margin: 5% auto 2% auto;
+    text-align: center;
+}
+
+#registration-details-container{
+    width: 350px;
+    height: 500px;
+    border-radius: 10px;
+    background-color: #782dc8;
+    margin: 5% auto;
+    display: block;
+    z-index: 10;
+}
+
+#email-registration-container{
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+#email-row-container{
+    
+}
+
+#phone-row-container{
+    
+}
+
+#terms-row-container{
+    line-height: 35px;
+}
+
+.input-row-container{
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    font-family: "Braah One", sans-serif;
+    width: 95%;
+    height: 22%;
+    color: rgba(255, 255, 255, 1.0);
+}
+
+.input-row-container:hover{
+    background-color: #782dc8;
+    color: rgba(255, 255, 255, 1.0);
+}
+
+.input-label-container{
+    margin: 0 auto;
+    display: block;
+    width: 100%;
+    text-align: center;
+    height: 25px;
+    padding-top: 15px;
+    line-height: 20px;
+    font-size: 18px;
+    color: rgba(255, 255, 255, 1.0);
+}
+
+.registration-input-container{
+    font-family: "Braah One", sans-serif;
+    width: 90%;
+    height: 51%;
+    max-height: 45px;
+    border: 0;
+    border-radius: 10px;
+    outline: none;
+    cursor: pointer;
+    color: black;
+    text-align: center;
+}
+
+.registration-input-container::placeholder{
+    text-align: center;
+    font-style: italic;
+}
+
+#create-new-account-button-container{
+    font-family: "Braah One", sans-serif;
+    color: rgba(255, 255, 255, 1.0);
+    background-color: #782dc8;
+    font-size: 18px;
+    width: 70%;
+    height: 35px;
+    border: 1px white solid;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+    display: block;
+    margin: 2% auto;
+    outline: none;
+    transition: background-color 0.25s, color 0.25s, width 0.25s, height 0.25s, font-size 0.5s;
+}
+
+#create-new-account-button-container:hover{
+    background-color: rgba(255, 255, 255, 1.0);
+    color: #782dc8;
+    font-size: 22px;
+    width: 90%;
+    height: 50px;
+    line-height: 50px;
+}
+
+#already-have-an-account-footer-container{
+    font-family: "Braah One", sans-serif;
+    text-align: center;
+    color: rgba(255, 255, 255, 1.0);
+    font-size: 16px;
+}
+
+#sign-in-redirect-link-container{
+    color: aqua;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: color 0.25s, letter-spacing 0.25s;
+}
+
+#sign-in-redirect-link-container:hover{
+    font-style: italic;
+    letter-spacing: 3px;
+    color: darkorange;
+}
+
+#accept-terms-of-use-checkbox-container{
+    display: inline-block;
+    margin-right: 5px;
+}
