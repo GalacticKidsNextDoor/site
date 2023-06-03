@@ -25,6 +25,36 @@ body, html, #main-app-container{
     opacity: 1.0;
 }
 
+
+#sign-in-button-container{
+    position: absolute;
+    display: block;
+    right: 4%;
+    top: 0%;
+    border: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 0;
+    cursor: pointer;
+    outline: none;
+    background-image: url(../media/img/profile-icon-white.png);
+    background-color: rgba(255, 255, 255, 0);
+    background-position: center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    transition: background-image 0.25s, background-color 0.25s, width 0.25s, height 0.25s;
+}
+
+#sign-in-button-container:hover{
+    background-image: url(../media/img/profile-icon.png);
+    background-color: rgba(255, 255, 255, 1.0);
+    width: 60px;
+    height: 60px;
+}
+
+
 #gknd-logo-button-container{
     position: absolute;
     background-image: url(../media/img/gknd-logo.png);
