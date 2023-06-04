@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GKND: Register or Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Braah+One&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="./media/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./media/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./media/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="./media/img/favicon/site.webmanifest">
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.css" />
+    <link rel="stylesheet" href="./css/sign-in.css" type="text/css" />
+    <style>
+        #something-went-wrong-container{
+            display: none;
+            position: relative;
+            margin:5% auto 0 auto;
+            width: 350px;
+            height: 400px;
+            text-align: center;
+        }
+        
+        .description-container{
+            width: 100%;
+            height: 35px;
+            line-height: 35px;
+            font-size: 24px;
+            font-family: "Braah One", sans-serif;
+            text-align: center;
+            color: white;
+            text-align: center;
+        }
+        
+        #something-went-wrong-icon-container{
+            width: 100%;
+            height: 380px;
+            background-image: url(./media/img/something-went-wrong.png);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+    </style>
+    </head>
+    <body>
+        <div id="something-went-wrong-container">
+            <p class="description-container">Something Went Wrong</p>
+            <div id="something-went-wrong-icon-container"></div>
+            <p class="description-container">Redirecting Shortly...</p>
+        </div>
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-auth.js"></script>
+        <script>            
+            var storage, database, dbRefObject, NewUser;
+            
+            const firebaseConfig = {
+                apiKey: "AIzaSyDb25cWx6pMmh2xt54c_G5hS_rTDzpnpKw",
+                authDomain: "galactic-kids-next-door.firebaseapp.com",
+                databaseURL: "https://galactic-kids-next-door-default-rtdb.europe-west1.firebasedatabase.app",
+                projectId: "galactic-kids-next-door",
+                storageBucket: "galactic-kids-next-door.appspot.com",
+                messagingSenderId: "273360155490",
+                appId: "1:273360155490:web:a752b1c28ad6156791f23b",
+                measurementId: "G-6Z2LK6Z05H"
+            };
+            
+            firebase.initializeApp(firebaseConfig);
+            
+            function updateRegistryWithNewMember(memberId){ //  update the Registry with new Member, appending at position memberId
+                
+               /* database.ref('Members/' + memberId).set({   //  updating the Realtime Database 
+                    name: NewUser.email,
+                    email: NewUser.email,
+                    password: NewUser.password,
+                    tier: NewUser.tier,
+                    tierName: NewUser.tierName,
+                    profilePicture : "./media/img/profile-icon-white.png"
+                });*/
+
+                firebase.auth().createUserWithEmailAndPassword(NewUser.email, NewUser.password)
+              .then((userCredential) => {
+                // Signed in 
+                
+                    database.ref('Members/' + memberId).set({   //  updating the Realtime Database 
+                        name: NewUser.email,
+                        email: NewUser.email,
+                        password: NewUser.password,
+                        tier: NewUser.tier,
+                        tierName: NewUser.tierName,
+                    });
+                    
+                    var user = userCredential.user;
+                    console.log(user);
+                
+                    //set new Member account defaults including displayName and photoURL
+                    
+                    user.updateProfile({
+                        displayName: NewUser.email,
+                        photoURL: "./media/img/profile-icon-white.png"
+                    }).then(function() {
+                      // Profile updated successfully!
+                      var displayName = user.displayName;
+                      // "https://galactickidsnextdoor.com/media/img/profile-icon-white.png"
+                      var photoURL = user.photoURL;
+                        console.log(`Default display name: ${displayName} \n default profile pic: ${photoURL}`);
+                    }, function(error) {
+                      // An error happened.
+                        console.log("user first update failed!");
+                    });
+                               
+                    setTimeout(function(){
+                        window.location.href = "./profile";
+                    }, 4000);
+              })
+              .catch((error) => {
+                
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    if (errorCode == 'auth/weak-password') {
+                        alert('The password is too weak.');
+                    } else if (errorCode == 'auth/email-already-in-use') {
+                        alert('This email is already registered to an existing account.');
+                    } else if (errorCode == 'auth/invalid-email') {
+                        alert('Please enter a valid email address.');
+                    } else {
+                        console.log(errorCode);
+                        console.log(errorMessage);
+                    }
+
+                    window.location.replace("./sign-up");
+              });
+            }
+            
+            document.addEventListener("DOMContentLoaded", function(){
+                const params = new Proxy(new URLSearchParams(window.location.search), {
+                  get: (searchParams, prop) => searchParams.get(prop),
+                });
+                
+                NewUser = {
+                    email: params.email,
+                    phone: params.phone,
+                    password: params.password,
+                    acceptTerms: params.acceptTerms,
+                    tier: params.tier,
+                    tierName: params.tierName,
+                    stamp: new Date()
+                };
+                
+                console.log(NewUser);
+                if(NewUser.email===null||NewUser.email===""||NewUser.phone===null||NewUser.phone===""||NewUser.password===null||NewUser.password===""||NewUser.tier===null||NewUser.tier===""||NewUser.tierName===null||NewUser.tierName===""){
+                   //Either something went wrong or someone is trying to directly access this page without prior completion of the form
+                   //send them back to the form
+                    document.getElementById("something-went-wrong-container").style.display = "block";
+                    setTimeout(function(){
+                        window.location.replace("./sign-up");
+                    }, 4000);
+                   }
+                else{
+                    database = firebase.database();
+                    
+                    const dbRef = database.ref();
+                    var userId;
+                    
+                    //Read the Memebrs LIst
+                    dbRef.child("Members").get().then((snapshot) => {
+                      if (snapshot.exists()) {
+                          //path to server is clear
+                          console.log(snapshot.val());
+                          
+                          //count how many Members are in the Registry
+                          userId = Object.keys(snapshot.val()).length;
+                          
+                          //update the Registry with this new Member request, appending it to the end of the existing list at position userId
+                          updateRegistryWithNewMember(userId);
+                      } else {
+                          //Could not Read the Member List; no clear path to server
+                          //redirect the user back to the sign up page
+                        console.log("No data available");
+                      }
+                    }).catch((error) => {
+                      console.error(error);
+                    });
+
+                    
+                }
+                // Get the value of "some_key" in eg "https://example.com/?some_key=some_value"
+                //let value = params.some_key; // "some_value"
+            });
+            
+            /**/
+        </script>
+    </body>
+</html>

@@ -226,3 +226,17 @@ body, html, #main-app-container{
     display: inline-block;
     margin-right: 5px;
 }
+
+@media only screen and (max-width: 640px){
+    .app-page-section-header-container{
+        width: 80%;
+        font-size: 20px;
+    }
+    
+    .corner-logo-container{
+        top: 7%;
+        left: 7%;
+        margin: -25px 0 0 -25px;
+    }
+
+}

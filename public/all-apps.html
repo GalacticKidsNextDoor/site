@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GKND: All DARIA Apps</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Braah+One&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="./media/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./media/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./media/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="./media/img/favicon/site.webmanifest">
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.css" />
+    <link rel="stylesheet" href="./css/catalog.css" type="text/css" />
+    </head>
+    <body>
+        <div id="something-went-wrong-container">
+            <p class="description-container">Something Went Wrong</p>
+            <div id="something-went-wrong-icon-container"></div>
+            <p class="description-container">Redirecting Shortly...</p>
+        </div>
+        <div id="logging-you-out-container">
+            <p class="description-container">Signing You Out...</p>
+            <div id="signing-out-icon-container"></div>
+            <p class="description-container">See You Later!</p>
+        </div>
+        <div id="profile-button-container"></div>
+        <input id="sign-out-of-profile-button-container" type="button" value="sign out" />
+        <div id="main-app-container">
+            <div id="member-profile-icon-container"></div>
+            <div id="member-profile-display-name-container"></div>
+            <div id="all-apps-container">
+                <div id="all-apps-title-container">All Apps</div>
+            </div>
+        </div>
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-auth.js"></script>
+        <script src="./js/Lyoko.TrendingApplicationList.js" type="module"></script>
+        <script type="module">
+            import { TrendingApplicationList } from "./js/Lyoko.TrendingApplicationList.js";
+            
+            var storage, database, dbRefObject;
+            
+            const firebaseConfig = {
+                apiKey: "AIzaSyDb25cWx6pMmh2xt54c_G5hS_rTDzpnpKw",
+                authDomain: "galactic-kids-next-door.firebaseapp.com",
+                databaseURL: "https://galactic-kids-next-door-default-rtdb.europe-west1.firebasedatabase.app",
+                projectId: "galactic-kids-next-door",
+                storageBucket: "galactic-kids-next-door.appspot.com",
+                messagingSenderId: "273360155490",
+                appId: "1:273360155490:web:a752b1c28ad6156791f23b",
+                measurementId: "G-6Z2LK6Z05H"
+            };
+            
+            firebase.initializeApp(firebaseConfig);
+            
+            document.addEventListener("DOMContentLoaded", function(){
+                
+                firebase.auth().onAuthStateChanged((user) => {
+                  if (user) {
+                      const displayName = user.displayName;
+                      const email = user.email;
+                      const photoURL = user.photoURL;
+                      const emailVerified = user.emailVerified;
+                    // User is signed in, see docs for a list of available properties
+                    // https://firebase.google.com/docs/reference/js/v8/firebase.User
+                    var uid = user.uid;
+                      console.log(`Currently signed in as ${displayName} \n email: ${email}\n verified> ${emailVerified}\n photo: ${photoURL}`);
+
+                        var trendingApps = TrendingApplicationList(9);
+                      for(var appCount = 0; appCount < trendingApps.length; appCount++){
+                        let counterA = appCount;
+                        (function(){
+                            //console.log(trendingApps[appCount].src);
+                            let curr = document.createElement("div");
+                            curr.classList.add("trending-post-container");
+
+                            curr.setAttribute("id", `trending-post-${counterA}-container`);
+
+                            curr.style.backgroundImage = `url(${trendingApps[counterA].src})`;
+
+                            curr.style.backgroundSize = trendingApps[counterA].bgSize;
+
+                            curr.style.backgroundPosition = trendingApps[counterA].bgPosition;
+
+                            curr.innerText = trendingApps[counterA].name;
+
+                            curr.addEventListener("click", function(){
+                                window.location.href = trendingApps[counterA].target;
+                            });
+
+                            if(trendingApps[counterA].color)curr.style.color = trendingApps[counterA].color;
+
+                            document.getElementById("all-apps-container").appendChild(curr);
+                        })();
+                    }
+                    // ...
+                  } else {
+                    // User is signed out
+                    // ...
+                      console.log('no user signed in ');
+                      setTimeout(function(){
+                        window.location.replace("https://galactickidsnextdoor.com/sign-in");
+                    }, 50);
+                  }
+                });
+                
+                document.getElementById("profile-button-container").addEventListener("click", function(){
+                    window.location.href = "./profile";
+                });
+                
+                document.getElementById("sign-out-of-profile-button-container").addEventListener("click", function(){
+                    firebase.auth().signOut().then(() => {
+                        console.log("sign out successful");
+                        setTimeout(function(){
+                            window.location.replace("https://galactickidsnextdoor.com");
+                        }, 4000);
+                    }).catch((error) => {
+                        console.log("sign out failed");
+                    });
+                });
+                
+            });
+            
+            /**/
+        </script>
+    </body>
+</html>

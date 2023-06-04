@@ -23,18 +23,18 @@
                 Sign In To Your Account
             </div>
             <div id="sign-in-details-container">
-                <form id="email-sign-in-container">
+                <form id="email-sign-in-container" action="./access-account">
                     <div class="input-row-container">
                         <label for="email-sign-in-input-container" class="input-label-container">Email</label>
                         <input type="text" name="email" placeholder="e.g. youremail@here.com" id="email-sign-in-input-container" class="sign-in-input-container" required/>
                     </div>
                     <div class="input-row-container">
                         <label for="password-sign-in-input-container" class="input-label-container">Password</label>
-                        <input type="password" name="phone" id="password-sign-in-input-container" class="sign-in-input-container" required/>
+                        <input type="password" name="password" id="password-sign-in-input-container" class="sign-in-input-container" required/>
                     </div>
                     <div class="input-row-container">
                         <input type="checkbox" name="iAmHuman" required id="i-am-human-checkbox-container" /><label for="i-am-human-checkbox-container">I am Human</label>
-                    <input type="button" value="Sign In" name="signIn" id="sign-in-to-account-button-container" />
+                        <input type="submit" value="Sign In" name="signIn" id="sign-in-to-account-button-container" />
                     </div>
                     <div id="dont-have-an-account-footer-container">
                         <p>Don't have an account? <a href="./sign-up" id="sign-up-redirect-link-container">Sign up here.</a></p>
@@ -57,6 +57,9 @@
                 
                 document.getElementById("gknd-logo-button-container").classList.add("corner-logo-container");
                 
+                document.getElementById("sign-in-to-account-button-container").addEventListener("click", function(){
+                    window.location.href = "./sign-in";
+                });
             });
         </script>
     </body>

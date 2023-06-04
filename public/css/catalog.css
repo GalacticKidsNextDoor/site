@@ -1,0 +1,268 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body, html{
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background-image: url(../media/img/starry-sky-texture.avif);
+    background-size: cover;
+}
+
+#main-app-container{
+    position: relative;
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+    width: 100%;
+    height: 100%;
+}
+
+#profile-button-container{
+    position: absolute;
+    display: block;
+    right: 4%;
+    top: 3%;
+    border: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 0;
+    cursor: pointer;
+    outline: none;
+    background-image: url(../media/img/profile-icon-white.png);
+    background-color: rgba(255, 255, 255, 0);
+    background-position: center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    z-index: 100;
+    transition: background-image 0.25s, background-color 0.25s, width 0.25s, height 0.25s;
+}
+
+#profile-button-container:hover{
+    background-image: url(../media/img/profile-icon.png);
+    background-color: rgba(255, 255, 255, 1.0);
+    width: 60px;
+    height: 60px;
+}
+
+#sign-out-of-profile-button-container{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+    text-align: center;
+    line-height: 100px;
+    letter-spacing: 1px;
+    outline: none;
+    cursor: pointer;
+    border: 0;
+    border-radius: 50%;
+}
+
+#something-went-wrong-container{
+    display: none;
+    position: relative;
+    margin: 5% auto 0 auto;
+    width: 350px;
+    height: 400px;
+    text-align: center;
+}
+
+.description-container{
+    width: 100%;
+    height: 35px;
+    line-height: 35px;
+    font-size: 24px;
+    font-family: "Braah One", sans-serif;
+    text-align: center;
+    color: white;
+}
+
+member-profile-icon-container{
+    background-image: url(../media/img/profile-icon-white.png);
+    background-size: 100% 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    width: 250px;
+    height: 250px;
+    border: 0;
+    border-radius: 50%;
+    display: block;
+    margin: 5% auto 2% auto;
+}
+
+#member-profile-display-name-container{
+    height: 35px;
+    width: 250px;
+    line-height: 35px;
+    font-size: 20px;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    margin: 0 auto 2% auto
+}
+
+#member-apps-container{
+    
+}
+
+#all-apps-title-container{
+    width: 100%;
+    height: 35px;
+    font-family: "Braah One", sans-serif;
+    text-align: center;
+    line-height: 35px;
+    cursor: pointer;
+    color: white;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+#something-went-wrong-icon-container{
+    width: 100%;
+    height: 380px;
+    background-image: url(./media/img/something-went-wrong.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#logging-you-out-container{
+    position: absolute;
+    display: none;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    height: 300px;
+    margin: -150px 0 0 -150px;
+    z-index: 10;
+}
+
+#signing-out-icon-container{
+    background-image: url(./media/img/something-went-wrong.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 70%;
+    height: 70%;
+    margin: 10% auto;
+}
+
+#gknd-logo-button-container{
+    position: absolute;
+    background-image: url(../media/img/gknd-logo.png);
+    background-size: 110% 100%;
+    background-color: rgba(0, 0, 0, 0);
+    background-position: center center;
+    background-repeat: no-repeat no-repeat;
+    border: 0;
+    cursor: pointer;
+    z-index: 10;
+    transition: top 2.5s, left 2.5s, width 2.5s, height 2.5s, margin 2.5s;
+}
+
+.loading-screen-logo-container{
+    width: 350px;
+    height: 350px;
+    top: 45%;
+    left: 50%;
+    margin: -175px 0 0 -175px;
+}
+
+.corner-logo-container{
+    width: 50px;
+    height: 50px;
+    top: 5%;
+    left: 6%;
+    margin: -25px 0 0 -25px;
+}
+
+.corner-logo-container:hover{
+    width: 90px;
+    height: 90px;
+    margin: -45px 0 0 -45px;
+}
+
+.gknd-title-container{
+    text-align: center;
+    font-size: 24px;
+    cursor: pointer;
+    line-height: 50px;
+    height: 50px;
+    width: 100%;
+}
+
+.app-page-section-header-container{
+    font-family: "Braah One", sans-serif;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    color: white;
+    font-size: 24px;
+    font-weight: 700;
+    margin: 5% auto 2% auto;
+    text-align: center;
+}
+
+.trending-post-container{
+    font-family: "Braah One", sans-serif;
+    width: 268px;
+    height: 268px;
+    margin: 15px;
+    border-radius: 15px;
+    background-color: white;
+    background-repeat: no-repeat;
+    line-height: 50px;
+    font-size: 20px;
+    text-align: center;
+    vertical-align: bottom;
+    color: darkblue;
+    cursor: pointer;
+}
+
+#all-apps-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+#trending-list-title-container{
+    font-family: "Braah One", sans-serif;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    color: white;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+@media only screen and (max-width: 640px){
+    #main-app-container{
+        width: 100%;
+    }
+    
+    .app-page-section-header-container{
+        width: 80%;
+        font-size: 20px;
+    }
+    
+    .corner-logo-container{
+        top: 7%;
+        left: 7%;
+        margin: -25px 0 0 -25px;
+    }
+
+    
+    #trending-list-title-container {
+        text-align: center;
+    }
+
+    .trending-post-container{
+        display: block;
+        margin: 30px auto;
+    }
+}

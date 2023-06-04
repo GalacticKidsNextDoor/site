@@ -1,0 +1,329 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body, html{
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background-image: url(../media/img/starry-sky-texture.avif);
+    background-size: cover;
+}
+
+#main-app-container{
+    position: relative;
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+    width: 60%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+#member-profile-icon-container{
+    display: block;
+    background-color: rgba(0, 0, 0, 0);
+    width: 250px;
+    height: 250px;
+    background-image: url(../media/img/profile-icon-white.png);
+    background-size: auto 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    margin: 2% auto;
+    cursor: pointer;
+    box-shadow: none;
+    transition: box-shadow 0.25s;
+    border: 0;
+    border-radius: 50%;
+}
+
+#member-profile-icon-container:hover{
+    box-shadow: 3px 3px white;
+}
+
+#member-profile-display-name-container{
+    width: 100%;
+    height: 35px;
+    font-size: 20px;
+    line-height: 35px;
+    text-align: center;
+    font-family: "Braah One", sans-serif;
+    cursor: pointer;
+}
+
+#member-profile-display-name-container:hover{
+    font-size: 24px;
+}
+
+#member-apps-title-container{
+    font-family: "Braah One", sans-serif;
+    display: inline-block;
+    font-size: 24px;
+    text-align: center;
+    height: 35px;
+    line-height: 35px;
+    width: 50%;
+    min-width: 200px;
+}
+
+#add-new-app-button-container{
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+    font-size: 20px;
+    line-height: 50px;
+    border: 0;
+    box-shadow: none;
+    transition: color 0.25s, background-color 0.25s, width 0.25s;
+}
+
+#add-new-app-button-container:hover{
+    border-radius: 5px;
+    width: max(48%, 200px);
+    background-color: rgba(255, 255, 255, 1.0);
+    color: black;
+}
+
+#profile-button-container{
+    position: absolute;
+    display: block;
+    right: 4%;
+    top: 3%;
+    border: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 0;
+    cursor: pointer;
+    outline: none;
+    background-image: url(../media/img/profile-icon-white.png);
+    background-color: rgba(255, 255, 255, 0);
+    background-position: center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    transition: background-image 0.25s, background-color 0.25s, width 0.25s, height 0.25s;
+}
+
+#profile-button-container:hover{
+    background-image: url(../media/img/profile-icon.png);
+    background-color: rgba(255, 255, 255, 1.0);
+    width: 60px;
+    height: 60px;
+}
+
+#sign-out-of-profile-button-container{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+    text-align: center;
+    line-height: 100px;
+    letter-spacing: 1px;
+    outline: none;
+    cursor: pointer;
+    border: 0;
+    border-radius: 50%;
+    text-transform: uppercase;
+    transition: background-color 0.25s, color 0.25s;
+}
+
+#sign-out-of-profile-button-container:hover{
+    background-color: rgba(255, 255, 255, 1.0);
+    color: black;
+}
+
+#something-went-wrong-container{
+    display: none;
+    position: relative;
+    margin: 5% auto 0 auto;
+    width: 350px;
+    height: 400px;
+    text-align: center;
+}
+
+.description-container{
+    width: 100%;
+    height: 35px;
+    line-height: 35px;
+    font-size: 24px;
+    font-family: "Braah One", sans-serif;
+    text-align: center;
+    color: white;
+}
+
+#member-apps-container{
+    
+}
+
+#something-went-wrong-icon-container{
+    width: 100%;
+    height: 380px;
+    background-image: url(./media/img/something-went-wrong.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#logging-you-out-container{
+    position: absolute;
+    display: none;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    height: 300px;
+    margin: -150px 0 0 -150px;
+    z-index: 10;
+}
+
+.visible-overlay-1{
+    display: block !important;
+    z-index: 100 !important;
+    top: 50% !important;
+    left: 50% !important;
+    opacity: 1.0 !important;
+    margin: -150px 0 0 -150px !important;
+}
+
+#signing-out-icon-container{
+    background-image: url(./media/img/something-went-wrong.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 70%;
+    height: 70%;
+    margin: 10% auto;
+}
+
+#gknd-logo-button-container{
+    position: absolute;
+    background-image: url(../media/img/gknd-logo.png);
+    background-size: 110% 100%;
+    background-color: rgba(0, 0, 0, 0);
+    background-position: center center;
+    background-repeat: no-repeat no-repeat;
+    border: 0;
+    cursor: pointer;
+    z-index: 10;
+    transition: top 2.5s, left 2.5s, width 2.5s, height 2.5s, margin 2.5s;
+}
+
+.loading-screen-logo-container{
+    width: 350px;
+    height: 350px;
+    top: 45%;
+    left: 50%;
+    margin: -175px 0 0 -175px;
+}
+
+.corner-logo-container{
+    width: 50px;
+    height: 50px;
+    top: 5%;
+    left: 6%;
+    margin: -25px 0 0 -25px;
+}
+
+.corner-logo-container:hover{
+    width: 90px;
+    height: 90px;
+    margin: -45px 0 0 -45px;
+}
+
+.gknd-title-container{
+    text-align: center;
+    font-size: 24px;
+    cursor: pointer;
+    line-height: 50px;
+    height: 50px;
+    width: 100%;
+}
+
+.app-page-section-header-container{
+    font-family: "Braah One", sans-serif;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    color: white;
+    font-size: 24px;
+    font-weight: 700;
+    margin: 5% auto 2% auto;
+    text-align: center;
+}
+
+#change-profile-icon-overlay-container{
+    position: absolute;
+    display: none;
+    top: 0;
+    left: 0;
+    margin: 0;
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 1.0);
+    color: black;
+    font-family: "Braah One", sans-serif;
+    text-align: center;
+    line-height: 35px;
+    opacity: 0;
+    transition: top 1.5s, left 1.5s, margin 0.75s, opacity 1.5s;
+}
+
+.visible-overlay-0{
+    display: block !important;
+    z-index: 100 !important;
+    top: 50% !important;
+    left: 50% !important;
+    opacity: 1.0 !important;
+    margin: -150px 0 0 -150px !important;
+}
+
+#update-profile-icon-button-container{
+    width: max(50%, 200px);
+    min-width: 200px;
+    height: 35px;
+    line-height: 35px;
+    background-color: rgba(255, 255, 255, 1.0);
+    color: black;
+    border: 2px black solid;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    display: block;
+    margin: 2% auto;
+    text-transform: uppercase;
+    transition: width 0.25s, color 0.25s, background-color 0.25s;
+}
+
+#update-profile-icon-button-container:hover{
+    background-color: rgba(0, 0, 0, 1.0);
+    color: white;
+    border: 0;
+    width: 95%;
+}
+
+
+@media only screen and (max-width: 640px){
+    #main-app-container{
+        width: 100%;
+    }
+    
+    .app-page-section-header-container{
+        width: 80%;
+        font-size: 20px;
+    }
+    
+    .corner-logo-container{
+        top: 7%;
+        left: 7%;
+        margin: -25px 0 0 -25px;
+    }
+
+}

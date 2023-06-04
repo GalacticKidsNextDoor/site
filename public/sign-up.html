@@ -23,23 +23,27 @@
                 Create An Account
             </div>
             <div id="registration-details-container">
-                <form id="email-registration-container">
+                <form id="email-registration-container" action="./create-account">
                     <div id="email-row-container" class="input-row-container">
                         <label for="email-registration-input-container" class="input-label-container">Email</label>
-                        <input type="text" name="email" placeholder="e.g. youremail@here.com" id="email-registration-input-container" class="registration-input-container" required/>
+                        <input type="email" name="email" placeholder="e.g. youremail@here.com" id="email-registration-input-container" class="registration-input-container" required/>
                     </div>
                     <div id="phone-row-container" class="input-row-container">
                         <label for="phone-registration-input-container" class="input-label-container">Phone</label>
-                        <input type="text" name="phone" placeholder="e.g. 123 456 7890" id="phone-registration-input-container" class="registration-input-container" required/>
+                        <input type="tel" name="phone" placeholder="e.g. 123 456 7890" id="phone-registration-input-container" class="registration-input-container" required/>
                     </div>
                     <div id="password-row-container" class="input-row-container">
                         <label for="password-registration-input-container" class="input-label-container">Password</label>
                         <input type="password" name="password" id="password-registration-input-container" class="registration-input-container" required/>
                     </div>
                     <div id="terms-row-container" class="input-row-container">
+                        <input id="tier-meta-data-0-container" class="tier-meta-data-container" name="tier" value="0" type="text" />
+                        <input id="tier-meta-data-1-container" class="tier-meta-data-container" name="tierName" value="prepaid" type="text" />
                         <input type="checkbox" name="acceptTerms" required id="accept-terms-of-use-checkbox-container" /><label for="accept-terms-of-use-checkbox-container">Accept our Terms of Use</label>
-                        <input type="button" value="Create Account" name="createAccount" id="create-new-account-button-container" />
+                        <input type="submit" value="Create Account" name="createAccount" id="create-new-account-button-container" />
                     </div>
+                    
+                    
                     <div id="already-have-an-account-footer-container">
                         <p>Already have an account? <a href="./sign-in" id="sign-in-redirect-link-container">Login here.</a></p>
                     </div>
@@ -47,11 +51,29 @@
                 
             </div>
         </div>
-        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
         <script>
             document.addEventListener("DOMContentLoaded", function(){
+                const params = new Proxy(new URLSearchParams(window.location.search), {
+                  get: (searchParams, prop) => searchParams.get(prop),
+                });
+                
+                
+                TierStamp = {
+                    tier: params.tier,
+                    tierName: params.name,
+                    stamp: new Date()
+                };
+                
+                if(TierStamp.tier!=null&&TierStamp.tier!=""&&TierStamp.tierName!=null&&TierStamp.tierName!=""){
+                    document.getElementById("tier-meta-data-0-container").value = TierStamp.tier;
+                    document.getElementById("tier-meta-data-1-container").value = TierStamp.tierName;
+                }
+                else{
+                    TierStamp.tier = 0;
+                    TierStamp.tierName = "prepaid";
+                }
+                
+                console.log(TierStamp);
                 
                 document.getElementById("gknd-logo-button-container").addEventListener("click", function(){
                     window.location.href = "https://galactickidsnextdoor.com";
@@ -61,7 +83,15 @@
                 
                 document.getElementById("gknd-logo-button-container").classList.add("corner-logo-container");
                 
+                document.getElementById("sign-in-button-container").addEventListener("click", function(){
+                    window.location.href = "./sign-in";
+                });
+                
+                /*document.getElementById("create-new-account-button-container").addEventListener("click", function(){
+                    submitFormToCreateNewAccount();
+                });*/
             });
+
         </script>
     </body>
 </html>

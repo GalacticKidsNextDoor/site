@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GKND: Register or Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Braah+One&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="./media/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./media/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./media/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="./media/img/favicon/site.webmanifest">
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.css" />
+    <link rel="stylesheet" href="./css/profile.css" type="text/css" />
+    </head>
+    <body>
+        <div id="something-went-wrong-container">
+            <p class="description-container">Something Went Wrong</p>
+            <div id="something-went-wrong-icon-container"></div>
+            <p class="description-container">Redirecting Shortly...</p>
+        </div>
+        <div id="profile-button-container"></div>
+        <input id="sign-out-of-profile-button-container" type="button" value="sign out" />
+        <div id="logging-you-out-container">
+            <p style="margin-top: 10%; font-size: 24px; line-height: 50px;">Signing You Out...</p>
+            <div id="signing-out-icon-container"></div>
+            <p class="description-container">See You Later!</p>
+        </div>
+        <form id="change-profile-icon-overlay-container">
+            <p style="margin-top: 10%; font-size: 24px; line-height: 50px;">Upload A New Icon</p>
+            <input type="file" id="profile-icon-file-input-container" name="avatar" accept="image/png, image/jpeg">
+            <input type="button" value="update" id="update-profile-icon-button-container" />
+        </form>
+        <div id="main-app-container">
+            <button id="member-profile-icon-container"></button>
+            <div id="member-profile-display-name-container"></div>
+            <div id="member-apps-container">
+                <div id="member-apps-title-container">Your Productions</div>
+                <input type="button" id="add-new-app-button-container" value="+" />
+            </div>
+        </div>
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+        <script>
+            
+            var storage, database, dbRefObject, uploadPic, uploadPicReady = false;
+            
+            var currentUser;
+            
+            const firebaseConfig = {
+                apiKey: "AIzaSyDb25cWx6pMmh2xt54c_G5hS_rTDzpnpKw",
+                authDomain: "galactic-kids-next-door.firebaseapp.com",
+                databaseURL: "https://galactic-kids-next-door-default-rtdb.europe-west1.firebasedatabase.app",
+                projectId: "galactic-kids-next-door",
+                storageBucket: "galactic-kids-next-door.appspot.com",
+                messagingSenderId: "273360155490",
+                appId: "1:273360155490:web:a752b1c28ad6156791f23b",
+                measurementId: "G-6Z2LK6Z05H"
+            };
+            
+            firebase.initializeApp(firebaseConfig);
+            
+            document.addEventListener("DOMContentLoaded", function(){
+                
+                firebase.auth().onAuthStateChanged((user) => {
+                    currentUser = user;
+                  if (currentUser) {
+                      const displayName = currentUser.displayName;
+                      const email = currentUser.email;
+                      const photoURL = currentUser.photoURL;
+                      const emailVerified = currentUser.emailVerified;
+                    // User is signed in, see docs for a list of available properties
+                    // https://firebase.google.com/docs/reference/js/v8/firebase.User
+                    var uid = currentUser.uid;
+                      console.log(`Currently signed in as ${displayName} \n email: ${email}\n verified> ${emailVerified}\n photo: ${photoURL}`);
+                      document.getElementById("member-profile-display-name-container").innerHTML = displayName;
+                      document.getElementById("member-profile-icon-container").style.backgroundImage = `url(${photoURL})`;
+                      
+                      /*currentUser = user;/*{
+                          name: displayName,
+                          email: email,
+                          verified: emailVerified,
+                          photoURL: photoURL,
+                          tier: user.tier,
+                          tierName: user.tierName,
+                      }*/
+                    // ...
+                  } else {
+                    // User is signed out
+                    // ...
+                      console.log('no user signed in ');
+                      setTimeout(function(){
+                        window.location.replace("https://galactickidsnextdoor.com/sign-in");
+                    }, 50);
+                  }
+                });
+                
+                document.getElementById("sign-out-of-profile-button-container").addEventListener("click", function(){
+                    firebase.auth().signOut().then(() => {
+                        document.getElementById("logging-you-out-container").classList.add("visible-layer-1");
+                        console.log("sign out successful");
+                        setTimeout(function(){
+                            window.location.replace("https://galactickidsnextdoor.com");
+                        }, 4000);
+                    }).catch((error) => {
+                        console.log("sign out failed");
+                    });
+                });
+                
+                document.getElementById("add-new-app-button-container").addEventListener("mouseover", function(){
+                    document.getElementById("add-new-app-button-container").value = "+ CREATE 🎤 🎁";
+                });
+                
+                document.getElementById("add-new-app-button-container").addEventListener("mouseleave", function(){
+                    document.getElementById("add-new-app-button-container").value = "+";
+                });
+                
+                document.getElementById("member-profile-icon-container").addEventListener("click", function(){  
+                    document.getElementById("change-profile-icon-overlay-container").style.display = "block";
+                    document.getElementById("change-profile-icon-overlay-container").classList.add("visible-overlay-0");
+                });
+                
+                document.getElementById("update-profile-icon-button-container").addEventListener("click", function(){
+                    if(uploadPicReady){
+                        var storageRef = storage.ref();
+
+                    // Create a reference to new profile icon
+                        var newProfileIconRef = storageRef.child("avatars/"+uploadPic.name);
+
+                        newProfileIconRef.put(uploadPic).then((snapshot) => {
+                          console.log('Uploaded your new profile pic!');
+
+                            // Get the download URL
+                            newProfileIconRef.getDownloadURL()
+                            .then((url) => {
+                                currentUser.updateProfile({
+                                    photoURL: url
+                                }).then(function() {
+                                    document.getElementById("member-profile-icon-container").style.backgroundImage = `url(${url})`;
+                                    setTimeout(function(){
+                                        document.getElementById("change-profile-icon-overlay-container").classList.remove("visible-overlay-0");
+                                    }, 1000);
+                                    
+                                  // Profile updated successfully!
+                                }, function(error) {
+                                  // An error happened.
+                                    console.log(error)
+                                });
+                            })
+                            .catch((error) => {
+                              // A full list of error codes is available at
+                              // https://firebase.google.com/docs/storage/web/handle-errors
+                              switch (error.code) {
+                                case 'storage/object-not-found':
+                                  alert("object not found");// File doesn't exist
+                                  break;
+                                case 'storage/unauthorized':
+                                      alert("access not granted");
+                                  // User doesn't have permission to access the object
+                                  break;
+                                case 'storage/canceled':
+                                      alert("action canceled");
+                                  // User canceled the upload
+                                  break;
+                                case 'storage/unknown':
+                                  default:
+                                      alert("unknown error");
+                                  // Unknown error occurred, inspect the server response
+                                  break;
+                              }
+                            }); 
+                        });
+                    }
+                })
+                
+                document.getElementById("profile-icon-file-input-container").addEventListener("change", handleFiles, false);
+
+                
+                document.getElementById("add-new-app-button-container").addEventListener("click", function(){
+                    window.location.href = "./all-apps";
+                });
+                
+            });
+            
+            function handleFiles() {
+              const fileList = this.files; /* now you can work with the file list */
+                console.log(fileList);
+                if(fileList.length>0){
+                    uploadPic = fileList.item(0);
+                    uploadPicReady = true;
+                    
+                    storage = firebase.storage();
+                    
+                }
+                else{
+                    uploadPicReady = false;
+                }
+            }
+            
+            /**/
+        </script>
+    </body>
+</html>

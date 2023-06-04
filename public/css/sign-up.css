@@ -226,3 +226,25 @@ body, html, #main-app-container{
     display: inline-block;
     margin-right: 5px;
 }
+
+.tier-meta-data-container{
+    display: none;
+}
+
+@media only screen and (max-width: 640px){
+    #registration-details-container{
+        background-color: rgba(0,0,0,0);
+        width: 100%;
+        /*height: 500px;
+        border-radius: 10px;
+        background-color: #782dc8;
+        margin: 5% auto;
+        display: block;
+        z-index: 10;*/
+    }
+    
+    .corner-logo-container {
+        top: 5%;
+        left: 9%;
+    }
+}
