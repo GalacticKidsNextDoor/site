@@ -46,6 +46,10 @@
             </div>
         </div>
     </div>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
     <script src="./js/Lyoko.Personas.js" type="module"></script>
     <script src="./js/Lyoko.MediaTypes.js" type="module"></script>
     <script src="./js/Lyoko.TrendingApplicationList.js" type="module"></script>
@@ -57,9 +61,51 @@
         var mediaTypes = MediaTypes(6);
         var trendingApps = TrendingApplicationList(9);
         var onPersona = 0;
-        var loggedIn = false;
+        var loggedIn, currentUser, storage, database, dbRefObject, uploadPic, uploadPicReady = false;
+            
+        const firebaseConfig = {
+            apiKey: "AIzaSyDb25cWx6pMmh2xt54c_G5hS_rTDzpnpKw",
+            authDomain: "galactic-kids-next-door.firebaseapp.com",
+            databaseURL: "https://galactic-kids-next-door-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "galactic-kids-next-door",
+            storageBucket: "galactic-kids-next-door.appspot.com",
+            messagingSenderId: "273360155490",
+            appId: "1:273360155490:web:a752b1c28ad6156791f23b",
+            measurementId: "G-6Z2LK6Z05H"
+        };
+
+        firebase.initializeApp(firebaseConfig);
         
         document.addEventListener("DOMContentLoaded", function(){
+                
+            firebase.auth().onAuthStateChanged((user) => {
+                currentUser = user;
+              if (currentUser) {
+                  const displayName = currentUser.displayName;
+                  const email = currentUser.email;
+                  const photoURL = currentUser.photoURL;
+                  const phoneNum = currentUser.phoneNumber;
+                  const emailVerified = currentUser.emailVerified;
+                // User is signed in, see docs for a list of available properties
+                // https://firebase.google.com/docs/reference/js/v8/firebase.User
+                var uid = currentUser.uid;
+                  console.log(`Currently signed in as ${displayName} \n
+                            email: ${email}\n
+                            verified? ${emailVerified}\n
+                            photo: ${photoURL}\n
+                            phone: ${phoneNum}\n`);
+
+                  document.getElementById("sign-in-button-container").style.backgroundImage = `url(${photoURL})`;
+                  loggedIn = true;
+                // ...
+              } else {
+                // User is signed out
+                // ...
+                  loggedIn = false;
+                  console.log('no user signed in\n keep sign in button as is');
+              }
+            });
+            
             document.getElementById("sign-in-button-container").addEventListener("click", function(){
                 window.location.replace("./sign-in");
             });
@@ -83,7 +129,7 @@
             
             document.getElementById("get-started-button-container").addEventListener("click", function(){
                 if(loggedIn){
-                    window.location.href = "./create";
+                    window.location.href = "./all-apps";
                 }
                 else{
                     document.getElementById("pricing-navigation-button-container").click();

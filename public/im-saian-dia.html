@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>"I'm Saian" by oldrowmaryland</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Braah+One&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="./media/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./media/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./media/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="./media/img/favicon/site.webmanifest">
+      <link rel="stylesheet" href="./css/im-saian-dia-style.css" type="text/css" />
+    </head>
+    <body>
+        <input id="gknd-logo-button-container" class="loading-screen-logo-container" value="" type="button"/>
+        <input id="profile-button-container" type="button" value="" />
+        <div id="main-app-container">
+            <div id="success-container"></div>
+            <div class="app-page-section-header-container">
+                Eminem A.I. Raps In Foreign Languages
+            </div>
+            <form id="trending-list-post-container" name="voiceForm">
+                <div id="stage-0-container" class="stage-container">
+                    <div class="gknd-title-container">Upload a File</div>
+                    <input type="file" accept="audio/x-mpeg" id="enter-audio-file-container"/>
+                </div>
+                <div id="stage-1-container" class="stage-container">
+                    <input type="button" id="previous-avatar-button-container" class="select-avatar-button-container" value="<" />
+                    <input type="button" id="next-avatar-button-container" class="select-avatar-button-container" value=">" />
+                    <div class="gknd-title-container">Select Eminem Era</div>
+                      <p>Other Settings:</p>
+                    <p>Number of Voices</p>
+                      <input type="radio" name="numOfVoices" id="single-voice-option-container" value="1">
+                      <label for="single-voice-option-container">No Feature</label><br>
+                      <input type="radio" name="numOfVoices" id="dual-voice-option-container" value="2">
+                      <label for="dual-voice-option-container">Featuring</label><br>
+                  <br>  
+
+                    <div id="avatar-sam-container">
+                        <video id="ai-loader-container" width="240" height="135" muted autoplay loop>
+                            <source src="./media/img/loading-anim.webm" type="video/webm">
+                        </video>
+                    </div>
+                </div>
+                <div id="stage-2-container" class="stage-container">
+                    <input type="button" id="previous-avatar-2-button-container" class="select-avatar-button-container" value="<" />
+                    <input type="button" id="next-avatar-2-button-container" class="select-avatar-button-container" value=">" />
+
+                    <div id="avatar-sam-2-container">
+                        <video id="ai-loader-1-container" width="240" height="135" muted autoplay loop>
+                            <source src="./media/img/loading-anim.webm" type="video/webm">
+                        </video>
+                    </div>
+                </div>
+                <div id="footer-container">
+                    <input type="button" value="download" id="download-button-container"/>
+                </div>
+            </form>
+        </div>
+      <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+      <script>
+        var EminemPersonas = [
+            {
+                name: "1999",
+                src: "./media/img/young-em.png",
+                bgSize: "120% auto"
+            },
+            {
+                name: "2000",
+                src: "./media/img/eminem-2000.png",
+                bgSize: "105% auto"
+            },
+            {
+                name: "2010s and beyond",
+                src: "./media/img/eminem-old-head.png",
+                bgSize: "135% auto"
+            }
+        ];
+        
+        var personas = [
+            {
+                name: "Doja",
+                src: "./media/img/doja-head-black-and-white.png",
+                bgSize: "150% auto"
+            },
+            {
+                name: "Travis",
+                src: "./media/img/travis-head-0.png",
+                bgSize: "140% auto"
+            },
+            {
+                name: "Drake",
+                src: "./media/img/drake-head-1.png",
+                bgSize: "140% auto"
+            },
+            {
+                name: "Sia",
+                src: "./media/img/sia-head-0.png",
+                bgSize: "105% auto"
+            },
+            {
+                name: "Ye",
+                src: "./media/img/kanye-head-black-and-white.png",
+                bgSize: "105% auto"
+            }
+        ];
+          
+        var onPersona = 0;
+        var secondaryPersona = 0;
+        var chosenVideo = null;
+        
+        function matchYoutubeUrl(url) {
+            var p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+            var matches = url.match(p);
+            if(matches){
+                return matches[1];
+            }
+            return false;
+        }
+        
+        function check(sender){
+            var url = sender;
+            var id = matchYoutubeUrl(url);
+            if(id!=false){
+                chosenVideo = id;
+                console.log("User wants to convert video @ ",chosenVideo);
+                return true;
+            }else{
+                return false;
+            }
+        }
+          
+          var storage, database, dbObjectRef;
+          
+            
+          const firebaseConfig = {
+                apiKey: "AIzaSyDb25cWx6pMmh2xt54c_G5hS_rTDzpnpKw",
+                authDomain: "galactic-kids-next-door.firebaseapp.com",
+                databaseURL: "https://galactic-kids-next-door-default-rtdb.europe-west1.firebasedatabase.app",
+                projectId: "galactic-kids-next-door",
+                storageBucket: "galactic-kids-next-door.appspot.com",
+                messagingSenderId: "273360155490",
+                appId: "1:273360155490:web:a752b1c28ad6156791f23b",
+                measurementId: "G-6Z2LK6Z05H"
+          };
+          
+          firebase.initializeApp(firebaseConfig);
+          
+        document.addEventListener("DOMContentLoaded", function(){
+            firebase.auth().onAuthStateChanged((user) => {
+                    currentUser = user;
+                  if (currentUser) {
+                      const displayName = currentUser.displayName;
+                      const email = currentUser.email;
+                      const photoURL = currentUser.photoURL;
+                      const emailVerified = currentUser.emailVerified;
+                      const phoneNum = currentUser.phoneNumber;
+                    // User is signed in, see docs for a list of available properties
+                    // https://firebase.google.com/docs/reference/js/v8/firebase.User
+                    var uid = user.uid;
+                      console.log(`Currently signed in as ${displayName} \n email: ${email}\n verified> ${emailVerified}\n photo: ${photoURL}\n phone: ${phoneNum}`);
+
+                    document.getElementById("profile-button-container").style.backgroundImage = `url(${photoURL})`;
+                      
+                      UserAccessGranted = true;
+
+                    // ...
+                  } else {
+                    // User is signed out
+                    // ...
+                      UserAccessGranted = false;
+                      
+                  }
+                });
+                
+            
+            document.getElementById("gknd-logo-button-container").addEventListener("click", function(){
+                window.location.href = "https://galactickidsnextdoor.com";
+            });
+            
+            document.getElementById("profile-button-container").addEventListener("click", function(){
+                window.location.href = "./profile";
+            });
+            
+            document.getElementById("gknd-logo-button-container").classList.remove("loading-screen-logo-container");
+            
+            document.getElementById("gknd-logo-button-container").classList.add("corner-logo-container");
+            
+            document.getElementById("previous-avatar-button-container").addEventListener("click", function(){
+                console.log(onPersona)
+                if(onPersona===0){
+                    onPersona = EminemPersonas.length-1;
+                }
+                else{
+                    onPersona--;
+                }
+                document.getElementById("avatar-sam-container").style.backgroundImage = `url(${EminemPersonas[onPersona].src})`;
+
+                document.getElementById("avatar-sam-container").style.backgroundSize = `${EminemPersonas[onPersona].bgSize}`;
+
+            });
+            
+            document.getElementById("next-avatar-button-container").addEventListener("click", function(){
+                console.log(onPersona)
+                if(onPersona===EminemPersonas.length-1){
+                    onPersona = 0;
+                }
+                else{
+                    onPersona++;
+                }
+                document.getElementById("avatar-sam-container").style.backgroundImage = `url(${EminemPersonas[onPersona].src})`;
+
+                document.getElementById("avatar-sam-container").style.backgroundSize = `${EminemPersonas[onPersona].bgSize}`;
+
+            });
+
+            document.getElementById("previous-avatar-2-button-container").addEventListener("click", function(){
+                //console.log(secondaryPersona);
+                if(secondaryPersona===0){
+                    secondaryPersona = personas.length-1;
+                }
+                else{
+                    secondaryPersona--;
+                }
+                document.getElementById("avatar-sam-2-container").style.backgroundImage = `url(${personas[secondaryPersona].src})`;
+
+                document.getElementById("avatar-sam-2-container").style.backgroundSize = `${personas[secondaryPersona].bgSize}`;
+
+            });
+            
+            document.getElementById("next-avatar-2-button-container").addEventListener("click", function(){
+                console.log(secondaryPersona)
+                if(secondaryPersona===personas.length-1){
+                    secondaryPersona = 0;
+                }
+                else{
+                    secondaryPersona++;
+                }
+                document.getElementById("avatar-sam-2-container").style.backgroundImage = `url(${personas[secondaryPersona].src})`;
+
+                document.getElementById("avatar-sam-2-container").style.backgroundSize = `${personas[secondaryPersona].bgSize}`;
+
+            });
+
+            var rad = document.voiceForm.numOfVoices;
+            var prev = null;
+            var voiceCount = null;
+            
+            for (var i = 0; i < rad.length; i++) {
+                rad[i].addEventListener('change', function() {
+                    //(prev) ? console.log(prev.value): null;
+                    if (this !== prev) {
+                        prev = this;
+                    }
+                    voiceCount = this.value;
+                    //console.log();
+                    if(this.value==="2"){
+                        console.log(`user wants ${voiceCount} voices`);
+                        document.getElementById("stage-2-container").style.display = "block";
+
+                        setTimeout(function(){
+                            document.getElementById("stage-2-container").style.opacity = 1.0;
+                        }, 50);
+                    }
+                    else{
+                        console.log(`user wants ${voiceCount} voice`);
+                        document.getElementById("stage-2-container").style.opacity = 0;
+
+                        setTimeout(function(){
+                            document.getElementById("stage-2-container").style.display = "none";
+                        }, 505);
+                    }
+                });
+            }
+            
+            document.getElementById("download-button-container").addEventListener("click", function(){
+                var checksComplete = true;
+                let ytURL = document.getElementById("enter-youtube-url-container").value;
+                
+                if(check(ytURL)){
+                    console.log("url passes");
+                }
+                else{
+                    checksComplete = false;
+                    alert("Please complete Step 1:\n\nEnter a valid YouTube URL!")
+                }
+                
+                if(voiceCount==null){
+                    checksComplete = false;
+                    alert("Please complete Step 2:\n\nSelect how many voices you want!")
+                }
+                
+                if(voiceCount==="2"&&secondaryPersona===onPersona){
+                    checksComplete = false;
+                    alert("Please complete Step 2:\n\nYou must pick two different voices!")
+                }
+                
+                if(checksComplete){
+                    document.getElementById("success-container").style.display = "block";
+                    setTimeout(function(){
+                        window.location.replace("./atl-confirmation");
+                    }, 5000);
+                }
+            })
+        });
+      </script>
+    </body>
+</html>

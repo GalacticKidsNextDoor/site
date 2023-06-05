@@ -94,6 +94,7 @@ function CollectionOfAllHumanLanguages(pointerBoolean){
     "ENGLISH": {
         "build": [
             {
+                weight: 1,
                 type: "verb",
                 use: "with object",
                 pastParticiple: "built",
@@ -122,6 +123,7 @@ function CollectionOfAllHumanLanguages(pointerBoolean){
                 ]
             },
             {
+                weight: 0.5,
                 type: "verb",
                 use: "without object",
                 pastParticiple: "built",
@@ -142,6 +144,7 @@ function CollectionOfAllHumanLanguages(pointerBoolean){
                 ]
             },
             {
+                weight: 0.4,
                 type: "noun",
                 use: "improper",
                 pastParticiple: null,
@@ -160,6 +163,7 @@ function CollectionOfAllHumanLanguages(pointerBoolean){
         ],
         "a": [
             {
+                weight: 0,
                 type: "article",
                 use: "indefinite",
                 pastParticiple: null,
@@ -198,6 +202,7 @@ function CollectionOfAllHumanLanguages(pointerBoolean){
         ],
         "honeypot": [
             {
+                weight: 1,
                 type: "noun",
                 use: "improper",
                 pastParticiple: null,
@@ -237,6 +242,7 @@ function CollectionOfAllHumanLanguages(pointerBoolean){
         ],
         "honey": [
             {
+                weight: 1,
                 type: "noun",
                 use: "with object",
                 pastParticiple: null,
@@ -251,6 +257,7 @@ function CollectionOfAllHumanLanguages(pointerBoolean){
         ],
         "pot": [
             {
+                weight: 1,
                 type: "noun",
                 use: "improper",
                 pastParticiple: null,
@@ -1258,6 +1265,16 @@ class Senses{
               finalResult = this.sessionReader.parseText(parsePrompt);
               console.log("~~~~~~~~~~~~~~~~~~~~~~~");
               console.log(finalResult);
+                let localMax = 0;
+                for(var goThru = 0; goThru<finalResult.length; goThru++){
+                    let currWeight = finalResult[goThru].weight;
+                    if(currWeight>=1){
+                        console.log(currWeight);
+                        console.log(finalResult[goThru].definitions[0]);
+                    }
+                    if(finalResult[goThru].weight>localMax)localMax=finalResult[goThru].weight;
+                }
+                console.log("Local weight max is ", localMax);
             }
             else{
               console.log("use the sessionReader");
@@ -1265,6 +1282,12 @@ class Senses{
               finalResult = this.sessionReader.parseText(parsePrompt);
               console.log("~~~~~~~~~~~~~~~~~~~~~~~");
               console.log(finalResult);
+                let localMax = 0;
+                for(var goThru = 0; goThru<finalResult.length; goThru++){
+                    console.log(finalResult[goThru].weight);
+                    if(finalResult[goThru].weight>localMax)localMax=finalResult[goThru].weight;
+                }
+                console.log("Local weight max is ",localMax);
             }
           }
         }

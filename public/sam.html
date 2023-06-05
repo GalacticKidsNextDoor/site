@@ -7,8 +7,8 @@
    <link rel="stylesheet" href="./css/avatar-sam-landing-page.css" type="text/css" />
   </head>
   <body>
-      <div id="gknd-logo-button-container" class="return-home-button-container"></div>
-      <div id="profile-button-container"></div>
+      <input id="gknd-logo-button-container" class="return-home-button-container" type="button" value=""/>
+      <input id="profile-button-container" type="button" value="">
       <div id="main-app-container">
           <div id="album-cover-container">
           </div>
@@ -35,7 +35,7 @@
       <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
       <script>
           var UserAccessGranted = false, database, dbRefObject, NewUser;
             
@@ -51,8 +51,8 @@
             };
             
             firebase.initializeApp(firebaseConfig);
-
-        document.addEventListener("DOMContentLoaded", function(){
+          
+          document.addEventListener("DOMContentLoaded", function(){
             firebase.auth().onAuthStateChanged((user) => {
               if (user) {
                   const displayName = user.displayName;
@@ -64,6 +64,9 @@
                 var uid = user.uid;
                   console.log(`Currently signed in as ${displayName} \n email: ${email}\n verified> ${emailVerified}\n photo: ${photoURL}`);
                     UserAccessGranted = true;
+                  
+                document.getElementById("profile-button-container").style.backgroundImage = `url(${photoURL})`;
+                      
                 // ...
               } else {
                 // User is signed out
@@ -82,7 +85,7 @@
                     window.location.replace("./avatar-sam-dia");
                 }
                 else{
-                    window.alert("Sign in to your account to get started!")   
+                    window.alert("Sign in to your account to get started!");
                 }
                 //window.location.href = "./avatar-sam-dia"
             });

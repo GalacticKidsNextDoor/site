@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GKND: All DARIA Apps</title>
+    <title>GKND: Trending DARIA Productions</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Braah+One&display=swap" rel="stylesheet">
@@ -31,16 +31,16 @@
             <div id="member-profile-icon-container"></div>
             <div id="member-profile-display-name-container"></div>
             <div id="all-apps-container">
-                <div id="all-apps-title-container">All Apps</div>
+                <div id="all-apps-title-container">Trending</div>
             </div>
         </div>
         <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-auth.js"></script>
-        <script src="./js/Lyoko.AppLibrary.js" type="module"></script>
+        <script src="./js/Lyoko.TrendingApplicationList.js" type="module"></script>
         <script type="module">
-            import { AppLibrary } from "./js/Lyoko.AppLibrary.js";
+            import { TrendingApplicationList } from "./js/Lyoko.TrendingApplicationList.js";
             
             var storage, database, dbRefObject;
             
@@ -68,33 +68,33 @@
                     // User is signed in, see docs for a list of available properties
                     // https://firebase.google.com/docs/reference/js/v8/firebase.User
                     var uid = user.uid;
-                      console.log(`Currently signed in as ${displayName} \n email: ${email}\n verified> ${emailVerified}\n photo: ${photoURL}`);
+                      console.log(`Currently signed in as ${displayName} \n email: ${email}\n verified? ${emailVerified}\n photo: ${photoURL}`);
 
                       document.getElementById("profile-button-container").style.backgroundImage = `url(${photoURL})`;
                       
-                        var allApps = AppLibrary(3);
-                      for(var appCount = 0; appCount < allApps.length; appCount++){
+                        var trendingApps = TrendingApplicationList(9);
+                      for(var appCount = 0; appCount < trendingApps.length; appCount++){
                         let counterA = appCount;
                         (function(){
-                            //console.log(allApps[appCount].src);
+                            //console.log(trendingApps[appCount].src);
                             let curr = document.createElement("div");
                             curr.classList.add("trending-post-container");
 
                             curr.setAttribute("id", `trending-post-${counterA}-container`);
 
-                            curr.style.backgroundImage = `url(${allApps[counterA].src})`;
+                            curr.style.backgroundImage = `url(${trendingApps[counterA].src})`;
 
-                            curr.style.backgroundSize = allApps[counterA].bgSize;
+                            curr.style.backgroundSize = trendingApps[counterA].bgSize;
 
-                            curr.style.backgroundPosition = allApps[counterA].bgPosition;
+                            curr.style.backgroundPosition = trendingApps[counterA].bgPosition;
 
-                            curr.innerText = allApps[counterA].name;
+                            curr.innerText = trendingApps[counterA].name;
 
                             curr.addEventListener("click", function(){
-                                window.location.href = allApps[counterA].target;
+                                window.location.href = trendingApps[counterA].target;
                             });
 
-                            if(allApps[counterA].color)curr.style.color = allApps[counterA].color;
+                            if(trendingApps[counterA].color)curr.style.color = trendingApps[counterA].color;
 
                             document.getElementById("all-apps-container").appendChild(curr);
                         })();

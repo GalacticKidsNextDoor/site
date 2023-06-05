@@ -3,175 +3,21 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> "I'm Saian (Preview)" by oldrowmaryland</title>
+    <title> "I'm Saian" by oldrowmaryland</title>
     <link rel="apple-touch-icon" sizes="180x180" href="./media/img/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./media/img/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./media/img/favicon/favicon-16x16.png">
     <link rel="manifest" href="./media/img/favicon/site.webmanifest">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
-        
-        body, html{
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, #000099 0%, #fffc7f 100%);
-            color: black;
-        }
-        
-        #main-app-container{
-            
-            width: 400px;
-            height: auto;
-            position: absolute;
-            top: 5%;
-            left: 50%;
-            margin-left: -200px;
-        }
-        
-        #album-cover-container{
-            background-image: url(./media/img/IMSAIAN.png);
-            background-size: cover;
-            width: 325px;
-            height: 325px;
-            margin: 0 auto 12px auto;
-            display: block;
-            cursor: pointer;
-            position: relative;
-        }
-        
-        #feature-block-container{
-            width: 275px;
-            margin: 25px auto 0 auto;
-            font-size: 14px;
-            line-height: 22px;
-            font-family: Arial, sans-serif;
-        }
-        
-        .publication-title-container{
-            display: block;
-            text-align: center;
-            width: 100%;
-            margin: 0 auto;
-            font-size: 18px;
-            line-height: 24px;
-            font-family: Arial, sans-serif;
-            text-transform: uppercase;
-        }
-        
-        #play-album-button-container, #download-album-button-container{
-            display: block;
-            width: 250px;
-            height: 50px;
-            border-radius: 15px;
-            margin: 2% auto;
-            cursor: pointer;
-            outline: none;
-            text-align: center;
-            font-size: 18px;
-            text-transform: uppercase;
-            background-color: white;
-            color: black;
-            transition: background-color 0.25s, color 0.25s;
-        }
-        
-        #play-album-button-container:hover{
-            color: blue;
-            background-color: aquamarine;
-        }
-        
-        #download-album-button-container:hover{
-            color: white;
-            background-color: red;
-        }
-        
-        
-        .artist-link-container:link, .artist-link-container:visited{
-            color: blue;
-            font-weight: 400;
-            text-decoration: none;
-            letter-spacing: 1px;
-        }
-        
-        .artist-link-container:hover{
-            font-weight: 700;
-            letter-spacing: 2px;
-        }
-        
-        .artist-link-container:active{
-            color: red;
-        }
-        
-        #gknd-logo-button-container{
-            position: absolute;
-            background-image: url(../media/img/gknd-logo.png);
-            background-size: 110% 100%;
-            background-color: rgba(0, 0, 0, 0);
-            background-position: center center;
-            background-repeat: no-repeat no-repeat;
-            border: 0;
-            cursor: pointer;
-            z-index: 10;
-            transition: top 2.5s, left 2.5s, width 2.5s, height 2.5s, margin 2.5s;
-        }
-        
-        .return-home-button-container{
-            width: 65px;
-            height: 65px;
-            top: 3%;
-            left: 3%;
-        }
-
-        @media only screen and (max-width: 640px){
-            .return-home-button-container{
-                width: 35px;
-                height: 35px;
-                top: 3%;
-                left: 50%;
-                margin-left: -18px;
-            }
-            
-             #main-app-container{
-                width: 100%;
-                height: auto;
-                position: absolute;
-                top: 5%;
-                left: 0;
-                margin-left: 0px;
-            }
-            
-            #album-cover-container{
-                width: 305px;
-                height: 305px;
-                margin: 10% auto 5% auto;
-            }
-        }
-    </style>
-      <script>
-        document.addEventListener("DOMContentLoaded", function(){
-            document.getElementById("gknd-logo-button-container").addEventListener("click", function(){
-                window.location.href = "https://galactickidsnextdoor.com";
-            });
-            
-            document.getElementById("download-album-button-container").addEventListener("click", function(){
-                window.alert("COMING SOON !\n\n TUESDAY MAY 16, 2023 @ 07:30 PM ET");
-            });
-            
-            document.getElementById("play-album-button-container").addEventListener("click", function(){
-                window.open("https://www.youtube.com/watch?v=PJ92HMZCH7s", "_blank");
-            });
-        });  
-      </script>
+    <link rel="stylesheet" href="./css/im-saian-landing-page.css" type="text/css" />
   </head>
   <body>
-    <div id="gknd-logo-button-container" class="return-home-button-container"></div>
+      <input id="gknd-logo-button-container" class="return-home-button-container" value="" type="button"/>
+      <input id="profile-button-container" type="button" value="" />
       <div id="main-app-container">
           <div id="album-cover-container">
           </div>
-          <input type="button" value="Preview" id="play-album-button-container" />
-          <input type="button" value="Download" id="download-album-button-container" />
+          <input type="button" value="Listen" id="play-album-button-container" />
+          <input type="button" value="Create" id="download-album-button-container" />
           <div id="feature-block-container">
               <div>Produced by <a class="artist-link-container" href="https://www.instagram.com/oldrowmaryland">oldrowmaryland</a></div>
               <br>
@@ -183,5 +29,72 @@
               <div>Description auto-generated by DARIA AI</div>
         </div>
       </div>
+      <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+      <script>
+          
+          var storage, database, dbObjectRef;
+          
+            
+          const firebaseConfig = {
+                apiKey: "AIzaSyDb25cWx6pMmh2xt54c_G5hS_rTDzpnpKw",
+                authDomain: "galactic-kids-next-door.firebaseapp.com",
+                databaseURL: "https://galactic-kids-next-door-default-rtdb.europe-west1.firebasedatabase.app",
+                projectId: "galactic-kids-next-door",
+                storageBucket: "galactic-kids-next-door.appspot.com",
+                messagingSenderId: "273360155490",
+                appId: "1:273360155490:web:a752b1c28ad6156791f23b",
+                measurementId: "G-6Z2LK6Z05H"
+          };
+          
+          firebase.initializeApp(firebaseConfig);
+          
+        document.addEventListener("DOMContentLoaded", function(){
+            firebase.auth().onAuthStateChanged((user) => {
+                    currentUser = user;
+                  if (currentUser) {
+                      const displayName = currentUser.displayName;
+                      const email = currentUser.email;
+                      const photoURL = currentUser.photoURL;
+                      const emailVerified = currentUser.emailVerified;
+                      const phoneNum = currentUser.phoneNumber;
+                    // User is signed in, see docs for a list of available properties
+                    // https://firebase.google.com/docs/reference/js/v8/firebase.User
+                    var uid = user.uid;
+                      console.log(`Currently signed in as ${displayName} \n email: ${email}\n verified> ${emailVerified}\n photo: ${photoURL}\n phone: ${phoneNum}`);
+
+                    document.getElementById("profile-button-container").style.backgroundImage = `url(${photoURL})`;
+                      
+                      UserAccessGranted = true;
+
+                    // ...
+                  } else {
+                    // User is signed out
+                    // ...
+                      UserAccessGranted = false;
+                      
+                  }
+                });
+                
+            document.getElementById("gknd-logo-button-container").addEventListener("click", function(){
+                window.location.href = "https://galactickidsnextdoor.com";
+            });
+            
+            document.getElementById("download-album-button-container").addEventListener("click", function(){
+                if(UserAccessGranted){
+                    window.location.replace("./im-saian-dia");
+                }
+                else{
+                    window.alert("Sign in to your account to get started!");
+                }
+            });
+            
+            document.getElementById("play-album-button-container").addEventListener("click", function(){
+                window.open("https://www.youtube.com/watch?v=PJ92HMZCH7s", "_blank");
+            });
+        });  
+      </script>
   </body>
 </html>

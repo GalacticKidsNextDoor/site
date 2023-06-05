@@ -1,0 +1,195 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body, html{
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background-image: url(../media/img/starry-sky-texture.avif);
+    background-size: cover;
+}
+
+#main-app-container{
+    width: 80%;
+    height: auto;
+    margin: 5% auto 0 auto;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+}
+
+#gknd-logo-button-container{
+    position: absolute;
+    background-image: url(../media/img/gknd-logo.png);
+    background-size: 110% 100%;
+    background-color: rgba(0, 0, 0, 0);
+    background-position: center center;
+    background-repeat: no-repeat no-repeat;
+    border: 0;
+    cursor: pointer;
+    z-index: 10;
+    transition: top 2.5s, left 2.5s, width 2.5s, height 2.5s, margin 2.5s;
+}
+
+.loading-screen-logo-container{
+    width: 350px;
+    height: 350px;
+    top: 45%;
+    left: 50%;
+    margin: -175px 0 0 -175px;
+}
+
+.corner-logo-container{
+    width: 75px;
+    height: 75px;
+    top: 10%;
+    left: 7%;
+    margin: -50px 0 0 -50px;
+}
+
+.corner-logo-container:hover{
+    width: 120px;
+    height: 120px;
+}
+
+#faq-list-container{
+    font-family: "Braah One", sans-serif;
+    line-height: 30px;
+}
+
+.faq-title-container{
+    line-height: 35px;
+    font-size: 26px;
+    margin: 4% auto 2% auto;
+}
+
+.faq-detail-container{
+    font-size: 22px;
+    letter-spacing: 1px;
+}
+
+#desktop-navigation-options-container{
+    font-family: "Braah One", sans-serif;
+    width: 315px;
+    height: max(10%, 50px);
+    z-index: 10;
+    font-size: 42px;
+    letter-spacing: 1px;
+    background-color: rgba(0, 0, 0, 1.0);
+    color: white;
+    font-weight: 400;
+    margin: 2% auto 0 auto;
+}
+
+.app-page-section-header-container{
+    font-family: "Braah One", sans-serif;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    color: white;
+    font-size: 24px;
+    font-weight: 700;
+    margin: 5% auto 2% auto;
+    text-align: center;
+}
+
+
+.inline-feature-item{
+    display: inline;
+    font-size: 18px;
+}
+
+#avatar-sam-container, #avatar-sam-1-container{
+    position: relative; /*absolute;*/
+    width: 350px;
+    height: 400px;
+    background-image: url(../media/img/doja-head-black-and-white.png);
+    background-size: 140% auto;
+    background-repeat: no-repeat;
+    background-position: center center;
+    /*right: -260px;
+    top: -125px;
+    top: 10%;
+    right: 50%;
+    margin-right: calc(150px - 50%);*/
+    cursor: pointer;
+     margin: 0 auto;
+}
+
+#ai-loader-container{
+    position: relative;
+    width: 240px;
+    height: 135px;
+    margin: -4% auto 5% auto;
+    display: block;
+}
+
+.gknd-title-container{
+    text-align: center;
+    font-size: 24px;
+    cursor: pointer;
+    line-height: 50px;
+    height: 50px;
+    width: 100%;
+}
+
+@media only screen and (max-width: 640px){
+    #main-app-container{
+        width: 100%;
+        height: auto;
+        /*margin: 5% auto 0 auto;
+        position: relative;
+        background-color: rgba(0, 0, 0, 0);
+        color: white;*/
+    }
+    
+    
+
+    #faq-list-container{
+        padding: 0 3%;
+        font-family: "Braah One", sans-serif;
+    }
+
+    .faq-title-container{
+        text-align: center;
+        line-height: 30px;
+        font-size: 22px;
+        margin: 6% auto 3% auto;
+    }
+
+    .faq-detail-container{
+        font-size: 18px;
+    }
+    .gknd-title-container{
+        margin-top: 12%
+    }
+
+    .app-page-section-header-container{
+        margin: 1% auto 2% auto;
+    }
+
+    .stage-container{
+        width: 350px;
+    }
+
+    #gknd-logo-button-container{
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    .corner-logo-container{
+        width: 65px;
+        height: 65px;
+        top: 5%;
+        left: 50%;
+        margin: 0;
+        margin-left: -33px;
+    }
+
+    .corner-logo-container:hover{
+        width: 70px;
+        height: 70px;
+    }
+
+}

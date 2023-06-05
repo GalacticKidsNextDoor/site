@@ -7,7 +7,7 @@ body, html, #main-app-container{
     width: 100%;
     height: 100%;
     z-index: 0;
-    background-image: url(../media/img/starry-sky-texture.png);
+    background-image: url(../media/img/starry-sky-texture.avif);
     background-size: cover;
 }
 
@@ -35,7 +35,7 @@ body, html, #main-app-container{
     border: 0;
     cursor: pointer;
     z-index: 10;
-    transition: top 2.5s, left 2.5s, width 2.5s, height 2.5s, margin 0.5s;
+    transition: top 2.5s, left 2.5s, width 2.5s, height 2.5s, margin 2.5s;
 }
 
 .loading-screen-logo-container{
@@ -47,24 +47,24 @@ body, html, #main-app-container{
 }
 
 .corner-logo-container{
-    width: 50px;
-    height: 50px;
-    top: 4%;
-    left: 6%;
-    margin: -25px 0 0 -25px;
+    width: 75px;
+    height: 75px;
+    top: 10%;
+    left: 5%;
+    margin: -50px 0 0 -50px;
 }
 
 .corner-logo-container:hover{
-    width: 90px;
-    height: 90px;
-    margin: -45px 0 0 -45px;
+    width: 120px;
+    height: 120px;
 }
 
-#sign-in-button-container{
+#profile-button-container{
     position: absolute;
     display: block;
     right: 4%;
-    top: 0%;
+    top: 3%;
+    z-index: 100;
     border: 1px white solid;
     width: 50px;
     height: 50px;
@@ -81,13 +81,12 @@ body, html, #main-app-container{
     transition: background-image 0.25s, background-color 0.25s, width 0.25s, height 0.25s;
 }
 
-#sign-in-button-container:hover{
+#profile-button-container:hover{
     background-image: url(../media/img/profile-icon.png);
     background-color: rgba(255, 255, 255, 1.0);
     width: 60px;
     height: 60px;
 }
-
 #desktop-navigation-options-container{
     font-family: "Braah One", sans-serif;
     width: 315px;
@@ -95,7 +94,7 @@ body, html, #main-app-container{
     z-index: 10;
     font-size: 42px;
     letter-spacing: 1px;
-    background-color: rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 1.0);
     color: white;
     font-weight: 400;
     margin: 2% auto 0 auto;
@@ -131,31 +130,6 @@ body, html, #main-app-container{
     text-transform: uppercase;
 }
 
-#get-started-button-container{
-    font-family: "Braah One", sans-serif;
-    width: 80%;
-    height: 50px;
-    display: block;
-    margin: 2% auto;
-    background-color: darkblue;
-    color: white;
-    line-height: 50px;
-    text-align: center;
-    font-size: 20px;
-    cursor: pointer;
-    outline: none;
-    box-shadow: 0 0 0 white;
-    transition: box-shadow 0.25s, width 0.25s, height 0.25s;
-    border-radius: 15px;
-}
-
-#get-started-button-container:hover{
-    box-shadow: 5px 5px 5px white;
-    text-transform: uppercase;
-    width: 90%;
-    height: 65px;
-}
-
 #current-media-type-container{
     display: inline;
 }
@@ -164,6 +138,7 @@ body, html, #main-app-container{
     font-family: "Braah One", sans-serif;
     font-size: 24px;
     text-transform: uppercase;
+    text-align: center;
     line-height: 42px;
     height: 42px;
     width: 30%;
@@ -171,25 +146,9 @@ body, html, #main-app-container{
     cursor: pointer;
     color: white;
     border: 0;
-    background-color: rgba(0, 0, 0, 0);
+    background-color: black;
     display: inline-block;
     margin: 0;
-}
-
-#avatar-sam-container{
-    position: absolute;
-    width: 350px;
-    height: 450px;
-    background-image: url(../media/img/travis-head-0.png);
-    background-size: 120% auto;
-    background-repeat: no-repeat;
-    background-position: center center;
-    right: -260px;
-    top: -125px;
-    /*top: 10%;
-    right: 50%;
-    margin-right: calc(150px - 50%);*/
-    cursor: pointer;
 }
 
 #ai-loader-container{
@@ -203,8 +162,10 @@ body, html, #main-app-container{
 
 .trending-post-container{
     font-family: "Braah One", sans-serif;
-    width: 268px;
-    height: 268px;
+    width: 30%;
+    height: auto;
+    min-width: 268px;
+    min-height: 268px;
     margin: 15px;
     border-radius: 15px;
     background-color: white;
@@ -214,17 +175,32 @@ body, html, #main-app-container{
     text-align: center;
     vertical-align: bottom;
     color: darkblue;
-    cursor: pointer;
+    display: inline-block;
+/*
+    font-family: "Braah One", sans-serif;
+    font-size: 20px;
+    height: 300px;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+    margin: 0 5px 20px 5px;
+    border-radius: 52px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(112,42,187,.4), 0 1px 3px rgba(112,42,187,.1);
+    border: 2px solid #702abb;
+    display: flex;
+    flex-direction: column;
+    min-width: 250px;*/
 }
 
-#trending-list-post-container{
+#public-apps-block-container{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
 }
 
-#trending-list-title-container{
+.app-page-section-header-container{
     font-family: "Braah One", sans-serif;
     width: 100%;
     height: 50px;
@@ -232,22 +208,77 @@ body, html, #main-app-container{
     color: white;
     font-size: 24px;
     font-weight: 700;
+    margin: 5% auto 2% auto;
+    text-align: center;
 }
 
-#main-scene-container{
-    width: 900px;
+#all-features-block-container{
+    font-family: "Braah One", sans-serif;
     display: block;
-    margin: 8% auto 0 auto;
-    transition: opacity 0.5s;
+    width: 90%;
+    margin: 2% auto;
+}
+
+.tier-title-container{
+    border-radius: 14px;
+    text-align: center;
+    border: 2px solid transparent;
+    display: inline-flex;
+    flex-shrink: 0;
+    vertical-align: middle;
+    position: relative;
+    overflow: visible;
+}
+
+.tier-price-container{
+    /*display: inline-block;*/
+    width: auto;
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.tier-price-addendum-container{
+    /*display: inline-block;*/
+    width: auto;
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.inline-feature-item{
+    display: inline;
+    font-size: 18px;
+}
+
+.get-tier-access-button-container{
+    font-family: "Braah One", sans-serif;
+    width: 90%;
+    height: 50px;
+    line-height: 60px;
+    border: 0;
+    border-radius: 14px;
+    display: block;
+    margin: 2% auto;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 400;
+    background-color: #782dc8;
+    color: white;
+    outline: none;
+    cursor: pointer;
+}
+
+.most-popular-tier-highlight{
+    color: #782dc8;
+    background-color: white;
 }
 
 @media only screen and (max-width: 640px){
 
     #desktop-navigation-options-container{
         font-family: "Braah One", sans-serif;
-        width: 303px;
+        width: 315px;
         height: 10%;
-        font-size: 20px;
+        font-size: 24px;
         /*z-index: 10;
         font-size: 42px;
         letter-spacing: 1px;
@@ -255,11 +286,6 @@ body, html, #main-app-container{
         color: white;
         font-weight: 400;
         margin: 2% auto 0 auto;*/
-    }
-
-    .navigation-button-container{
-        font-size: 20px;
-        width: 30%;
     }
 
     #gknd-logo-button-container{
@@ -278,31 +304,6 @@ body, html, #main-app-container{
     .corner-logo-container:hover{
         width: 70px;
         height: 70px;
-    }
-
-    #get-started-main-container{
-        position: relative;
-        /*font-family: "Braah One", sans-serif;*/
-        width: 90%;
-        height: auto;
-        min-height: 300px;
-        border-radius: 5px;
-        /*background-color: rgba(255, 255, 255, 1.0);
-        color: darkblue;*/
-        margin: 10% auto 0 auto;
-    }
-
-    #avatar-sam-container{
-        width: 350px;
-        height: 450px;
-        right: 0;
-        top: 225px;
-    }
-
-    #main-scene-container {
-        width: 100%;
-        display: block;
-        margin: 97% auto 0 auto;
     }
 
     #trending-list-title-container {

@@ -21,6 +21,7 @@
             <p class="description-container">Redirecting Shortly...</p>
         </div>
         <div id="profile-button-container"></div>
+        <div id="token-button-container"></div>
         <input id="sign-out-of-profile-button-container" type="button" value="sign out" />
         <div id="logging-you-out-container">
             <p style="margin-top: 10%; font-size: 24px; line-height: 50px;">Signing You Out...</p>
@@ -28,9 +29,29 @@
             <p class="description-container">See You Later!</p>
         </div>
         <form id="change-profile-icon-overlay-container">
-            <p style="margin-top: 10%; font-size: 24px; line-height: 50px;">Upload A New Icon</p>
+            <p id="change-profile-title-container">Upload A New Icon</p>
             <input type="file" id="profile-icon-file-input-container" name="avatar" accept="image/png, image/jpeg">
+            <img id="blah" src="#" alt="your image" />
             <input type="button" value="update" id="update-profile-icon-button-container" />
+            <input type="button" value="cancel" id="cancel-profile-icon-update-button-container" />
+        </form>
+        <form id="change-profile-information-overlay-container">
+            <p id="change-profile-information-title-container">Update Your Information</p>
+            <input type="text" value="" id="update-profile-display-name-input-container" />
+            <input type="email" value="" id="update-profile-email-input-container" />
+            <input type="tel" value="" id="update-profile-phone-input-container" />
+            <input type="button" value="update" id="update-profile-information-button-container" />
+            <input type="button" value="cancel" id="cancel-profile-information-update-button-container" />
+        </form>
+        <form id="token-atm-overlay-container">
+            <p id="token-atm-title-container">Token ATM</p>
+            <div id="tier-information-container">
+                <div id="member-tier-category-container"></div>
+                <div id="token-count-container"><span id="token-num-container"></span> Tokens</div>
+            </div>
+            <input type="button" value="buy" id="buy-tokens-button-container" class="update-overlay-button-container"/>
+            <input type="button" value="activate" id="activate-creator-pass-button-container" class="update-overlay-button-container"/>
+            <input type="button" value="close" id="close-token-atm-button-container" class="update-overlay-button-container"/>
         </form>
         <div id="main-app-container">
             <button id="member-profile-icon-container"></button>
@@ -51,6 +72,7 @@
             
             var currentUser;
             
+            var tokenATMVisible = false, profileUpdateModuleVisible = false;
             const firebaseConfig = {
                 apiKey: "AIzaSyDb25cWx6pMmh2xt54c_G5hS_rTDzpnpKw",
                 authDomain: "galactic-kids-next-door.firebaseapp.com",
@@ -80,6 +102,8 @@
                       document.getElementById("member-profile-display-name-container").innerHTML = displayName;
                       document.getElementById("member-profile-icon-container").style.backgroundImage = `url(${photoURL})`;
                       
+                      document.getElementById("profile-button-container").style.backgroundImage = `url(${photoURL})`;
+                      
                       /*currentUser = user;/*{
                           name: displayName,
                           email: email,
@@ -98,6 +122,15 @@
                     }, 50);
                   }
                 });
+                
+                document.getElementById("token-button-container").addEventListener("click", function(){
+                    loadTokenATM(true);
+                });
+                
+                document.getElementById("member-profile-display-name-container").addEventListener("click", function(){
+                    loadProfileUpdateModule();
+                });
+                
                 
                 document.getElementById("sign-out-of-profile-button-container").addEventListener("click", function(){
                     firebase.auth().signOut().then(() => {
@@ -124,6 +157,40 @@
                     document.getElementById("change-profile-icon-overlay-container").classList.add("visible-overlay-0");
                 });
                 
+                document.getElementById("close-token-atm-button-container").addEventListener("click", function(){
+                    loadTokenATM(false);
+                });
+                
+                document.getElementById("cancel-profile-information-update-button-container").addEventListener("click", function(){
+                    document.getElementById("update-profile-display-name-input-container").value = currentUser.displayName;
+                    document.getElementById("update-profile-email-input-container").value = currentUser.email;
+                    document.getElementById("update-profile-phone-input-container").value = currentUser.phoneNumber;
+                    document.getElementById("change-profile-information-overlay-container").classList.remove("visible-overlay-2"); 
+                });
+                
+                document.getElementById("update-profile-information-button-container").addEventListener("click", function(){
+                    currentUser.updateProfile({
+                        displayName: document.getElementById("update-profile-display-name-input-container").value,
+                        email: document.getElementById("update-profile-email-input-container").value,
+                        phoneNumber: document.getElementById("update-profile-phone-input-container").value
+                    }).then(function() {
+                        //replace the display name with the new one the member submitted
+                        document.getElementById("member-profile-display-name-container").innerHTML = currentUser.displayName;
+                        loadProfileUpdateModule(true); //the profile has been updated, hide the module
+                    }, function(error){
+                        
+                    });
+                })
+                
+                document.getElementById("cancel-profile-icon-update-button-container").addEventListener("click", function(){
+                    document.getElementById("blah").style.backgroundImage = `none`;
+                    document.getElementById("blah").classList.remove("show-image-preview-container");
+                    document.getElementById("blah").classList.remove("show-image-preview-container");
+                    document.getElementById("change-profile-icon-overlay-container").classList.remove("expanded-preview"); 
+                    document.getElementById("change-profile-icon-overlay-container").classList.remove("visible-overlay-0"); 
+                });
+                
+                
                 document.getElementById("update-profile-icon-button-container").addEventListener("click", function(){
                     if(uploadPicReady){
                         var storageRef = storage.ref();
@@ -143,7 +210,7 @@
                                     document.getElementById("member-profile-icon-container").style.backgroundImage = `url(${url})`;
                                     setTimeout(function(){
                                         document.getElementById("change-profile-icon-overlay-container").classList.remove("visible-overlay-0");
-                                    }, 1000);
+                                    }, 50);
                                     
                                   // Profile updated successfully!
                                 }, function(error) {
@@ -186,6 +253,48 @@
                 
             });
             
+            function loadProfileUpdateModule(forceBool){
+                if(forceBool!==null||forceBool!==undefined)profileUpdateModuleVisible = forceBool;
+                
+                if(profileUpdateModuleVisible){
+                    //if the module is open, close it and hide it
+                    document.getElementById("change-profile-information-overlay-container").classList.remove("visible-overlay-2");
+                    profileUpdateModuleVisible = false;
+                }
+                else{
+                    //otherwise open the module
+                    //reset the fields
+                    document.getElementById("update-profile-display-name-input-container").value = currentUser.displayName;
+                    document.getElementById("update-profile-email-input-container").value = currentUser.email;
+                    document.getElementById("update-profile-phone-input-container").value = currentUser.phoneNumber;
+                    
+                    //then reveal the module for member use
+                    document.getElementById("change-profile-information-overlay-container").classList.add("visible-overlay-2");
+                    
+                    //let the system know the task is complete and set the new state
+                    profileUpdateModuleVisible = true;
+                }
+                
+            }
+                       
+            function loadTokenATM(forceBool){
+                if(forceBool!==null&&forceBool!==undefined)tokenATMVisible = !forceBool;
+               // console.log(forceBool);
+                if(tokenATMVisible){
+                    //if the module is open, close it and hide it
+                    document.getElementById("token-atm-overlay-container").classList.remove("visible-overlay-2");
+                    tokenATMVisible = false;
+                }
+                else{
+                    //otherwise open the module
+                    //reveal the module for member use
+                    document.getElementById("token-atm-overlay-container").classList.add("visible-overlay-2");
+                    
+                    //let the system know the task is complete and set the new state
+                    tokenATMVisible = true;
+                }
+            }
+            
             function handleFiles() {
               const fileList = this.files; /* now you can work with the file list */
                 console.log(fileList);
@@ -194,7 +303,9 @@
                     uploadPicReady = true;
                     
                     storage = firebase.storage();
-                    
+                    document.getElementById("blah").classList.add("show-image-preview-container");
+                    document.getElementById("blah").src = URL.createObjectURL(uploadPic);
+                    document.getElementById("change-profile-icon-overlay-container").classList.add("expanded-preview");
                 }
                 else{
                     uploadPicReady = false;

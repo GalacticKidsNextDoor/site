@@ -88,6 +88,7 @@
                     database.ref('Members/' + memberId).set({   //  updating the Realtime Database 
                         name: NewUser.email,
                         email: NewUser.email,
+                        phoneNumber: NewUser.phone,
                         password: NewUser.password,
                         tier: NewUser.tier,
                         tierName: NewUser.tierName,
@@ -100,13 +101,15 @@
                     
                     user.updateProfile({
                         displayName: NewUser.email,
-                        photoURL: "./media/img/profile-icon-white.png"
+                        photoURL: "./media/img/profile-icon-white.png",
+                        phoneNumber: NewUser.phone
                     }).then(function() {
                       // Profile updated successfully!
                       var displayName = user.displayName;
                       // "https://galactickidsnextdoor.com/media/img/profile-icon-white.png"
                       var photoURL = user.photoURL;
-                        console.log(`Default display name: ${displayName} \n default profile pic: ${photoURL}`);
+                        var phoneNum = user.phoneNumber;
+                        console.log(`Default display name: ${displayName} \n default profile pic: ${photoURL}\n primary phone: ${phoneNum}`);
                     }, function(error) {
                       // An error happened.
                         console.log("user first update failed!");

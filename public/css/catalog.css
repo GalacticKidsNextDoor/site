@@ -24,7 +24,7 @@ body, html{
     display: block;
     right: 4%;
     top: 3%;
-    border: 0;
+    border: 1px white solid;
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -35,7 +35,7 @@ body, html{
     background-image: url(../media/img/profile-icon-white.png);
     background-color: rgba(255, 255, 255, 0);
     background-position: center;
-    background-size: 100% 100%;
+    background-size: auto 100%;
     background-repeat: no-repeat;
     z-index: 100;
     transition: background-image 0.25s, background-color 0.25s, width 0.25s, height 0.25s;
@@ -224,6 +224,8 @@ member-profile-icon-container{
 }
 
 #all-apps-container{
+    width: min(900px, 100%);
+    margin: 0 auto;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
