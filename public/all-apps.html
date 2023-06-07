@@ -26,7 +26,19 @@
             <p class="description-container">See You Later!</p>
         </div>
         <div id="profile-button-container"></div>
+        <div id="token-button-container" class="hidden-option"></div>
         <input id="sign-out-of-profile-button-container" type="button" value="sign out" />
+        <form id="token-atm-overlay-container">
+            <p id="token-atm-title-container">Wallet</p>
+            <div id="token-atm-icon-container"></div>
+            <div id="tier-information-container">
+                <div id="member-tier-category-container"></div>
+                <div id="token-count-container"><span id="token-num-container"></span> Tokens</div>
+            </div>
+            <input type="button" value="buy" id="buy-tokens-button-container" class="update-overlay-button-container"/>
+            <input type="button" value="activate" id="activate-creator-pass-button-container" class="update-overlay-button-container"/>
+            <input type="button" value="close" id="close-token-atm-button-container" class="update-overlay-button-container"/>
+        </form>
         <div id="main-app-container">
             <div id="member-profile-icon-container"></div>
             <div id="member-profile-display-name-container"></div>
@@ -42,7 +54,7 @@
         <script type="module">
             import { AppLibrary } from "./js/Lyoko.AppLibrary.js";
             
-            var storage, database, dbRefObject;
+            var storage, database, dbRefObject, currentUser, tokenATMVisible = false;
             
             const firebaseConfig = {
                 apiKey: "AIzaSyDb25cWx6pMmh2xt54c_G5hS_rTDzpnpKw",
@@ -57,22 +69,98 @@
             
             firebase.initializeApp(firebaseConfig);
             
+            function loadTokenATM(forceBool){
+                if(forceBool!==null&&forceBool!==undefined)tokenATMVisible = !forceBool;
+               // console.log(forceBool);
+                if(tokenATMVisible){
+                    //if the module is open, close it and hide it
+                    document.getElementById("token-atm-overlay-container").classList.remove("token-atm-overlay");
+                    setTimeout(function(){
+                        document.getElementById("token-atm-overlay-container").style.zIndex = -1;/*display = "none";*/
+                    }, 1500);
+                    tokenATMVisible = false;
+                }
+                else{
+                    //otherwise open the module
+                    //reveal the module for member use
+                    document.getElementById("token-atm-overlay-container").style.display = "block";
+                    document.getElementById("token-atm-overlay-container").classList.add("token-atm-overlay");
+                    
+                    //load the number of tokens available from the database record
+                    //dbRefObject = database.ref();
+                    //let updates = {};
+                    //updates[currentUser.uid + '/lastSignIn'] = new Date();
+                        
+                    dbRefObject.child("Members").child(currentUser.uid).get().then((snapshot) => {
+                        if (snapshot.exists()) {
+                            //console.log(snapshot.val());
+                            let tokenVal = snapshot.val()["tokens"];
+                            let tierVal = snapshot.val()["tierName"];
+                            
+                            document.getElementById("member-tier-category-container").innerHTML = tierVal;
+                            document.getElementById("token-num-container").innerHTML = tokenVal;
+                            
+                        } else {
+                            console.log("No data available");
+                        }
+                    }).catch((error) => {
+                        console.error(error);
+                    });
+                    //let the system know the task is complete and set the new state
+                    tokenATMVisible = true;
+                }
+            }
+            
             document.addEventListener("DOMContentLoaded", function(){
                 
                 firebase.auth().onAuthStateChanged((user) => {
-                  if (user) {
-                      const displayName = user.displayName;
-                      const email = user.email;
-                      const photoURL = user.photoURL;
-                      const emailVerified = user.emailVerified;
+                    currentUser = user
+                  if (currentUser) {
+                      const displayName = currentUser.displayName;
+                      const email = currentUser.email;
+                      const photoURL = currentUser.photoURL;
+                      const emailVerified = currentUser.emailVerified;
                     // User is signed in, see docs for a list of available properties
                     // https://firebase.google.com/docs/reference/js/v8/firebase.User
-                    var uid = user.uid;
+                    var uid = currentUser.uid;
                       console.log(`Currently signed in as ${displayName} \n email: ${email}\n verified> ${emailVerified}\n photo: ${photoURL}`);
 
                       document.getElementById("profile-button-container").style.backgroundImage = `url(${photoURL})`;
                       
-                        var allApps = AppLibrary(3);
+                      document.getElementById("token-button-container").classList.remove("hidden-option");
+                      
+                      database = firebase.database();
+                      dbRefObject = database.ref();
+                        
+                      dbRefObject.child("Members").child(currentUser.uid).get().then((snapshot) => {
+                        if (snapshot.exists()) {
+                            //console.log(snapshot.val());
+                            let currentTier = snapshot.val()["tier"];
+                            let tokenVal = snapshot.val()["tokens"];
+                            let currentTierName = snapshot.val()["tierName"];
+
+                            document.getElementById("token-button-container").innerHTML = tokenVal;
+
+                            if(currentTier==0&&currentTierName=="prepaid"){
+                                //document.getElementById("buy-tokens-button-container")
+                                document.getElementById("activate-creator-pass-button-container").value="Upgrade";
+                            }
+                            else if(currentTier==1&&currentTierName=="unlimited"){
+                                document.getElementById("buy-tokens-button-container").classList.add("hidden-option");           
+                            }
+                            else if(currentTier==2&&currentTierName=="unlimited"){
+                                document.getElementById("buy-tokens-button-container").classList.add("hidden-option");
+                            }
+
+                        } else {
+                            console.log("No token data available");
+                        }
+                      }).catch((error) => {
+                          console.error(error);
+                      });
+                      
+                      var allApps = AppLibrary(4);
+                      
                       for(var appCount = 0; appCount < allApps.length; appCount++){
                         let counterA = appCount;
                         (function(){
@@ -123,6 +211,14 @@
                     }).catch((error) => {
                         console.log("sign out failed");
                     });
+                });
+                
+                document.getElementById("token-button-container").addEventListener("click", function(){
+                    loadTokenATM(true);
+                });
+                
+                document.getElementById("close-token-atm-button-container").addEventListener("click", function(){
+                    loadTokenATM(false);
                 });
                 
             });

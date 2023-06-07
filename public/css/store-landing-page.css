@@ -296,13 +296,13 @@ body, html, #main-app-container{
         width: 350px;
         height: 450px;
         right: 0;
-        top: 225px;
+        top: 265px;
     }
 
     #main-scene-container {
         width: 100%;
         display: block;
-        margin: 97% auto 0 auto;
+        margin: 100% auto 0 auto;
     }
 
     #trending-list-title-container {

@@ -1,0 +1,464 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body, html, #main-app-container{
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background-image: url(../media/img/starry-sky-texture.avif);
+    background-size: cover;
+}
+
+#main-app-container{
+    position: relative;
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+}
+
+fieldset{
+    background-color: #f6f8fa;
+}
+
+#error-message {
+    color: red;
+    height: 2em;
+}
+
+.hidden-option{
+    display: none !important;
+    z-index: -1;
+}
+
+.hidden-scene{
+    opacity: 0;
+}
+
+.visible-scene{
+    opacity: 1.0;
+}
+
+#payment-details-container{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    font-family: "Braah One", sans-serif;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.reveal-overlay{
+    opacity: 1.0 !important;
+}
+
+#payment-method-form-container{
+    width: 405px;
+    height: 605px;
+    border-radius: 10px;
+    z-index: 100;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -300px 0 0 -203px;
+    color: black;
+    background-color: rgba(255, 255, 255, 1.0);
+    font-family: "Braah One", sans-serif;
+}
+
+#payment-form-title-container{
+    width: 100%;
+    text-align: center;
+    padding-top: 5%;
+}
+
+.payment-row-container{
+    display: block;
+    padding: 10px 0;
+    width: 100%;
+    height: 60px;
+    font-size: 18px;
+    line-height: 25px;
+    text-align: center;
+}
+
+.billing-text-input-container{
+    font-size: 18px;
+    width: 85%;
+    height: 30px;
+    line-height: 25px;
+    margin: 5px auto 1% auto;
+    text-align: left;
+    padding: 4px;
+    border-radius: 5px;
+    border: 1px black solid;
+}
+
+.billing-address-input-container{
+    width: 85%;
+    height: 30px;
+    border: 1px black solid;
+    border-radius: 5px;
+    display: block;
+    padding: 5px;
+    margin: 0% auto;
+}
+
+#billing-city-input-container{
+    width: 110px;
+    height: 20px;
+    padding: 5px;
+}
+
+#select-state-input-container{
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+}
+
+#billing-zip-code-input-container{
+    width: 75px;
+    height: 20px;
+    padding: 5px;
+}
+/*{
+    width: 100px;
+    height: 25px;
+    border-radius: 5px;
+}*/
+
+#ccv{
+    width: 40px;
+    height: 25px;
+    padding: 5px;
+    display: inline-block;
+    margin: 2%;
+}
+
+#billing-expiration-month-input-container{
+    width: 55px;
+    height: 35px;
+    padding: 5px;
+    display: inline-block;
+    margin: 2%;
+}
+
+#billing-expiration-year-input-container{
+    width: 85px;
+    padding: 5px;
+    height: 25px;
+    display: inline-block;
+    margin: 2%;
+}
+
+#close-payment-form-button-container{
+    display: block;
+    border: 2px white solid;
+    font-size: 12px;
+    border-radius: 5px;
+    color: white;
+    background-color: red;
+    cursor: pointer;
+    outline: none;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    right: 0;
+    transition: color 0.25s, background-color 0.25s, font-size 0.25s;
+}
+
+#close-payment-form-button-container:hover{
+    color: red;
+    background-color: white;
+    border: 2px red solid;
+    font-size: 20px;
+}
+
+#make-purchase-button-container{
+    width: 250px;
+    height: 35px;
+    line-height: 35px;
+    background-color: darkturquoise;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    display: block;
+    margin: 2% auto 6% auto;
+    text-transform: uppercase;
+    transition: width 0.25s, height 0.25s, color 0.25s, background-color 0.25s;
+}
+
+#make-purchase-button-container:hover{
+    background-color: aquamarine;
+    color: black;
+    font-weight: 700;
+    letter-spacing: 2px;
+    border: 0;
+    width: 95%;
+    height: 50px;
+    line-height: 50px;
+}
+
+#gknd-logo-button-container{
+    position: absolute;
+    background-image: url(../media/img/gknd-logo.png);
+    background-size: 110% 100%;
+    background-color: rgba(0, 0, 0, 0);
+    background-position: center center;
+    background-repeat: no-repeat no-repeat;
+    border: 0;
+    cursor: pointer;
+    z-index: 10;
+    transition: top 2.5s, left 2.5s, width 1.5s, height 1.5s, margin 1.5s;
+}
+
+.loading-screen-logo-container{
+    width: 350px;
+    height: 350px;
+    top: 45%;
+    left: 50%;
+    margin: -175px 0 0 -175px;
+}
+
+.corner-logo-container{
+    width: 50px;
+    height: 50px;
+    top: 4%;
+    left: 6%;
+    margin: -25px 0 0 -25px;
+}
+
+.corner-logo-container:hover{
+    width: 90px;
+    height: 90px;
+    margin: -45px 0 0 -45px;
+}
+
+
+#profile-button-container{
+    position: absolute;
+    display: block;
+    right: 4%;
+    top: 0%;
+    border: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 0;
+    cursor: pointer;
+    outline: none;
+    background-image: url(../media/img/profile-icon-white.png);
+    background-color: rgba(255, 255, 255, 0);
+    background-position: center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    transition: background-image 0.25s, background-color 0.25s, width 0.25s, height 0.25s;
+}
+
+#profile-button-container:hover{
+    background-image: url(../media/img/profile-icon.png);
+    background-color: rgba(255, 255, 255, 1.0);
+    width: 60px;
+    height: 60px;
+}
+
+
+#get-started-main-container{
+    position: relative;
+    font-family: "Braah One", sans-serif;
+    width: 500px;
+    height: 225px;
+    border-radius: 50px;
+    background-color: rgba(255, 255, 255, 1.0);
+    color: darkblue;
+    margin: 10% auto 0 auto;
+}
+
+#create-anything-text-container{
+    padding: 5% 0% 0% 0%;
+    text-align: center;
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+#get-started-description-container{
+    width: 90%;
+    margin: 10px auto 2% auto;
+    text-align: center;
+    font-size: 18px;
+    letter-spacing: 0px;
+    text-transform: uppercase;
+}
+
+#current-media-type-container{
+    display: inline;
+}
+
+
+#ai-loader-container{
+    position: absolute;
+    width: 240px;
+    height: 135px;
+    bottom: 0;
+    left: 50%;
+    margin-left: -120px;
+}
+
+.trending-post-container{
+    /*font-family: "Braah One", sans-serif;
+    width: 268px;
+    height: 268px;
+    margin: 15px;
+    border-radius: 15px;
+    background-color: white;
+    background-repeat: no-repeat;
+    line-height: 50px;
+    font-size: 20px;
+    text-align: center;
+    vertical-align: bottom;
+    color: darkblue;*/
+    font-family: "Braah One", sans-serif;
+    font-size: 20px;
+    height: 360px;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;/*calc(30.33% - 20px);*/
+    margin: 0 5px 20px 5px;
+    border-radius: 52px;
+    padding: 20px;
+    /*background-color: #782dc8; var(--raised-bg);*/
+    box-shadow: 0 0 10px rgba(112,42,187,.4), 0 1px 3px rgba(112,42,187,.1);
+    border: 2px solid #702abb;
+    display: flex;
+    flex-direction: column;
+    min-width: 250px;
+    width: calc(33.33% - 60px);
+}
+
+#trending-list-post-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+#trending-list-title-container{
+    font-family: "Braah One", sans-serif;
+    width: 95%;
+    height: 50px;
+    line-height: 50px;
+    color: white;
+    font-size: 24px;
+    font-weight: 700;
+    padding-left: 5%;
+}
+
+#main-scene-container{
+    width: 95%;
+    display: block;
+    margin: 8% auto 0 auto;
+    transition: opacity 0.5s;
+}
+
+.tier-title-container{
+    border-radius: 14px;
+    text-align: center;
+    border: 2px solid transparent;
+    display: inline-flex;
+    flex-shrink: 0;
+    vertical-align: middle;
+    position: relative;
+    overflow: visible;
+}
+
+.tier-price-container{
+    /*display: inline-block;*/
+    width: auto;
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.tier-price-addendum-container{
+    /*display: inline-block;*/
+    width: auto;
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.inline-feature-item{
+    display: inline;
+    font-size: 18px;
+}
+
+.get-tier-access-button-container{
+    font-family: "Braah One", sans-serif;
+    width: 90%;
+    height: 50px;
+    line-height: 60px;
+    border: 0;
+    border-radius: 14px;
+    display: block;
+    margin: 2% auto;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 400;
+    background-color: #782dc8;
+    color: white;
+    outline: none;
+    cursor: pointer;
+}
+
+.most-popular-tier-highlight{
+    color: #782dc8;
+    background-color: white;
+}
+
+@media only screen and (max-width: 640px){
+
+    #gknd-logo-button-container{
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    .corner-logo-container{
+        width: 65px;
+        height: 65px;
+        top: 5%;
+        left: 50%;
+        margin: 0;/*-50px 0 0 -50px;*/
+        margin-left: -33px;
+    }
+
+    .corner-logo-container:hover{
+        width: 70px;
+        height: 70px;
+    }
+
+    #main-scene-container{
+        width: 90%;
+        display: block;
+        margin: 8% auto 0 auto;
+    }/**/
+
+    #trending-list-title-container {
+        text-align: center;
+        padding-left: 0;
+        width: 100%;
+    }    
+
+    .trending-post-container{
+        display: block;
+        margin: 15px auto;
+    }
+}

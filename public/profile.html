@@ -37,14 +37,24 @@
         </form>
         <form id="change-profile-information-overlay-container">
             <p id="change-profile-information-title-container">Update Your Information</p>
-            <input type="text" value="" id="update-profile-display-name-input-container" />
-            <input type="email" value="" id="update-profile-email-input-container" />
-            <input type="tel" value="" id="update-profile-phone-input-container" />
+            <div class="update-profile-input-row-container">
+                Display Name<input type="text" value="" class="update-input-container" id="update-profile-display-name-input-container" />
+            </div>
+            <div class="update-profile-input-row-container">
+                Email<input type="email" value="" class="update-input-container" id="update-profile-email-input-container" />
+            </div>
+            <div class="update-profile-input-row-container">
+                Phone Number<input type="tel" value=""  class="update-input-container" id="update-profile-phone-input-container" />
+            </div>
+            
+            <input type="button" value="Verify Email" id="verify-email-button-container" />
+            
             <input type="button" value="update" id="update-profile-information-button-container" />
             <input type="button" value="cancel" id="cancel-profile-information-update-button-container" />
         </form>
         <form id="token-atm-overlay-container">
-            <p id="token-atm-title-container">Token ATM</p>
+            <p id="token-atm-title-container">Wallet</p>
+            <div id="token-atm-icon-container"></div>
             <div id="tier-information-container">
                 <div id="member-tier-category-container"></div>
                 <div id="token-count-container"><span id="token-num-container"></span> Tokens</div>
@@ -70,9 +80,12 @@
             
             var storage, database, dbRefObject, uploadPic, uploadPicReady = false;
             
-            var currentUser;
+            var currentUser, lastVerification;
             
             var tokenATMVisible = false, profileUpdateModuleVisible = false;
+            
+            var verificationLimit = 600000;
+            
             const firebaseConfig = {
                 apiKey: "AIzaSyDb25cWx6pMmh2xt54c_G5hS_rTDzpnpKw",
                 authDomain: "galactic-kids-next-door.firebaseapp.com",
@@ -86,24 +99,156 @@
             
             firebase.initializeApp(firebaseConfig);
             
+            function loadProfileUpdateModule(forceBool){
+                if(forceBool!==null||forceBool!==undefined)profileUpdateModuleVisible = forceBool;
+                
+                if(profileUpdateModuleVisible){
+                    //if the module is open, close it and hide it
+                    document.getElementById("change-profile-information-overlay-container").classList.remove("visible-overlay-2");
+                    profileUpdateModuleVisible = false;
+                    
+                    setTimeout(function(){
+                        document.getElementById("change-profile-information-overlay-container").style.zIndex = -1;/*display = "none";*/
+                    }, 1500);
+                }
+                else{
+                    //otherwise open the module
+                    //reset the fields
+                    document.getElementById("update-profile-display-name-input-container").value = currentUser.displayName;
+                    document.getElementById("update-profile-email-input-container").value = currentUser.email;
+                    document.getElementById("update-profile-phone-input-container").value = currentUser.phoneNumber;
+                    
+                    //then reveal the module for member use
+                    document.getElementById("change-profile-information-overlay-container").style.display = "block";
+                    document.getElementById("change-profile-information-overlay-container").classList.add("visible-overlay-2");
+                    
+                    //let the system know the task is complete and set the new state
+                    profileUpdateModuleVisible = true;
+                }
+                
+            }
+                  
+            function sendEmailVerificationToMember(){
+                currentUser.sendEmailVerification().then(() => {
+                    console.log(`Verification email sent to ${currentUser.email}`);
+                });
+                lastVerification = Date.now();
+            }
+
+            function loadTokenATM(forceBool){
+                if(forceBool!==null&&forceBool!==undefined)tokenATMVisible = !forceBool;
+               // console.log(forceBool);
+                if(tokenATMVisible){
+                    //if the module is open, close it and hide it
+                    document.getElementById("token-atm-overlay-container").classList.remove("visible-overlay-2");
+                    setTimeout(function(){
+                        document.getElementById("token-atm-overlay-container").style.zIndex = -1;/*display = "none";*/
+                    }, 1500);
+                    tokenATMVisible = false;
+                }
+                else{
+                    //otherwise open the module
+                    //reveal the module for member use
+                    document.getElementById("token-atm-overlay-container").style.display = "block";
+                    document.getElementById("token-atm-overlay-container").classList.add("visible-overlay-2");
+                    
+                    //load the number of tokens available from the database record
+                    //dbRefObject = database.ref();
+                    //let updates = {};
+                    //updates[currentUser.uid + '/lastSignIn'] = new Date();
+                        
+                    dbRefObject.child("Members").child(currentUser.uid).get().then((snapshot) => {
+                        if (snapshot.exists()) {
+                            //console.log(snapshot.val());
+                            let tokenVal = snapshot.val()["tokens"];
+                            let tierVal = snapshot.val()["tierName"];
+                            
+                            document.getElementById("member-tier-category-container").innerHTML = tierVal;
+                            document.getElementById("token-num-container").innerHTML = tokenVal;
+                            
+                        } else {
+                            console.log("No data available");
+                        }
+                    }).catch((error) => {
+                        console.error(error);
+                    });
+                    //let the system know the task is complete and set the new state
+                    tokenATMVisible = true;
+                }
+            }
+            
+            function handleFiles() {
+              const fileList = this.files; /* now you can work with the file list */
+                console.log(fileList);
+                if(fileList.length>0){
+                    uploadPic = fileList.item(0);
+                    uploadPicReady = true;
+                    
+                    storage = firebase.storage();
+                    document.getElementById("blah").classList.add("show-image-preview-container");
+                    document.getElementById("blah").src = URL.createObjectURL(uploadPic);
+                    document.getElementById("change-profile-icon-overlay-container").classList.add("expanded-preview");
+                }
+                else{
+                    uploadPicReady = false;
+                }
+            }
+            
             document.addEventListener("DOMContentLoaded", function(){
                 
                 firebase.auth().onAuthStateChanged((user) => {
                     currentUser = user;
-                  if (currentUser) {
-                      const displayName = currentUser.displayName;
-                      const email = currentUser.email;
-                      const photoURL = currentUser.photoURL;
-                      const emailVerified = currentUser.emailVerified;
-                    // User is signed in, see docs for a list of available properties
-                    // https://firebase.google.com/docs/reference/js/v8/firebase.User
-                    var uid = currentUser.uid;
-                      console.log(`Currently signed in as ${displayName} \n email: ${email}\n verified> ${emailVerified}\n photo: ${photoURL}`);
-                      document.getElementById("member-profile-display-name-container").innerHTML = displayName;
-                      document.getElementById("member-profile-icon-container").style.backgroundImage = `url(${photoURL})`;
+                    if (currentUser) {
+                        const displayName = currentUser.displayName;
+                        const email = currentUser.email;
+                        const photoURL = currentUser.photoURL;
+                        const emailVerified = currentUser.emailVerified;
+                        // User is signed in, see docs for a list of available properties
+                        // https://firebase.google.com/docs/reference/js/v8/firebase.User
+                        console.log(`Currently signed in as ${displayName} \n email: ${email}\n verified> ${emailVerified}\n photo: ${photoURL}`);
                       
-                      document.getElementById("profile-button-container").style.backgroundImage = `url(${photoURL})`;
-                      
+                        //update profile with member specific data
+                        document.getElementById("member-profile-display-name-container").innerHTML = displayName;
+                        document.getElementById("member-profile-icon-container").style.backgroundImage = `url(${photoURL})`;
+
+                        document.getElementById("profile-button-container").style.backgroundImage = `url(${photoURL})`;
+                        
+                        
+                        //reach database for additional data
+                        var uid = currentUser.uid;
+                        let updates = {};
+                        updates[uid + '/lastSignIn'] = new Date();
+                        
+                        database = firebase.database();
+                        dbRefObject = database.ref();
+                        dbRefObject.child("Members").child(uid).get().then((snapshot) => {
+                            if (snapshot.exists()) {
+                                console.log(snapshot.val());
+                                //update the last sign in value
+                                dbRefObject.child("Members").update(updates);
+                                let currentTier = snapshot.val()["tier"];
+                                let tokenVal = snapshot.val()["tokens"];
+                                let currentTierName = snapshot.val()["tierName"];
+                                
+                                document.getElementById("token-button-container").innerHTML = tokenVal;
+                                
+                                if(currentTier==0&&currentTierName=="prepaid"){
+                                    //document.getElementById("buy-tokens-button-container")
+                                    document.getElementById("activate-creator-pass-button-container").value="Upgrade";
+                                }
+                                else if(currentTier==1&&currentTierName=="unlimited"){
+                                    document.getElementById("buy-tokens-button-container").classList.add("hidden-option");           
+                                }
+                                else if(currentTier==2&&currentTierName=="unlimited"){
+                                    document.getElementById("buy-tokens-button-container").classList.add("hidden-option");
+                                }
+                            } else {
+                                console.log("No data available");
+                            }
+                        }).catch((error) => {
+                            console.error(error);
+                        });
+                    
                       /*currentUser = user;/*{
                           name: displayName,
                           email: email,
@@ -113,14 +258,22 @@
                           tierName: user.tierName,
                       }*/
                     // ...
-                  } else {
+                    } else {
                     // User is signed out
                     // ...
-                      console.log('no user signed in ');
-                      setTimeout(function(){
-                        window.location.replace("https://galactickidsnextdoor.com/sign-in");
-                    }, 50);
-                  }
+                        console.log('no user signed in ');
+                        setTimeout(function(){
+                            window.location.replace("https://galactickidsnextdoor.com/sign-in");
+                        }, 50);
+                    }
+                });
+                
+                document.getElementById("buy-tokens-button-container").addEventListener("click", function(){
+                    window.location.href = "./payment?tier=0&name=prepaid";
+                });
+                
+                document.getElementById("activate-creator-pass-button-container").addEventListener("click", function(){
+                    window.location.href = "./payment?tier=1&name=unlimited";
                 });
                 
                 document.getElementById("token-button-container").addEventListener("click", function(){
@@ -161,19 +314,67 @@
                     loadTokenATM(false);
                 });
                 
+                document.getElementById("verify-email-button-container").addEventListener("click", function(){
+                    if(currentUser.emailVerified){
+                        alert("Your current email has already been verified!\nIf you change it you can request a new verification email.");
+                        let updates = {};
+                        updates[currentUser.uid + '/verified'] = true;
+                        
+                        /*database = firebase.database();
+                        dbRefObject = database.ref();*/
+                        dbRefObject.child("Members").child(currentUser.uid).get().then((snapshot) => {
+                            if (snapshot.exists()) {
+                                //console.log(snapshot.val());
+                                dbRefObject.child("Members").update(updates);
+                            } else {
+                                console.log("No data available");
+                            }
+                        }).catch((error) => {
+                            console.error(error);
+                        });
+                    
+                    }
+                    else{
+                        if(lastVerification==null||lastVerification==undefined){
+                            sendEmailVerificationToMember();
+                        }
+                        else{
+                            if(Date.now()-lastVerification>verificationLimit){
+                                sendEmailVerificationToMember()
+                            }
+                            else{
+                                alert("A verification email has recently been requested for this email. Wait a couple minutes and check your inbox and spam folders.");
+                            }
+                        }
+                    } 
+                });
+                
                 document.getElementById("cancel-profile-information-update-button-container").addEventListener("click", function(){
                     document.getElementById("update-profile-display-name-input-container").value = currentUser.displayName;
                     document.getElementById("update-profile-email-input-container").value = currentUser.email;
                     document.getElementById("update-profile-phone-input-container").value = currentUser.phoneNumber;
-                    document.getElementById("change-profile-information-overlay-container").classList.remove("visible-overlay-2"); 
+                    document.getElementById("change-profile-information-overlay-container").classList.remove("visible-overlay-2");
+                    setTimeout(function(){
+                        document.getElementById("change-profile-information-overlay-container").style.zIndex = -1;/*display = "none";*/
+                    }, 1500);
                 });
                 
                 document.getElementById("update-profile-information-button-container").addEventListener("click", function(){
+                    let displayNameInput = document.getElementById("update-profile-display-name-input-container").value;
+                    let emailInput = document.getElementById("update-profile-email-input-container").value;
+                    let phoneNumberInput = document.getElementById("update-profile-phone-input-container").value;
+                    
                     currentUser.updateProfile({
-                        displayName: document.getElementById("update-profile-display-name-input-container").value,
-                        email: document.getElementById("update-profile-email-input-container").value,
-                        phoneNumber: document.getElementById("update-profile-phone-input-container").value
+                        displayName: displayNameInput,
+                        email: emailInput,
+                        phoneNumber: phoneNumberInput
                     }).then(function() {
+                        let updates = {};
+                        updates[currentUser.uid + '/name'] = displayNameInput;
+                        updates[currentUser.uid + '/email'] = emailInput;
+                        updates[currentUser.uid + '/phoneNumber'] = phoneNumberInput;
+                                    
+                        database.ref("Members").update(updates);
                         //replace the display name with the new one the member submitted
                         document.getElementById("member-profile-display-name-container").innerHTML = currentUser.displayName;
                         loadProfileUpdateModule(true); //the profile has been updated, hide the module
@@ -188,6 +389,9 @@
                     document.getElementById("blah").classList.remove("show-image-preview-container");
                     document.getElementById("change-profile-icon-overlay-container").classList.remove("expanded-preview"); 
                     document.getElementById("change-profile-icon-overlay-container").classList.remove("visible-overlay-0"); 
+                    setTimeout(function(){
+                        document.getElementById("change-profile-icon-overlay-container").style.zIndex = -1;/*display = "none";*/
+                    }, 1500);
                 });
                 
                 
@@ -252,67 +456,7 @@
                 });
                 
             });
-            
-            function loadProfileUpdateModule(forceBool){
-                if(forceBool!==null||forceBool!==undefined)profileUpdateModuleVisible = forceBool;
-                
-                if(profileUpdateModuleVisible){
-                    //if the module is open, close it and hide it
-                    document.getElementById("change-profile-information-overlay-container").classList.remove("visible-overlay-2");
-                    profileUpdateModuleVisible = false;
-                }
-                else{
-                    //otherwise open the module
-                    //reset the fields
-                    document.getElementById("update-profile-display-name-input-container").value = currentUser.displayName;
-                    document.getElementById("update-profile-email-input-container").value = currentUser.email;
-                    document.getElementById("update-profile-phone-input-container").value = currentUser.phoneNumber;
-                    
-                    //then reveal the module for member use
-                    document.getElementById("change-profile-information-overlay-container").classList.add("visible-overlay-2");
-                    
-                    //let the system know the task is complete and set the new state
-                    profileUpdateModuleVisible = true;
-                }
-                
-            }
-                       
-            function loadTokenATM(forceBool){
-                if(forceBool!==null&&forceBool!==undefined)tokenATMVisible = !forceBool;
-               // console.log(forceBool);
-                if(tokenATMVisible){
-                    //if the module is open, close it and hide it
-                    document.getElementById("token-atm-overlay-container").classList.remove("visible-overlay-2");
-                    tokenATMVisible = false;
-                }
-                else{
-                    //otherwise open the module
-                    //reveal the module for member use
-                    document.getElementById("token-atm-overlay-container").classList.add("visible-overlay-2");
-                    
-                    //let the system know the task is complete and set the new state
-                    tokenATMVisible = true;
-                }
-            }
-            
-            function handleFiles() {
-              const fileList = this.files; /* now you can work with the file list */
-                console.log(fileList);
-                if(fileList.length>0){
-                    uploadPic = fileList.item(0);
-                    uploadPicReady = true;
-                    
-                    storage = firebase.storage();
-                    document.getElementById("blah").classList.add("show-image-preview-container");
-                    document.getElementById("blah").src = URL.createObjectURL(uploadPic);
-                    document.getElementById("change-profile-icon-overlay-container").classList.add("expanded-preview");
-                }
-                else{
-                    uploadPicReady = false;
-                }
-            }
-            
-            /**/
+
         </script>
     </body>
 </html>

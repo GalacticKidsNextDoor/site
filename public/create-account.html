@@ -72,30 +72,34 @@
             
             function updateRegistryWithNewMember(memberId){ //  update the Registry with new Member, appending at position memberId
                 
-               /* database.ref('Members/' + memberId).set({   //  updating the Realtime Database 
-                    name: NewUser.email,
-                    email: NewUser.email,
-                    password: NewUser.password,
-                    tier: NewUser.tier,
-                    tierName: NewUser.tierName,
-                    profilePicture : "./media/img/profile-icon-white.png"
-                });*/
-
                 firebase.auth().createUserWithEmailAndPassword(NewUser.email, NewUser.password)
               .then((userCredential) => {
                 // Signed in 
-                
-                    database.ref('Members/' + memberId).set({   //  updating the Realtime Database 
-                        name: NewUser.email,
-                        email: NewUser.email,
-                        phoneNumber: NewUser.phone,
-                        password: NewUser.password,
-                        tier: NewUser.tier,
-                        tierName: NewUser.tierName,
-                    });
-                    
                     var user = userCredential.user;
                     console.log(user);
+                    
+                    database.ref('Members/' + user.uid).set({   //  updating the Realtime Database 
+                        name: NewUser.email,
+                        memberNum: memberId,
+                        uid: user.uid,
+                        email: NewUser.email,
+                        phoneNumber: NewUser.phone,
+                        dass: NewUser.password,
+                        tier: NewUser.tier,
+                        tierName: NewUser.tierName,
+                        productions: {
+                            0: {
+                                lastAccessed: "",
+                                name: "placeholder",
+                                target: "./profile"
+                            }
+                        },
+                        tokens: 0,
+                        verified: false,
+                        accountCreated: NewUser.accountCreated
+                    });
+                    
+                    
                 
                     //set new Member account defaults including displayName and photoURL
                     
@@ -150,7 +154,7 @@
                     acceptTerms: params.acceptTerms,
                     tier: params.tier,
                     tierName: params.tierName,
-                    stamp: new Date()
+                    accountCreated: new Date()
                 };
                 
                 console.log(NewUser);

@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Subscriptions & Payment</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Braah+One&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="./media/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./media/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./media/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="./media/img/favicon/site.webmanifest">
+    
+    <link rel="stylesheet" href="./css/payment.css" type="text/css" />
+    <script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.css" />
+</head>
+<body>
+    <input id="gknd-logo-button-container" class="loading-screen-logo-container" value="" type="button"/>
+    <input id="profile-button-container" type="button" value="" />
+    <div id="main-app-container">
+        <div id="main-scene-container" class="hidden-scene">
+            <div id="trending-list-title-container">
+                <span id="tier-name-container">Subscription</span> Tier
+            </div>
+            <div id="trending-list-post-container">
+            </div>
+        </div>
+    </div>
+    <div id="payment-details-container" class="hidden-option">
+        <form id="payment-method-form-container">
+            <input type="button" id="close-payment-form-button-container" value="x" />
+            <h2 id="payment-form-title-container">Make A Payment</h2>
+            <label class="payment-row-container">
+              Cardholder Name <input type="text" id="billing-name-input-container" class="billing-text-input-container" name="cardholderName" required />
+            </label>
+            <div class="payment-row-container" >
+                <label for="ccn">Card Number
+                <input id="ccn" class="billing-text-input-container"type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" autocomplete="cc-number" maxlength="19" placeholder="xxxx xxxx xxxx xxxx">
+                </label>
+            </div>
+            <div class="payment-row-container">
+                <label for="ccv">CCV
+                    <input id="ccv" type="tel" inputmode="numeric" maxlength="4" placeholder="xxx">
+                </label>
+                <label for="billing-expiration-month-input-container">
+                    Exp
+                    <select id="billing-expiration-month-input-container" placeholder="MM" name="billingMonth" required>
+                        <option name="" value="" style="display:none;">MM</option>
+                        <option name="January" value="01">01</option>
+                        <option name="February" value="02">02</option>
+                        <option name="March" value="03">03</option>
+                        <option name="April" value="04">04</option>
+                        <option name="May" value="05">05</option>
+                        <option name="June" value="06">06</option>
+                        <option name="July" value="07">07</option>
+                        <option name="August" value="08">08</option>
+                        <option name="September" value="09">09</option>
+                        <option name="October" value="10">10</option>
+                        <option name="November" value="11">11</option>
+                        <option name="December" value="12">12</option>
+                    </select>
+                </label>
+                /
+                <input type="tel" maxlength="2" id="billing-expiration-year-input-container" placeholder="YY" name="billingYear" required/>
+            </div>
+            <label for="billing-add-0-input-container"  class="payment-row-container">
+              Billing Address <input type="text" id="billing-add-0-input-container" class="billing-address-input-container" name="billingAddress0" placeholder="Line 1" required />
+            </label>
+            <label for="billing-add-1-input-container" class="payment-row-container">
+              <input type="text" id="billing-add-1-input-container" class="billing-address-input-container" name="billingAddress1" placeholder="Line 2"/>
+            </label>
+            <div class="payment-row-container">
+                <label for="billing-city-input-container">
+                  City <input type="text" id="billing-city-input-container" name="billingCity" required />
+                </label>
+                <label for="select-state-input-container">
+                    State <select id="select-state-input-container" name="billingState" required>
+                        <option value="AL">AL</option>
+                        <option value="AK">AK</option>
+                        <option value="AR">AR</option>
+                        <option value="AZ">AZ</option>
+                        <option value="CA">CA</option>
+                        <option value="CO">CO</option>
+                        <option value="CT">CT</option>
+                        <option value="DC">DC</option>
+                        <option value="DE">DE</option>
+                        <option value="FL">FL</option>
+                        <option value="GA">GA</option>
+                        <option value="HI">HI</option>
+                        <option value="IA">IA</option>
+                        <option value="ID">ID</option>
+                        <option value="IL">IL</option>
+                        <option value="IN">IN</option>
+                        <option value="KS">KS</option>
+                        <option value="KY">KY</option>
+                        <option value="LA">LA</option>
+                        <option value="MA">MA</option>
+                        <option value="MD">MD</option>
+                        <option value="ME">ME</option>
+                        <option value="MI">MI</option>
+                        <option value="MN">MN</option>
+                        <option value="MO">MO</option>
+                        <option value="MS">MS</option>
+                        <option value="MT">MT</option>
+                        <option value="NC">NC</option>
+                        <option value="NE">NE</option>
+                        <option value="NH">NH</option>
+                        <option value="NJ">NJ</option>
+                        <option value="NM">NM</option>
+                        <option value="NV">NV</option>
+                        <option value="NY">NY</option>
+                        <option value="ND">ND</option>
+                        <option value="OH">OH</option>
+                        <option value="OK">OK</option>
+                        <option value="OR">OR</option>
+                        <option value="PA">PA</option>
+                        <option value="RI">RI</option>
+                        <option value="SC">SC</option>
+                        <option value="SD">SD</option>
+                        <option value="TN">TN</option>
+                        <option value="TX">TX</option>
+                        <option value="UT">UT</option>
+                        <option value="VT">VT</option>
+                        <option value="VA">VA</option>
+                        <option value="WA">WA</option>
+                        <option value="WI">WI</option>
+                        <option value="WV">WV</option>
+                        <option value="WY">WY</option>
+                    </select>
+                </label>
+                <label for="billing-zip-code-input-container">
+                  Zip<input type="text" id="billing-zip-code-input-container" name="zipCode" required />
+                </label>
+            </div>
+            
+            <input type="button" value="Complete Purchase" id="make-purchase-button-container">
+        </form>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script>
+        var loggedIn, currentUser, storage, database, dbRefObject, uploadPic, TierStamp, uploadPicReady = false;
+            
+        const firebaseConfig = {
+            apiKey: "AIzaSyDb25cWx6pMmh2xt54c_G5hS_rTDzpnpKw",
+            authDomain: "galactic-kids-next-door.firebaseapp.com",
+            databaseURL: "https://galactic-kids-next-door-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "galactic-kids-next-door",
+            storageBucket: "galactic-kids-next-door.appspot.com",
+            messagingSenderId: "273360155490",
+            appId: "1:273360155490:web:a752b1c28ad6156791f23b",
+            measurementId: "G-6Z2LK6Z05H"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        
+        var trendingApps = [
+            {
+                name: "Tokens 🪙",
+                src: "",
+                bgSize: "110% auto",
+                bgPosition: "center center",
+                bgColor: "rgba(255, 255, 255, 1.0)",
+                target: "./profile",
+                color: "rgba(0, 0, 0, 1.0)",
+                type: "Subscription Tier",
+                ranking: 1,
+                price: "$9.99",
+                priceAddendum: "/30 Tokens",
+                features: [
+                    "Tokens Never Expire",
+                    "One Time Purchase",
+                    "Access Public Voice Apps",
+                    "30 Tokens ➛ 30 Tasks"
+                ]
+            },
+            {
+                name: "Creator 💻",
+                src: "",
+                bgSize: "auto 100%",
+                bgPosition: "center center",
+                bgColor: "#782dc8",
+                target: "./register",
+                color: "rgba(255,255,255,1.0)",
+                type: "Subscription Tier",
+                ranking: 2,
+                price: "$29.99",
+                priceAddendum: "/month",
+                features: [
+                    "Unlimited Tokens",
+                    "Priority Access to New Voice Apps",
+                    "Private Folder for Productions",
+                    "Tech Support"
+                ]
+            },
+            {
+                name: "Enterprise 📊",
+                src: "",
+                bgSize: "100% 100%",
+                bgPosition: "center center",
+                bgColor: "rgba(255, 255, 255, 1.0)",
+                target: "./register",
+                color: "rgba(0, 0, 0, 1.0)",
+                type: "Subscription Tier",
+                ranking: 3,
+                price: "Pay",
+                priceAddendum: "-as-you-go/month",
+                features: [
+                    "All Creator-tier Features",
+                    "Developer Access to DARIA",
+                    "Early Access to New Features"
+                ]
+            }
+        ];
+        
+       document.addEventListener("DOMContentLoaded", function(){
+                
+            firebase.auth().onAuthStateChanged((user) => {
+                currentUser = user;
+              if (currentUser) {
+                  const displayName = currentUser.displayName;
+                  const email = currentUser.email;
+                  const photoURL = currentUser.photoURL;
+                  const phoneNum = currentUser.phoneNumber;
+                  const emailVerified = currentUser.emailVerified;
+                // User is signed in, see docs for a list of available properties
+                // https://firebase.google.com/docs/reference/js/v8/firebase.User
+                var uid = currentUser.uid;
+                  console.log(`Currently signed in as ${displayName} \n
+                            email: ${email}\n
+                            verified? ${emailVerified}\n
+                            photo: ${photoURL}\n
+                            phone: ${phoneNum}\n`);
+
+                  document.getElementById("profile-button-container").style.backgroundImage = `url(${photoURL})`;
+                  loggedIn = true;
+                  
+                  //get user tier information
+                  const params = new Proxy(new URLSearchParams(window.location.search), {
+                      get: (searchParams, prop) => searchParams.get(prop),
+                    });
+
+                
+                    TierStamp = {
+                        tier: params.tier,
+                        tierName: params.name,
+                        stamp: new Date()
+                    };
+                  
+                  if(TierStamp.tier==0){
+                      //if prepaid then show the prepaid container and...
+                      document.getElementById("trending-post-1-container").classList.add("hidden-option");
+                      document.getElementById("trending-post-2-container").classList.add("hidden-option");
+                      document.getElementById("tier-name-container").innerHTML = "Prepaid";
+                      // populate the payment fields with the prepaid information
+                  }
+                  else if(TierStamp.tier==1){
+                      //if creator show the creator tier container and...
+                      document.getElementById("trending-post-0-container").classList.add("hidden-option");
+                      document.getElementById("trending-post-2-container").classList.add("hidden-option");
+                      document.getElementById("tier-name-container").innerHTML = "Unlimited";
+                      // populate the payment fields with the creator price information
+                  }
+                  else if(TierStamp.tier==2){
+                      //if enterprise show the enterprise tier container and...
+                      document.getElementById("trending-post-0-container").classList.add("hidden-option");
+                      document.getElementById("trending-post-1-container").classList.add("hidden-option");
+                      
+                      //populate the payment fields with the creator price information
+                  }
+                  
+                  //
+                   
+                // ...
+              } else {
+                // User is signed out
+                // ...
+                  loggedIn = false;
+                  console.log('no user signed in\n send to account sign in page first!');
+                  setTimeout(function(){
+                      window.location.replace("./sign-in");
+                  }, 50);
+              }
+            });
+           
+            document.getElementById("gknd-logo-button-container").addEventListener("click", function(){
+                window.location.href = "https://galactickidsnextdoor.com";
+            });
+            
+            document.getElementById("gknd-logo-button-container").classList.remove("loading-screen-logo-container");
+            document.getElementById("gknd-logo-button-container").classList.add("corner-logo-container");
+            
+            document.getElementById("main-scene-container").classList.remove("hidden-scene")
+            document.getElementById("main-scene-container").classList.add("visible-scene")
+
+            for(var appCount = 0; appCount < trendingApps.length; appCount++){
+                let counterA = appCount;
+                (function(){
+                    //console.log(trendingApps[appCount].src);
+                    let curr = document.createElement("div");
+                    let currTitle = document.createElement("div");
+                    let currPrice = document.createElement("div");
+                    let currPriceAddendum = document.createElement("span");
+                    let currFeatureBlock = document.createElement("div");
+                    let tierAccessButton = document.createElement("input");
+                    
+                    tierAccessButton.setAttribute("type", "button");
+                    tierAccessButton.classList.add("get-tier-access-button-container");
+                    tierAccessButton.setAttribute("id", `access-tier-${counterA}-button-container`);
+                    
+                    tierAccessButton.value = "Activate";
+                    
+                    if(appCount===0)tierAccessButton.value = "Buy Tokens";
+                    
+                    if(appCount===1)tierAccessButton.classList.add("most-popular-tier-highlight");
+                    
+                    currTitle.classList.add("tier-title-container");
+                    currTitle.innerText = trendingApps[counterA].name;
+                    
+                    currPrice.classList.add("tier-price-container");
+                    currPrice.innerText = trendingApps[counterA].price;
+                    
+                    currPriceAddendum.classList.add("tier-price-addendum-container");
+                    currPriceAddendum.innerText = trendingApps[counterA].priceAddendum;
+                    
+                    currPrice.appendChild(currPriceAddendum);
+                    
+                    for (var featureCount = 0; featureCount < trendingApps[counterA].features.length; featureCount++){
+                        let featureRow = document.createElement("div");
+                        let featureRowText = document.createElement("div");
+                        
+                        let checkMark = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                        checkMark.setAttribute("width", 24);
+                        checkMark.setAttribute("height", 24);
+                        checkMark.setAttribute("stroke-width", 1.5);
+                        checkMark.setAttribute("viewBox", "0 0 24 24");
+                        checkMark.setAttribute("fill", "none");
+                        //checkMark.setAttribute("xmlns","http://www.w3.org/2000/svg");
+                        checkMark.setAttribute("color","#000000");
+
+                        let checkPath = document.createElementNS('http://www.w3.org/2000/svg','path');
+                        checkPath.setAttribute("d","M5 13l4 4L19 7");
+                        checkPath.setAttribute("stroke","#06AD86");
+                        checkPath.setAttribute("stroke-width", 3)
+                        checkPath.setAttribute("stroke-linecap", "round")
+                        checkPath.setAttribute("stroke-linejoin", "round");
+
+                        checkMark.classList.add("inline-feature-item");
+                        featureRowText.classList.add("inline-feature-item");
+                        
+                        checkMark.appendChild(checkPath);
+                        featureRowText.innerText = trendingApps[counterA].features[featureCount];
+                        featureRow.appendChild(checkMark);
+                        featureRow.appendChild(featureRowText);
+                        currFeatureBlock.appendChild(featureRow);
+                    }
+                    
+                    curr.classList.add("trending-post-container");
+                    
+                    curr.setAttribute("id", `trending-post-${counterA}-container`);
+                    
+                    curr.style.backgroundColor = trendingApps[counterA].bgColor;
+                    
+                    curr.appendChild(currTitle);
+                    curr.appendChild(currPrice);
+                    curr.appendChild(tierAccessButton);
+                    curr.appendChild(currFeatureBlock);
+                    
+                    if(trendingApps[counterA].color)curr.style.color = trendingApps[counterA].color;
+                    
+                    document.getElementById("trending-list-post-container").appendChild(curr);
+                })();
+            }
+            
+           document.getElementById("close-payment-form-button-container").addEventListener("click", function(){
+                document.getElementById("payment-details-container").classList.remove("reveal-overlay");
+               document.getElementById("payment-details-container").classList.add("hidden-option");
+           });
+           
+            document.getElementById("access-tier-0-button-container").addEventListener("click", function(){
+                document.getElementById("payment-details-container").classList.remove("hidden-option");
+                document.getElementById("payment-details-container").classList.add("reveal-overlay");
+                
+                //var PaymentsUI = new firebaseui.auth.AuthUI(firebase.auth());
+            });
+            
+            document.getElementById("access-tier-1-button-container").addEventListener("click", function(){
+                document.getElementById("payment-details-container").classList.remove("hidden-option");
+                document.getElementById("payment-details-container").classList.add("reveal-overlay");
+                
+            });
+            
+            document.getElementById("access-tier-2-button-container").addEventListener("click", function(){
+                document.getElementById("payment-details-container").classList.remove("hidden-option");
+                document.getElementById("payment-details-container").classList.add("reveal-overlay");
+                
+            });
+           
+           document.getElementById("profile-button-container").addEventListener("click", function(){
+               window.location.href = "./profile";
+           })
+        });
+    </script>
+</body>
+</html>

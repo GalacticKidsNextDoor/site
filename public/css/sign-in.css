@@ -234,8 +234,8 @@ body, html, #main-app-container{
     }
     
     .corner-logo-container{
-        top: 7%;
-        left: 7%;
+        top: 5%;
+        left: 10%;
         margin: -25px 0 0 -25px;
     }
 

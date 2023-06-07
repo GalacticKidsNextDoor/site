@@ -70,7 +70,7 @@
             
             firebase.initializeApp(firebaseConfig);
             
-            function attemptLoginWithCredentials(memberId){ //  update the Registry with new Member, appending at position memberId
+            function attemptLoginWithCredentials(member){ //  update the Registry with new Member, appending at position memberId
                 
                /* database.ref('Members/' + memberId).set({   //  updating the Realtime Database 
                     name: NewUser.email,
@@ -81,7 +81,7 @@
                     profilePicture : "./media/img/profile-icon-white.png"
                 });*/
 
-                firebase.auth().signInWithEmailAndPassword(memberId.email, memberId.password)
+                firebase.auth().signInWithEmailAndPassword(member.email, member.password)
               .then((userCredential) => {
                 // Signed in 
                     
@@ -115,7 +115,7 @@
                     document.getElementById("something-went-wrong-container").style.display = "block";
                     setTimeout(function(){
                         window.location.replace("./sign-in");
-                    }, 4000);
+                    }, 3000);
                    }
                 else{
                     database = firebase.database();

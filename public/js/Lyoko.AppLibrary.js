@@ -29,6 +29,16 @@ export function AppLibrary(range){
             type: "Application",
             ranking: 2
         },
+        {
+            name: "DRONEPONG",
+            src: "./media/img/pong-logo.png",
+            bgSize: "auto 100%",
+            bgPosition: "center center",
+            target: "./dronepong",
+            color: "rgba(255,255,255,0)",
+            type: "Application",
+            ranking: 3
+        },
     ]
     if(range>fullLib.length)range=fullLib.length;
     return fullLib.slice(0, range);

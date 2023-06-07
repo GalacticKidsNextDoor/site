@@ -16,6 +16,18 @@
     <body>
         <input id="gknd-logo-button-container" class="loading-screen-logo-container" value="" type="button"/>
         <input id="profile-button-container" type="button" value="" />
+        <div id="token-button-container" class="hidden-option"></div>
+        <form id="token-atm-overlay-container">
+            <p id="token-atm-title-container">Wallet</p>
+            <div id="token-atm-icon-container"></div>
+            <div id="tier-information-container">
+                <div id="member-tier-category-container"></div>
+                <div id="token-count-container"><span id="token-num-container"></span> Tokens</div>
+            </div>
+            <input type="button" value="buy" id="buy-tokens-button-container" class="update-overlay-button-container"/>
+            <input type="button" value="activate" id="activate-creator-pass-button-container" class="update-overlay-button-container"/>
+            <input type="button" value="close" id="close-token-atm-button-container" class="update-overlay-button-container"/>
+        </form>
         <div id="main-app-container">
             <div id="success-container">
                 <div id="success-icon-container"></div>
@@ -86,6 +98,7 @@
                 }
             ];
 
+            var AppCost = 2;
             var onPersona = 0;
             var chosenVideo = null;
 
@@ -102,8 +115,50 @@
                 return id;
             }
 
-            var UserAccessGranted = false;
+            var UserAccessGranted = false, tokenATMVisible = false;
             
+            function loadTokenATM(forceBool){
+                if(forceBool!==null&&forceBool!==undefined)tokenATMVisible = !forceBool;
+               // console.log(forceBool);
+                if(tokenATMVisible){
+                    //if the module is open, close it and hide it
+                    document.getElementById("token-atm-overlay-container").classList.remove("token-atm-overlay");
+                    setTimeout(function(){
+                        document.getElementById("token-atm-overlay-container").style.zIndex = -1;/*display = "none";*/
+                    }, 1500);
+                    tokenATMVisible = false;
+                }
+                else{
+                    //otherwise open the module
+                    //reveal the module for member use
+                    document.getElementById("token-atm-overlay-container").style.display = "block";
+                    document.getElementById("token-atm-overlay-container").classList.add("token-atm-overlay");
+                    
+                    //load the number of tokens available from the database record
+                    //dbRefObject = database.ref();
+                    //let updates = {};
+                    //updates[currentUser.uid + '/lastSignIn'] = new Date();
+                        
+                    dbRefObject.child("Members").child(currentUser.uid).get().then((snapshot) => {
+                        if (snapshot.exists()) {
+                            //console.log(snapshot.val());
+                            let tokenVal = snapshot.val()["tokens"];
+                            let tierVal = snapshot.val()["tierName"];
+                            
+                            document.getElementById("member-tier-category-container").innerHTML = tierVal;
+                            document.getElementById("token-num-container").innerHTML = tokenVal;
+                            
+                        } else {
+                            console.log("No data available");
+                        }
+                    }).catch((error) => {
+                        console.error(error);
+                    });
+                    //let the system know the task is complete and set the new state
+                    tokenATMVisible = true;
+                }
+            }
+          
             document.addEventListener("DOMContentLoaded", function(){
                 firebase.auth().onAuthStateChanged((user) => {
                     currentUser = user;
@@ -115,11 +170,31 @@
                       const phoneNum = currentUser.phoneNumber;
                     // User is signed in, see docs for a list of available properties
                     // https://firebase.google.com/docs/reference/js/v8/firebase.User
-                    var uid = user.uid;
+                    var uid = currentUser.uid;
                       console.log(`Currently signed in as ${displayName} \n email: ${email}\n verified> ${emailVerified}\n photo: ${photoURL}\n phone: ${phoneNum}`);
 
                     document.getElementById("profile-button-container").style.backgroundImage = `url(${photoURL})`;
                       
+                      
+                      document.getElementById("token-button-container").classList.remove("hidden-option");
+                      
+                      document.getElementById("token-button-container").classList.remove("hidden-option");
+                     
+                      database = firebase.database();
+                      dbRefObject = database.ref();
+                     dbRefObject.child("Members").child(currentUser.uid).get().then((snapshot) => {
+                        if (snapshot.exists()) {
+                            //console.log(snapshot.val());
+                            let tokenVal = snapshot.val()["tokens"];
+
+                            document.getElementById("token-button-container").innerHTML = tokenVal;
+
+                        } else {
+                            console.log("No token data available");
+                        }
+                    }).catch((error) => {
+                        console.error(error);
+                    });
                       UserAccessGranted = true;
 
                     // ...
@@ -193,40 +268,82 @@
                     }
 
                     if(checksComplete){
-                        var messageCountRef = firebase.database().ref('AvatarSam');
-                        messageCountRef.child("customMessages").get().then(function(snapshot){
-                            if(snapshot.exists()){
-                                const data = snapshot.val();
-                                console.log(data);
-                                userId = data.length;
+                        database.ref("Members").child(currentUser.uid).get().then((snapshot) => {
+                            if (snapshot.exists()) {
+                                //console.log(snapshot.val());
+                                let tokenVal = parseInt(snapshot.val()["tokens"]);
+                                let tierVal = snapshot.val()["tierName"];
+                                let productionIndex = snapshot.val()["productionCount"]+1;
                                 
-                                firebase.database().ref('AvatarSam/customMessages/' + userId).set({
-                                    email: currentUser.email,
-                                    message: messageValue,
-                                    phone: currentUser.phoneNumber,
-                                    voiceID: onPersona,
-                                    voiceName: personas[onPersona].name
-                                }, function(error){
-                                    if (error) {
-                                        console.log("Writing failed!");
-                                        console.log(error);
-                                    }
-                                    else {
-                                        document.getElementById("success-container").style.display = "block";
-                                        setTimeout(function(){
-                                            window.location.replace("./avatar-sam-confirmation");
-                                        }, 3000);
-                                        console.log("Write succeeded!");
-                                    }
-                                });
+                                if(tokenVal>=AppCost){
+                                    let updates = {};
+                                    updates[currentUser.uid + '/tokens'] = tokenVal - AppCost;
+                                    
+                                    database.ref("Members").update(updates);
+                                    
+                                    database.ref('Members/'+currentUser.uid+'/productions/'+productionIndex).set({
+                                        applicationName: "AvatarSam",
+                                        ADemail: currentUser.email,
+                                        ADmessage: messageValue,
+                                        ADphone: currentUser.phoneNumber,
+                                        ADvoiceID: onPersona,
+                                        ADvoiceName: personas[onPersona].name,
+                                        lastAccessed: new Date(),
+                                        target: "./sam"
+                                    }, function(error){
+                                        if (error) {
+                                            console.log("Couldn't write to Member account!");
+                                            console.log(error);
+                                        }
+                                        else {
+                                            console.log("Successfully recorded production on Member account.");
+                                        }
+                                    });
+                                    
+                                    database.ref('AvatarSam/customMessages/' + currentUser.uid+"/"+productionIndex).set({
+                                        email: currentUser.email,
+                                        message: messageValue,
+                                        phone: currentUser.phoneNumber,
+                                        voiceID: onPersona,
+                                        voiceName: personas[onPersona].name
+                                    }, function(error){
+                                        if (error) {
+                                            console.log("Writing failed!");
+                                            console.log(error);
+                                        }
+                                        else {
+                                            document.getElementById("success-container").style.display = "block";
+                                            setTimeout(function(){
+                                                window.location.replace("./avatar-sam-confirmation");
+                                            }, 4000);
+                                            console.log("Write to service succeeded!");
+                                        }
+                                    });
+                                }
+                                else{
+                                    alert("2 Tokens are Required to Complete This Task!\nBuy more or Upgrade Your Account To Continue.")
+                                }
                             }
                             else{
-                                console.log("No data available");
+                                console.log("Couldn't read data");
                             }
-                        }).catch(function(error){
-                            console.error(error);
+                        }).catch((error) => {
+                            
                         });
                     }
+                });
+                
+                document.getElementById("token-button-container").addEventListener("click", function(){
+                    if(UserAccessGranted){
+                        loadTokenATM(true);
+                    }
+                    else{
+                        alert("Sign in to your account to use and manage tokens!")
+                    }
+                });
+
+                document.getElementById("close-token-atm-button-container").addEventListener("click", function(){
+                    if(UserAccessGranted)loadTokenATM(false);
                 });
             });
       </script>
