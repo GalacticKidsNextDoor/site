@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>DARIA: The Moonbase A.I.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Braah+One&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="./media/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./media/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./media/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="./media/img/favicon/site.webmanifest">
+    <link rel="stylesheet" href="./css/daria.css" type="text/css" />
+</head>
+<body>
+    <div id="main-app-container">
+        <input id="gknd-logo-button-container" class="loading-screen-logo-container" value="" type="button"/>
+        <input id="sign-in-button-container" type="button" value="" />
+        
+        <div id="main-scene-container" class="hidden-scene">
+            <div class="tech-page-section-header-container">
+                Defense Autonomous Robotic Integrated Assistant: An Embodied Swarm Powered by Lyoko
+            </div>
+            <div id="llm-ai-block-container">
+                <a id="author-0-block-container" href="./">
+                    de Goma, P-M. O.
+                </a>
+                <a id="author-1-block-container" href="./">
+                    Goma, B.
+                </a>
+            </div>
+            <div class="tech-page-section-header-container">
+                Features
+            </div>
+            <div id="main-options-block-container">
+                <button id="paper-option-block-container" class="option-block-container">
+                    Paper
+                </button>
+                <button id="demos-option-block-container" class="option-block-container">
+                    Paper
+                </button>
+            </div>
+            <div class="tech-page-section-header-container">
+                Public Apps
+            </div>
+            <div id="public-apps-block-container">
+            </div>
+            <div class="tech-page-section-header-container">
+                <a id="all-apps-link-container" href="./all-apps">Private Apps</a>
+            </div>
+            <div id="private-apps-block-container">
+            </div>
+        </div>
+    </div>
+    <script>
+        var loggedIn = false;
+        
+        document.addEventListener("DOMContentLoaded", function(){
+            
+            document.getElementById("gknd-logo-button-container").addEventListener("click", function(){
+                window.location.href = "https://galactickidsnextdoor.com";
+            });
+            
+            document.getElementById("gknd-logo-button-container").classList.remove("loading-screen-logo-container");
+            document.getElementById("gknd-logo-button-container").classList.add("corner-logo-container");
+            
+            document.getElementById("main-scene-container").classList.remove("hidden-scene")
+            document.getElementById("main-scene-container").classList.add("visible-scene")
+
+        });
+    </script>
+</body>
+</html>

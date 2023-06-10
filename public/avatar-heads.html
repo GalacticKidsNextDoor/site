@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Galactic Kids Next Door</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Braah+One&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="./media/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./media/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./media/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="./media/img/favicon/site.webmanifest">
+    <link rel="stylesheet" href="./css/store-landing-page.css" type="text/css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html, #main-app-container{
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background-image: url(./media/img/starry-sky-texture.png);
+            background-size: cover;
+        }
+
+        #main-app-container{
+            position: relative;
+            background-color: rgba(0, 0, 0, 0);
+            color: white;
+        }
+        
+        #avatar-sam-container{
+            position: absolute;
+            width: 350px;
+            height: 450px;
+            background-image: url(./media/img/kanye-head-black-and-white.png);
+            background-size: 130% auto;
+            background-repeat: no-repeat;
+            background-position: center center;
+            left: 50%;
+            top: 50%;
+            margin: -225px 0 0 -175px;
+            cursor: pointer;
+        }
+
+        #ai-loader-container{
+            position: absolute;
+            width: 355px;
+            height: 200px;
+            bottom: -15%;
+            left: 50%;
+            margin-left: -177px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="main-app-container">
+        <div id="avatar-sam-container">
+            <video id="ai-loader-container" width="240" height="135" muted autoplay loop>
+                <source src="./media/img/loading-anim.webm" type="video/webm">
+            </video>
+        </div>
+    </div>
+</body>
+</html>

@@ -20,8 +20,8 @@
             <div id="something-went-wrong-icon-container"></div>
             <p class="description-container">Redirecting Shortly...</p>
         </div>
-        <div id="profile-button-container"></div>
-        <div id="token-button-container"></div>
+        <button id="profile-button-container"></button>
+        <button id="token-button-container"></button>
         <input id="sign-out-of-profile-button-container" type="button" value="sign out" />
         <div id="logging-you-out-container">
             <p style="margin-top: 10%; font-size: 24px; line-height: 50px;">Signing You Out...</p>
@@ -229,8 +229,66 @@
                                 let currentTier = snapshot.val()["tier"];
                                 let tokenVal = snapshot.val()["tokens"];
                                 let currentTierName = snapshot.val()["tierName"];
+                                let MemberProductions = {};
+                                
+                                MemberProductions["count"] = snapshot.val()["productionCount"];
+                                MemberProductions["list"] = snapshot.val()["productions"];
                                 
                                 document.getElementById("token-button-container").innerHTML = tokenVal;
+                                
+                                
+                                if(MemberProductions["count"]>0){
+                                    for(var actuals = 0; actuals < MemberProductions["count"]+1; actuals++){
+                                        if(actuals==0)continue;
+                                        let productionContainer = document.createElement("div");
+                                        let productionTitleContainer = document.createElement("div");
+                                        let productionDateContainer = document.createElement("div");
+                                        let productionStatusContainer = document.createElement("div");
+                                        let productionCostContainer = document.createElement("div");
+                                        let productionCodeContainer = document.createElement("div");
+                                        
+                                        let appName = MemberProductions.list[actuals].applicationName;
+                                        let productionStatus = MemberProductions.list[actuals].fileStatus;
+                                        let productionCover = MemberProductions.list[actuals].ADcover;
+                                        let productionCoverSize = MemberProductions.list[actuals].ADcoverSize;
+                                        let productionCoverPos = MemberProductions.list[actuals].ADcoverPos;
+                                        let productionCoverRepeat = MemberProductions.list[actuals].ADcoverRepeat;
+                                
+                                        let productionCost = MemberProductions.list[actuals].ADtokenCost;
+                                        let productionCode = MemberProductions.list[actuals].ADtokenCode;
+                                
+                                        
+                                        productionContainer.setAttribute("id",`production-${actuals-1}-container`);
+                                        productionContainer.classList.add("production-container");
+                                        productionContainer.style.backgroundImage = `url(${productionCover})`;
+                                        productionContainer.style.backgroundSize = productionCoverSize;
+                                        productionContainer.style.backgroundPosition = productionCoverPos;
+                                        productionContainer.style.backgroundRepeat = productionCoverRepeat;
+                                        
+                                        productionTitleContainer.setAttribute("id",`production-${actuals-1}-title-container`);
+                                        productionTitleContainer.classList.add("production-title-container");
+                                        productionTitleContainer.innerHTML = appName;
+                                        
+                                        productionStatusContainer.setAttribute("id",`production-${actuals-1}-status-container`);
+                                        productionStatusContainer.classList.add("production-status-container");
+                                        productionStatusContainer.innerHTML = productionStatus;
+                                        
+                                        productionCostContainer.setAttribute("id",`production-${actuals-1}-cost-container`);
+                                        productionCostContainer.classList.add("production-cost-container");
+                                        productionCostContainer.innerHTML = productionCost;
+                                        
+                                        productionCodeContainer.setAttribute("id",`production-${actuals-1}-code-container`);
+                                        productionCodeContainer.classList.add("production-code-container");
+                                        productionCodeContainer.innerHTML = productionCode;
+                                        
+                                        productionContainer.appendChild(productionTitleContainer);
+                                        productionContainer.appendChild(productionStatusContainer);
+                                        productionContainer.appendChild(productionCostContainer);
+                                        productionContainer.appendChild(productionCodeContainer);
+                                        
+                                        document.getElementById("member-apps-container").appendChild(productionContainer);
+                                    }
+                                }
                                 
                                 if(currentTier==0&&currentTierName=="prepaid"){
                                     //document.getElementById("buy-tokens-button-container")

@@ -93,7 +93,9 @@
                     }, 50);
               })
               .catch((error) => {
-                
+                setTimeout(function(){
+                    window.location.href = "./sign-in";
+                }, 50);
                 });
             }
             

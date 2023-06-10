@@ -217,7 +217,7 @@
                 document.getElementById("gknd-logo-button-container").classList.add("corner-logo-container");
 
                 document.getElementById("previous-avatar-button-container").addEventListener("click", function(){
-                    console.log(onPersona)
+                    //console.log(onPersona)
                     if(onPersona===0){
                         onPersona = personas.length-1;
                     }
@@ -231,7 +231,7 @@
                 });
 
                 document.getElementById("next-avatar-button-container").addEventListener("click", function(){
-                    console.log(onPersona)
+                    //console.log(onPersona)
                     if(onPersona===personas.length-1){
                         onPersona = 0;
                     }
@@ -275,21 +275,31 @@
                                 let tierVal = snapshot.val()["tierName"];
                                 let productionIndex = snapshot.val()["productionCount"]+1;
                                 
+                                
                                 if(tokenVal>=AppCost){
                                     let updates = {};
+                                    let appUpdates = {};
                                     updates[currentUser.uid + '/tokens'] = tokenVal - AppCost;
+                                    updates[currentUser.uid + '/productionCount'] = productionIndex;
                                     
                                     database.ref("Members").update(updates);
-                                    
                                     database.ref('Members/'+currentUser.uid+'/productions/'+productionIndex).set({
                                         applicationName: "AvatarSam",
+                                        ADtokenCost: 2,
+                                        ADtokenCode: productionIndex+"-"+currentUser.uid,
+                                        ADcoverPos : "center center",
+                                        ADcoverRepeat :"no-repeat",
+                                        ADcover: "./media/img/avatar-sam-cover.png",
+                                        ADcoverSize: "auto 100%",
                                         ADemail: currentUser.email,
                                         ADmessage: messageValue,
                                         ADphone: currentUser.phoneNumber,
                                         ADvoiceID: onPersona,
                                         ADvoiceName: personas[onPersona].name,
                                         lastAccessed: new Date(),
-                                        target: "./sam"
+                                        origin: "./sam",
+                                        target: `./sam-msg?uid=${currentUser.uid}&pIndex=${productionIndex}`,
+                                        fileStatus: "processing"
                                     }, function(error){
                                         if (error) {
                                             console.log("Couldn't write to Member account!");
@@ -300,12 +310,19 @@
                                         }
                                     });
                                     
-                                    database.ref('AvatarSam/customMessages/' + currentUser.uid+"/"+productionIndex).set({
+                                    database.ref("AvatarSam/customMessages/"+currentUser.uid+"/"+productionIndex).set({
                                         email: currentUser.email,
                                         message: messageValue,
                                         phone: currentUser.phoneNumber,
                                         voiceID: onPersona,
-                                        voiceName: personas[onPersona].name
+                                        voiceName: personas[onPersona].name,
+                                        lastAccessed: new Date(),
+                                        origin: "./sam",
+                                        target: `./sam-msg?uid=${currentUser.uid}&pIndex=${productionIndex}`,
+                                        fileStatus: "processing",
+                                        orderAge: "BRANDNEW!",
+                                        tokenCost: 2,
+                                        tokenCode: productionIndex+"-"+currentUser.uid,
                                     }, function(error){
                                         if (error) {
                                             console.log("Writing failed!");
@@ -321,7 +338,7 @@
                                     });
                                 }
                                 else{
-                                    alert("2 Tokens are Required to Complete This Task!\nBuy more or Upgrade Your Account To Continue.")
+                                    alert("2 Tokens are Required to Complete This Task!\nBuy More Tokens or Upgrade To Unlimited To Continue.")
                                 }
                             }
                             else{

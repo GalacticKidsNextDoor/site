@@ -25,6 +25,15 @@ body, html, #main-app-container{
     opacity: 1.0;
 }
 
+#all-apps-link-container:link, all-apps-link-container:visited{
+    text-decoration: none;
+    color: white;
+}
+
+#all-apps-link-container:hover{
+    font-style: italic;
+    color: salmon;
+}
 
 #sign-in-button-container{
     position: absolute;
@@ -221,6 +230,27 @@ body, html, #main-app-container{
     display: block;
     width: 90%;
     margin: 2% auto;
+}
+
+.llm-block-container{
+    font-family: "Braah One", sans-serif;
+    font-size: 22px;
+    display: block;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.llm-block-container:link, .llm-block-container:visited{
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    transition: margin 0.25s, font-size 0.25s, font-style 0.25s;
+}
+
+.llm-block-container:hover{
+    color: salmon;
+    font-style: italic;
+    font-size: 26px;
 }
 
 .tier-title-container{

@@ -12,13 +12,123 @@
     <link rel="icon" type="image/png" sizes="16x16" href="./media/img/favicon/favicon-16x16.png">
     <link rel="manifest" href="./media/img/favicon/site.webmanifest">
     <link rel="stylesheet" href="./css/avatar-sam-confirmation-page.css" type="text/css" />
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
     <script>
+        var storage, database, dbRefObject, currentUser;
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDb25cWx6pMmh2xt54c_G5hS_rTDzpnpKw",
+            authDomain: "galactic-kids-next-door.firebaseapp.com",
+            databaseURL: "https://galactic-kids-next-door-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "galactic-kids-next-door",
+            storageBucket: "galactic-kids-next-door.appspot.com",
+            messagingSenderId: "273360155490",
+            appId: "1:273360155490:web:a752b1c28ad6156791f23b",
+            measurementId: "G-6Z2LK6Z05H"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+
         var chosenVideo = null;
-          
+        var UserAccessGranted = false, tokenATMVisible = false;
+            
+        function loadTokenATM(forceBool){
+            if(forceBool!==null&&forceBool!==undefined)tokenATMVisible = !forceBool;
+           // console.log(forceBool);
+            if(tokenATMVisible){
+                //if the module is open, close it and hide it
+                document.getElementById("token-atm-overlay-container").classList.remove("token-atm-overlay");
+                setTimeout(function(){
+                    document.getElementById("token-atm-overlay-container").style.zIndex = -1;/*display = "none";*/
+                }, 1500);
+                tokenATMVisible = false;
+            }
+            else{
+                //otherwise open the module
+                //reveal the module for member use
+                document.getElementById("token-atm-overlay-container").style.display = "block";
+                document.getElementById("token-atm-overlay-container").classList.add("token-atm-overlay");
+
+                //load the number of tokens available from the database record
+                //dbRefObject = database.ref();
+                //let updates = {};
+                //updates[currentUser.uid + '/lastSignIn'] = new Date();
+
+                dbRefObject.child("Members").child(currentUser.uid).get().then((snapshot) => {
+                    if (snapshot.exists()) {
+                        //console.log(snapshot.val());
+                        let tokenVal = snapshot.val()["tokens"];
+                        let tierVal = snapshot.val()["tierName"];
+
+                        document.getElementById("member-tier-category-container").innerHTML = tierVal;
+                        document.getElementById("token-num-container").innerHTML = tokenVal;
+
+                    } else {
+                        console.log("No data available");
+                    }
+                }).catch((error) => {
+                    console.error(error);
+                });
+                //let the system know the task is complete and set the new state
+                tokenATMVisible = true;
+            }
+        }
+        
         document.addEventListener("DOMContentLoaded", function(){
+            firebase.auth().onAuthStateChanged((user) => {
+                currentUser = user;
+                if (currentUser) {
+                    const displayName = currentUser.displayName;
+                    const email = currentUser.email;
+                    const photoURL = currentUser.photoURL;
+                    const emailVerified = currentUser.emailVerified;
+                    const phoneNum = currentUser.phoneNumber;
+                    // User is signed in, see docs for a list of available properties
+                    // https://firebase.google.com/docs/reference/js/v8/firebase.User
+                    var uid = currentUser.uid;
+                  
+                    console.log(`Currently signed in as ${displayName} \n email: ${email}\n verified> ${emailVerified}\n photo: ${photoURL}\n phone: ${phoneNum}`);
+
+                    document.getElementById("profile-button-container").style.backgroundImage = `url(${photoURL})`;
+
+                    document.getElementById("user-email-container").innerHTML = email;
+                    document.getElementById("token-button-container").classList.remove("hidden-option");
+
+                    document.getElementById("token-button-container").classList.remove("hidden-option");
+
+                    database = firebase.database();
+                    dbRefObject = database.ref();
+                    dbRefObject.child("Members").child(currentUser.uid).get().then((snapshot) => {
+                        if (snapshot.exists()) {
+                            //console.log(snapshot.val());
+                            let tokenVal = snapshot.val()["tokens"];
+                            document.getElementById("token-button-container").innerHTML = tokenVal;
+                        } else {
+                            console.log("No token data available");
+                        }
+                    }).catch((error) => {
+                        console.error(error);
+                    });
+                    
+                    UserAccessGranted = true;
+              }
+                else { 
+                    UserAccessGranted = false;
+                    setTimeout(function(){
+                        window.location.replace = "https://galactickidsnextdoor.com/sam";
+                    }, 50);
+                }
+            });
+            
+            document.getElementById("profile-button-container").addEventListener("click", function(){
+                window.location.href = "./profile";
+            });
             
             document.getElementById("gknd-logo-button-container").addEventListener("click", function(){
-                window.location.href = "https://galactickidsnextdoor.com";
+                window.location.href = "https://galactickidsnextdoor.com/";
             });
             
             document.getElementById("gknd-logo-button-container").classList.remove("loading-screen-logo-container");
@@ -38,24 +148,27 @@
     </head>
     <body>
         <input id="gknd-logo-button-container" class="loading-screen-logo-container" value="" type="button"/>
-        <input id="profile-button-container" type="button" value="" />
+        <button id="profile-button-container"></button>
+        <button id="token-button-container"></button>
         <div id="main-app-container">
             <div id="confirmation-update-container">
                 <div id="confirmation-title-container">
-                    <p>Your File Is Being Processed</p>
+                    <p>Preparing Task</p>
                 </div>
                 <div id="success-container">
                     <div id="success-icon-container"></div>
                     <div id="success-label-container">
-                        <p>Sending to <span id="user-email-container"></span></p>
-                        <a href="./faq" target="_blank" id="eta-faq-link-container">ETA &lt;1 hour</a>
+                        <p>Finalizing Content Review...</p>
+                        <p>File Will Be Emailed To:</p>
+                        <p id="user-email-container"></p>
+                        <a href="./faq" target="_blank" id="eta-faq-link-container">ETA 1 hour or less</a>
                     </div>
                 </div>
                 <video id="ai-loader-container" width="240" height="135" muted autoplay loop>
                     <source src="./media/img/loading-anim.webm" type="video/webm">
                 </video>
                 <div id="confirmation-subtitle-container">
-                    <p>And Will Be Emailed To You When Ready</p>
+                    <p>Your File Will Be Emailed To You When Ready</p>
                 </div>
             </div>
         </div>

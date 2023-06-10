@@ -175,6 +175,40 @@ body, html, #main-app-container{
     height: 60px;
 }
 
+#token-button-container{
+    z-index: 100;
+    position: absolute;
+    display: block;
+    right: 4%;
+    top: calc(3% + 75px);
+    border: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 18px;
+    line-height: 50px;
+    color: black;
+    font-weight: 400;
+    font-family: "Braah One";
+    cursor: pointer;
+    outline: none;
+    background-image: url(../media/img/token-icon.png);
+    background-color: rgba(255, 255, 255, 0);
+    background-position: center;
+    background-size: auto 160%;
+    background-repeat: no-repeat;
+    transition: background-size 0.25s, background-color 0.25s, width 0.25s, height 0.25s, font-size 0.25s;
+}
+
+#token-button-container:hover{
+    background-size: auto 190%;
+    background-color: rgba(255, 255, 255, 0);
+    width: 60px;
+    height: 60px;
+    font-size: 22px;
+}
+
 #avatar-sam-container, #avatar-sam-1-container{
     position: relative; /*absolute;*/
     width: 350px;
@@ -211,13 +245,13 @@ body, html, #main-app-container{
 
 #success-container{
     font-family: "Braah One", sans-serif;
-    width: 205px;
+    width: 100%;
     height: 300px;
     position: absolute;
     top: 50%;
     left: 50%;
     z-index: 101;
-    margin: -100px 0 0 -100px;
+    margin: -150px 0 0 -50%;
     display: none;
 }
 
@@ -253,8 +287,8 @@ body, html, #main-app-container{
     top: 50%;
     left: 50%;
     width: 350px;
-    height: 350px;
-    margin: -175px 0 0 -175px;
+    height: 450px;
+    margin: -225px 0 0 -175px;
 }
 
 @media only screen and (max-width: 640px){
