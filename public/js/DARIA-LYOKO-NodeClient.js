@@ -125,10 +125,14 @@ class Senses{
   Cognition(prompt, action){
     let meaningInput = prompt;
     let prefix;
+      let responseContainer = document.getElementById("special-hand-tracking-box-container")
     if(action){
       if(action==="read"){
         //console.log(meaningInput);
-        document.getElementById("special-hand-tracking-box-container").innerText += meaningInput;
+        let currResp = responseContainer.innerHTML;
+        currResp = currResp + "<p>" + meaningInput + "</p>";
+        responseContainer = currResp;
+          
         if(meaningInput.length>10){// avg length of word in English is 4.7 characters, search terms fo interest are 5 characters or less (four for the owrd, one for the space after it)
           prefix = meaningInput.substring(0,4);
           if(prefix==="find"){
@@ -143,6 +147,8 @@ class Senses{
                 case "ARE ANY HONEY POT TARGETS WITHIN A THIRTY MILE RADIUS OF THE HOUSE":
                 case "ARE ANY HONEYPOT TARGETS WITHIN A THIRTY MILE RADIUS OF THE HOUSE?":
                 case "ARE ANY HONEYPOT TARGETS WITHIN A THIRTY MILE RADIUS OF THE HOUSE?":
+                    currResp += "<p>Yes. Would you like me to list them?</p>";
+                    responseContainer.innerHTML = currResp;
                     console.log("YES. WOULD YOU LIKE ME TO LIST THEM?");
                     break;
                 case "IF THEY ARE LOCATED WITHIN A MILE OF THE HOUSE PRODUCE A TABLE INCLUDING THEIR LAST LOGGED LOCATION, WHETHER OR NOT THEY WERE IN A VEHICLE, AND IF SO WHAT THE MAKE/MODEL/YEAR OF THE VEHICLE IS.":
@@ -151,17 +157,25 @@ class Senses{
                 case "IF THEY ARE LOCATED WITHIN ONE MILE OF THE HOUSE PRODUCE A TABLE INCLUDING THEIR LAST LOGGED LOCATION, WHETHER OR NOT THEY WERE IN A VEHICLE, AND IF SO WHAT THE MAKE/MODEL/YEAR OF THE VEHICLE IS":
                 case "IF THEY ARE LOCATED WITHIN 1 MILE OF THE HOUSE PRODUCE A TABLE INCLUDING THEIR LAST LOGGED LOCATION, WHETHER OR NOT THEY WERE IN A VEHICLE, AND IF SO WHAT THE MAKE/MODEL/YEAR OF THE VEHICLE IS.":
                 case "IF THEY ARE LOCATED WITHIN 1 MILE OF THE HOUSE PRODUCE A TABLE INCLUDING THEIR LAST LOGGED LOCATION, WHETHER OR NOT THEY WERE IN A VEHICLE, AND IF SO WHAT THE MAKE/MODEL/YEAR OF THE VEHICLE IS":
-                    console.log("OK");
+                    currResp += "<p>OK.</p>";
+                    responseContainer.innerHTML = currResp;
+                    console.log("OK.");
                     console.log("[PRODUCES A TABLE WITH 2 PEOPLE WITHIN ONE MILE]");
                     break;
                 case "FOR EVERYONE ELSE SIMPLY PROVIDE THEIR NAME AND LATEST ACCOUNT":
+                    currResp += "<p>Yes. Would you like me to list them?</p>";
+                    responseContainer.innerHTML = currResp;
                     console.log("OK");
                     console.log("[PRODUCES ANOTHER TABLE WITH 6 PEOPLE TOTAL INCLUDING THE 2 ABOVE]");
                     break;
                 case "HOW MANY CELLS ARE AVAILABLE IN THE PARK?":
-                    console.log("TWO. ONE IN THE AIR, ONE ON THE GROUND.");
+                    currResp += "<p>Two. One in the air; one on the ground.</p>";
+                    responseContainer.innerHTML = currResp;
+                    console.log("TWO. ONE IN THE AIR; ONE ON THE GROUND.");
                     break;
                 case "HOW MANY NODES ARE CONNECTED ON THE GROUND?":
+                    currResp += "<p>Two of the four nodes are connected to their charging ports.</p>";
+                    responseContainer.innerHTML = currResp;
                     console.log("TWO OF THE FOUR NODES ARE CONNECTED TO THEIR CHARGING PORTS.");
                     break;
                 case "OK RUN A SWEEP OF THE NEIGHBORHOOD USING THE CELL IN THE AIR AND EXPORT THE DATA TO FOUR DIFFERENT .CELL FILES: ONE SHOWING ABSOLUTE MOTION, ANOTHER SHOWING RELATIVE MOTION, ANOTHER TRACKING AND IDENTIFYING ALL VEHICLES, AND THE LAST WITH THE TRADITIONAL CAMERA VIEW IN 4K 60FPS.":
@@ -172,9 +186,14 @@ class Senses{
                     console.log("SENDING TASK TO CELL…");
                     console.log("EXPECTED FLIGHT DURATION IS 30 MINUTES.");
                     console.log("TASK RECEIVED. NAVIGATE TO THIS LINK TO VIEW A LIVE FEED. FILES WILL BE EMAILED TO YOU ONCE COMPLETE.");
+                    
+                    currResp += "<p>OK. Preparing SWEEP. Task is in queue.</p>";
+                    responseContainer.innerHTML = currResp;
                     break;
                 default:
-                    console.log("I AM SORRY. PLEASE TRY THAT QUERY AGAIN I DID NOT UNDERSTAND.");
+                    currResp += "<p>I am sorry. Please try querying again I did not understand.</p>";
+                    responseContainer.innerHTML = currResp;
+                    console.log("I AM SORRY. PLEASE TRY QUERYING AGAIN I DID NOT UNDERSTAND.");
                     break;
             }
         }

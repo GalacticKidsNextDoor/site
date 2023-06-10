@@ -210,7 +210,10 @@ window.addEventListener('load', function(){
   });
 
   document.getElementById("toggle-handtracking-button-container").addEventListener("click", function(){
-      let trackerNowOpen = document.getElementById("special-hand-tracking-box-container").classList.toggle("special-tracker-open");
-      console.log(`tracker open? ${trackerNowOpen}`);
+      document.getElementById("special-hand-tracking-box-container").style.display = "block";
+      setTimeout(function(){
+          let trackerNowOpen = document.getElementById("special-hand-tracking-box-container").classList.toggle("special-tracker-open");
+          console.log(`tracker open? ${trackerNowOpen}`);
+      }, 50);
   });
 });
