@@ -63,7 +63,8 @@ class Senses{
       ]
     }
   }
-  processWrittenText(prompt, phrase){
+  
+    processWrittenText(prompt, phrase){
     let textMeaningInput = prompt;
     let urlMatchCheckString = textMeaningInput.replace(/\s/g,'-');
     if(phrase==urlMatchCheckString){
@@ -72,7 +73,8 @@ class Senses{
         //console.log("match: ",phrase);
     }
   }
-  toggleSenses(senseNum){
+  
+    toggleSenses(senseNum){
     switch(senseNum){
       case 0:
         if(this.Vision.on){
@@ -122,23 +124,43 @@ class Senses{
         break;
       }
   }
-  Cognition(prompt, action){
-    let meaningInput = prompt;
-    let prefix;
-      let responseContainer = document.getElementById("special-hand-tracking-box-container")
-    if(action){
-      if(action==="read"){
-        //console.log(meaningInput);
-        let currResp = responseContainer.innerHTML;
-        currResp = currResp + "<p>" + meaningInput + "</p>";
-        responseContainer = currResp;
+    /*contextWindow(){
+        
+    }*/
+    Cognition(prompt, action){
+        let meaningInput = prompt;
+        let prefix, currResp, fullConv, responseContainer = document.getElementById("special-hand-tracking-box-container");
+        if(action){
+            if(action==="read"){
+                if(this.workingMemory.active){
+                    currResp = this.workingMemory.stream[0]+meaningInput; // the entire conversation so far
+                    let lastResp = this.workingMemory.stream[1];
+                    this.workingMemory.stream.push(lastResp);
+                    this.workingMemory.stream[1] = "";
+                    console.log(this.workingMemory.stream);
+                } else{
+                    currResp = "<p class='member-query-line-container'>" + meaningInput + "</p>";
+                    this.workingMemory.stream.push(currResp); // 0 - what the member said and how DARIA replies, currently only includes the members queries
+                    this.workingMemory.stream.push(""); //the header for DARIA's response
+                    this.workingMemory.active = true;
+                }
+            prefix = meaningInput.substring(0,4);
+            if(prefix==="find"){
+              this.Cognition(meaningInput.substring(5), "searchFor");
           
-        if(meaningInput.length>10){// avg length of word in English is 4.7 characters, search terms fo interest are 5 characters or less (four for the owrd, one for the space after it)
-          prefix = meaningInput.substring(0,4);
-          if(prefix==="find"){
-            this.Cognition(meaningInput.substring(5), "searchFor");
-          }
+          } 
+                meaningInput = meaningInput.toUpperCase();
             switch(meaningInput){
+                case "ARE THERE ANY HONEYPOT TARGETS WITHIN 30 MILES OF THE HOUSE?":
+                case "ARE THERE ANY HONEY POT TARGETS WITHIN 30 MILES OF THE HOUSE?":
+                case "ARE THERE ANY HONEYPOT TARGETS WITHIN THIRTY MILES OF THE HOUSE?":
+                case "ARE THERE ANY HONEYPOT TARGETS WITHIN THIRTY MILES OF THE HOUSE?":
+                case "ARE THERE ANY HONEYPOT TARGETS WITHIN A 30 MILE RADIUS OF THE HOUSE?":
+                case "ARE THERE ANY HONEYPOT TARGETS WITHIN A 30 MILE RADIUS OF THE HOUSE":
+                case "ARE THERE ANY HONEYPOT TARGETS WITHIN A THIRTY MILE RADIUS OF THE HOUSE?":
+                case "ARE THERE ANY HONEYPOT TARGETS WITHIN A THIRTY MILE RADIUS OF THE HOUSE":
+                case "ARE ANY HONEYPOT TARGETS WITHIN 30 MILES OF THE HOUSE?":
+                case "ARE ANY HONEYPOT TARGETS WITHIN 30 MILES OF THE HOUSE":
                 case "ARE ANY HONEYPOT TARGETS WITHIN A 30 MILE RADIUS OF THE HOUSE?":
                 case "ARE ANY HONEYPOT TARGETS WITHIN A 30 MILE RADIUS OF THE HOUSE":
                 case "ARE ANY HONEY POT TARGETS WITHIN A 30 MILE RADIUS OF THE HOUSE?":
@@ -147,36 +169,81 @@ class Senses{
                 case "ARE ANY HONEY POT TARGETS WITHIN A THIRTY MILE RADIUS OF THE HOUSE":
                 case "ARE ANY HONEYPOT TARGETS WITHIN A THIRTY MILE RADIUS OF THE HOUSE?":
                 case "ARE ANY HONEYPOT TARGETS WITHIN A THIRTY MILE RADIUS OF THE HOUSE?":
-                    currResp += "<p>Yes. Would you like me to list them?</p>";
-                    responseContainer.innerHTML = currResp;
+                    fullConv = currResp;
+                    currResp = "<p class='daria-response-line-container'>[D] Yes. Would you like me to list them?</p>";
+                    this.workingMemory.stream[0] += currResp;
+                    this.workingMemory.stream[1] += currResp;
+                    
+                    fullConv += currResp;
+                    responseContainer.innerHTML += fullConv;
                     console.log("YES. WOULD YOU LIKE ME TO LIST THEM?");
                     break;
+                case "IF THEY ARE NEARBY":
+                case "IF THEY ARE CLOSE":
+                case "IF THEY ARE CLOSE BY":
+                case "IF THEY ARE CLOSE ENOUGH":
+                case "ONLY IF THEY ARE CLOSE":
+                case "ONLY IF THEY ARE CLOSE BY":
+                    fullConv = currResp;
+                    currResp = "<p class='daria-response-line-container'>[D] How close? I can set up a radius.</p>";
+                    this.workingMemory.stream[0] += currResp;
+                    this.workingMemory.stream[1] += currResp;
+                    
+                    fullConv += currResp;
+                    responseContainer.innerHTML += fullConv;
+                    console.log("[D] How close? I can set up a radius.");
+                    break;
+                case "ARE THERE ANY HONEYPOT TARGETS WITHIN A MILE OF THE HOUSE?":
+                case "ARE THERE ANY HONEYPOT TARGETS WITHIN A MILE OF THE HOUSE":
+                case "ARE THERE ANY HONEYPOT TARGETS WITHIN ONE MILE OF THE HOUSE?":
+                case "ARE THERE ANY HONEYPOT TARGETS WITHIN ONE MILE OF THE HOUSE":
+                case "ARE THERE ANY HONEYPOT TARGETS WITHIN 1 MILE OF THE HOUSE?":
+                case "ARE THERE ANY HONEYPOT TARGETS WITHIN 1 MILE OF THE HOUSE":
+                case "ARE ANY HONEYPOT TARGETS WITHIN A MILE OF THE HOUSE?":
+                case "ARE ANY HONEYPOT TARGETS WITHIN A MILE OF THE HOUSE":
+                case "ARE ANY HONEYPOT TARGETS WITHIN 1 MILE OF THE HOUSE?":
+                case "ARE ANY HONEYPOT TARGETS WITHIN 1 MILE OF THE HOUSE":
+                case "ARE ANY HONEYPOT TARGETS WITHIN ONE MILE OF THE HOUSE?":
+                case "ARE ANY HONEYPOT TARGETS WITHIN ONE MILE OF THE HOUSE":
+                case "IF THEY ARE WITHIN A MILE OF THE HOUSE PRODUCE A TABLE INCLUDING THEIR LAST LOGGED LOCATION, WHETHER OR NOT THEY WERE IN A VEHICLE, AND IF SO WHAT THE MAKE/MODEL/YEAR OF THE VEHICLE IS.":
+                case "IF THEY ARE WITHIN A MILE OF THE HOUSE PRODUCE A TABLE WITH THEIR LAST LOGGED LOCATION, WHETHER OR NOT THEY WERE IN A VEHICLE, AND IF SO WHAT THE MAKE/MODEL/YEAR OF THE VEHICLE IS.":
+                case "IF THEY ARE WITHIN A MILE OF THE HOUSE PRODUCE A TABLE WITH THEIR LAST LOGGED LOCATION, WHETHER OR NOT THEY WERE IN A VEHICLE, AND IF SO WHAT KIND OF VEHICLE IS":
+                case "IF THEY ARE WITHIN A MILE OF THE HOUSE PRODUCE A TABLE WITH THEIR LAST LOGGED LOCATION, WHETHER OR NOT THEY WERE IN A VEHICLE, AND IF SO WHAT KIND OF VEHICLE IS":
+                case "IF THEY ARE WITHIN A MILE OF THE HOUSE PRODUCE A TABLE WITH THEIR LAST LOGGED LOCATION, WHETHER OR NOT THEY WERE IN A VEHICLE, AND IF SO WHAT KIND":
+                case "IF THEY ARE WITHIN A MILE OF THE HOUSE PRODUCE A TABLE WITH THEIR LAST LOGGED LOCATION, WHETHER OR NOT THEY WERE IN A VEHICLE, AND IF SO WHAT KIND?":
+                case "IF THEY ARE WITHIN A MILE OF THE HOUSE PRODUCE A TABLE WITH THEIR LAST LOGGED LOCATION, WHETHER OR NOT THEY WERE IN A VEHICLE AND IF SO WHAT KIND":
+                case "IF THEY ARE WITHIN A MILE OF THE HOUSE PRODUCE A TABLE WITH THEIR LAST LOGGED LOCATION, WHETHER OR NOT THEY WERE IN A VEHICLE AND IF SO WHAT KIND?":
                 case "IF THEY ARE LOCATED WITHIN A MILE OF THE HOUSE PRODUCE A TABLE INCLUDING THEIR LAST LOGGED LOCATION, WHETHER OR NOT THEY WERE IN A VEHICLE, AND IF SO WHAT THE MAKE/MODEL/YEAR OF THE VEHICLE IS.":
                 case "IF THEY ARE LOCATED WITHIN A MILE OF THE HOUSE PRODUCE A TABLE INCLUDING THEIR LAST LOGGED LOCATION, WHETHER OR NOT THEY WERE IN A VEHICLE, AND IF SO WHAT THE MAKE/MODEL/YEAR OF THE VEHICLE IS":
                 case "IF THEY ARE LOCATED WITHIN ONE MILE OF THE HOUSE PRODUCE A TABLE INCLUDING THEIR LAST LOGGED LOCATION, WHETHER OR NOT THEY WERE IN A VEHICLE, AND IF SO WHAT THE MAKE/MODEL/YEAR OF THE VEHICLE IS.":
                 case "IF THEY ARE LOCATED WITHIN ONE MILE OF THE HOUSE PRODUCE A TABLE INCLUDING THEIR LAST LOGGED LOCATION, WHETHER OR NOT THEY WERE IN A VEHICLE, AND IF SO WHAT THE MAKE/MODEL/YEAR OF THE VEHICLE IS":
                 case "IF THEY ARE LOCATED WITHIN 1 MILE OF THE HOUSE PRODUCE A TABLE INCLUDING THEIR LAST LOGGED LOCATION, WHETHER OR NOT THEY WERE IN A VEHICLE, AND IF SO WHAT THE MAKE/MODEL/YEAR OF THE VEHICLE IS.":
                 case "IF THEY ARE LOCATED WITHIN 1 MILE OF THE HOUSE PRODUCE A TABLE INCLUDING THEIR LAST LOGGED LOCATION, WHETHER OR NOT THEY WERE IN A VEHICLE, AND IF SO WHAT THE MAKE/MODEL/YEAR OF THE VEHICLE IS":
-                    currResp += "<p>OK.</p>";
-                    responseContainer.innerHTML = currResp;
-                    console.log("OK.");
+                    fullConv = currResp;
+                    currResp = "<p class='daria-response-line-container'>[D] Here is a table of Flagged Users including their last logged location and vehicle information:</p>";
+                    this.workingMemory.stream[0] += currResp;
+                    this.workingMemory.stream[1] += currResp;
+                    
+                    responseContainer.innerHTML = fullConv + currResp;
+                    console.log("[D] Here is a table of Flagged Users including their last logged location and vehicle information:");
                     console.log("[PRODUCES A TABLE WITH 2 PEOPLE WITHIN ONE MILE]");
                     break;
                 case "FOR EVERYONE ELSE SIMPLY PROVIDE THEIR NAME AND LATEST ACCOUNT":
-                    currResp += "<p>Yes. Would you like me to list them?</p>";
-                    responseContainer.innerHTML = currResp;
+                    fullConv = currResp;
+                    currResp = "<p class='daria-response-line-container'>[D] OK.</p>";
+                    responseContainer.innerHTML += currResp;
                     console.log("OK");
                     console.log("[PRODUCES ANOTHER TABLE WITH 6 PEOPLE TOTAL INCLUDING THE 2 ABOVE]");
                     break;
                 case "HOW MANY CELLS ARE AVAILABLE IN THE PARK?":
-                    currResp += "<p>Two. One in the air; one on the ground.</p>";
-                    responseContainer.innerHTML = currResp;
-                    console.log("TWO. ONE IN THE AIR; ONE ON THE GROUND.");
+                    currResp += "<p class='daria-response-line-container'>[D] Two. One in the air; one on the ground.</p>";
+                    responseContainer.innerHTML += currResp;
+                    console.log("[D] Two. One in the air; one on the ground.");
                     break;
                 case "HOW MANY NODES ARE CONNECTED ON THE GROUND?":
-                    currResp += "<p>Two of the four nodes are connected to their charging ports.</p>";
-                    responseContainer.innerHTML = currResp;
-                    console.log("TWO OF THE FOUR NODES ARE CONNECTED TO THEIR CHARGING PORTS.");
+                    currResp += "<p class='daria-response-line-container'>[D] Two of the four nodes are connected to their charging ports.</p>";
+                    responseContainer.innerHTML += currResp;
+                    console.log("[D] Two of the four nodes are connected to their charging ports.");
                     break;
                 case "OK RUN A SWEEP OF THE NEIGHBORHOOD USING THE CELL IN THE AIR AND EXPORT THE DATA TO FOUR DIFFERENT .CELL FILES: ONE SHOWING ABSOLUTE MOTION, ANOTHER SHOWING RELATIVE MOTION, ANOTHER TRACKING AND IDENTIFYING ALL VEHICLES, AND THE LAST WITH THE TRADITIONAL CAMERA VIEW IN 4K 60FPS.":
                 case "OK RUN A SWEEP OF THE NEIGHBORHOOD USING THE CELL IN THE AIR AND EXPORT THE DATA TO FOUR DIFFERENT .CELL FILES: ONE SHOWING ABSOLUTE MOTION, ANOTHER SHOWING RELATIVE MOTION, ANOTHER TRACKING AND IDENTIFYING ALL VEHICLES, AND THE LAST WITH THE TRADITIONAL CAMERA VIEW IN 4K 60FPS":
@@ -186,17 +253,22 @@ class Senses{
                     console.log("SENDING TASK TO CELL…");
                     console.log("EXPECTED FLIGHT DURATION IS 30 MINUTES.");
                     console.log("TASK RECEIVED. NAVIGATE TO THIS LINK TO VIEW A LIVE FEED. FILES WILL BE EMAILED TO YOU ONCE COMPLETE.");
-                    
-                    currResp += "<p>OK. Preparing SWEEP. Task is in queue.</p>";
-                    responseContainer.innerHTML = currResp;
+                    fullConv = currResp;
+                    currResp = "<p class='daria-query-line-container'>OK. Preparing SWEEP. Task is in queue.</p>";
+                    this.workingMemory.stream[0] += currResp;
+                    this.workingMemory.stream[1] += currResp;
+                    responseContainer.innerHTML = fullConv + currResp;
                     break;
                 default:
-                    currResp += "<p>I am sorry. Please try querying again I did not understand.</p>";
-                    responseContainer.innerHTML = currResp;
+                    fullConv = currResp;
+                    currResp = "<p class='daria-response-line-container'>[D] I am sorry. Please try querying again I did not understand.</p>";
+                    this.workingMemory.stream[0] += currResp;
+                    this.workingMemory.stream[1] += currResp;
+                    
+                    responseContainer.innerHTML = fullConv + currResp;
                     console.log("I AM SORRY. PLEASE TRY QUERYING AGAIN I DID NOT UNDERSTAND.");
                     break;
-            }
-        }
+}
       }
       else if(action==="searchFor"){
         for(var i=0; i<this.longTermMemory["lyoko-blockchain"].length; i++){

@@ -1,8 +1,8 @@
-@font-face{
-    font-family:"AuraRegular W05 Regular";
+/*@font-face{
+    font-family: "AuraRegular W05 Regular";
     src: url("../css/Fonts/d83d08da-5e79-48df-a9b1-6f5acf78cb00.eot?#iefix");
     src: url("../css/Fonts/d83d08da-5e79-48df-a9b1-6f5acf78cb00.eot?#iefix") format("eot"),url("../css/Fonts/92d5ad9f-b979-4d9b-8608-e7bef993c281.woff2") format("woff2"),url("../css/Fonts/48665d19-aff2-4022-aa29-5f4afa40c8af.woff") format("woff"),url("../css/Fonts/27cf9724-1c32-4032-b145-f082ef3ddb21.ttf") format("truetype");
-}
+}*/
 
 * {
     margin: 0;
@@ -86,6 +86,8 @@ body, html{
 }
 
 #special-hand-tracking-box-container{
+    font-size: 12px;
+    letter-spacing: 2px;
     display: none;
     position: absolute;
     bottom: 5%;
@@ -100,13 +102,23 @@ body, html{
     transition: height 0.5s, opacity 0.5s;
 }
 
+.member-query-line-container{
+    /*font-family: "Braah One", sans-serif;*/
+    padding-left: 3%;
+}
+
+.daria-response-line-container{
+    color: greenyellow;
+    transition: width 0.25s;
+}
+
 .special-tracker-open{;
     height: 300px !important;
     opacity: 1.0 !important;
 }
 
 #main-scene-header-container, #daria-dia-header-container{
-  font-family: "AuraRegular W05 Regular", Fallback, sans-serif;
+  font-family: "Braah One", sans-serif;/*font-family: "AuraRegular W05 Regular", "Braah One", sans-serif;*/
   width: 100%;
   height: 50px;
   line-height: 50px;
