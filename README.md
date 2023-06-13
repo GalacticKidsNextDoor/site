@@ -2,17 +2,23 @@
 
 _for earth_
 
-using language as a "browser"
+using language as a "browser" and the world as your desktop
 
-The **_Galactic Kids Next Door_** is an organization dedicated to the protection of childkind across the galaxy. Operatives are trained and initiated by their respective planetary commands and organized into companies based at TreeHouses. Lyoko is the universal programming environment GKND Operative use to design and share immersive experiences and 2x4 technology.
+The **_Galactic Kids Next Door_** is a movement dedicated to:
+(1) ending gun violence, especially towards children in North America, and
+(2) fostering future communities of technologists and creatives through immersive programming.
 
-This _world-desktop_ of experiences is made up of the **_Distributed Immersive Applications_**, or **_DIAs_**, written in Lyoko, that collectively make up the immersive internet of things known as the **_Public Augmented Reality Kinectome_**, or **_pARk_**.
+Produced by [@oldrowmaryland](https://instagram.com/oldrowmaryland) for the House of Venus this platform connects online creators nd startups to DARIA, the swarm AI maintained by the House of Venus to guard schools and places of worship.
 
-Developers can implement the module in both modular server-side and non-modular client-side applications with just a few lines of JavaScript code.
+Members can use apps to create singular products or experiences by purchasing tokens and using them to pay for apps that require them.
+
+Those who want to create can subscribe for developer access as a Creator or Enterprise and receive an unlimited amount of tokens along with programmatic and prompt-based access to DARIA.
+
+Lyoko is the development environment/interface for DARIA. It manages multimodal queries from Members and processes them appropriately using a variety of modules including Falcon-40B for reasoning, HOVision for computer vision, etc.
 
 ## Examples:
 
-* Build A Simple Scene
+* Build A Simple Scene in Lyoko
 
 ## Usage:
 
@@ -20,44 +26,14 @@ Developers can implement the module in both modular server-side and non-modular 
 
 [Client-side](#client-side)
 
-### Server-Side
-The following phrase is entered into the Lyoko Language Processor:
+### Server-Side (Desktop App)
 
-```javascript
-In the pARk, there is a store called "Snack Shack" that operates between the hours of 11pm and 6am EST.
-In this store, you can stream whatever content you like and watch it with others -- in person or remotely.
-You can also order snacks and get them delivered straight to your Wimble or cARd.
-```
- 2. import lyoko-vraudioplayer (using the 'require' method is recommended; some Node releases do not have the newest ES6 features enabled by default)
+COMING SOON
 
- (a) using add method
-```javascript
-var myPlayer = require('lyoko-vraudioplayer');
+### Client-Side (Web App)
 
-myPlayer.spawn();
-```
-
-### Client-Side
-
-1. download the boilerplate or make your own test directory
-
-```javascript
-var myPlayer = new Lyoko();
-myPlayer.build();
-
-myPlayer.add('../media/img/You.png', '../media/audio/You.mp3' , { title: 'you', author: 'Unibe@t', year: 2016});
-
-myPlayer.add('../media/img/0001.png', '../media/audio/WaterToWine.mp3' , { title: 'Water to Wine', author: 'KAYTRANADA ft. Kali Uchis', year: 2016});
-
-coreEventListeners.launch([myPlayer]);
-```
-
+COMING SOON
 
 ### Full API
 
-
-| property       | type   | description |
-| ------------- |:-------------:| -----:|
-| type          | string       | the object type of the Player |
-| socket        | object        |  the web socket connection the Player uses for IP communication |
-| hello         | method        | the initiator method|
+COMING SOON
