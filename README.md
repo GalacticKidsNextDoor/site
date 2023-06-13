@@ -2,7 +2,7 @@
 
 _for earth_
 
-using language as a "browser" and the world as your desktop
+_using language is a browser; the world as our desktop_
 
 The **_Galactic Kids Next Door_** is a movement dedicated to:
 (1) ending gun violence, especially towards children in North America, and
