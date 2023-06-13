@@ -49,21 +49,40 @@
             
         </div>
         <div id="life-stream-overlay-container">
-            <video id="video-stream-0-container" class="video-stream-container" href="./media/vid/miami.MP4"></video>
-            <video id="video-stream-1-container" class="video-stream-container" href="./media/vid/pretakeoff.MP4"></video>
-            <video id="video-stream-2-container" class="video-stream-container" href="./media/vid/swarm.MP4"></video>
-            <video id="video-stream-3-container" class="video-stream-container"href="./media/vid/silver-spring.MP4"></video>
+            <video id="video-stream-0-container" class="video-stream-container" src="./media/vid/black-marble-preview.mp4" autoplay muted loop></video>
+            <video id="video-stream-1-container" class="video-stream-container" src="./media/vid/black-marble-preview.mp4" autoplay muted loop></video>
+            <video id="video-stream-2-container" class="video-stream-container" src="./media/vid/black-marble-preview.mp4" autoplay muted loop></video>
+            <video id="video-stream-3-container" class="video-stream-container" src="./media/vid/black-marble-preview.mp4" autoplay muted loop></video>
             <div id="cell-meta-data-container">
                 <div id="sentiment-array-container"></div>
                 <div id="logged-tags-container"></div>
             </div>
         </div>
     </div>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
     <script>
-        var LifeStreamRequest, loggedIn = false, memberCheck = [
+        var storage, database, dbObjectRef, LifeStreamRequest;
+
+        var UserAccessGranted = false, loggedIn = false, memberCheck = [
             "bz",
             "aa"
         ];;
+        
+        const firebaseConfig = {
+            apiKey: "AIzaSyDb25cWx6pMmh2xt54c_G5hS_rTDzpnpKw",
+            authDomain: "galactic-kids-next-door.firebaseapp.com",
+            databaseURL: "https://galactic-kids-next-door-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "galactic-kids-next-door",
+            storageBucket: "galactic-kids-next-door.appspot.com",
+            messagingSenderId: "273360155490",
+            appId: "1:273360155490:web:a752b1c28ad6156791f23b",
+            measurementId: "G-6Z2LK6Z05H"
+        };
+
+        firebase.initializeApp(firebaseConfig);
         
         function loadExampleLifeStreamOverlay(taskId){
             console.log(taskId);
@@ -72,6 +91,22 @@
                     document.getElementById("life-stream-overlay-container").style.display = "block";
                     break;
                 case 1:
+                    // Create a reference with an initial file path and name
+                    storage = firebase.storage();
+                    var pathRef0 = storage.ref('vid/miami.MP4');
+                    var pathRef1 = storage.ref('vid/pretakeoff.MP4');
+                    var pathRef2 = storage.ref('vid/swarm.MP4');
+                    var pathRef3 = storage.ref('vid/silver-spring.MP4');
+
+                    pathRef0.getDownloadURL()
+                      .then((url) => {
+                        // Or inserted into an <img> element
+                        var vid0 = document.getElementById('video-stream-0-container');
+                        vid0.setAttribute('src', url);
+                      })
+                      .catch((error) => {
+                        // Handle any errors
+                      });
                     document.getElementById("life-stream-overlay-container").style.display = "block";
                     setTimeout(function(){
                         document.getElementById("life-stream-overlay-container").style.opacity = 1.0;
