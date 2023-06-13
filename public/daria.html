@@ -49,22 +49,25 @@
             
         </div>
         <div id="life-stream-overlay-container">
-            <div id="video-stream-0-container"></div>
-            <div id="video-stream-1-container"></div>
-            <div id="video-stream-2-container"></div>
-            <div id="video-stream-3-container"></div>
+            <video id="video-stream-0-container" class="video-stream-container" href="./media/vid/miami.MP4"></video>
+            <video id="video-stream-1-container" class="video-stream-container" href="./media/vid/pretakeoff.MP4"></video>
+            <video id="video-stream-2-container" class="video-stream-container" href="./media/vid/swarm.MP4"></video>
+            <video id="video-stream-3-container" class="video-stream-container"href="./media/vid/silver-spring.MP4"></video>
             <div id="cell-meta-data-container">
                 <div id="sentiment-array-container"></div>
                 <div id="logged-tags-container"></div>
-                <div id=""></div>
             </div>
         </div>
     </div>
     <script>
-        var LifeStreamRequest, loggedIn = false;
+        var LifeStreamRequest, loggedIn = false, memberCheck = [
+            "bz",
+            "aa"
+        ];;
         
         function loadExampleLifeStreamOverlay(taskId){
-            switch(taskId){
+            console.log(taskId);
+            switch(parseInt(taskId)){
                 case 0:
                     document.getElementById("life-stream-overlay-container").style.display = "block";
                     break;
@@ -89,15 +92,10 @@
                 taskId: params.taskId,
             };
             
-            if(LifeStreamRequest){
-                let memberCheck = [
-                    "bz",
-                    "aa"
-                ];
-                if(memberCheck[LifeStreamRequest.member]){
-                    loadExampleLifeStreamOverlay(LifeStreamRequest.taskId);
-                }
-            }
+            console.log(LifeStreamRequest);
+            
+            loadExampleLifeStreamOverlay(LifeStreamRequest.taskId);
+            
             document.getElementById("gknd-logo-button-container").addEventListener("click", function(){
                 window.location.href = "https://galactickidsnextdoor.com";
             });
