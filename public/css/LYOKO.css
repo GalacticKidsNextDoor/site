@@ -117,6 +117,16 @@ body, html{
     opacity: 1.0 !important;
 }
 
+.daria-feed-link-container:link, .daria-feed-link-container:visited{
+    color: darkturquoise;
+    text-decoration: none;
+}
+
+.daria-feed-link-container:hover{
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
 #main-scene-header-container, #daria-dia-header-container{
   font-family: "Braah One", sans-serif;/*font-family: "AuraRegular W05 Regular", "Braah One", sans-serif;*/
   width: 100%;

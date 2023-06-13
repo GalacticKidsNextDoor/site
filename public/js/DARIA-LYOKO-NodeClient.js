@@ -133,7 +133,7 @@ class Senses{
         if(action){
             if(action==="read"){
                 if(this.workingMemory.active){
-                    currResp = this.workingMemory.stream[0]+meaningInput; // the entire conversation so far
+                    currResp = this.workingMemory.stream[0]+"<p class='member-query-line-container'>" + meaningInput + "</p>"; // the entire conversation so far
                     let lastResp = this.workingMemory.stream[1];
                     this.workingMemory.stream.push(lastResp);
                     this.workingMemory.stream[1] = "";
@@ -171,11 +171,11 @@ class Senses{
                 case "ARE ANY HONEYPOT TARGETS WITHIN A THIRTY MILE RADIUS OF THE HOUSE?":
                     fullConv = currResp;
                     currResp = "<p class='daria-response-line-container'>[D] Yes. Would you like me to list them?</p>";
-                    this.workingMemory.stream[0] += currResp;
+                    this.workingMemory.stream[0] = fullConv + currResp;
                     this.workingMemory.stream[1] += currResp;
                     
                     fullConv += currResp;
-                    responseContainer.innerHTML += fullConv;
+                    responseContainer.innerHTML = this.workingMemory.stream[0];
                     console.log("YES. WOULD YOU LIKE ME TO LIST THEM?");
                     break;
                 case "IF THEY ARE NEARBY":
@@ -186,13 +186,23 @@ class Senses{
                 case "ONLY IF THEY ARE CLOSE BY":
                     fullConv = currResp;
                     currResp = "<p class='daria-response-line-container'>[D] How close? I can set up a radius.</p>";
-                    this.workingMemory.stream[0] += currResp;
+                    this.workingMemory.stream[0] = fullConv + currResp;
                     this.workingMemory.stream[1] += currResp;
                     
                     fullConv += currResp;
-                    responseContainer.innerHTML += fullConv;
+                    responseContainer.innerHTML = this.workingMemory.stream[0];
                     console.log("[D] How close? I can set up a radius.");
                     break;
+                case "ARE ANY HONEYPOT TARGETS NEAR THE HOUSE?":
+                case "ARE ANY HONEYPOT TARGETS NEAR THE HOUSE":
+                case "ARE ANY HONEYPOT TARGETS CLOSE BY HOUSE?":
+                case "ARE ANY HONEYPOT TARGETS CLOSE BY HOUSE":
+                case "ARE ANY HONEYPOT TARGETS CLOSE TO THE HOUSE?":
+                case "ARE ANY HONEYPOT TARGETS CLOSE TO THE HOUSE":
+                case "ARE THERE ANY HONEYPOT TARGETS NEAR THE HOUSE?":
+                case "ARE THERE ANY HONEYPOT TARGETS NEAR THE HOUSE":
+                case "ARE THERE ANY HONEYPOT TARGETS CLOSE TO THE HOUSE?":
+                case "ARE THERE ANY HONEYPOT TARGETS CLOSE TO THE HOUSE":
                 case "ARE THERE ANY HONEYPOT TARGETS WITHIN A MILE OF THE HOUSE?":
                 case "ARE THERE ANY HONEYPOT TARGETS WITHIN A MILE OF THE HOUSE":
                 case "ARE THERE ANY HONEYPOT TARGETS WITHIN ONE MILE OF THE HOUSE?":
@@ -221,30 +231,63 @@ class Senses{
                 case "IF THEY ARE LOCATED WITHIN 1 MILE OF THE HOUSE PRODUCE A TABLE INCLUDING THEIR LAST LOGGED LOCATION, WHETHER OR NOT THEY WERE IN A VEHICLE, AND IF SO WHAT THE MAKE/MODEL/YEAR OF THE VEHICLE IS":
                     fullConv = currResp;
                     currResp = "<p class='daria-response-line-container'>[D] Here is a table of Flagged Users including their last logged location and vehicle information:</p>";
-                    this.workingMemory.stream[0] += currResp;
+                    this.workingMemory.stream[0] = fullConv + currResp;
                     this.workingMemory.stream[1] += currResp;
                     
-                    responseContainer.innerHTML = fullConv + currResp;
+                    document.getElementById("vehicle-photo-0-container").setAttribute("visible", true);
+                    document.getElementById("vehicle-photo-1-container").setAttribute("visible", true);
+                    document.getElementById("last-logged-location-0-container").setAttribute("visible", true);
+                    document.getElementById("last-logged-location-1-container").setAttribute("visible", true);
+                    
+                    responseContainer.innerHTML = this.workingMemory.stream[0];
                     console.log("[D] Here is a table of Flagged Users including their last logged location and vehicle information:");
                     console.log("[PRODUCES A TABLE WITH 2 PEOPLE WITHIN ONE MILE]");
                     break;
                 case "FOR EVERYONE ELSE SIMPLY PROVIDE THEIR NAME AND LATEST ACCOUNT":
                     fullConv = currResp;
                     currResp = "<p class='daria-response-line-container'>[D] OK.</p>";
-                    responseContainer.innerHTML += currResp;
+                    this.workingMemory.stream[0] = fullConv + currResp;
+                    this.workingMemory.stream[1] += currResp;
+                    
+                    responseContainer.innerHTML = this.workingMemory.stream[0];
                     console.log("OK");
                     console.log("[PRODUCES ANOTHER TABLE WITH 6 PEOPLE TOTAL INCLUDING THE 2 ABOVE]");
                     break;
                 case "HOW MANY CELLS ARE AVAILABLE IN THE PARK?":
-                    currResp += "<p class='daria-response-line-container'>[D] Two. One in the air; one on the ground.</p>";
-                    responseContainer.innerHTML += currResp;
+                case "HOW MANY CELLS ARE AVAILABLE IN THE PARK":
+                case "HOW MANY CELLS ARE FREE IN THE PARK?":
+                case "HOW MANY CELLS ARE FREE IN THE PARK":
+                case "HOW MANY CELLS ARE AVAILABLE?":
+                case "HOW MANY CELLS ARE AVAILABLE":
+                case "HOW MANY CELLS ARE FREE?":
+                case "HOW MANY CELLS ARE FREE":
+                    fullConv = currResp;
+                    currResp = "<p class='daria-response-line-container'>[D] Two. One in the air; one on the ground.</p>";
+                    this.workingMemory.stream[0] = fullConv + currResp;
+                    this.workingMemory.stream[1] += currResp;
+                    
+                    responseContainer.innerHTML = this.workingMemory.stream[0];
                     console.log("[D] Two. One in the air; one on the ground.");
                     break;
                 case "HOW MANY NODES ARE CONNECTED ON THE GROUND?":
-                    currResp += "<p class='daria-response-line-container'>[D] Two of the four nodes are connected to their charging ports.</p>";
-                    responseContainer.innerHTML += currResp;
+                case "HOW MANY NODES ON THE GROUND?":
+                case "HOW MANY NODES ON THE GROUND":
+                case "HOW MANY NODES ARE ON THE GROUND?":
+                case "HOW MANY NODES ARE ON THE GROUND":
+                    fullConv = currResp;
+                    currResp = "<p class='daria-response-line-container'>[D] Two of the four nodes are connected to their charging ports.</p>";
+                    this.workingMemory.stream[0] = fullConv + currResp;
+                    this.workingMemory.stream[1] += currResp;
+                    
+                    responseContainer.innerHTML = this.workingMemory.stream[0];
                     console.log("[D] Two of the four nodes are connected to their charging ports.");
                     break;
+                case "LAUNCH THOSE TWO AND RUN A SWEEP":
+                case "LAUNCH A SWEEP":
+                case "RUN A SWEEP":
+                case "SWEEP THE NEIGHBORHOOD":
+                case "SWEEP THE AREA":
+                case "LAUNCH THOSE TWO AND RUN A SWEEP OF THE NEIGHBORHOOD":
                 case "OK RUN A SWEEP OF THE NEIGHBORHOOD USING THE CELL IN THE AIR AND EXPORT THE DATA TO FOUR DIFFERENT .CELL FILES: ONE SHOWING ABSOLUTE MOTION, ANOTHER SHOWING RELATIVE MOTION, ANOTHER TRACKING AND IDENTIFYING ALL VEHICLES, AND THE LAST WITH THE TRADITIONAL CAMERA VIEW IN 4K 60FPS.":
                 case "OK RUN A SWEEP OF THE NEIGHBORHOOD USING THE CELL IN THE AIR AND EXPORT THE DATA TO FOUR DIFFERENT .CELL FILES: ONE SHOWING ABSOLUTE MOTION, ANOTHER SHOWING RELATIVE MOTION, ANOTHER TRACKING AND IDENTIFYING ALL VEHICLES, AND THE LAST WITH THE TRADITIONAL CAMERA VIEW IN 4K 60FPS":
                 case "RUN A SWEEP OF THE NEIGHBORHOOD USING THE CELL IN THE AIR AND EXPORT THE DATA TO FOUR DIFFERENT .CELL FILES: ONE SHOWING ABSOLUTE MOTION, ANOTHER SHOWING RELATIVE MOTION, ANOTHER TRACKING AND IDENTIFYING ALL VEHICLES, AND THE LAST WITH THE TRADITIONAL CAMERA VIEW IN 4K 60FPS.":
@@ -254,18 +297,70 @@ class Senses{
                     console.log("EXPECTED FLIGHT DURATION IS 30 MINUTES.");
                     console.log("TASK RECEIVED. NAVIGATE TO THIS LINK TO VIEW A LIVE FEED. FILES WILL BE EMAILED TO YOU ONCE COMPLETE.");
                     fullConv = currResp;
-                    currResp = "<p class='daria-query-line-container'>OK. Preparing SWEEP. Task is in queue.</p>";
-                    this.workingMemory.stream[0] += currResp;
+                    currResp = "<p class='daria-response-line-container'>[D] OK. Preparing SWEEP. Task is in queue.</p>";
+                    let currResp2 = "<p class='daria-response-line-container'>[D] Task sent to Cell. Expected flight duration: 30 min.</p>"
+                    let currResp3 = "<p class='daria-response-line-container'>[D] Task received. Navigate to <a class='daria-feed-link-container' target='_blank' href='./daria?member=bz&taskId=1'>link</a> for feed. Final results will be sent to member email.</p>"
+                    
+                    this.workingMemory.stream[0] = fullConv + currResp;
                     this.workingMemory.stream[1] += currResp;
-                    responseContainer.innerHTML = fullConv + currResp;
+                    let streamer = this.workingMemory.stream;
+                    
+                    setTimeout(function(){
+                        streamer[0] += currResp2;
+                        streamer[1] += currResp2;
+                        responseContainer.innerHTML = streamer[0];
+                    }, 3000);
+                    
+                    setTimeout(function(){
+                        streamer[0] += currResp3;
+                        streamer[1] += currResp3;
+                        responseContainer.innerHTML = streamer[0];
+                    }, 9000);
+                    
+                    this.workingMemory.stream[1] += currResp;
+                    responseContainer.innerHTML = this.workingMemory.stream[0];
+                    break;
+                case "HI THERE":
+                case "HELLO THERE":
+                case "HI DARIA":
+                case "HELLO DARIA":
+                case "HOW ARE YOU?":
+                case "HOW ARE YOU":
+                case "HOW ARE YA?":
+                case "HOW ARE YA":
+                case "HELLO":
+                case "HELLO!":
+                case "HELLO.":
+                case "HI!":
+                case "HI.":
+                case "HI":
+                case "HEY":
+                case "HEY!":
+                case "HEY.":
+                case "HOWS IT GOING?":
+                case "HOW'S IT GOING?":
+                case "HOWS IT GOING":
+                case "HOW'S IT GOING":
+                case "WHAT'S GOING ON?":
+                case "WHAT'S GOING ON":
+                case "WHAT'S GOING ON.":
+                case "HELLO WORLD":
+                case "HELLO WORLD!":
+                case "HELLO WORLD.":
+                    console.log("HI.");
+                    fullConv = currResp;
+                    currResp = "<p class='daria-response-line-container'>[D] Hello, world! I'm doing fine.</p>";
+                    this.workingMemory.stream[0] = fullConv + currResp;
+                    this.workingMemory.stream[1] += currResp;
+                    responseContainer.innerHTML = this.workingMemory.stream[0];
                     break;
                 default:
                     fullConv = currResp;
                     currResp = "<p class='daria-response-line-container'>[D] I am sorry. Please try querying again I did not understand.</p>";
-                    this.workingMemory.stream[0] += currResp;
+                    this.workingMemory.stream[0] = fullConv + currResp;
                     this.workingMemory.stream[1] += currResp;
                     
-                    responseContainer.innerHTML = fullConv + currResp;
+                    responseContainer.innerHTML = this.workingMemory.stream[0];
                     console.log("I AM SORRY. PLEASE TRY QUERYING AGAIN I DID NOT UNDERSTAND.");
                     break;
 }
@@ -341,6 +436,10 @@ document.addEventListener("DOMContentLoaded", function(){
 
       document.getElementById("vr-mode-box-container").style.opacity = 0;//...to hide VR container and reveal AR mode
 
+        document.getElementById("last-logged-location-0-container").setAttribute("color", "white");
+        
+        document.getElementById("last-logged-location-1-container").setAttribute("color", "white");
+        
       document.getElementById(NodeClientSenses.UI.mode).classList.remove("current-mode-selected");
       document.getElementById("ar-mode-button-container").classList.add("current-mode-selected");
       NodeClientSenses.UI.mode = "ar-mode-button-container";
@@ -351,6 +450,10 @@ document.addEventListener("DOMContentLoaded", function(){
         NodeClientSenses.toggleSenses(0); //  ... turn off ...
       }
       // else if already off, change nothing and continue ...
+        
+        document.getElementById("last-logged-location-0-container").setAttribute("color", "black");
+        
+        document.getElementById("last-logged-location-1-container").setAttribute("color", "black");
 
       document.getElementById("vr-mode-box-container").style.opacity = 1.0//...to reveal VR container
 

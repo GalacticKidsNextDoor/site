@@ -29,6 +29,7 @@
             <img id="earth-texture" src="./media/texture/earthmap1k.jpg" />
             <img id="code-lyoko-0-texture" src="./media/img/lyoko-icon.png" />
             <img id="code-lyoko-1-texture" src="./media/img/pARk-icon.png" />
+            <img id="vehicle-icon-texture" src="./media/img/vehicle-icon.png" />
         </a-assets>
 
             <a-sphere id="landing-object-container"
@@ -79,6 +80,42 @@
             <a-entity id="rig" position="0 1.88 2">
               <a-entity camera look-controls wasd-controls></a-entity>
             </a-entity>
+        
+            <a-plane id="vehicle-photo-0-container"
+                    material="src: #vehicle-icon-texture;; side: double;"
+                    width="10"
+                    height="6"
+                    visible="false"
+                    position="-6 4 -8">
+            </a-plane>
+            
+            <a-text id="last-logged-location-0-container"
+                    value="lat: 00000000000\n\nlng: 00000000000\n\nm/m/y: Toyota Prius 2015\n\nLic°: MD-1FW934"
+                    align="center"
+                    color="white"
+                    font="https://cdn.aframe.io/fonts/mozillavr.fnt"
+                    width="12"
+                    visible="false"
+                    position="-5 -1 -6">
+            </a-text>
+        
+            <a-plane id="vehicle-photo-1-container"
+                    material="src: #vehicle-icon-texture; side: double;"
+                    width="10"
+                    height="6"
+                    visible="false"
+                    position="6 4 -8">
+            </a-plane>
+        
+            <a-text id="last-logged-location-1-container"
+                    value="lat: 00000000000\n\nlng: 00000000000\n\nm/m/y: Toyota Prius 2015\n\nLic: MD-1FW934"
+                    align="center"
+                    color="white"
+                    font="https://cdn.aframe.io/fonts/mozillavr.fnt"
+                    width="12"
+                    visible="false"
+                    position="5 -1 -6">
+            </a-text>
     </a-scene>
     <div id="vr-mode-box-container"></div>
     <video id="lyoko-video-container" width="640" height="480" playsinline webkit-playsinline autoplay></video>
