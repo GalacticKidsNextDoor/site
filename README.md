@@ -9,7 +9,7 @@ The **_Galactic Kids Next Door_** is a movement dedicated to:
 1. ending gun violence, especially towards children in North America, and
 2. fostering future communities of technologists and creatives through immersive programming.
 
-Produced by [@oldrowmaryland](https://instagram.com/oldrowmaryland) for the [@House of Venus](https://instagram.com/ceo.hov) this platform connects online creators nd startups to DARIA, the swarm AI maintained by the House of Venus to guard schools and places of worship.
+Produced by [@oldrowmaryland](https://instagram.com/oldrowmaryland) for the [@House of Venus](https://instagram.com/ceo.hov) this platform connects online creators and startups to DARIA, the swarm AI maintained by the House of Venus to guard schools and places of worship.
 
 Members can use apps to create singular products or experiences by purchasing tokens and using them to pay for apps that require them.
 
