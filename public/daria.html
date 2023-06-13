@@ -107,6 +107,36 @@
                       .catch((error) => {
                         // Handle any errors
                       });
+                    
+                    pathRef1.getDownloadURL()
+                      .then((url) => {
+                        // Or inserted into an <img> element
+                        var vid1 = document.getElementById('video-stream-1-container');
+                        vid0.setAttribute('src', url);
+                      })
+                      .catch((error) => {
+                        // Handle any errors
+                      });
+                    
+                    pathRef2.getDownloadURL()
+                      .then((url) => {
+                        // Or inserted into an <img> element
+                        var vid2 = document.getElementById('video-stream-2-container');
+                        vid0.setAttribute('src', url);
+                      })
+                      .catch((error) => {
+                        // Handle any errors
+                      });
+                    
+                    pathRef3.getDownloadURL()
+                      .then((url) => {
+                        // Or inserted into an <img> element
+                        var vid3 = document.getElementById('video-stream-3-container');
+                        vid0.setAttribute('src', url);
+                      })
+                      .catch((error) => {
+                        // Handle any errors
+                      });
                     document.getElementById("life-stream-overlay-container").style.display = "block";
                     setTimeout(function(){
                         document.getElementById("life-stream-overlay-container").style.opacity = 1.0;
