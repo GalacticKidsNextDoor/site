@@ -361,6 +361,14 @@ class Senses{
                     this.workingMemory.stream[1] += currResp;
                     responseContainer.innerHTML = this.workingMemory.stream[0];
                     break;
+                case "NOTE ALL OUT OF STATE VISITORS IN A SEPARATE FILE":
+                    console.log("I will make note of any out-of-state vehicles in a report and email it along my results.");
+                    fullConv = currResp;
+                    currResp = "<p class='daria-response-line-container'>[D] I will make note of any out-of-state vehicles in a report and email it along my results.</p>";
+                    this.workingMemory.stream[0] = fullConv + currResp;
+                    this.workingMemory.stream[1] += currResp;
+                    responseContainer.innerHTML = this.workingMemory.stream[0];
+                    break;
                 default:
                     fullConv = currResp;
                     currResp = "<p class='daria-response-line-container'>[D] I am sorry. Please try querying again I did not understand.</p>";
