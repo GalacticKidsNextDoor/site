@@ -60,6 +60,7 @@
         </div>
     </div>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
@@ -102,40 +103,48 @@
                       .then((url) => {
                         // Or inserted into an <img> element
                         var vid0 = document.getElementById('video-stream-0-container');
+                        console.log("success video 0")
                         vid0.setAttribute('src', url);
                       })
                       .catch((error) => {
                         // Handle any errors
+                        console.log("error video 0")
                       });
                     
                     pathRef1.getDownloadURL()
                       .then((url) => {
                         // Or inserted into an <img> element
                         var vid1 = document.getElementById('video-stream-1-container');
-                        vid0.setAttribute('src', url);
+                        vid1.setAttribute('src', url);
+                        console.log("success video 1");
                       })
                       .catch((error) => {
                         // Handle any errors
+                        console.log("error video 1");
                       });
                     
                     pathRef2.getDownloadURL()
                       .then((url) => {
                         // Or inserted into an <img> element
                         var vid2 = document.getElementById('video-stream-2-container');
-                        vid0.setAttribute('src', url);
+                        vid2.setAttribute('src', url);
+                        console.log("success video 2")
                       })
                       .catch((error) => {
                         // Handle any errors
+                        console.log("error video 2");
                       });
                     
                     pathRef3.getDownloadURL()
                       .then((url) => {
                         // Or inserted into an <img> element
                         var vid3 = document.getElementById('video-stream-3-container');
-                        vid0.setAttribute('src', url);
+                        vid3.setAttribute('src', url);
+                        console.log("success video 3");
                       })
                       .catch((error) => {
                         // Handle any errors
+                        console.log("error video 3");
                       });
                     document.getElementById("life-stream-overlay-container").style.display = "block";
                     setTimeout(function(){
@@ -171,6 +180,22 @@
             document.getElementById("main-scene-container").classList.remove("hidden-scene")
             document.getElementById("main-scene-container").classList.add("visible-scene")
 
+            document.getElementById("video-stream-0-container").addEventListener("click", function(){
+                window.open("./d/cell?cellId=0&video=true", "_blank");
+            });
+            
+            document.getElementById("video-stream-1-container").addEventListener("click", function(){
+                window.open("./d/cell?cellId=1&video=true", "_blank");
+            });
+            
+            document.getElementById("video-stream-2-container").addEventListener("click", function(){
+                window.open("./d/cell?cellId=2&video=true", "_blank");
+            });
+            
+            document.getElementById("video-stream-3-container").addEventListener("click", function(){
+                window.open("./d/cell?cellId=3&video=true", "_blank");
+            });
+            
         });
     </script>
 </body>

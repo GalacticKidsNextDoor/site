@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>CELL: An Embodied Adaptive Node</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Braah+One&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="./media/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./media/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./media/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="./media/img/favicon/site.webmanifest">
+    <link rel="stylesheet" href="./css/daria.css" type="text/css" />
+</head>
+<body>
+    <input id="gknd-logo-button-container" class="loading-screen-logo-container" value="" type="button"/>
+    <input id="sign-in-button-container" type="button" value="" />    
+    <div id="main-app-container">
+        <div id="main-scene-container" class="hidden-scene">
+            <div class="tech-page-section-header-container">
+                CELL: An Embodied Adaptive Node
+            </div>
+            <div id="llm-ai-block-container">
+                <a id="author-0-block-container" href="./">
+                    de Goma, P-M. O.
+                </a>
+            </div>
+            <div class="tech-page-section-header-container">
+                Features
+            </div>
+            <div id="main-options-block-container">
+                <button id="paper-option-block-container" class="option-block-container">
+                    Paper
+                </button>
+                <button id="demos-option-block-container" class="option-block-container">
+                    Demos
+                </button>
+            </div>
+            <div class="tech-page-section-header-container">
+                Activity
+            </div>
+            <div id="public-apps-block-container">
+            </div>
+            
+        </div>
+        <div id="life-stream-overlay-container">
+            <video id="video-stream-0-container" class="video-stream-container" src="./media/vid/black-marble-preview.mp4" autoplay muted loop></video>
+            <button id="apply-fg-mask-button-container">fg</button>
+            <button id="apply-camshift-button-container">cam</button>
+            <button id="apply-motion-sensing-button-container">ms</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script>
+        var storage, database, dbObjectRef, LifeStreamRequest;
+
+        var UserAccessGranted = false, loggedIn = false, memberCheck = [
+            "bz",
+            "aa"
+        ];;
+        
+        const firebaseConfig = {
+            apiKey: "AIzaSyDb25cWx6pMmh2xt54c_G5hS_rTDzpnpKw",
+            authDomain: "galactic-kids-next-door.firebaseapp.com",
+            databaseURL: "https://galactic-kids-next-door-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "galactic-kids-next-door",
+            storageBucket: "galactic-kids-next-door.appspot.com",
+            messagingSenderId: "273360155490",
+            appId: "1:273360155490:web:a752b1c28ad6156791f23b",
+            measurementId: "G-6Z2LK6Z05H"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        
+        document.addEventListener("DOMContentLoaded", function(){
+            const params = new Proxy(new URLSearchParams(window.location.search), {
+              get: (searchParams, prop) => searchParams.get(prop),
+            });
+
+            LifeStreamRequest = {
+                cellId: params.cellId,
+                videoBool: params.video,
+            };
+            
+            console.log(LifeStreamRequest);
+            
+            loadExampleLifeStreamOverlay(LifeStreamRequest.cellId);
+            
+            document.getElementById("gknd-logo-button-container").addEventListener("click", function(){
+                window.location.href = "https://galactickidsnextdoor.com";
+            });
+            
+            document.getElementById("gknd-logo-button-container").classList.remove("loading-screen-logo-container");
+            document.getElementById("gknd-logo-button-container").classList.add("corner-logo-container");
+            
+            document.getElementById("main-scene-container").classList.remove("hidden-scene")
+            document.getElementById("main-scene-container").classList.add("visible-scene")
+
+            
+        });
+    </script>
+</body>
+</html>
