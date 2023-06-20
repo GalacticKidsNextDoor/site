@@ -503,12 +503,13 @@ document.addEventListener("DOMContentLoaded", function(){
     });
 
     document.getElementById("text-mode-input-container").addEventListener("keypress", function (e) {
-      let currentPrompt = document.getElementById("text-mode-input-container").value;
-      if (e.key === 'Enter') {
-        // code for enter
+      /*let currentPrompt = document.getElementById("text-mode-input-container").value;*/
+      if (e.process) {
+        // process stream available
+          let currentPrompt = "Rhythmic hip hop beat";
         if(NodeClientSenses.literate&&currentPrompt!=null&&currentPrompt!=""){
           NodeClientSenses.Cognition(currentPrompt, "read");
-          document.getElementById("text-mode-input-container").value = "";
+          //document.getElementById("text-mode-input-container").value = "";
         }
       }
     });
