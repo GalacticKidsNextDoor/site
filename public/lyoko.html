@@ -3,7 +3,7 @@
 <head>
     <meta name='viewport' content='width=device-width,initial-scale=1.0' />
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <title>LYOKO | Creative Augmented Reality Desktop | 2.0.2.2</title>
+    <title>LYOKO | Creative Augmented Reality Desktop | 2.0.4.0</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="apple-touch-icon" sizes="180x180" href="./media/img/favicon/apple-touch-icon.png">
@@ -11,7 +11,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="./media/img/favicon/favicon-16x16.png">
     <link rel="manifest" href="./media/img/favicon/site.webmanifest">
     <link href="https://fonts.googleapis.com/css2?family=Braah+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="./css/CreativeAugmentedRealityDesktop.css" />
+    <!--<link rel="stylesheet" type="text/css" href="./css/CreativeAugmentedRealityDesktop.css" />-->
     <link rel="stylesheet" type="text/css" href="./css/LYOKO.css"/>
     <script src="./js/aframe120.min.js"></script>
     <!--<script src="../js/aframe-ar-nft.js"></script></script>-->
@@ -30,6 +30,8 @@
             <img id="code-lyoko-0-texture" src="./media/img/lyoko-icon.png" />
             <img id="code-lyoko-1-texture" src="./media/img/pARk-icon.png" />
             <img id="vehicle-icon-texture" src="./media/img/vehicle-icon.png" />
+            <img id="ford-f-150-icon-texture" src="./media/img/ford-f-150.png" />
+            <img id="prius-texture" src="./media/img/prius.png" />
         </a-assets>
 
             <a-sphere id="landing-object-container"
@@ -58,7 +60,7 @@
             </a-plane>
 
             <a-text id="dia-entry-screen-title-0-container"
-                    value="LYOKO \n a creative studio for \n decentralized immersive applications \n v. 0.2.0.a"
+                    value="LYOKO \n a creative studio for \n decentralized immersive applications \n v. 2.0.4.0"
                     material="color: black; side: double;"
                     align="center"
                     font="https://cdn.aframe.io/fonts/mozillavr.fnt"
@@ -82,7 +84,7 @@
             </a-entity>
         
             <a-plane id="vehicle-photo-0-container"
-                    material="src: #vehicle-icon-texture;; side: double;"
+                    material="src: #prius-texture;; side: double;"
                     width="10"
                     height="6"
                     visible="false"
@@ -90,7 +92,7 @@
             </a-plane>
             
             <a-text id="last-logged-location-0-container"
-                    value="lat: 00000000000\n\nlng: 00000000000\n\nm/m/y: Toyota Prius 2015\n\nLic°: MD-1FW934"
+                    value="lat: 39.073278\n\nlng: -77.008740\n\nm/m/y: Toyota Prius 2007\n\nLic°: MD-4EB1972"
                     align="center"
                     color="white"
                     font="https://cdn.aframe.io/fonts/mozillavr.fnt"
@@ -100,7 +102,7 @@
             </a-text>
         
             <a-plane id="vehicle-photo-1-container"
-                    material="src: #vehicle-icon-texture; side: double;"
+                    material="src: #ford-f-150-icon-texture; side: double;"
                     width="10"
                     height="6"
                     visible="false"
@@ -108,7 +110,7 @@
             </a-plane>
         
             <a-text id="last-logged-location-1-container"
-                    value="lat: 00000000000\n\nlng: 00000000000\n\nm/m/y: Toyota Prius 2015\n\nLic: MD-1FW934"
+                    value="lat: 39.074211\n\nlng: -76.997496\n\nm/m/y: Ford F-150 2015\n\nLic: VA-TVU5445"
                     align="center"
                     color="white"
                     font="https://cdn.aframe.io/fonts/mozillavr.fnt"
@@ -124,7 +126,8 @@
     <input id="vr-mode-button-container" class="mode-button-container" type="button" value="" />
     <input id="text-mode-button-container" class="mode-button-container" type="button" value="" />
 
-    <div id="special-hand-tracking-box-container"></div>
+    <div id="special-hand-tracking-box-container">
+    </div>
 
     <input type="text" id="text-mode-input-container" value="" placeholder="start typing..." />
     <canvas id="canvas" class="border canvasbox"></canvas>

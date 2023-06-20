@@ -1,12 +1,7 @@
-/*@font-face{
-    font-family: "AuraRegular W05 Regular";
-    src: url("../css/Fonts/d83d08da-5e79-48df-a9b1-6f5acf78cb00.eot?#iefix");
-    src: url("../css/Fonts/d83d08da-5e79-48df-a9b1-6f5acf78cb00.eot?#iefix") format("eot"),url("../css/Fonts/92d5ad9f-b979-4d9b-8608-e7bef993c281.woff2") format("woff2"),url("../css/Fonts/48665d19-aff2-4022-aa29-5f4afa40c8af.woff") format("woff"),url("../css/Fonts/27cf9724-1c32-4032-b145-f082ef3ddb21.ttf") format("truetype");
-}*/
-
 * {
     margin: 0;
     padding: 0;
+    font-family: "Braah One", sans-serif;
 }
 
 body, html{
@@ -30,6 +25,46 @@ body, html{
     z-index: 5;
 }
 
+
+#return-to-pangaea-map-button-container{ /* potential redundant overlap in some markup files; this id is also listed in "grocery-storefront.css"  */
+    background-image: url(../media/img/hov-ig-logo.png);
+    background-size: 105% 105%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    position: absolute;
+    top: 3%;
+    left: 3%;
+    z-index: 999;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    border: 0;
+    border-radius: 50%;
+    outline: none;
+}
+
+#go-to-pangaea-shop-button-container{
+  background-image: url(../media/img/pangaea-app-icon.png);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  position: absolute;
+  bottom: 3%;
+  left: 5%;
+  z-index: 999;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  border: 1px solid white;
+  border-radius: 50%;
+  margin-left: -26px;
+  outline: none;
+}
+
+.currently-on-this-page-highlight{
+    background-color: black !important;
+    color: white !important;
+}
 #main-scene-container{
   position: absolute;
   display: block;
@@ -86,34 +121,39 @@ body, html{
 }
 
 #special-hand-tracking-box-container{
-    font-size: 12px;
+    font-size: 16px;
     letter-spacing: 2px;
     display: none;
     position: absolute;
-    bottom: 5%;
+    bottom: 12%;
     left: 5%;
     z-index: 11;
-    width: 300px;
+    width: 325px;
+    padding: 2%;
     height: 0;
     border: 2px white solid;
     border-radius: 10px 10px 0 0;
     cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.8);
     transition: height 0.5s, opacity 0.5s;
+    overflow-y: scroll;
 }
 
+/*#special-hand-tracking-box-container *{
+    overflow-anchor: none;
+}*/
+
 .member-query-line-container{
-    /*font-family: "Braah One", sans-serif;*/
     padding-left: 3%;
 }
 
 .daria-response-line-container{
-    color: greenyellow;
+    color: rgba(74, 246, 38, 1.0);/*greenyellow;*/
     transition: width 0.25s;
 }
 
 .special-tracker-open{;
-    height: 300px !important;
+    height: 375px !important;
     opacity: 1.0 !important;
 }
 
@@ -258,7 +298,7 @@ body, html{
 .tracker-app-container{
   line-height: 95px;
   text-align: center;
-  font-size: 44px;
+  font-size: 40px;
   position: absolute;
   right: 0;
   height: 100px;

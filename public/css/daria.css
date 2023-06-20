@@ -247,10 +247,11 @@ body, html, #main-app-container{
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
     font-family: "Braah One", sans-serif;
-    width: 100%;
+    width: 1050px;
     height: 100%;
     top: 0;
-    left: 0;
+    left: 50%;
+    margin-left: -525px;
     position: absolute;
     display: none;
     opacity: 0;

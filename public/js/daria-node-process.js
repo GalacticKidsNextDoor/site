@@ -399,6 +399,9 @@ var NodeClientSenses;
 document.addEventListener("DOMContentLoaded", function(){
     NodeClientSenses = new Senses({name: "Vision", on: true}, {name: "Hearing/Balance", on: true}, {name: "Olfaction", on: true}, {name: "Taste", on: true}, {name: "Touch", on: true});
 
+    NodeClientSenses.Cognition("load","daria-musicgen");
+    NodeClientSenses.Cognition("set-primary","daria-musicgen");
+    
     document.getElementById("toggle-audio-playback-button-container").addEventListener("click", function(){
         let audioPlayer = document.getElementById("xr-audio-player-container");
         let toggleButton = document.getElementById("toggle-audio-playback-button-container");
