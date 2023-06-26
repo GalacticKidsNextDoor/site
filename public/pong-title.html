@@ -60,12 +60,16 @@
                         width: '100%'
                     });
 
-                    $('#premier-reveal').css({ /* party */
-                        display: 'inline-block',
-                        textAlign: 'left',
-                        verticalAlign: 'top',
-                        width: '80px'
-                    });
+                    setTimeout(function(){
+                        
+                        $('#premier-reveal').css({ /* party */
+                            display: 'inline-block',
+                            textAlign: 'left',
+                            verticalAlign: 'top',
+                            width: '80px'
+                        });
+                        
+                    }, 50);
 
                     $('#deuxieme').css({
                         display: 'block',
@@ -114,7 +118,7 @@
 
                 });
 
-            }, 6500);
+            }, 6000);
         });
     </script>
 </head>
