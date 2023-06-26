@@ -66,7 +66,7 @@ body, html{
       hide-caret .25s step-end 3.25s infinite;
 }
 
-.typewriter-3{  /* r.u.b.i.n.   */
+.typewriter-3{  /* p.o.n.g.   */
   overflow: hidden; /* Ensures the content is not revealed until the animation */
   border-right: .15em solid white; /* The typwriter cursor */
   white-space: nowrap; /* Keeps the content on a single line */
@@ -121,7 +121,7 @@ body, html{
     display: none;
 }
 
-#premier-reveal{    /*  see */
+#premier-reveal{    /*  party */
     overflow: hidden; /* Ensures the content is not revealed until the animation */
     border-right: .15em solid white; /* The typwriter cursor */
     white-space: nowrap; /* Keeps the content on a single line */
@@ -133,7 +133,7 @@ body, html{
         hide-caret .25s step-end 0.5s infinite;
 }
 
-#deuxieme-reveal{   /* where */
+#deuxieme-reveal{   /* on */
     overflow: hidden; /* Ensures the content is not revealed until the animation */
     border-right: .15em solid white; /* The typwriter cursor */
     white-space: nowrap; /* Keeps the content on a single line */
@@ -145,7 +145,7 @@ body, html{
         hide-caret .25s step-end 0.5s infinite;
 }
 
-#troisieme-reveal{  /* evil */
+#troisieme-reveal{  /* new */
     overflow: hidden; /* Ensures the content is not revealed until the animation */
     border-right: .15em solid white; /* The typwriter cursor */
     white-space: nowrap; /* Keeps the content on a single line */
@@ -157,7 +157,7 @@ body, html{
         hide-caret .25s step-end 0.5s infinite;
 }
 
-#quatrieme-reveal{  /* eerily */
+#quatrieme-reveal{  /* generation */
     overflow: hidden; /* Ensures the content is not revealed until the animation */
     border-right: .15em solid white; /* The typwriter cursor */
     white-space: nowrap; /* Keeps the content on a single line */
@@ -165,46 +165,32 @@ body, html{
     letter-spacing: .15em; /* Adjust as needed */
     animation:
         quatrieme-ar 0.5s steps(25, end),
-        blink-caret .125s step-end 8,
-        hide-caret .25s step-end 0.5s infinite;
-}
-
-#cinquieme-reveal{  /* passes */
-    overflow: hidden; /* Ensures the content is not revealed until the animation */
-    border-right: .15em solid white; /* The typwriter cursor */
-    white-space: nowrap; /* Keeps the content on a single line */
-    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-    letter-spacing: .15em; /* Adjust as needed */
-    animation:
-        cinquieme-ar 0.5s steps(25, end),
         blink-caret .125s step-end 16,
         hide-caret .25s step-end 9s infinite;
 }
 
-@keyframes premier-ar{ /* recreate */
-    from { width: 0 }
-    to { width: 140px }
 }
 
-@keyframes deuxieme-ar{ /* universal */
+@keyframes premier-ar{ /* party */
     from { width: 0 }
-    to { width: 140px }
+    to { width: 80px }
 }
 
-@keyframes troisieme-ar{ /* by */
+@keyframes deuxieme-ar{ /* on */
     from { width: 0 }
-    to { width: 40px }
+    to { width: 50px }
 }
 
-@keyframes quatrieme-ar{    /* integrating */
+@keyframes troisieme-ar{ /* new */
+    from { width: 0 }
+    to { width: 60px }
+}
+
+@keyframes quatrieme-ar{    /* generation */
     from { width: 0 }
     to { width: 170px }
 }
 
-@keyframes cinquieme-ar{    /* nodes */
-    from { width: 0 }
-    to { width: 90px }
-}
 
 .acrostic-letter{
     height: 30px;
