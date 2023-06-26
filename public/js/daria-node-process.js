@@ -396,6 +396,8 @@ class Senses{
 
 var NodeClientSenses;
 
+var condition = "./media/aud/heron-reprise.wav";
+
 document.addEventListener("DOMContentLoaded", function(){
     NodeClientSenses = new Senses({name: "Vision", on: true}, {name: "Hearing/Balance", on: true}, {name: "Olfaction", on: true}, {name: "Taste", on: true}, {name: "Touch", on: true});
 
@@ -503,12 +505,14 @@ document.addEventListener("DOMContentLoaded", function(){
     });
 
     document.getElementById("text-mode-input-container").addEventListener("keypress", function (e) {
-      let currentPrompt = document.getElementById("text-mode-input-container").value;
-      if (e.key === "Enter") {
-        // if  "enter"/"return" key pressed
+      let currentPrompt = "Rhythmic hip hop beat";//document.getElementById("text-mode-input-container").value;
+      if (e.process) {
+        // if  process stream available
         if(NodeClientSenses.literate&&currentPrompt!=null&&currentPrompt!=""){
-          NodeClientSenses.Cognition(currentPrompt, "read");
-          document.getElementById("text-mode-input-container").value = "";
+            NodeClientSenses.Cognition(currentPrompt, "read");
+            NodeClientSenses.Cognition(condition, "daria-musicgen");
+            NodeClientSenses.Cognition("produce", "daria-musicgen");
+          //document.getElementById("text-mode-input-container").value = "";
         }
       }
     });

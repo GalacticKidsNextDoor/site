@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset = "utf-8" >
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" >
+    <title>Galactic Kids Next Door - Episode 1 - P.O.N.G. </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Braah+One&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="./media/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./media/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./media/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="./media/img/favicon/site.webmanifest">
+    <link rel="stylesheet" type="text/css" href="./css/rubin-acrostic.css" />
+    <script src='./js/jquery-3.2.1.min.js'></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            console.log('loaded v.0.5.0');
+
+            setTimeout(function(){ // house of venus mission
+                $('.typewriter-1').css({
+                    opacity: 1.0
+                });
+            }, 1025);
+
+            setTimeout(function(){ // operation:
+                $('.typewriter-2').css({
+                    opacity: 1.0
+                });
+            }, 2050);
+
+            setTimeout(function(){ // p.o.n.g.
+                $('.typewriter-3').css({
+                    opacity: 1.0
+                });
+            }, 3250);
+
+            setTimeout(function(){
+                $('.typewriter, .typewriter-1, .typewriter-2').animate({
+                    opacity: 0
+                }, 1000, function(){
+
+                    $('.typewriter-3').css({
+                        borderRight: 0,
+                    });
+
+                    $('.acrostic-letter').css({
+                        display: 'inline-block',
+                        verticalAlign: 'top'
+                    });
+
+                    $('.acrostic-period').css({
+                        display: 'none'
+                    });
+
+                    $(this).css({
+                        display: 'none'
+                    });
+
+                    $('#premier').css({
+                        display: 'block',
+                        textAlign: 'left',
+                        width: '100%'
+                    });
+
+                    $('#premier-reveal').css({ /* party */
+                        display: 'inline-block',
+                        textAlign: 'left',
+                        verticalAlign: 'top',
+                        width: '140px'
+                    });
+
+                    $('#deuxieme').css({
+                        display: 'block',
+                        textAlign: 'left',
+                        width: '100%'
+                    });
+
+                    $('#troisieme').css({
+                        display: 'block',
+                        textAlign: 'left',
+                        width: '100%'
+                    });
+
+                    $('#quatrieme').css({
+                        display: 'block',
+                        textAlign: 'left',
+                        width: '100%'
+                    });
+
+                    setTimeout(function(){  /* on  */
+                        $('#deuxieme-reveal').css({
+                            display: 'inline-block',
+                            textAlign: 'left',
+                            verticalAlign: 'top',
+                            width: '140px'
+                        });
+                    }, 500);
+
+                    setTimeout(function(){  /*  new  */
+                        $('#troisieme-reveal').css({
+                            display: 'inline-block',
+                            textAlign: 'left',
+                            verticalAlign: 'top',
+                            width: '56px'
+                        });
+                    }, 1000);
+
+                    setTimeout(function(){  /*  generation   */
+                        $('#quatrieme-reveal').css({
+                            display: 'inline-block',
+                            textAlign: 'left',
+                            verticalAlign: 'top',
+                            width: '170px'
+                        });
+                    }, 1500);
+
+                });
+
+            }, 6000);
+        });
+    </script>
+</head>
+<body>
+    <div id='screen-container'>
+        <div style='width: 80%; height: 60%; margin: 18% auto 0 auto'>
+            <div class='typewriter' style='font-size: 26px; width: 230px; margin: 0 auto;'>now loading:</div>
+            <div class='typewriter-1' style='font-size: 24px; width: 380px; margin: 0 auto; opacity: 0;'>house of venus mission</div>
+            <div class='typewriter-2' style='margin: 9% auto 0 auto; font-size: 24px; width: 160px; opacity: 0;'>operation:</div>
+            <div id='acrostic-container' class='typewriter-3' style='font-size: 24px; opacity: 0; width: 300px;'>
+                <div id='premier' class='acrostic-header'>
+                    <span class='acrostic-letter'>
+                        p
+                    </span>
+                    <span id='premier-period' class='acrostic-period'>.</span>
+                    <span id='premier-reveal' class='acrostic-reveal'>
+                        arty
+                    </span>
+                </div>
+                <div id='deuxieme' class='acrostic-header'>
+                    <span class='acrostic-letter'>
+                        o
+                    </span>
+                    <span id='deuxieme-period' class='acrostic-period'>.</span>
+                    <span id='deuxieme-reveal' class='acrostic-reveal'>
+                        n
+                    </span>
+                </div>
+                <div id='troisieme' class='acrostic-header'>
+                    <span class='acrostic-letter'>
+                        n
+                    </span>
+                    <span id='troisieme-period' class='acrostic-period'>.</span>
+                    <span id='troisieme-reveal' class='acrostic-reveal'>
+                        ew
+                    </span>
+                </div>
+                <div id='quatrieme' class='acrostic-header'>
+                    <span class='acrostic-letter'>
+                        g
+                    </span>
+                    <span id='quatrieme-period' class='acrostic-period'>.</span>
+                    <span id='quatrieme-reveal' class='acrostic-reveal'>
+                        eneration
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
