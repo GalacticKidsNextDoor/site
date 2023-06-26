@@ -128,7 +128,7 @@ body, html{
     margin: 0 auto; /* Gives that scrolling effect as the typing happens */
     letter-spacing: .15em; /* Adjust as needed */
     animation:
-        premier-ar 0.5s steps(4, end),
+        premier-ar 0.5s steps(25, end),
         blink-caret .125s step-end 8,
         hide-caret .25s step-end 0.5s infinite;
 }
