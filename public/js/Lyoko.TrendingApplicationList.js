@@ -2,35 +2,39 @@ export function TrendingApplicationList (numOfItems){
     console.log(numOfItems);
     return [
         {
-            name: "SINCERELY AUBREY",
-            src: "./media/img/sincerely-aubrey-cover.png",
-            bgSize: "110% auto",
+            name: "DRONEPONG",
+            src: "./media/img/pong-logo.png",
+            bgSize: "auto 80%",
             bgPosition: "center center",
-            target: "./sincerely-aubrey",
-            color: "black",
-            type: "Music",
+            target: "./dronepong",
+            color: "rgba(255,255,255,0)",
+            type: "Application",
             ranking: 1
-        },
+        },       
          {
-            name: "AVATAR SAM",
-            src: "./media/img/avatar-sam-cover.png",
-            bgSize: "auto 100%",
+            name: "AI THE LABEL",
+            src: "../media/img/YO-NO-SE-COVER.png",
+            bgSize: "auto 90%",
             bgPosition: "center center",
-            target: "./sam",/*"./avatar-sam",*/
+            target: "./ai-the-label",
+            color: "rgba(255,255,255,0)",
             type: "Application",
             ranking: 2
         },
-         {
-            name: "IM SAIAN",
-            src: "./media/img/IMSAIAN.png",
-            bgSize: "auto 100%",
+        {
+            name: "AVATAR SAM",
+            src: "./media/img/avatar-sam-cover.png",
+            bgSize: "auto 80%",
             bgPosition: "center center",
-            target: "./im-saian",
-            color: "rgba(255,255,255,0)",
+            target: "./sam",/*"./avatar-sam",*/
+            color: "rgba(255, 255, 255, 0)",
             type: "Application",
             ranking: 3
-        },
-        {
+        }
+    ];
+};
+/*
+{
             name: "DRAKE AI COMP ALBUM",
             src: "./media/img/infinite.gif",
             bgSize: "60% auto",
@@ -89,6 +93,15 @@ export function TrendingApplicationList (numOfItems){
             type: "Application",
             color: "rgba(255,255,255,0)",
             ranking: 9
-        }
-    ];
-};
+        },
+        {
+            name: "SINCERELY AUBREY",
+            src: "./media/img/sincerely-aubrey-cover.png",
+            bgSize: "110% auto",
+            bgPosition: "center center",
+            target: "./sincerely-aubrey",
+            color: "black",
+            type: "Music",
+            ranking: 1
+        },
+        */

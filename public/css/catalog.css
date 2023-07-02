@@ -343,7 +343,6 @@ member-profile-icon-container{
     height: 268px;
     margin: 15px;
     border-radius: 15px;
-    background-color: white;
     background-repeat: no-repeat;
     line-height: 50px;
     font-size: 20px;
@@ -351,7 +350,34 @@ member-profile-icon-container{
     vertical-align: bottom;
     color: darkblue;
     cursor: pointer;
+    transition: background-color 0.25s, background-size 0.25s;
 }
+
+.trending-post-container:hover{
+    background-size: auto 100% !important;
+}
+
+#trending-post-0-container:hover{
+    background-color: aquamarine;
+    color: rgba(0, 0, 0, 1.0) !important;
+    background-image: url(../media/img/drone-icon.png) !important;
+}
+
+#trending-post-2-container:hover{
+    background-color: linear-gradient(blueviolet, aqua) !important;
+    color: rgba(255, 255, 2555, 1.0) !important;
+    background-size: auto 80% !important;
+    background-image: url(../media/img/ai-tunes.png) !important;
+}
+
+#trending-post-3-container:hover{
+    background-color: indianred;
+}
+
+#trending-post-1-container:hover{
+    background-color: white;
+}
+
 
 #all-apps-container{
     width: min(900px, 100%);

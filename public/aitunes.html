@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GKND: All DARIA Apps</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Braah+One&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="./media/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./media/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./media/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="./media/img/favicon/site.webmanifest">
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.css" />
+    <link rel="stylesheet" href="./css/catalog.css" type="text/css" />
+    </head>
+    <body>
+        <div id="something-went-wrong-container">
+            <p class="description-container">Something Went Wrong</p>
+            <div id="something-went-wrong-icon-container"></div>
+            <p class="description-container">Redirecting Shortly...</p>
+        </div>
+        <div id="logging-you-out-container">
+            <p class="description-container">Signing You Out...</p>
+            <div id="signing-out-icon-container"></div>
+            <p class="description-container">See You Later!</p>
+        </div>
+        <div id="profile-button-container"></div>
+        <div id="token-button-container" class="hidden-option"></div>
+        <input id="sign-out-of-profile-button-container" type="button" value="sign out" />
+        <form id="token-atm-overlay-container">
+            <p id="token-atm-title-container">Wallet</p>
+            <div id="token-atm-icon-container"></div>
+            <div id="tier-information-container">
+                <div id="member-tier-category-container"></div>
+                <div id="token-count-container"><span id="token-num-container"></span> Tokens</div>
+            </div>
+            <input type="button" value="buy" id="buy-tokens-button-container" class="update-overlay-button-container"/>
+            <input type="button" value="activate" id="activate-creator-pass-button-container" class="update-overlay-button-container"/>
+            <input type="button" value="close" id="close-token-atm-button-container" class="update-overlay-button-container"/>
+        </form>
+        <div id="main-app-container">
+            <div id="member-profile-icon-container"></div>
+            <div id="member-profile-display-name-container"></div>
+            <div id="all-apps-container">
+                <div id="all-apps-title-container">All Apps</div>
+            </div>
+        </div>
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-auth.js"></script>
+        <script src="./js/Lyoko.AppLibrary.js" type="module"></script>
+        <script type="module">
+            import { AppLibrary } from "./js/Lyoko.AppLibrary.js";
+            
+            var storage, database, dbRefObject, currentUser, tokenATMVisible = false;
+            
+            const firebaseConfig = {
+                apiKey: "AIzaSyDb25cWx6pMmh2xt54c_G5hS_rTDzpnpKw",
+                authDomain: "galactic-kids-next-door.firebaseapp.com",
+                databaseURL: "https://galactic-kids-next-door-default-rtdb.europe-west1.firebasedatabase.app",
+                projectId: "galactic-kids-next-door",
+                storageBucket: "galactic-kids-next-door.appspot.com",
+                messagingSenderId: "273360155490",
+                appId: "1:273360155490:web:a752b1c28ad6156791f23b",
+                measurementId: "G-6Z2LK6Z05H"
+            };
+            
+            firebase.initializeApp(firebaseConfig);
+            
+            function loadTokenATM(forceBool){
+                if(forceBool!==null&&forceBool!==undefined)tokenATMVisible = !forceBool;
+               // console.log(forceBool);
+                if(tokenATMVisible){
+                    //if the module is open, close it and hide it
+                    document.getElementById("token-atm-overlay-container").classList.remove("token-atm-overlay");
+                    setTimeout(function(){
+                        document.getElementById("token-atm-overlay-container").style.zIndex = -1;/*display = "none";*/
+                    }, 1500);
+                    tokenATMVisible = false;
+                }
+                else{
+                    //otherwise open the module
+                    //reveal the module for member use
+                    document.getElementById("token-atm-overlay-container").style.display = "block";
+                    document.getElementById("token-atm-overlay-container").classList.add("token-atm-overlay");
+                    
+                    //load the number of tokens available from the database record
+                    //dbRefObject = database.ref();
+                    //let updates = {};
+                    //updates[currentUser.uid + '/lastSignIn'] = new Date();
+                        
+                    dbRefObject.child("Members").child(currentUser.uid).get().then((snapshot) => {
+                        if (snapshot.exists()) {
+                            //console.log(snapshot.val());
+                            let tokenVal = snapshot.val()["tokens"];
+                            let tierVal = snapshot.val()["tierName"];
+                            
+                            document.getElementById("member-tier-category-container").innerHTML = tierVal;
+                            document.getElementById("token-num-container").innerHTML = tokenVal;
+                            
+                        } else {
+                            console.log("No data available");
+                        }
+                    }).catch((error) => {
+                        console.error(error);
+                    });
+                    //let the system know the task is complete and set the new state
+                    tokenATMVisible = true;
+                }
+            }
+            
+            document.addEventListener("DOMContentLoaded", function(){
+                
+                firebase.auth().onAuthStateChanged((user) => {
+                    currentUser = user
+                  if (currentUser) {
+                      const displayName = currentUser.displayName;
+                      const email = currentUser.email;
+                      const photoURL = currentUser.photoURL;
+                      const emailVerified = currentUser.emailVerified;
+                    // User is signed in, see docs for a list of available properties
+                    // https://firebase.google.com/docs/reference/js/v8/firebase.User
+                    var uid = currentUser.uid;
+                      console.log(`Currently signed in as ${displayName} \n email: ${email}\n verified> ${emailVerified}\n photo: ${photoURL}`);
+
+                      document.getElementById("profile-button-container").style.backgroundImage = `url(${photoURL})`;
+                      
+                      document.getElementById("token-button-container").classList.remove("hidden-option");
+                      
+                      database = firebase.database();
+                      dbRefObject = database.ref();
+                        
+                      dbRefObject.child("Members").child(currentUser.uid).get().then((snapshot) => {
+                        if (snapshot.exists()) {
+                            //console.log(snapshot.val());
+                            let currentTier = snapshot.val()["tier"];
+                            let tokenVal = snapshot.val()["tokens"];
+                            let currentTierName = snapshot.val()["tierName"];
+
+                            document.getElementById("token-button-container").innerHTML = tokenVal;
+
+                            if(currentTier==0&&currentTierName=="prepaid"){
+                                //document.getElementById("buy-tokens-button-container")
+                                document.getElementById("activate-creator-pass-button-container").value="Upgrade";
+                            }
+                            else if(currentTier==1&&currentTierName=="unlimited"){
+                                document.getElementById("buy-tokens-button-container").classList.add("hidden-option");           
+                            }
+                            else if(currentTier==2&&currentTierName=="unlimited"){
+                                document.getElementById("buy-tokens-button-container").classList.add("hidden-option");
+                            }
+
+                        } else {
+                            console.log("No token data available");
+                        }
+                      }).catch((error) => {
+                          console.error(error);
+                      });
+                      
+                      //CHANGE TO THE GLOBAL aiTUNE LIFESTREAM!!!
+                      
+                      /*
+                      var allApps = AppLibrary(4);
+                      
+                      for(var appCount = 0; appCount < allApps.length; appCount++){
+                        let counterA = appCount;
+                        (function(){
+                            //console.log(allApps[appCount].src);
+                            let curr = document.createElement("div");
+                            curr.classList.add("trending-post-container");
+
+                            curr.setAttribute("id", `trending-post-${counterA}-container`);
+
+                            curr.style.backgroundImage = `url(${allApps[counterA].src})`;
+
+                            curr.style.backgroundSize = allApps[counterA].bgSize;
+
+                            curr.style.backgroundPosition = allApps[counterA].bgPosition;
+
+                            curr.innerText = allApps[counterA].name;
+
+                            curr.addEventListener("click", function(){
+                                window.location.href = allApps[counterA].target;
+                            });
+
+                            if(allApps[counterA].color)curr.style.color = allApps[counterA].color;
+
+                            document.getElementById("all-apps-container").appendChild(curr);
+                        })();
+                    }
+                    */
+                    // ...
+                  } else {
+                    // User is signed out
+                    // ...
+                      console.log('no user signed in ');
+                      setTimeout(function(){
+                        window.location.replace("https://galactickidsnextdoor.com/sign-in");
+                    }, 50);
+                  }
+                });
+                
+                document.getElementById("profile-button-container").addEventListener("click", function(){
+                    window.location.href = "./profile";
+                });
+                
+                document.getElementById("sign-out-of-profile-button-container").addEventListener("click", function(){
+                    firebase.auth().signOut().then(() => {
+                        console.log("sign out successful");
+                        setTimeout(function(){
+                            window.location.replace("https://galactickidsnextdoor.com");
+                        }, 4000);
+                    }).catch((error) => {
+                        console.log("sign out failed");
+                    });
+                });
+                
+                document.getElementById("token-button-container").addEventListener("click", function(){
+                    loadTokenATM(true);
+                });
+                
+                document.getElementById("close-token-atm-button-container").addEventListener("click", function(){
+                    loadTokenATM(false);
+                });
+                
+            });
+            
+            /**/
+        </script>
+    </body>
+</html>

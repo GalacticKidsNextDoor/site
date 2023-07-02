@@ -7,6 +7,45 @@ export function Personas (numOfPersons){
             bgSize: "130% auto"
         },
         {
+            name: "Travis",
+            src: "./media/img/travis-head-0.png",
+            bgSize: "130% auto"
+        },
+        {
+            name: "Travis",
+            src: "./media/img/travis-head-0.png",
+            bgSize: "130% auto"
+        },
+        {
+            name: "Travis",
+            src: "./media/img/travis-head-0.png",
+            bgSize: "130% auto"
+        },
+        {
+            name: "Travis",
+            src: "./media/img/travis-head-0.png",
+            bgSize: "130% auto"
+        },
+        {
+            name: "Travis",
+            src: "./media/img/travis-head-0.png",
+            bgSize: "130% auto"
+        },
+        {
+            name: "Travis",
+            src: "./media/img/travis-head-0.png",
+            bgSize: "130% auto"
+        }
+    ];
+};
+
+/*
+{
+            name: "Travis",
+            src: "./media/img/travis-head-0.png",
+            bgSize: "130% auto"
+        },
+        {
             name: "Trump",
             src: "./media/img/trump-head-0.png",
             bgSize: "100% auto"
@@ -35,6 +74,4 @@ export function Personas (numOfPersons){
             name: "eminem",
             src: "./media/img/eminem-head-2.png",
             bgSize: "95% auto"
-        }
-    ];
-};
+        }*/

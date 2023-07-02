@@ -435,7 +435,7 @@ document.addEventListener("DOMContentLoaded", function(){
     });
 
     document.getElementById("return-to-pangaea-map-button-container").addEventListener("click", function(){
-        window.location.href = "./preview";
+        window.location.href = "./explore";
     });
 
     document.getElementById("return-to-experience-lobby-button-container").addEventListener("click", function(){

@@ -256,6 +256,9 @@
                                 
                                         let productionCost = MemberProductions.list[actuals].ADtokenCost;
                                         let productionCode = MemberProductions.list[actuals].ADtokenCode;
+                                        
+                                        
+                                        let productionTarget = MemberProductions.list[actuals].target;
                                 
                                         
                                         productionContainer.setAttribute("id",`production-${actuals-1}-container`);
@@ -285,6 +288,10 @@
                                         productionContainer.appendChild(productionStatusContainer);
                                         productionContainer.appendChild(productionCostContainer);
                                         productionContainer.appendChild(productionCodeContainer);
+                                        
+                                        productionContainer.addEventListener("click", function(){
+                                            window.open(productionTarget, "_blank");
+                                        });
                                         
                                         document.getElementById("member-apps-container").appendChild(productionContainer);
                                     }

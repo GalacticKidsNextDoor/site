@@ -2,22 +2,22 @@ export function MediaTypes (numOfTypes){
     console.log(numOfTypes);
     return [
         {
-        action: "Create Music",
+        action: "The World",
     },
         {
-        action: "Give Speeches",
+        action: "The World",
     },
         {
-        action: "Edit Videos",
+        action: "The World",
     },
         {
-        action: "Cover Songs",
+        action: "The World",
     },
         {
-        action: "Post TikToks",
+        action: "The World",
     },
         {
-        action: "Share Memes",
+       action: "The World",
     }
     ];
 };

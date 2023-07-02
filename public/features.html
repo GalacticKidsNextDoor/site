@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <title>Tech: Features & Apps</title>
+    <title>About: Features & Apps</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Braah+One&display=swap" rel="stylesheet">
@@ -20,7 +20,7 @@
         <input id="sign-in-button-container" type="button" value="" />
         <div id="desktop-navigation-options-container">
             <input type="button" value="Home" id="home-navigation-button-container" class="navigation-button-container" />
-            <input type="button" value="Tech" id="features-navigation-button-container" class="navigation-button-container" />
+            <input type="button" value="About" id="features-navigation-button-container" class="navigation-button-container" />
             <input type="button" value="Pricing" id="pricing-navigation-button-container" class="navigation-button-container" />
         </div>
         
@@ -41,7 +41,7 @@
             </div>
             <div id="all-features-block-container">
             </div>
-            <div class="tech-page-section-header-container">
+            <!--<div class="tech-page-section-header-container">
                 Public Apps
             </div>
             <div id="public-apps-block-container">
@@ -50,76 +50,11 @@
                 <a id="all-apps-link-container" href="./all-apps">All Apps</a>
             </div>
             <div id="private-apps-block-container">
-            </div>
+            </div>-->
         </div>
     </div>
     <script>
         var loggedIn = false;
-        var publicApps = [
-            {
-                name: "AVATAR SAM",
-                src: "./media/img/avatar-sam-cover.png",
-                bgSize: "auto 100%",
-                bgPosition: "center center",
-                color: "red",
-                bgColor: "rgba(255, 255, 255, 1.0)",
-                target: "./sam",/*"./avatar-sam",*/
-                type: "Application",
-                tier: "Public",
-                ranking: 9
-            },
-            {
-                name: "AVATAR SAM PODCAST",
-                src: "./media/img/avatar-sam-cover-1.png",
-                bgSize: "auto 100%",
-                bgPosition: "center center",
-                color: "blue",
-                bgColor: "rgba(255, 255, 255, 1.0)",
-                target: "./avatar-sam-podcast",
-                type: "Application",
-                tier: "Public",
-                ranking: 9
-            },
-            {
-                name: "AI The Label",
-                src: "./media/img/be-the-label.png",
-                bgSize: "auto 100%",
-                bgPosition: "center center",
-                bgColor: "rgba(255, 255, 255, 1.0)",
-                color: "black",
-                target: "./ai-the-label",
-                type: "Application",
-                tier: "Public",
-                ranking: 9
-            }
-        ];
-        
-        var privateApps = [
-             {
-                name: "DronePong",
-                src: "./media/img/pong-logo.png",
-                bgSize: "auto 100%",
-                bgPosition: "center center",
-                color: "red",
-                bgColor: "rgba(255, 255, 255, 1.0)",
-                target: "./dronepong",
-                type: "Application",
-                tier: "Public",
-                ranking: 9
-            },
-            {
-                name: "HONEYPOT",
-                src: "./media/img/avatar-sam-cover.png",
-                bgSize: "auto 100%",
-                bgPosition: "center center",
-                color: "red",
-                bgColor: "rgba(255, 255, 255, 1.0)",
-                target: "./sam",
-                type: "Application",
-                tier: "Public",
-                ranking: 2
-            }
-        ];
         
         var onPersona = 0;
         
@@ -222,90 +157,6 @@
                     featureRow.appendChild(featureRowText);
                     currFeatureBlock.appendChild(featureRow);
                 })();
-            }
-            
-            /*for(var appCount = 0; appCount < publicApps.length; appCount++){
-                let counterA = appCount;
-                (function(){
-                    let curr = document.createElement("div");
-                    curr.classList.add("trending-post-container");
-                    
-                    curr.setAttribute("id", `trending-post-${counterA}-container`);
-                    
-                    curr.style.backgroundImage = `url(${publicApps[counterA].src})`;
-                    
-                    curr.style.backgroundSize = publicApps[counterA].bgSize;
-                    
-                    curr.style.backgroundPosition = publicApps[counterA].bgPosition;
-                    
-                    curr.innerText = publicApps[counterA].name;
-                    
-                    curr.addEventListener("click", function(){
-                        window.location.href = publicApps[counterA].target;
-                    });
-                    
-                    if(publicApps[counterA].color)curr.style.color = publicApps[counterA].color;
-                    if(publicApps[counterA].bgColor)curr.style.backgroundColor = publicApps[counterA].bgColor;
-                    
-                    document.getElementById("public-apps-block-container").appendChild(curr);
-                })();
-            }*/
-            
-            if(loggedIn){
-                for(var privateAppCount = 0; privateAppCount < privateApps.length; privateAppCount++){
-                    let counterA = privateAppCount;
-                    (function(){
-                        let curr = document.createElement("div");
-                        curr.classList.add("trending-post-container");
-
-                        curr.setAttribute("id", `trending-post-${counterA}-container`);
-
-                        curr.style.backgroundImage = `url(${publicApps[counterA].src})`;
-
-                        curr.style.backgroundSize = publicApps[counterA].bgSize;
-
-                        curr.style.backgroundPosition = publicApps[counterA].bgPosition;
-
-                        curr.innerText = publicApps[counterA].name;
-
-                        curr.addEventListener("click", function(){
-                            window.location.href = publicApps[counterA].target;
-                        });
-
-                        if(publicApps[counterA].color)curr.style.color = publicApps[counterA].color;
-                        if(publicApps[counterA].bgColor)curr.style.backgroundColor = publicApps[counterA].bgColor;
-
-                        document.getElementById("public-apps-block-container").appendChild(curr);
-                    })();
-                }
-            }
-            else{
-                for(var appCount = 0; appCount < publicApps.length; appCount++){
-                    let counterA = appCount;
-                    (function(){
-                        let curr = document.createElement("div");
-                        curr.classList.add("trending-post-container");
-
-                        curr.setAttribute("id", `trending-post-${counterA}-container`);
-
-                        curr.style.backgroundImage = `url(${publicApps[counterA].src})`;
-
-                        curr.style.backgroundSize = publicApps[counterA].bgSize;
-
-                        curr.style.backgroundPosition = publicApps[counterA].bgPosition;
-
-                        curr.innerText = publicApps[counterA].name;
-
-                        curr.addEventListener("click", function(){
-                            window.location.href = publicApps[counterA].target;
-                        });
-
-                        if(publicApps[counterA].color)curr.style.color = publicApps[counterA].color;
-                        if(publicApps[counterA].bgColor)curr.style.backgroundColor = publicApps[counterA].bgColor;
-
-                        document.getElementById("public-apps-block-container").appendChild(curr);
-                    })();
-                }
             }
         });
     </script>

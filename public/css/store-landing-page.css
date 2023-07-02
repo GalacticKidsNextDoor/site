@@ -104,7 +104,7 @@ body, html, #main-app-container{
 #get-started-main-container{
     position: relative;
     font-family: "Braah One", sans-serif;
-    width: 500px;
+    width: 550px;
     height: 225px;
     border-radius: 50px;
     background-color: rgba(255, 255, 255, 1.0);
@@ -207,7 +207,6 @@ body, html, #main-app-container{
     height: 268px;
     margin: 15px;
     border-radius: 15px;
-    background-color: white;
     background-repeat: no-repeat;
     line-height: 50px;
     font-size: 20px;
@@ -215,6 +214,30 @@ body, html, #main-app-container{
     vertical-align: bottom;
     color: darkblue;
     cursor: pointer;
+}
+
+#trending-post-0-container{
+    transition: background-color 0.25s;
+}
+
+#trending-post-0-container:hover{
+    background-color: indianred;
+}
+
+#trending-post-1-container{
+    transition: background-size 0.25s;
+}
+
+#trending-post-1-container:hover{
+    background-size: auto 100% !important;
+}
+
+#trending-post-2-container{
+    transition: background-color 0.25s;
+}
+
+#trending-post-2-container:hover{
+    background-color: rgba(255, 255, 255, 1.0);
 }
 
 #trending-list-post-container{

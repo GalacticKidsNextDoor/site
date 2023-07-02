@@ -60,14 +60,16 @@ body, html{
     font-family: "Braah One", sans-serif;
     display: inline-block;
     font-size: 24px;
-    text-align: right;
+    text-align: center;
     height: 35px;
     line-height: 35px;
-    width: 50%;
+    width: 100%;
     min-width: 200px;
 }
 
 #add-new-app-button-container{
+    display: block;
+    margin: 2% auto;
     background-color: rgba(0, 0, 0, 0);
     color: white;
     width: 50px;
@@ -365,7 +367,7 @@ body, html{
 
 .visible-overlay-2, .token-atm-overlay{
     display: block !important;
-    z-index: 100 !important;
+    z-index: 150 !important;
     top: 50% !important;
     left: 50% !important;
     opacity: 1.0 !important;
@@ -525,7 +527,7 @@ body, html{
 
 .visible-overlay-0{
     display: block !important;
-    z-index: 100 !important;
+    z-index: 150 !important;
     top: 50% !important;
     left: 50% !important;
     opacity: 1.0 !important;
