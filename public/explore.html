@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <title>Codename: Galactic Kids Next Door</title>
+    <title>Explore</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Braah+One&display=swap" rel="stylesheet">
@@ -12,6 +12,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="./media/img/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./media/img/favicon/favicon-16x16.png">
     <link rel="manifest" href="./media/img/favicon/site.webmanifest">
+    <link rel="stylesheet" type="text/css" href="./css/PublicAugmentedRealityKinectome.css" />
     <link rel="stylesheet" type="text/css" href="./css/gknd.css" />
     <link rel="stylesheet" type="text/css" href="./css/TGL-glyphs.css" />
     <script src="./js/aframe1.3.0.min.js"></script>
@@ -21,6 +22,7 @@
 <body>
     <div id="main-app-container">
         <input id="gknd-logo-button-container" class="loading-screen-logo-container" value="" type="button"/>
+        <input id="action-menu-button-container" value="" type="button"/>
         <div id="tgl-subtitles-container" class="tgl-subtitles-container-regular">
             <!--<div class="galactic-letter-block-size-10-container tgl-letter-e-container"></div>
             <div class="galactic-letter-block-size-10-container tgl-letter-r-container"></div>
@@ -32,6 +34,32 @@
         tierra ERT I
         terra  ERT A
         -->
+    </div>
+    <div id="delivery-module-container" class="park-module-container">
+        <h2 id="schedule-instructions-title-container">Schedule a Delivery</h2>
+        <p class="park-module-instruction-paragraph-container">Select a start point for your delivery by clicking on a location on the map</p>
+        <p class="park-module-instruction-paragraph-container">Select a destination point for your delivery by clicking on a location on the map</p>
+        <p class="park-module-instruction-paragraph-container">To customize flight settings, click on the generated flight path</p>
+        <p class="park-module-instruction-paragraph-container">Note: only one flight can be scheduled at a time</p>
+        <p class="park-module-instruction-paragraph-container">When you are ready to begin click start below!</p>
+        <input type="button" value="deliver" id="start-scheduling-delivery-button-container" class="start-scheduling-button-container"/>
+    </div>
+    <div id="film-module-container" class="park-module-container">
+        <h2 id="schedule-instructions-title-container">Schedule a Film Shoot</h2>
+        <p class="park-module-instruction-paragraph-container">Select a focal point for your aerial film shoot by clicking on a location on the map</p>
+        <p class="park-module-instruction-paragraph-container">The default film radius, FR, is half a kilometer (about a third of a mile)</p>
+        <p class="park-module-instruction-paragraph-container">To change the FR click and other film settings click on the generated circle</p>
+        <p class="park-module-instruction-paragraph-container">Note: only one film shoot can be scheduled at a time</p>
+        <p class="park-module-instruction-paragraph-container">When you are ready to begin click start below!</p>
+        <input type="button" value="film" id="start-scheduling-film-button-container" class="start-scheduling-button-container"/>
+    </div>
+    <div id="create-account-input-container" class="create-input-container">
+        <div id="capture-options-container">
+            <input id="dps2-call-button-container" class="create-input-option-button-container" value="" type="button">
+            <input type="button" class="create-input-option-button-container" id="film-capture-button-container" value=""/>
+            <input type="button" class="create-input-option-button-container" id="delivery-capture-button-container" value=""/>
+            <input type="button" class="create-input-option-button-container" id="d2-capture-button-container" value=""/>
+        </div>
     </div>
     <a-scene id="main-scene-container" embedded width="720" height="480" class="hidden-scene">
         <a-assets timeout="60000">
@@ -70,6 +98,13 @@ animation="property: position; from: 0 1.25 64; to: 10 1.25 64; loop: false; dur
     </a-scene>
     <script src="./js/TGL-min.js"></script>
     <script src="./js/message.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-storage.js"></script>
+    <script src="../js/PublicAugmentedRealityKinectome-Beta.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function(){
             var RigBody = {
@@ -105,9 +140,31 @@ animation="property: position; from: 0 1.25 64; to: 10 1.25 64; loop: false; dur
                 }
               // do something
             });
+
+            /*document.getElementById("launch-drone-delivery-button-container").addEventListener("click", function(){
+                document.getElementById("loading-drone-container").style.opacity = 1.0;
+
+                setTimeout(function(){
+                    //document.getElementById("page-3-container").style.display = "none";
+                }, 6000);
+            });*/
+            
+            document.getElementById("action-menu-button-container").addEventListener("click", function(){
+                document.getElementById("create-account-input-container").style.display = "block";
+                setTimeout(function(){
+                    document.getElementById("create-account-input-container").style.opacity = 1.0;
+                }, 50);
+            });
+
+            
+            document.getElementById("d2-capture-button-container").addEventListener("click", function(){
+              window.location.replace("./lyoko");
+            });
+
+            document.getElementById("dps2-call-button-container").addEventListener("click", function(){
+              window.location.replace("./protect");
+            });
         });
-        
-        
     </script>
 </body>
 </html>

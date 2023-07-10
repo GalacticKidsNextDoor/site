@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset = "utf-8" >
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" >
+    <title>Galactic Kids Next Door - Order Meds </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Braah+One&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="./media/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./media/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./media/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="./media/img/favicon/site.webmanifest">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "Braah One", sans-serif;
+        }
+        
+        body, html{
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background-image: url(./media/img/starry-sky-texture.avif);
+            background-size: cover;
+        }
+        
+        #main-app-container{
+            display: block;
+            width: 100%;
+            height: 500px;
+            margin: 3% auto 0 auto;
+        }
+        
+        #gknd-logo-button-container{
+            position: absolute;
+            background-image: url(../media/img/gknd-logo.png);
+            background-size: 110% 100%;
+            background-color: rgba(0, 0, 0, 0);
+            background-position: center center;
+            background-repeat: no-repeat no-repeat;
+            border: 0;
+            cursor: pointer;
+            z-index: 10;
+            transition: top 2.5s, left 2.5s, width 2.5s, height 2.5s, margin 2.5s;
+        }
+
+        .loading-screen-logo-container{
+            width: 350px;
+            height: 350px;
+            top: 45%;
+            left: 50%;
+            margin: -175px 0 0 -175px;
+        }
+
+        .corner-logo-container{
+            width: 75px;
+            height: 75px;
+            top: 10%;
+            left: 7%;
+            margin: -50px 0 0 -50px;
+        }
+
+        .corner-logo-container:hover{
+            width: 120px;
+            height: 120px;
+        }
+
+        .item-button-container{
+            width: 245px;
+            height: 245px;
+            border: 0;
+            border-radius: 5px;
+            cursor: pointer;
+            outline: none;
+            display: block;
+            margin: 5% auto;
+            text-align: center;
+            vertical-align: bottom;
+            background-repeat: no-repeat;
+            background-color: rgba(255, 255, 255, 0);
+            color: rgba(255, 255, 255, 0);
+            box-shadow: none;
+            transition: width 0.25s, height 0.25s, color 0.25s, border 0.25s, box-shadow 0.25s, background-size 0.25s;
+        }
+        
+        .item-button-container:hover{
+            width: 260px;
+            height: 260px;
+            box-shadow: 3px 3px 3px white;
+            border: 2px white solid;
+        }
+        
+        #covid-test-button-container{
+            background-image: url(./media/img/covid-test.png);
+            background-size: 80% auto;
+            background-position: center center;
+        }
+        
+        #covid-test-button-container:hover{
+            background-size: 105% auto !important;
+        }
+        
+        #tampons-button-container{
+            background-image: url(./media/img/tampax.png);
+            background-size: 70% auto;
+            background-position: center center;
+        }
+        
+        #tampons-button-container:hover{
+            background-size: 85% auto !important;
+        }
+        
+        #condoms-button-container{
+            background-image: url(./media/img/magnum-condoms.png);
+            background-size: 80% auto;
+            background-position: center center;
+        }
+        
+        #condoms-button-container:hover{
+            background-size: 100% auto !important;
+        }
+        #success-container{
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 250px;
+            height: 250px;
+            margin: -125px 0 0 -125px;
+            border-radius: 15px 15px 0 0;
+            cursor: pointer;
+            z-index: 500;
+            font-weight: 700;
+            text-transform: uppercase;
+            background-color: white;
+            color: black;
+        }
+
+        #success-icon-container{
+            background-size: 77% 100%;
+            background-image: url(./media/img/success.png);
+            width: 225px;
+            height: 225px;
+            background-position: center center;
+            background-repeat: no-repeat;
+            margin: 12px auto;
+            display: block;
+            position: relative;
+        }
+
+        #success-label-container{
+            text-align: center;
+            font-size: 24px;
+            line-height: 30px;
+            background-color: white;
+            padding: 10px;
+            border-radius: 0 0 15px 15px;
+        }
+        
+        #header-container{
+            display: block; width: 100%; height: 100px; line-height: 100px; text-align: center; color: white; margin-top: 3%;
+        }
+        
+        @media only screen and (max-width: 640px){
+            #header-container{
+                margin-top: max(10%, 100px);
+            }
+            
+            .corner-logo-container{
+                width: 65px;
+                height: 65px;
+                top: 5%;
+                left: 50%;
+                margin: 0;
+                margin-left: -33px;
+            }
+
+            .corner-logo-container:hover{
+                width: 70px;
+                height: 70px;
+            }
+        }
+    </style>
+    <script src='./js/jquery-3.2.1.min.js'></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            console.log('loaded v.0.5.0');
+            
+            function loadSuccess(){
+                setTimeout(function(){
+                    document.getElementById("success-container").style.display = "block"
+                }, 1500);
+            }
+            
+            document.getElementById("covid-test-button-container").addEventListener("click", function(){
+                loadSuccess();
+            });
+            
+            document.getElementById("tampons-button-container").addEventListener("click", function(){
+                loadSuccess();
+            });
+            
+            document.getElementById("condoms-button-container").addEventListener("click", function(){
+                loadSuccess();
+            });
+        });
+    </script>
+</head>
+<body>
+    <input type="button" id="gknd-logo-button-container" class="corner-logo-container" value="" />
+    <h2 id="header-container">Health</h2>
+    <div id="main-app-container">
+        <input type="button" value="COVID Test" id="covid-test-button-container" class="item-button-container" />
+        <input type="button" value="Tampons" id="tampons-button-container" class="item-button-container"/>
+        <input type="button" value="Condoms" id="condoms-button-container" class="item-button-container"/>
+        <div id="success-container">
+            <div id="success-icon-container">
+            </div>
+            <div id="success-label-container">
+                Your Item Is On The Way!
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name='viewport' content='width=device-width,initial-scale=1.0' />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./media/icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./media/icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./media/icon/favicon-16x16.png">
+    <link rel="manifest" href="./media/icon/site.webmanifest">
+    <title>DARIA Protect | HOV Emergency</title>
+    <link rel="stylesheet" type="text/css" href="./css/CreativeAugmentedRealityDesktop.css" />
+    <link rel="stylesheet" type="text/css" href="./css/protect.css" />
+</head>
+<body>
+    <input type="button" value="" id="main-logo-container" />
+    <div id="corner-widget-container">
+      <input id="toggle-menu-button-container" class="borderless-button" value="" type="button"/>
+    </div>
+    <div id="mobile-navigation-bar-container">
+        <input id="mobile-pangaea-nav-button-container" class="mobile-navigation-bar-item-container borderless-button currently-on-this-page-highlight" value="Protect" type="button"/>
+        <input id="mobile-vision-nav-button-container" class="mobile-navigation-bar-item-container borderless-button" value="Survey" type="button"/>
+        <input id="mobile-shop-nav-button-container" class="mobile-navigation-bar-item-container borderless-button" value="Deliver" type="button"/>
+    </div>
+    
+    <div id="main-join-container">
+        <p id="main-header-container">
+          DARIA PROTECT
+        </p>
+        <div id="task-menu-container">
+            <input id="respond-to-shooter-button-container" class="daria-task-option-button-container" data-module-name="shooter" type="button" value="shooter" />
+
+            <input id="survey-area-for-bomb-button-container" class="daria-task-option-button-container" data-module-name="bomb" type="button" value="bomb" />
+            
+            <input id="survey-area-for-threat-button-container" class="daria-task-option-button-container" data-module-name="poi-threat" type="button" value="area watch" />
+
+            <input id="search-for-missing-person-button-container" class="daria-task-option-button-container" data-module-name="poi-missing" type="button" value="missing" />
+
+            <input id="general-alert-button-container" class="daria-task-option-button-container"  data-module-name="general-alert" type="button" value="alert" />
+
+            <input id="specific-alert-button-container" class="daria-task-option-button-container" data-module-name="health-emergency" type="button" value="health" />
+        </div>
+        <p class="protect-instructions-container">
+          What type of emergency are you currently experiencing?
+        </p>
+        <div id="authentication-console-container">
+            <input id="resident-identifier-input-container" type="text" placeholder="901290" />
+            <input id="authentication-button-container" type="button" value="Go" />
+        </div>
+        <div id="load-module-overlay-container">
+            <div id="load-counter-container">0</div>
+            <div id="load-prompt-container"></div>
+            <input id="load-button-container" class="module-option-button-container" type="button" value="load" />
+            <input id="cancel-button-container" class="module-option-button-container" ttype="button" value="cancel" />
+        </div>
+    </div>
+    <script>
+        console.log("v. 5.2");
+        var countryCode = 0;
+        let mobileMenuInView = false;
+
+        function loadDARIAModule(moduleName){
+            
+            let loadTarget = moduleName;
+            let loadPrompt = "";
+            let bootupDelay = 0;
+            
+            let loadCounterContainer = document.getElementById("load-counter-container");
+            let loadPromptContainer = document.getElementById("load-prompt-container");
+            let loadButtonContainer = document.getElementById("load-button-container");
+            
+            switch(loadTarget){
+                case "shooter":
+                    loadPrompt+="<p>THIS CALLS FOR DARIA TO INTERCEPT AN ACTIVE SHOOTER ON OR NEAR YOUR LOCATION.</p><p>IF IN IMMEDIATE DANGER PRESS THE BUTTON BELOW.</p><p>IF YOU CANNOT PRESS THE BUTTON FOR WHATEVER REASON ONCE THE TIMER REACHES ZERO THE CALL WILL BE ACTIVATED AUTOMATICALLY.</p>";
+                    bootupDelay+=15000;
+                    break;
+                case "bomb":
+                    loadPrompt+="<p>THIS CALLS FOR DARIA TO SEARCH FOR A REPORTED BOMB AT OR NEAR YOUR LOCATION.</p><p> IF IN IMMEDIATE DANGER PRESS THE BUTTON BELOW.</p><p> IF YOU CANNOT PRESS THE BUTTON FOR WHATEVER REASON ONCE THE TIMER REACHES ZERO THE CALL WILL BE ACTIVATED AUTOMATICALLY.</p>";
+                    bootupDelay+=60000;
+                    break;
+                case "poi-threat":
+                    loadPrompt+="THIS CALLS FOR DARIA TO INTERCEPT A THREAT TO THE PUBLIC (PERSON OF INTEREST) AT OR NEAR YOUR LOCATION. IF IN IMMEDIATE DANGER PRESS THE BUTTON BELOW. IF YOU CANNOT PRESS THE BUTTON FOR WHATEVER REASON ONCE THE TIMER REACHES ZERO THE CALL WILL BE ACTIVATED AUTOMATICALLY.";
+                    bootupDelay+=15000;
+                    break;
+                case "poi-missing":
+                    loadPrompt+="THIS CALLS FOR DARIA TO SEARCH FOR A MISSING PERSON (PERSON OF INTEREST) AT OR NEAR YOUR LOCATION. TO EXPAND YOUR SEARCH AND CONTACT HUMAN ASSISTANCE, PRESS THE BUTTON BELOW.";
+                    bootupDelay+=30000;
+                    break;
+                case "general-alert":
+                    loadPrompt+="THIS CALLS FOR DARIA TO ANNOUNCE A GENERAL ALERT TO PUBLIC SAFETY AT OR NEAR YOUR LOCATION. IF IN IMMEDIATE DANGER PRESS THE BUTTON BELOW. IF YOU CANNOT PRESS THE BUTTON FOR WHATEVER REASON ONCE THE TIMER REACHES ZERO THE CALL WILL BE ACTIVATED AUTOMATICALLY.";
+                    bootupDelay+=60000;
+                    break;
+                case "health-emergency":
+                    loadPrompt+="THIS CALLS FOR DARIA TO ASSIST IN A HEALTH EMERGENCY AT OR NEAR YOUR LOCATION. IF IN IMMEDIATE DANGER PRESS THE BUTTON BELOW. IF YOU CANNOT PRESS THE BUTTON FOR WHATEVER REASON ONCE THE TIMER REACHES ZERO THE CALL WILL BE ACTIVATED AUTOMATICALLY.";
+                    bootupDelay+=15000;
+                    break;
+                default:
+                    console.log(moduleName);
+                    alert(`Module ${moduleName} unavailable. Check network connection and/or contact system administrator.`);
+                    return;
+                    break;
+            }
+            let loadModuleOverlayContainer = document.getElementById("load-module-overlay-container");
+            
+            loadModuleOverlayContainer.style.display = "block";
+            loadPromptContainer.innerHTML = loadPrompt;
+            
+            setTimeout(function(){
+                launchDARIAModule(loadModuleOverlayContainer, bootupDelay, loadCounterContainer, 66);
+            }, 50);
+        }
+        
+        function launchDARIAModule(targetContainer, bufferTime, counterContainer, loadPeriod){
+            targetContainer.style.opacity = 1.0;
+            let internalCounter = 0;
+            let countDown = setInterval(function(){
+                let currentCount = bufferTime - loadPeriod*internalCounter;
+                counterContainer.innerHTML = currentCount;
+                internalCounter++;
+            }, loadPeriod);
+            
+            setTimeout(function(){
+                clearInterval(countDown);
+                window.location.href = "./pharmacy"
+            }, bufferTime);            
+        }
+        
+        document.addEventListener("DOMContentLoaded", function(){
+ 
+            document.getElementById("main-logo-container").addEventListener("click", function(){
+                window.location.href = "https://houseofven.us";
+            });
+
+            document.getElementById("mobile-pangaea-nav-button-container").addEventListener("click", function(){
+                window.location.href = "./protect";
+            });
+
+            document.getElementById("mobile-vision-nav-button-container").addEventListener("click", function(){
+                window.location.href = "./survey";
+            });
+
+            document.getElementById("mobile-shop-nav-button-container").addEventListener("click", function(){
+                window.location.href = "./deliver";
+            });
+
+            document.getElementById("toggle-menu-button-container").addEventListener("click", function(){
+
+                let mobileNavContainer = document.getElementById("mobile-navigation-bar-container");
+
+                let toggleMenuButtonContainer = document.getElementById("toggle-menu-button-container");
+
+                if(mobileMenuInView){
+                    toggleMenuButtonContainer.style.backgroundImage = "url(../media/img/mobile-menu-icon-white.png)";
+                    toggleMenuButtonContainer.style.backgroundSize = "120% 120%";
+
+                    toggleMenuButtonContainer.style.backgroundColor = "rgba(255, 255, 255, 0)";
+
+
+                    mobileNavContainer.style.opacity = 0;
+                    mobileNavContainer.style.height = 0;
+
+                    setTimeout(function(){
+                        mobileNavContainer.style.display = "none";
+                    }, 505);
+                    mobileMenuInView = false;
+                }
+                else{
+
+                    toggleMenuButtonContainer.style.backgroundImage = "url(../media/img/close-menu-icon-white.png)";
+                    toggleMenuButtonContainer.style.backgroundSize = "60% 60%";
+
+                    mobileNavContainer.style.display = "block";
+                    setTimeout(function(){
+                        mobileNavContainer.style.opacity = 1.0;
+                        mobileNavContainer.style.height = "250px";
+                    }, 50);
+
+                    mobileMenuInView = true;
+                }
+            });
+        
+            const collection = document.getElementsByClassName("daria-task-option-button-container");
+        
+            for(var i=0; i<collection.length; i++){
+                let modName = collection[i].dataset.moduleName
+                collection[i].addEventListener("click", function(){
+                    loadDARIAModule(modName);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

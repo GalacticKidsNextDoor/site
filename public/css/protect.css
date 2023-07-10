@@ -1,0 +1,463 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body, html{
+    width: 100%;
+    height: 100%;
+    background-color: #05275D; /*for browsers that do not support linear gradients */
+    background-image: linear-gradient(to bottom right, #05275D, violet);
+}
+
+.daria-task-option-button-container{
+    width: 160px;
+    height: 160px;
+    border: 2px white solid;/* !important;*/
+    border-radius: 50%;
+    color: white;
+    background-color: rgba(255,255,255,0);
+    text-align: center;
+    line-height: 125px;
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 2px;
+    cursor: pointer;
+    outline: none;
+    margin: 30px 20px;
+    transition: background-color 0.5s, color 0.25s;
+}
+
+#main-join-container{
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 615px;
+    height: 600px;
+    margin: -300px 0 0 -308px;
+    overflow-y: scroll;
+}
+
+#task-menu-container{
+    width: 100%;
+    height: auto;
+}
+
+#main-logo-container{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-image: url(../media/img/gknd-logo.png);/*url(../media/img/hov-ig-logo.png);*/
+    background-size: 105% 105%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    position: absolute;
+    top: 5%;
+    left: 4%;
+    cursor: pointer;
+    outline: none;
+    z-index: 999;
+}
+
+#main-header-container{
+    text-transform: none;
+    font-size: 30px;
+    line-height: 46px;
+    width: 100%;
+    margin: 1% auto 4% auto;
+    color: white;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+#toggle-menu-button-container{
+    display: block;
+    background-color: rgba(255, 255, 255, 0);
+    width: 75px;
+    height: 75px;
+    background-image: url(../media/img/mobile-menu-icon-white.png);
+    background-size: 120% 120%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    cursor: pointer;
+    border-radius: 5px;
+    outline: none;
+    transition: background-color 0.25s;
+}
+
+#toggle-menu-button-container:hover, #toggle-menu-button-container:focus{
+  background-image: url(../media/img/mobile-menu-icon-white.png);
+}
+
+#corner-widget-container{
+    position: absolute;
+    top: 5%;
+    right: 2%;
+    z-index: 999;
+}
+
+#mobile-navigation-bar-container{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    height: 0;
+    z-index: 100;
+    padding-top: 155px;
+    background-color: rgba(255, 255, 255, 0);
+    transition: height 0.5s, opacity 0.5s;
+}
+
+.mobile-navigation-bar-item-container{
+    font-family: Arial, sans-serif;
+    width: 100%;
+    height: 150px;
+    line-height: 150px;
+    text-align: center;
+    font-size: 32px;
+    font-weight: 600;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: black;
+    outline: none;
+    cursor: pointer;
+    display: block;
+    text-transform: uppercase;
+}
+
+#respond-to-shooter-button-container{
+    background-image: url(../media/img/shooter-icon.png);
+}
+
+#respond-to-shooter-button-container:hover{
+    background-image: url(../media/img/white-shooter-icon.png);
+    color: black;
+}
+
+
+#survey-area-for-bomb-button-container{
+    background-image: url(../media/img/bomb-icon.png);
+    background-size: 100% auto;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+#survey-area-for-bomb-button-container:hover{
+    background-image: url(../media/img/white-bomb-icon.png);
+    color: black;
+}
+
+#survey-area-for-threat-button-container{
+    background-image: url(../media/img/black-eye-icon.png);
+    background-position: center center;
+    background-size: 80% auto;
+    background-repeat: no-repeat;
+}
+
+#survey-area-for-threat-button-container:hover{
+    background-image: url(../media/img/white-eye-icon.png);
+    color: black;   
+}
+
+#search-for-missing-person-button-container{
+    background-image: url(../media/img/missing-person-icon.png);
+    background-position: center center;
+    background-size: 90% auto;
+}
+
+#search-for-missing-person-button-container:hover{
+    background-image: url(../media/img/white-missing-person-icon.png);
+    color: black;
+}
+
+#general-alert-button-container{
+    background-image: url(../media/img/threat-icon.png);
+    background-position: center center;
+    background-size: 70% auto;
+    background-repeat: no-repeat;
+}
+
+#general-alert-button-container:hover{
+    background-image: url(../media/img/red-threat-icon.png);
+}
+
+#specific-alert-button-container{
+    background-image: url(../media/img/health-emergency-icon.png);
+    background-position: center center;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+}
+
+#specific-alert-button-container{
+    background-image: url(../media/img/health-emergency-icon.png);
+}
+
+#specific-alert-button-container:hover{
+    background-image: url(../media/img/white-health-icon.png);
+    color: black;
+}
+
+#resident-identifier-input-container{
+    display: block;
+    margin: 2% auto;
+    width: 300px;
+    height: 50px;
+    border-radius: 5px;
+    outline: none;
+    background-color: rgba(255, 255, 255, 0);
+    color: white;
+}
+
+#resident-identifier-input-container::placeholder{
+    color: white;
+}
+
+#authentication-button-container{
+    width: 300px;
+    height: 45px;
+    border-radius: 5px;
+    display: block;
+    margin: 2% auto 1% auto;
+    outline: none;
+    font-size: 16px;
+    color: white;
+    background-color: #2FA651;
+    border: 0;
+    border: 2px white solid;
+    text-align: center;
+}
+
+#authentication-console-container{
+    display: none;
+}
+
+.protect-instructions-container{
+    display: block;
+    text-transform: none;
+    font-size: 22px;
+    line-height: 30px;
+    width: 100%;
+    margin: 1% auto;
+    color: white;
+    text-align: center;
+}
+
+#load-module-overlay-container{
+    position: absolute;
+    z-index: 100;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    background-color: rgba(0,0,0,0.8);
+    color: white;
+    opacity: 0;
+    display: none;
+    transition: opacity 0.45s;
+}
+
+.module-option-button-container{
+    width: 150px;
+    height: 50px;
+    border-radius: 5px;
+    line-height: 40px;
+    font-size: 18px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: white;
+    display: block;
+    margin: 3% auto 2% auto;
+}
+
+#load-prompt-container{
+    display: block;
+    width: 80%;
+    margin: 0 auto;
+    height: auto;
+    line-height: 24px;
+    font-size: 18px;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 1.0);
+    text-transform: uppercase;
+}
+
+#load-prompt-container p{
+    display: block;
+    margin: 2% auto;
+}
+
+#load-counter-container{
+    width: 100%;
+    height: 70px;
+    line-height: 100px;
+    text-align: center;
+    color: rgba(255, 0, 0, 1.0);
+    font-size: 40px;
+    text-transform: uppercase;
+}
+
+#load-button-container{
+    background-color: rgba(0, 0, 250, 1.0);
+}
+
+#cancel-button-container{
+    background-color: rgba(255, 0, 0, 1.0);
+}
+
+@media only screen and (max-width: 640px){
+    #main-join-container {
+        display: block;
+        position: absolute;
+        top: 10%;
+        left: 0;
+        width: 100%;
+        height: 90%;
+        margin: 0;
+    }
+    
+    .daria-task-option-button-container {
+        width: 135px;
+        height: 135px;
+        border: 2px white solid;
+        border-radius: 50%;
+        color: white;
+        background-color: rgba(255,255,255,0);
+        text-align: center;
+        line-height: 125px;
+        font-size: 20px;
+        text-transform: uppercase;
+        font-weight: 400;
+        letter-spacing: 2px;
+        cursor: pointer;
+        outline: none;
+        margin: 20px 28px;
+        word-wrap: break-word;
+        transition: background-color 0.5s, color 0.25s;
+    }
+    
+    .protect-instructions-container {
+        width: 85%;
+    }
+    
+    #load-module-overlay-container {
+        position: absolute;
+        z-index: 100;
+        top: 8%;
+        left: 10%;
+        width: 80%;
+        height: 92%;
+        background-color: rgba(0,0,0,0.8);
+        color: white;
+        opacity: 0;
+        display: none;
+        transition: opacity 0.45s;
+    }
+}
+
+
+
+/* ----------- iPhone 6, 6S, 7 and 8 ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2) { 
+      #main-join-container {
+        display: block;
+        position: absolute;
+        top: 10%;
+        left: 0;
+        width: 100%;
+        height: 90%;
+        margin: 0;
+    }
+    
+    .daria-task-option-button-container {
+        width: 120px;
+        height: 120px;
+        border: 2px white solid;
+        border-radius: 50%;
+        color: white;
+        background-color: rgba(255,255,255,0);
+        text-align: center;
+        line-height: 125px;
+        font-size: 20px;
+        text-transform: uppercase;
+        font-weight: 400;
+        letter-spacing: 2px;
+        cursor: pointer;
+        outline: none;
+        margin: 20px 28px;
+        word-wrap: break-word;
+        transition: background-color 0.5s, color 0.25s;
+    }
+    
+    .protect-instructions-container {
+        width: 85%;
+    }
+    
+    #load-module-overlay-container {
+        position: absolute;
+        z-index: 100;
+        top: 8%;
+        left: 10%;
+        width: 80%;
+        height: 92%;
+        background-color: rgba(0,0,0,0.8);
+        color: white;
+        opacity: 0;
+        display: none;
+        transition: opacity 0.45s;
+    }
+}
+
+/* Portrait */
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) { 
+       
+}
+
+/* Landscape */
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: landscape) { 
+
+}
+
+/* ----------- iPhone 6+, 7+ and 8+ ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 414px) 
+  and (max-device-width: 736px) 
+  and (-webkit-min-device-pixel-ratio: 3) { 
+
+}
+
+/* Portrait */
+@media only screen 
+  and (min-device-width: 414px) 
+  and (max-device-width: 736px) 
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: portrait) { 
+
+}
+
+/* Landscape */
+@media only screen 
+  and (min-device-width: 414px) 
+  and (max-device-width: 736px) 
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: landscape) { 
+
+}
