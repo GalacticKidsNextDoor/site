@@ -50,9 +50,10 @@ body, html{
     height: 50px;
     border-radius: 50%;
     background-image: url(../media/img/gknd-logo.png);/*url(../media/img/hov-ig-logo.png);*/
-    background-size: 105% 105%;
+    background-size: 90% auto;
     background-repeat: no-repeat;
     background-position: center center;
+    background-color: rgba(255, 255, 255, 0);
     position: absolute;
     top: 5%;
     left: 4%;

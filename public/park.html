@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../media/icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../media/icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../media/icon/favicon-16x16.png">
+    <title>v. 0.18.4.p</title>
+    <link rel ="stylesheet" type="text/css" href="../css/PublicAugmentedRealityKinectome.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+   integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+   crossorigin=""/>
+    <style>
+        .header-container{
+            width: 100%; height; 50px; line-height: 50px; font-size: 24px; text-align: center; cursor: pointer;
+        }
+    
+        .header-icon-container{
+            width: 50px;
+            height: 50px;
+            display: block;
+            margin: 5% auto;
+            border-radius: 50%;
+            background-position: center;
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+        }
+        
+        #mcdonalds-header-icon-container{
+            background-image: url(./media/img/mcdonalds-icon.png);
+        }
+        
+        #seven-11-header-icon-container{
+            background-image: url(./media/img/7-eleven-icon.png);
+        }
+        
+        #chik-fil-a-header-icon-container{
+            background-image: url(./media/img/chik-fil-a-icon.png);
+        }
+        
+        .option-button-container{
+            display: inline-block;
+            height: 100%;
+            width: 49%;
+            border: 0;
+            border-radius: 10px;
+            background-position: center;
+            background-color: rgba(255, 255, 255, 0);
+            background-repeat: no-repeat;
+            transition: background-size 0.25s;
+        }
+        
+        #hash-brown-option-container{
+            background-image: url(./media/img/hash-brown.png);
+            background-size: auto 100%;
+        }
+        
+        #hash-brown-option-container:hover{
+            background-size: auto 70%;
+        }
+        
+        #ketchup-option-container{
+            background-image: url(./media/img/ketchup-icon.png);
+            background-size: auto 90%;
+        }
+        
+        #ketchup-option-container:hover{
+            background-size: auto 60%;
+        }
+        
+        #tampons-option-container{
+            background-image: url(./media/img/tampax.png);
+            background-size: auto 100%;
+        }
+        
+        #tampons-option-container:hover{
+            background-size: auto 70%;
+        }
+        
+        #condoms-option-container{
+            background-image: url(./media/img/magnum-condoms.png);
+            background-size: auto 110%;
+        }
+        
+        #condoms-option-container:hover{
+            background-size: auto 70%;
+        }
+        
+        #chicken-nuggets-option-container{
+            background-image: url(./media/img/chicken-nuggets.png);
+            background-size: auto 100%;
+        }
+        
+        #chicken-nuggets-option-container:hover{
+            background-size: auto 70%;
+        }
+        
+        #chik-fil-a-sauce-option-container{
+            background-image: url(./media/img/chik-fil-a-sauce.png);
+            background-size: auto 90%;
+        }
+        
+        #chik-fil-a-sauce-option-container:hover{
+            background-size: auto 60%;
+        }
+    </style>
+</head>
+<body>
+    <div id="delivery-module-container" class="park-module-container">
+        <h2 id="schedule-instructions-title-container">Schedule a Delivery</h2>
+        <p class="park-module-instruction-paragraph-container">Select a start point for your delivery by clicking on a location on the map</p>
+        <p class="park-module-instruction-paragraph-container">Select a destination point for your delivery by clicking on a location on the map</p>
+        <p class="park-module-instruction-paragraph-container">To customize flight settings, click on the generated flight path</p>
+        <p class="park-module-instruction-paragraph-container">Note: only one flight can be scheduled at a time</p>
+        <p class="park-module-instruction-paragraph-container">When you are ready to begin click start below!</p>
+        <input type="button" value="deliver" id="start-scheduling-delivery-button-container" class="start-scheduling-button-container"/>
+    </div>
+    <div id="film-module-container" class="park-module-container">
+        <h2 id="schedule-instructions-title-container">Schedule a Film Shoot</h2>
+        <p class="park-module-instruction-paragraph-container">Select a focal point for your aerial film shoot by clicking on a location on the map</p>
+        <p class="park-module-instruction-paragraph-container">The default film radius, FR, is half a kilometer (about a third of a mile)</p>
+        <p class="park-module-instruction-paragraph-container">To change the FR click and other film settings click on the generated circle</p>
+        <p class="park-module-instruction-paragraph-container">Note: only one film shoot can be scheduled at a time</p>
+        <p class="park-module-instruction-paragraph-container">When you are ready to begin click start below!</p>
+        <input type="button" value="film" id="start-scheduling-film-button-container" class="start-scheduling-button-container"/>
+    </div>
+    
+    <div id="main-app-container">
+        <!--<input id="register-for-pARk-button-container" value="" type="button">-->
+        <div id="user-access-layer-container" class="page-container layer-container upper-layer-container">
+            <div id="instructions-wrapper-container">
+                <p id="welcome-instruction-header-container">
+                    Public Augmented Reality Kinectome
+                </p>
+                <div class="instructions-block">
+                    <p>
+                        Welcome to this preview of the pARk! Click on the icons to browse experiences and order from stores.
+                    </p>
+                    <div id="instruction-graphic-1-container" class="instruction-graphic-container"></div>
+                  <!--  <p>
+                        All orders will be delivered to the nearest Door. To use Direct Delivery access the pARk through your cARd.-->
+                        <!-- Tap items to view and order.
+                    </p>-->
+                </div>
+                <p id="tap-to-start-title-container">
+                    tap anywhere to start
+                </p>
+            </div>
+        </div>
+        <div id="create-account-input-container" class="create-input-container">
+            <div id="capture-options-container">
+                <input id="dps2-call-button-container" class="create-input-option-button-container" value="" type="button">
+                <input type="button" class="create-input-option-button-container" id="film-capture-button-container" value=""/>
+                <input type="button" class="create-input-option-button-container" id="delivery-capture-button-container" value=""/>
+                <input type="button" class="create-input-option-button-container" id="d2-capture-button-container" value=""/>
+            </div>
+        </div>
+        
+        
+        
+        <div id="create-account-button-container" class="create-button-container"></div>
+        <div id="map" class="layer-container base-layer-container">
+        </div>
+        <div id="page-2-container" class="page-container">
+            <div id="restaurant-logo-container"></div>
+            <div id="restaurant-name-container">Restaurant Name</div>
+            <div id="restaurant-rating-container">****4.5</div>
+            <div id="preview-wrapper-container">
+                <div id="preview-media-container">
+                    <input id="access-hyperreal-space-button-container" type="button" />
+                </div>
+                <div id="preview-media-meta-data-container">
+                    <div id="restaurant-description-container" class="info-preview-container">Brief description of restaurant/bar</div>
+                    <div id="see-tables-button-container" class="info-preview-container"></div>
+                    <div id="close-preview-button-container">close</div>
+                </div>
+            </div>
+        </div>
+        <div id="page-3-container" class="send-package-widget-container">
+            <input type="button" id="close-send-package-widget-button-container" value="x"/>
+            <div id="widget-option-button-0-container" class="widget-option-button-container top-widget-option-button-container">Send A Woof!</div>
+
+            <div id="widget-option-button-1-container" class="widget-option-button-container">My cARd</div>
+
+            <div id="widget-option-button-2-container" class="widget-option-button-container">My Store</div>
+
+            <div id="widget-option-button-3-container" class="widget-option-button-container">My Broadcast</div>
+
+            <div id="widget-option-button-4-container" class="widget-option-button-container">More DIAs</div>
+
+            <div style="display: none;"> <!--width: 50%; margin: 0 auto; -->
+                <div>
+                  <input type="radio" id="dynamic-delivery-option-button-container" class="delivery-option-button-container" name="drone" value="dynamic" checked>
+                  <label for="dynamic">Dynamic</label>
+                </div>
+                <div>
+                  <input type="radio" id="static-delivery-option-button-container" class="delivery-option-button-container" name="drone" value="static">
+                  <label for="static">Static</label>
+                </div>
+            </div>
+            <!---->
+            <div id="loading-drone-container">
+                <div id="loading-drone-gif"></div>
+                <p id="hide-this-when-loading-is-done-container">Establishing Drone Route To Recipient...</p>
+                <div id="successfully-starting-route-container"></div>
+                <p id="show-this-when-loading-is-done-container">On our way to spread the love!</p>
+            </div>
+            <input type="button" value="Launch" id="launch-drone-delivery-button-container" />
+        </div>
+    </div>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+   crossorigin=""></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-storage.js"></script>
+    <script src="../js/PublicAugmentedRealityKinectome-Beta.js"></script>
+    <script>
+        var storage, database;
+
+        const config = {
+          apiKey: "AIzaSyAzqXRxpmI9K7UMTsiuFU6b54SkSjNojkU",
+          authDomain: "lyoko-blockchain.firebaseapp.com",
+          databaseURL: "https://lyoko-blockchain-default-rtdb.europe-west1.firebasedatabase.app",
+          projectId: "lyoko-blockchain",
+          storageBucket: "lyoko-blockchain.appspot.com",
+          messagingSenderId: "820284895954",
+          appId: "1:820284895954:web:e69039cadfd002bc15b30b"
+        };
+
+        /*var config = {
+            apiKey: "AIzaSyDyH3olBhhKfo5ROFwhxNayOCadNHvWYkc",
+            authDomain: "golden-gorges-park.firebaseapp.com",
+            databaseURL: "https://golden-gorges-park.firebaseio.com/",
+            storageBucket: "gs://golden-gorges-park.appspot.com"
+        };*/
+
+        function initMap() {
+           
+            map = L.map('map').setView([38.929990, -77.036990], 16);
+            
+            var McDonaldsIcon = L.icon({
+                iconUrl: './media/img/mcdonalds-icon.png',
+                iconSize: [50, 50],
+                popupAnchor: [38.929990, -77.036990]
+            });
+            
+            var Seven11Icon = L.icon({
+                iconUrl: './media/img/7-eleven-icon.png',
+                iconSize: [50, 50],
+                popupAnchor: [38.930020, -77.038180]
+            });
+            
+            var ChikFilAIcon = L.icon({
+                iconUrl: './media/img/chik-fil-a-icon.png',
+                iconSize: [50, 50],
+                popupAnchor: [38.929508, -77.033577]
+            });
+            
+            var McDonalds = L.marker([38.929990, -77.036990], {icon: McDonaldsIcon});
+            var Seven11 = L.marker([38.930020, -77.038180], {icon: Seven11Icon});
+            var ChikFilA = L.marker([38.929508, -77.033577], {icon: ChikFilAIcon});
+            
+           L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© House of Venus'
+            }).addTo(map);
+
+            map.on('click', onMapClick);
+            
+            
+            McDonalds.bindPopup(`<h3 id="mcd-header-container" class="header-container">McDonalds</h3><div id="mcdonalds-header-icon-container" class="header-icon-container"></div><div style="width:300px;height:300px;">
+        <button id="hash-brown-option-container" class="option-button-container"></button>
+        <button id="ketchup-option-container" class="option-button-container"></button></div>`);
+            
+            Seven11.bindPopup(`<h3 id="seven-11-header-container" class="header-container">7-Eleven</h3><div class="header-icon-container" id="seven-11-header-icon-container"></div><div style="width:300px;height:300px;">
+        <button id="tampons-option-container" class="option-button-container"></button>
+        <button id="condoms-option-container" class="option-button-container"></button></div>`);
+            
+            ChikFilA.bindPopup(`<h3 id="chik-fil-a-header-container" class="header-container">Chik-Fil-A</h3><div class="header-icon-container" id="chik-fil-a-header-icon-container"></div><div style="width:300px;height:300px;">
+        <button id="chicken-nuggets-option-container" class="option-button-container"></button>
+        <button id="chik-fil-a-sauce-option-container" class="option-button-container"></button></div>`);
+            
+            McDonalds.addTo(map);
+            Seven11.addTo(map)
+            ChikFilA.addTo(map)
+            //loadMarkers();
+        }
+        
+        function onMapClick(e) {
+            console.log("Click @ " + e.latlng);
+        }
+
+        function downloadDailyDeliveryTargets(deliverNodes){
+            let dailyDeliveryTargets = deliverNodes;
+            console.log("----------------------\nKnown Daily Delivery Targets");
+            var realDeliveryTargets = [];
+
+            var targetTitles = Object.keys(dailyDeliveryTargets);
+            for(var currentTitle = 0; currentTitle < targetTitles.length; currentTitle++){
+              (function(){
+                if(targetTitles[currentTitle].indexOf("order-")>-1){
+                  let currentDeliveryTarget = dailyDeliveryTargets[targetTitles[currentTitle]];
+                  realDeliveryTargets.push(currentDeliveryTarget);
+
+                  if(currentDeliveryTarget.zoom){
+                      iconSize = new google.maps.Size(currentDeliveryTarget.iconSize.x, currentDeliveryTarget.iconSize.y);
+                  }
+                  else{
+                      iconSize = new google.maps.Size(50, 50);
+                  }
+
+                  currentDeliveryTarget.marker = new google.maps.Marker({
+                      position: currentDeliveryTarget.position,
+                      map: map,
+                      icon: {
+                          url: currentDeliveryTarget.icon,
+                          scaledSize: iconSize
+                      }
+                  });
+
+                  currentDeliveryTarget.marker.addListener("click", function(){
+                      toggleRestaurantInfoPreview(currentDeliveryTarget.name);
+                    //  console.log("you clicked on a marker");
+                  });
+
+                  Restaurants.push(currentDeliveryTarget);
+                }
+              })();
+            }
+            //console.log(realDeliveryTargets);
+        }
+
+        function downloadNodeData(nodes){
+            let downloadedLocations = nodes;
+            let loci = Object.keys(downloadedLocations);
+            let order = loci.length;
+
+
+            console.log("downloaded Locations");
+            //console.log(downloadedLocations);
+
+            // convert the downloadedLocations JavaScript Object into the locations JavaScript Array
+
+            for(var locus = 0; locus < order; locus++){
+                (function(){
+                    locations.push(downloadedLocations[loci[locus]]);
+            //        console.log(downloadedLocations[loci[locus]]);
+                })();
+            }
+
+            // traverse the locations Array to create the markers for the members in the pARk
+            for(var i=0; i<locations.length; i++){
+                (function(){
+                    let currentLocation = {
+                        marker: null,
+                        position: locations[i].position,
+                        icon: locations[i].icon,
+                        name: locations[i].name,
+                        rating: locations[i].rating,
+                        description: locations[i].description,
+                        tables: locations[i].tables,
+                        zoom: locations[i].zoom,
+                        pointer: locations[i].pointer,
+                        queueLoc: i,
+                        lastPublicPostPreviewAvailable: locations[i].lastPublicPostPreviewAvailable,
+                        lastPublicPostPreviewImage: "url(../media/img/yktv-static.gif)",
+                        iconSize: locations[i].iconSize,
+                        widgetOptions: locations[i].widgetOptions,
+                        targets: locations[i].targets
+                    };
+
+                    storage.refFromURL(locations[i].lastPublicPostPreviewImage).getDownloadURL().then(function(url){
+                        currentLocation.lastPublicPostPreviewImage = `url(${url})`;
+                        //console.log(currentLocation);
+                    }).catch((error) => {
+                        console.log(error);
+                    });
+
+                    let iconSize;
+
+                    if(currentLocation.zoom){
+                        iconSize = new google.maps.Size(currentLocation.iconSize.x, currentLocation.iconSize.y);
+                    }
+                    else{
+                        iconSize = new google.maps.Size(50, 50);
+                    }
+
+                    currentLocation.marker = new google.maps.Marker({
+                        position: currentLocation.position,
+                        map: map,
+                        icon: {
+                            url: currentLocation.icon,
+                            scaledSize: iconSize
+                        }
+                    });
+
+                    currentLocation.marker.addListener("click", function(){
+                        toggleRestaurantInfoPreview(currentLocation.name);
+                      //  console.log("you clicked on a marker");
+                    });
+
+                    //console.log(currentLocation);
+                    Restaurants.push(currentLocation);
+                })();
+            }
+        }
+
+        function loadMarkers(){
+            storage = firebase.storage();
+            database = firebase.database();
+
+            const dbRefObject = database.ref().child("members");
+
+            dbRefObject.once("value").then(function(snap){
+                //console.log(snap.val());
+                downloadNodeData(snap.val());
+            });
+
+            loadDroneMarkers();
+        }
+
+        function loadDroneMarkers(){
+          const deliverRefObject = database.ref().child("orders");
+
+          deliverRefObject.once("value").then(function(snap){
+            downloadDailyDeliveryTargets(snap.val());
+          });
+        }
+
+        firebase.initializeApp(config);
+
+        firebase.auth().signInWithEmailAndPassword("traderjoesdeliverydc@gmail.com", "L3R0!duL0@ng0")
+          .then((userCredential) => {
+            // Signed in
+            console.log("signed in");
+            var user = userCredential.user;
+            //console.log(user);
+            // ...
+          })
+          .catch((error) => {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+          });
+
+        window.addEventListener("load", function(){
+          console.log("content loaded");
+          //console.log(navigator.geolocation);
+          /*if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(function(position){
+              //alert(position.coords.latitude+" "+position.coords.longitude);
+              document.getElementById("latitude-container").innerText = position.coords.latitude;
+              document.getElementById("longitude-container").innerText = position.coords.longitude;
+            });
+          }
+          else {
+            alert("Geolocation is not supported by this browser.");
+          }*/
+        });
+
+        document.addEventListener("DOMContentLoaded", function(){
+            console.log("attaching button handlers");
+            attachButtonHandlers();
+            setTimeout(function(){
+                initMap()
+            }, 2500);
+        });
+
+    </script>
+    <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6HuVCIAlzfnKNNoFCvWEdE5dBkLcPu_c&callback=initMap"
+async defer></script>-->
+</body>
+</html>

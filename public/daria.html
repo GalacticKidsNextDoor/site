@@ -151,6 +151,30 @@
                         document.getElementById("life-stream-overlay-container").style.opacity = 1.0;
                     }, 50);
                     break;
+                case 2:
+                    // Create a reference with an initial file path and name
+                    storage = firebase.storage();
+                    
+                    var pathRef1 = storage.ref('vid/pretakeoff.MP4');
+                    
+                    
+                    pathRef1.getDownloadURL()
+                      .then((url) => {
+                        // Or inserted into an <img> element
+                        var vid1 = document.getElementById('video-stream-1-container');
+                        vid1.setAttribute('src', url);
+                        vid1.classList.add("large-video-stream-container");
+                        console.log("success video 1");
+                      })
+                      .catch((error) => {
+                        // Handle any errors
+                        console.log("error video 1");
+                      });
+                    document.getElementById("life-stream-overlay-container").style.display = "block";
+                    setTimeout(function(){
+                        document.getElementById("life-stream-overlay-container").style.opacity = 1.0;
+                    }, 50);
+                    break;
                 default:
                     break;
             }    

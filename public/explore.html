@@ -149,16 +149,32 @@ animation="property: position; from: 0 1.25 64; to: 10 1.25 64; loop: false; dur
                 }, 6000);
             });*/
             
+            let actionMenuIsVisible = false;
             document.getElementById("action-menu-button-container").addEventListener("click", function(){
-                document.getElementById("create-account-input-container").style.display = "block";
-                setTimeout(function(){
-                    document.getElementById("create-account-input-container").style.opacity = 1.0;
-                }, 50);
+                if(actionMenuIsVisible){
+                    document.getElementById("create-account-input-container").style.opacity = 0;
+                    setTimeout(function(){
+                        document.getElementById("create-account-input-container").style.display = "none";
+                    }, 505);
+                    actionMenuIsVisible = false;
+                }
+                else{
+                    document.getElementById("create-account-input-container").style.display = "block";
+                    setTimeout(function(){
+                        document.getElementById("create-account-input-container").style.opacity = 1.0;
+                    }, 50);
+                    actionMenuIsVisible = true;
+                }
+                
             });
 
             
             document.getElementById("d2-capture-button-container").addEventListener("click", function(){
               window.location.replace("./lyoko");
+            });
+            
+            document.getElementById("delivery-capture-button-container").addEventListener("click", function(){
+                window.location.replace("./park");
             });
 
             document.getElementById("dps2-call-button-container").addEventListener("click", function(){

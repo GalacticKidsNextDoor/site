@@ -276,6 +276,13 @@ body, html, #main-app-container{
     padding: 6px;
 }
 
+.large-video-stream-container{
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 auto !important;
+    display: block !important;
+}
+
 #cell-meta-data-container{
     width: 90%;
     height: 270px;

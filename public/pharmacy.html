@@ -121,6 +121,43 @@
         #condoms-button-container:hover{
             background-size: 100% auto !important;
         }
+        
+        #dayquil-button-container{
+            background-image: url(./media/img/dayquil.png);
+            background-size: 70% auto;
+            background-position: center center;
+        }
+        
+        #ibuprofen-button-container{
+            background-image: url(./media/img/ibuprofen.png);
+            background-size: 70% auto;
+            background-position: center center;
+        }
+        
+        #digital-thermometer-button-container{
+            background-image: url(./media/img/digital-thermometer.png);
+            background-size: 70% auto;
+            background-position: center center;
+        }
+        
+        #hand-sanitizer-button-container{
+            background-image: url(./media/img/hand-sanitizer.png);
+            background-size: 70% auto;
+            background-position: center center;
+        }
+        
+        #covid-mask-button-container{
+            background-image: url(./media/img/mask.png);
+            background-size: 70% auto;
+            background-position: center center;
+        }
+        
+        #sunscreen-button-container{
+            background-image: url(./media/img/sunscreen.png);
+            background-size: 70% auto;
+            background-position: center center;
+        }
+        
         #success-container{
             display: none;
             position: fixed;
@@ -186,12 +223,16 @@
     <script src='./js/jquery-3.2.1.min.js'></script>
     <script>
         document.addEventListener('DOMContentLoaded', function(){
-            console.log('loaded v.0.5.0');
+            console.log('loaded v.0.5.1');
             
             function loadSuccess(){
                 setTimeout(function(){
                     document.getElementById("success-container").style.display = "block"
                 }, 1500);
+                
+                setTimeout(function(){
+                    window.location.href = "./daria?member=bz&taskId=2";
+                }, 3500);
             }
             
             document.getElementById("covid-test-button-container").addEventListener("click", function(){
@@ -205,16 +246,47 @@
             document.getElementById("condoms-button-container").addEventListener("click", function(){
                 loadSuccess();
             });
+            
+            document.getElementById("dayquil-button-container").addEventListener("click", function(){
+                loadSuccess();
+            });
+            
+            document.getElementById("ibuprofen-button-container").addEventListener("click", function(){
+                loadSuccess();
+            });
+            
+            document.getElementById("digital-thermometer-button-container").addEventListener("click", function(){
+                loadSuccess();
+            });
+            
+            document.getElementById("hand-sanitizer-button-container").addEventListener("click", function(){
+                loadSuccess();
+            });
+            
+            document.getElementById("covid-mask-button-container").addEventListener("click", function(){
+                loadSuccess();
+            });
+            
+            document.getElementById("sunscreen-button-container").addEventListener("click", function(){
+                loadSuccess();
+            });
         });
     </script>
 </head>
 <body>
     <input type="button" id="gknd-logo-button-container" class="corner-logo-container" value="" />
-    <h2 id="header-container">Health</h2>
+    <h2 id="header-container">Health and Wellness</h2>
     <div id="main-app-container">
         <input type="button" value="COVID Test" id="covid-test-button-container" class="item-button-container" />
         <input type="button" value="Tampons" id="tampons-button-container" class="item-button-container"/>
         <input type="button" value="Condoms" id="condoms-button-container" class="item-button-container"/>
+        <input type="button" value="Dayquil" id="dayquil-button-container" class="item-button-container" />
+        <input type="button" value="Ibuprofen" id="ibuprofen-button-container" class="item-button-container"/>
+        <input type="button" value="Digital Thermometer" id="digital-thermometer-button-container" class="item-button-container"/>
+        <input type="button" value="Hand Sanitizer" id="hand-sanitizer-button-container" class="item-button-container" />
+        <input type="button" value="Mask" id="covid-mask-button-container" class="item-button-container"/>
+        <input type="button" value="Sunscreen" id="sunscreen-button-container" class="item-button-container"/>
+        
         <div id="success-container">
             <div id="success-icon-container">
             </div>

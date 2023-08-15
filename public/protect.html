@@ -50,13 +50,14 @@
             <div id="load-counter-container">0</div>
             <div id="load-prompt-container"></div>
             <input id="load-button-container" class="module-option-button-container" type="button" value="load" />
-            <input id="cancel-button-container" class="module-option-button-container" ttype="button" value="cancel" />
+            <input id="cancel-button-container" class="module-option-button-container" type="button" value="cancel" />
         </div>
     </div>
     <script>
-        console.log("v. 5.2");
+        console.log("v. 0.6.0");
         var countryCode = 0;
         let mobileMenuInView = false;
+        var countDown, gotoPharma;
 
         function loadDARIAModule(moduleName){
             
@@ -66,7 +67,6 @@
             
             let loadCounterContainer = document.getElementById("load-counter-container");
             let loadPromptContainer = document.getElementById("load-prompt-container");
-            let loadButtonContainer = document.getElementById("load-button-container");
             
             switch(loadTarget){
                 case "shooter":
@@ -112,20 +112,32 @@
         function launchDARIAModule(targetContainer, bufferTime, counterContainer, loadPeriod){
             targetContainer.style.opacity = 1.0;
             let internalCounter = 0;
-            let countDown = setInterval(function(){
+            countDown = setInterval(function(){
                 let currentCount = bufferTime - loadPeriod*internalCounter;
                 counterContainer.innerHTML = currentCount;
                 internalCounter++;
             }, loadPeriod);
             
-            setTimeout(function(){
+            gotoPharma = setTimeout(function(){
                 clearInterval(countDown);
                 window.location.href = "./pharmacy"
             }, bufferTime);            
         }
         
+        
         document.addEventListener("DOMContentLoaded", function(){
- 
+            document.getElementById("cancel-button-container").addEventListener("click", function(){
+                clearInterval(countDown);
+                clearTimeout(gotoPharma);
+                
+                let loadModuleOverlayContainer = document.getElementById("load-module-overlay-container");
+                loadModuleOverlayContainer.style.display = "none";
+            });
+            
+            document.getElementById("load-button-container").addEventListener("click", function(){
+                window.location.href = "./pharmacy"
+            });
+            
             document.getElementById("main-logo-container").addEventListener("click", function(){
                 window.location.href = "https://houseofven.us";
             });
