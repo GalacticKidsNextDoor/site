@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <link rel="apple-touch-icon" sizes="180x180" href="../media/icon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../media/icon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../media/icon/favicon-16x16.png">
-    <title>v. 0.18.4.p</title>
+    <link rel="icon" type="image/png" href="../media/icon/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Braah+One&display=swap" rel="stylesheet">
+    <title>v. 0.19.9.0</title>
     <link rel ="stylesheet" type="text/css" href="../css/PublicAugmentedRealityKinectome.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
@@ -24,8 +26,16 @@
             margin: 5% auto;
             border-radius: 50%;
             background-position: center;
-            background-size: 100% 100%;
+            background-size: 100% auto;
             background-repeat: no-repeat;
+        }
+        
+        #joes-club-header-icon-container{
+            background-image: url(./media/img/md-heart-icon.png);
+        }
+        
+        #pm-library-header-icon-container{
+            background-image: url(./media/img/pm-library-icon.png)
         }
         
         #mcdonalds-header-icon-container{
@@ -40,11 +50,61 @@
             background-image: url(./media/img/chik-fil-a-icon.png);
         }
         
+        #dronepong-header-icon-container{
+            background-image: url(./media/img/pong-logo.png);
+        }
+        
+        #because-of-sex-book-option-container{
+            background-image: url(./media/img/because-of-sex-book-cover.png);
+        }
+        
+        #the-house-of-scorpion-book-option-container{
+            background-image: url(./media/img/house-of-the-scorpion-book-cover.png);
+        }
+        
+        #the-nazi-seizure-of-power-book-option-container{
+            background-image: url(./media/img/the-nazi-seizure-of-power-book-cover.png);
+        }
+        
+        #from-farmland-to-streetlevel-book-option-container{
+            background-image: url(./media/img/from-farmland-to-streetlevel-book-cover.png);
+        }
+        
+        #the-book-of-forgiving-book-option-container{
+            background-image: url(./media/img/the-book-of-forgiving-book-cover.png);
+        }
+        
+        #l4yer-cake-book-option-container{
+            background-image: url(./media/img/l4yer-cake-book-cover.png);
+        }
+        
+        .book-option-button-container{
+            background-size: auto 80%;
+            display: inline-block;
+            margin-bottom: 35px;
+            height: 150px;
+            width: max(49%, 100px);
+            border: 0;
+            cursor: pointer;
+            border-radius: 10px;
+            background-position: center;
+            background-color: rgba(255, 255, 255, 0);
+            background-repeat: no-repeat;
+            transition: background-size 0.25s;
+        
+        }
+        
+        .book-option-button-container:hover{
+            background-size: auto 105%;
+        }
+        
         .option-button-container{
             display: inline-block;
-            height: 100%;
-            width: 49%;
+            margin-bottom: 35px;
+            height: 100px;
+            width: max(49%, 100px);
             border: 0;
+            cursor: pointer;
             border-radius: 10px;
             background-position: center;
             background-color: rgba(255, 255, 255, 0);
@@ -54,56 +114,194 @@
         
         #hash-brown-option-container{
             background-image: url(./media/img/hash-brown.png);
-            background-size: auto 100%;
+            background-size: auto 60%;
         }
         
         #hash-brown-option-container:hover{
-            background-size: auto 70%;
+            background-size: auto 100%;
         }
         
         #ketchup-option-container{
-            background-image: url(./media/img/ketchup-icon.png);
-            background-size: auto 90%;
+            background-image: url(./media/img/ketchup-container.png);
+            background-size: auto 70%;
+        }
+        
+        .view-digital-book-button-container{
+            border: 0;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            width: max(90%, 150px);
+            height: 35px;
+            line-height: 35px;
+            text-align: center;
+            cursor: pointer;
+            outline: none;
+            background-color: blue;
+            color: yellow;
+            text-transform: uppercase;
+            transition: color 0.25s, background-color 0.25s;
+        }
+        
+        .view-digital-book-button-container:hover{
+            background-color: red;
+            color: white;
+        }
+        
+        .add-item-to-order-queue-button-container{
+            border: 0;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            width: max(90%, 150px);
+            height: 35px;
+            line-height: 35px;
+            text-align: center;
+            cursor: pointer;
+            outline: none;
+            background-color: aquamarine;
+            color: black;
+            text-transform: uppercase;
+            transition: color 0.25s, background-color 0.25s;
+        }
+        
+        .add-item-to-order-queue-button-container:hover{
+            background-color: red;
+            color: white;
         }
         
         #ketchup-option-container:hover{
-            background-size: auto 60%;
+            background-size: auto 100%;
         }
         
         #tampons-option-container{
             background-image: url(./media/img/tampax.png);
-            background-size: auto 100%;
+            background-size: auto 50%;
         }
         
         #tampons-option-container:hover{
-            background-size: auto 70%;
+            background-size: auto 100%;
         }
         
         #condoms-option-container{
             background-image: url(./media/img/magnum-condoms.png);
-            background-size: auto 110%;
+            background-size: auto 60%;
         }
         
         #condoms-option-container:hover{
-            background-size: auto 70%;
+            background-size: auto 100%;
         }
         
         #chicken-nuggets-option-container{
             background-image: url(./media/img/chicken-nuggets.png);
-            background-size: auto 100%;
+            background-size: auto 105%;
         }
         
         #chicken-nuggets-option-container:hover{
-            background-size: auto 70%;
+            background-size: auto 135%;
         }
         
         #chik-fil-a-sauce-option-container{
             background-image: url(./media/img/chik-fil-a-sauce.png);
-            background-size: auto 90%;
+            background-size: auto 70%;
         }
         
         #chik-fil-a-sauce-option-container:hover{
-            background-size: auto 60%;
+            background-size: auto 100%;
+        }
+        
+        #member-options-container{
+            font-family: "Braah One", sans-serif;
+            position: absolute;
+            z-index: 1000;
+            width: 250px;
+            height: 175px;
+            border: 0;
+            padding: 30px;
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            cursor: pointer;
+            bottom: 3%;
+            right: 3%;
+            overflow-y: scroll;
+        }
+        
+        #martins-bbq-chips-option-container{
+            background-image: url(./media/img/martins-bbq-chips-icon.webp);
+            background-size: auto 70%;
+        }
+        
+        #martins-bbq-chips-option-container:hover{
+            background-size: auto 100%;
+        }
+        
+        #martins-sea-salted-chips-option-container{
+            background-image: url(./media/img/martins-sea-salted-chips-icon.webp);
+            background-size: auto 70%;
+        }
+        
+        #martins-sea-salted-chips-option-container:hover{
+            background-size: auto 100%;
+        }
+        
+        #natty-boh-0-option-container, #natty-boh-1-option-container{
+            background-image: url(./media/img/natty-boh-icon.png);
+            background-size: auto 90%;
+        }
+        
+        #natty-boh-0-option-container:hover, #natty-boh-1-option-container:hover{
+            background-size: auto 120%;
+        }
+        
+        #pbr-0-option-container, #pbr-1-option-container{
+            background-image: url(./media/img/pbr-icon.avif);
+            background-size: auto 90%;
+        }
+        
+        #pbr-0-option-container:hover, #pbr-1-option-container:hover{
+            background-size: auto 120%;
+        }
+        
+        #table-tennis-balls-option-container{
+            background-image: url(./media/img/table-tennis-balls.png);
+            background-size: auto 70%;
+        }
+        
+        #table-tennis-balls-option-container:hover{
+            background-size: auto 100%;
+        }
+        
+        .popup-description-container{
+            line-height: 22px;
+            font-size: 12px;
+            letter-spacing: 1px;
+            margin: 12px auto;
+        }
+        
+        #pm-library-catalog-container{
+            width: 300px;
+            height: 300px;
+            overflow-y: scroll;
+        }
+        
+        .return-book-button-container{
+            border: 0;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            width: max(90%, 150px);
+            height: 35px;
+            line-height: 35px;
+            text-align: center;
+            cursor: pointer;
+            outline: none;
+            background-color: salmon;
+            color: black;
+            text-transform: uppercase;
+            transition: color 0.25s, background-color 0.25s;
+        }
+        
+        .return-book-button-container:hover{
+            background-color: red;
+            color: white;
         }
     </style>
 </head>
@@ -136,7 +334,7 @@
                 </p>
                 <div class="instructions-block">
                     <p>
-                        Welcome to this preview of the pARk! Click on the icons to browse experiences and order from stores.
+                        Welcome to the pARk! Click on the icons to browse experiences and/or order from vendors.
                     </p>
                     <div id="instruction-graphic-1-container" class="instruction-graphic-container"></div>
                   <!--  <p>
@@ -163,63 +361,17 @@
         <div id="create-account-button-container" class="create-button-container"></div>
         <div id="map" class="layer-container base-layer-container">
         </div>
-        <div id="page-2-container" class="page-container">
-            <div id="restaurant-logo-container"></div>
-            <div id="restaurant-name-container">Restaurant Name</div>
-            <div id="restaurant-rating-container">****4.5</div>
-            <div id="preview-wrapper-container">
-                <div id="preview-media-container">
-                    <input id="access-hyperreal-space-button-container" type="button" />
-                </div>
-                <div id="preview-media-meta-data-container">
-                    <div id="restaurant-description-container" class="info-preview-container">Brief description of restaurant/bar</div>
-                    <div id="see-tables-button-container" class="info-preview-container"></div>
-                    <div id="close-preview-button-container">close</div>
-                </div>
-            </div>
-        </div>
-        <div id="page-3-container" class="send-package-widget-container">
-            <input type="button" id="close-send-package-widget-button-container" value="x"/>
-            <div id="widget-option-button-0-container" class="widget-option-button-container top-widget-option-button-container">Send A Woof!</div>
-
-            <div id="widget-option-button-1-container" class="widget-option-button-container">My cARd</div>
-
-            <div id="widget-option-button-2-container" class="widget-option-button-container">My Store</div>
-
-            <div id="widget-option-button-3-container" class="widget-option-button-container">My Broadcast</div>
-
-            <div id="widget-option-button-4-container" class="widget-option-button-container">More DIAs</div>
-
-            <div style="display: none;"> <!--width: 50%; margin: 0 auto; -->
-                <div>
-                  <input type="radio" id="dynamic-delivery-option-button-container" class="delivery-option-button-container" name="drone" value="dynamic" checked>
-                  <label for="dynamic">Dynamic</label>
-                </div>
-                <div>
-                  <input type="radio" id="static-delivery-option-button-container" class="delivery-option-button-container" name="drone" value="static">
-                  <label for="static">Static</label>
-                </div>
-            </div>
-            <!---->
-            <div id="loading-drone-container">
-                <div id="loading-drone-gif"></div>
-                <p id="hide-this-when-loading-is-done-container">Establishing Drone Route To Recipient...</p>
-                <div id="successfully-starting-route-container"></div>
-                <p id="show-this-when-loading-is-done-container">On our way to spread the love!</p>
-            </div>
-            <input type="button" value="Launch" id="launch-drone-delivery-button-container" />
-        </div>
     </div>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-   crossorigin=""></script>
+    <!-- https://unpkg.com/leaflet@1.9.4/dist/leaflet.js
+integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+   crossorigin=""-->
+    <script src="./js/park.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-storage.js"></script>
-    <script src="../js/PublicAugmentedRealityKinectome-Beta.js"></script>
     <script>
         var storage, database;
 
@@ -232,14 +384,7 @@
           messagingSenderId: "820284895954",
           appId: "1:820284895954:web:e69039cadfd002bc15b30b"
         };
-
-        /*var config = {
-            apiKey: "AIzaSyDyH3olBhhKfo5ROFwhxNayOCadNHvWYkc",
-            authDomain: "golden-gorges-park.firebaseapp.com",
-            databaseURL: "https://golden-gorges-park.firebaseio.com/",
-            storageBucket: "gs://golden-gorges-park.appspot.com"
-        };*/
-
+        
         function initMap() {
            
             map = L.map('map').setView([38.929990, -77.036990], 16);
@@ -262,9 +407,30 @@
                 popupAnchor: [38.929508, -77.033577]
             });
             
+            var JoesClubIcon = L.icon({
+                iconUrl: './media/img/md-heart-icon.png',
+                iconSize: [50, 50],
+                popupAnchor: [38.93199, -77.039158]
+            });
+            
+            var DronePongIcon = L.icon({
+                iconUrl: './media/img/pong-logo.png',
+                iconSize: [60, 75],
+                popupAnchor: [38.926350, -77.036692]
+            });
+            
+            var PatriceMorgansLibraryIcon = L.icon({
+                iconUrl: './media/img/library-icon.png',
+                iconSize: [75, 60],
+                popupAnchor: [38.932696, -77.039743]
+            });
+            
             var McDonalds = L.marker([38.929990, -77.036990], {icon: McDonaldsIcon});
             var Seven11 = L.marker([38.930020, -77.038180], {icon: Seven11Icon});
             var ChikFilA = L.marker([38.929508, -77.033577], {icon: ChikFilAIcon});
+            var JoesClubDC = L.marker([38.93199, -77.039158], {icon: JoesClubIcon});
+            var DronePong = L.marker([38.926350, -77.036692], {icon: DronePongIcon});
+            var PatriceMorgansLibrary = L.marker([38.932696, -77.039743], {icon: PatriceMorgansLibraryIcon});
             
            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '© House of Venus'
@@ -272,23 +438,248 @@
 
             map.on('click', onMapClick);
             
+            //var memberOptionsContainer = L.popup([38.924628, -77.024975], {content: '<p>Hello world!<br />This is a nice popup.</p>', width: 400, height: 300}).openOn(map);
+            var PatriceMorgansLibraryPopup = L.popup([38.932696, -77.039743], {
+                content: `<h3 id="pm-library-header-container" class="header-container">Patrice-Morgan's Library</h3><div id="pm-library-header-icon-container" class="header-icon-container"></div><div id="pm-library-catalog-container">
+        <button id="because-of-sex-book-option-container" class="book-option-button-container"></button>
+        <button id="the-house-of-scorpion-book-option-container" class="book-option-button-container"></button>
+        <button id="the-nazi-seizure-of-power-book-option-container" class="book-option-button-container"></button>
+        <button id="from-farmland-to-streetlevel-book-option-container" class="book-option-button-container"></button>
+        <button id="the-book-of-forgiving-book-option-container" class="book-option-button-container"></button>
+        <button id="l4yer-cake-book-option-container" class="book-option-button-container"></button>
+        </div>`
+            });
             
-            McDonalds.bindPopup(`<h3 id="mcd-header-container" class="header-container">McDonalds</h3><div id="mcdonalds-header-icon-container" class="header-icon-container"></div><div style="width:300px;height:300px;">
+            PatriceMorgansLibrary.bindPopup(PatriceMorgansLibraryPopup);
+            
+            PatriceMorgansLibrary.on("popupopen", function(){
+                document.getElementById("member-options-container").innerHTML = "<h3>Patrice-Morgan's Library</h3><p class='popup-description-container'>Welcome to my Digital Little Free Library! Feel free to explore, share, and borrow from my collection.</p><p>🚁 Hours</p><h5>11:00AM to 11:00PM</h5><p>📚 Hours</p><h5>Open 24/7</h5>";
+                
+                
+                maidenPop[6] = true;
+
+                document.getElementById("because-of-sex-book-option-container").addEventListener("click", function(){
+                    document.getElementById("member-options-container").innerHTML = "<h3>Because of Sex</h3><h5>⏰ 15 to 30 min</h5><p class='popup-description-container'>Gillian Thomas's Because of Sex tells the story of how one law, our highest court, and a few tenacious women changed the American workplace forever.</p><p>1 count</p><button id='because-of-sex-digital-link-container' class='view-digital-book-button-container'>Digital</button><button class='add-item-to-order-queue-button-container'>Check Out</button>";
+                    
+                    document.getElementById('because-of-sex-digital-link-container').addEventListener("click", function(){
+                        window.open("./media/book/Because-Of-Sex.pdf", "_blank");
+                    });
+                });
+                
+                
+                document.getElementById("the-house-of-scorpion-book-option-container").addEventListener("click", function(){
+                    document.getElementById("member-options-container").innerHTML = "<h3>The House of the Scorpion</h3><h5>⏰ 15 to 30 min</h5><p class='popup-description-container'>In a future where humans despise clones, Matt enjoys special status as the young clone of El Patrón, the 140-year-old leader of a corrupt drug empire nestled between Mexico and the United States.</p><p>1 count</p><button id='the-house-of-scorpion-digital-link-container' class='view-digital-book-button-container'>Digital</button><button class='add-item-to-order-queue-button-container'>Check Out</button>";
+                    
+                    document.getElementById("the-house-of-scorpion-digital-link-container").addEventListener("click", function(){
+                        window.open("./media/book/The-House-Of-The-Scorpion.pdf", "_blank");
+                    });
+                });
+                
+                document.getElementById("the-nazi-seizure-of-power-book-option-container").addEventListener("click", function(){
+                    document.getElementById("member-options-container").innerHTML = "<h3>The Nazi Seizure of Power</h3><h5>⏰ 15 to 30 min</h5><p class='popup-description-container'>William Sheridan Allen's research provides an intimate, comprehensive study of the mechanics of revolution and an analysis of the Nazi Party's subversion of democracy. Beginning at the end of the Weimar Republic, Allen examines the entire period of the Nazi Revolution within a single locality.</p><p>1 count</p><button id='the-nazi-seizure-of-power-digital-link-container' class='view-digital-book-button-container'>Digital</button><button class='add-item-to-order-queue-button-container'>Check Out</button>";
+                    
+                    document.getElementById("the-nazi-seizure-of-power-digital-link-container").addEventListener("click", function(){
+                         window.open("./media/book/The-Nazi-Seizure-Of-Power.pdf", "_blank");
+                    });
+                });
+                
+                document.getElementById("from-farmland-to-streetlevel-book-option-container").addEventListener("click", function(){
+                    document.getElementById("member-options-container").innerHTML = "<h3>From Farmland to Streetlevel</h3><h5>⏰ 15 to 30 min</h5><p class='popup-description-container'>A thesis about direct trade coffee in Honduras</p><p>1 count</p><button id='from-farmland-to-streetlevel-digital-link-container' class='view-digital-book-button-container'>Digital</button><button class='return-book-button-container'>Return</button>";
+                    
+                    document.getElementById("from-farmland-to-streetlevel-digital-link-container").addEventListener("click", function(){
+                        window.open("https://www.amazon.com/Farmlevel-Streetlevel-Ethnography-Direct-Honduras/dp/1512067105", "_blank");
+                    });
+                });
+                
+                document.getElementById("the-book-of-forgiving-book-option-container").addEventListener("click", function(){
+                    document.getElementById("member-options-container").innerHTML = "<h3>The Book of Forgiving</h3><h5>⏰ 15 to 30 min</h5><p class='popup-description-container'>The Book of Forgiving is both a touchstone and a tool, offering Tutu's wise advice and showing the way to experience forgiveness.</p><p>1 count</p><button id='the-book-of-forgiving-digital-link-container' class='view-digital-book-button-container'>Digital</button><button class='return-book-button-container'>Return</button>";
+                
+                    document.getElementById("the-book-of-forgiving-digital-link-container").addEventListener("click", function(){
+                        window.open("./media/book/The-Book-Of-Forgiving.pdf", "_blank");
+                    });
+                });
+                
+                document.getElementById("l4yer-cake-book-option-container").addEventListener("click", function(){
+                    document.getElementById("member-options-container").innerHTML = "<h3>L4yer Cake</h3><h5>⏰ 15 to 30 min</h5><p class='popup-description-container'>Smooth-talking drug dealer X has a plan to quietly bankroll enough cash to retire before his thirtieth birthday. Operating under the polished veneer of a legitimate businessman, his mantra is to keep a low profile and run a tight operation until it's time to get out.</p><p>1 count</p><button id='l4yer-cake-digital-link-container' class='view-digital-book-button-container'>Digital</button><button class='return-book-button-container'>Return</button>";
+                    
+                    document.getElementById("l4yer-cake-digital-link-container").addEventListener("click", function(){
+                        window.open("./media/book/L4yer-Cake.pdf", "_blank");
+                    });
+
+                });
+            });
+            
+            PatriceMorgansLibrary.on("popupclose", function(){
+                document.getElementById("member-options-container").innerHTML = "<h3>Public Augmented Reality Kinectome</h3><p>Click on an icon to start</p>"
+            });
+            
+            var McDonaldsPopup = L.popup([38.929990, -77.036990], {content:`<h3 id="mcd-header-container" class="header-container">McDonalds</h3><div id="mcdonalds-header-icon-container" class="header-icon-container"></div><div style="width:300px;height:300px;">
         <button id="hash-brown-option-container" class="option-button-container"></button>
-        <button id="ketchup-option-container" class="option-button-container"></button></div>`);
+        <button id="ketchup-option-container" class="option-button-container"></button></div>`});
             
-            Seven11.bindPopup(`<h3 id="seven-11-header-container" class="header-container">7-Eleven</h3><div class="header-icon-container" id="seven-11-header-icon-container"></div><div style="width:300px;height:300px;">
+            McDonalds.bindPopup(McDonaldsPopup);
+            
+            McDonalds.on("popupopen", function(){
+                document.getElementById("member-options-container").innerHTML = "<h3>McDonald's</h3><p class='popup-description-container'>We are passionate about our food and take great care that what we serve every day is safe and of the highest quality. You'll Love it!</p><p>👻 🔪 Hours</p><h5>6:00AM to 10:30AM</h5>";
+                
+                
+                maidenPop[0] = true;
+
+                document.getElementById("hash-brown-option-container").addEventListener("click", function(){
+                    document.getElementById("member-options-container").innerHTML = "<h3>Hash Brown</h3><h5>⏰ 15 to 30 min</h5><p class='popup-description-container'>A delicious hash brown is great on its own or as a side at breakfast time. Crispy on the outside, they're what mornings were made for.</p><p>1 count</p><p class='popup-description-container'>127 Calories | 7.4g Fat | 13g Carbs | 1.1g Protein</p><button class='add-item-to-order-queue-button-container'>Order Now</button>";
+                });
+
+                document.getElementById("ketchup-option-container").addEventListener("click", function(){
+                    document.getElementById("member-options-container").innerHTML = "<h3>Ketchup Packet</h3><h5>⏰ 15 to 30 min</h5><p class='popup-description-container'>You can’t go wrong with ketchup!</p><p>2 count</p><p class='popup-description-container'>10 Calories | 0g Fat | 2g Carbs | 0g Protein per packet</p><button class='add-item-to-order-queue-button-container'>Order Now</button>";
+                });
+
+            });
+            
+            McDonalds.on("popupclose", function(){
+                document.getElementById("member-options-container").innerHTML = "<h3>Public Augmented Reality Kinectome</h3><p>Click on an icon to start</p>"
+            });
+            
+            var Seven11Popup = L.popup([38.930020, -77.038180], {content: `<h3 id="seven-11-header-container" class="header-container">7-Eleven</h3><div class="header-icon-container" id="seven-11-header-icon-container"></div><div style="width:300px;height:300px;">
         <button id="tampons-option-container" class="option-button-container"></button>
-        <button id="condoms-option-container" class="option-button-container"></button></div>`);
+        <button id="condoms-option-container" class="option-button-container"></button></div>`});
             
-            ChikFilA.bindPopup(`<h3 id="chik-fil-a-header-container" class="header-container">Chik-Fil-A</h3><div class="header-icon-container" id="chik-fil-a-header-icon-container"></div><div style="width:300px;height:300px;">
+            Seven11.bindPopup(Seven11Popup);
+            
+            Seven11.on("popupopen", function(){
+                document.getElementById("member-options-container").innerHTML = "<h3>7-Eleven</h3><p class='popup-description-container'>Your go-to convenience store for food, snacks, hot and cold beverages, gas and so much more</p><p>👻 🔪 Hours</p><h5>Open 24/7</h5>";
+                
+                maidenPop[1] = true;
+
+                document.getElementById("tampons-option-container").addEventListener("click", function(){
+                    document.getElementById("member-options-container").innerHTML = "<h3>Tampax Pearl</h3><h5>⏰ 15 to 30 min</h5><p class='popup-description-container'>Triple Pack with Super/Super Plus/Ultra Absorbency Unscented Plastic Tampons</p><p class='popup-description-container'>4 count - 2 Super, 1 Super+, 1 Ultra</p><button class='add-item-to-order-queue-button-container'>Order Now</button>";
+                });
+
+                document.getElementById("condoms-option-container").addEventListener("click", function(){
+                    document.getElementById("member-options-container").innerHTML = "<h3>Magnum Condoms</h3><h5>⏰ 15 to 30 min</h5><p class='popup-description-container'>Large, Latex Condoms for STI and pregnancy prevention</p><p>2 count</p><button class='add-item-to-order-queue-button-container'>Order Now</button>";
+                });
+                
+            });
+            
+            Seven11.on("popupclose", function(){
+                document.getElementById("member-options-container").innerHTML = "<h3>Public Augmented Reality Kinectome</h3><p>Click on an icon to start</p>"
+            });
+            
+            var ChikFilAPopup = L.popup([38.929508, -77.033577], {content: `<h3 id="chik-fil-a-header-container" class="header-container">Chik-Fil-A</h3><div class="header-icon-container" id="chik-fil-a-header-icon-container"></div><div style="width:300px;height:300px;">
         <button id="chicken-nuggets-option-container" class="option-button-container"></button>
-        <button id="chik-fil-a-sauce-option-container" class="option-button-container"></button></div>`);
+        <button id="chik-fil-a-sauce-option-container" class="option-button-container"></button></div>`});
+            
+            ChikFilA.bindPopup(ChikFilAPopup);
+            
+            ChikFilA.on("popupopen", function(){
+                document.getElementById("member-options-container").innerHTML = "<h3>Chik-Fil-A</h3><p class='popup-description-container'>Home of the Original Chicken Sandwich® and the largest chain specializing in chicken sandwiches in the world.</p><p>👻 🔪 Hours</p><h5>6:00AM to 6:00PM (Sunday only)</h5>";
+                
+                
+                maidenPop[2] = true;
+
+                document.getElementById("chicken-nuggets-option-container").addEventListener("click", function(){
+                    document.getElementById("member-options-container").innerHTML = "<h3>Chick-fil-A® Nuggets</h3><h5>⏰ 15 to 30 min</h5><p class='popup-description-container'>Bite-sized pieces of boneless chicken breast, seasoned to perfection, freshly breaded and pressure cooked in 100% refined peanut oil.</p><p>8 nuggets</p><p class='popup-description-container'>250 Calories | 11g Fat | 11g Carbs | 27g Protein</p><button class='add-item-to-order-queue-button-container'>Order Now</button>";
+                });
+
+                document.getElementById("chik-fil-a-sauce-option-container").addEventListener("click", function(){
+                    document.getElementById("member-options-container").innerHTML = "<h3>Chick-fil-A® Sauce</h3><h5>⏰ 15 to 30 min</h5><p class='popup-description-container'>Our classic dipping sauce with notes of mustard and a smoky tang.</p><p>2 count</p><p class='popup-description-container'>140 Calories | 13g Fat | 6g Carbs | 0g Protein per pack</p><button class='add-item-to-order-queue-button-container'>Order Now</button>";
+                });
+                
+            });
+            
+            ChikFilA.on("popupclose", function(){
+                document.getElementById("member-options-container").innerHTML = "<h3>Public Augmented Reality Kinectome</h3><p>Click on an icon to start</p>"
+            });
+            
+            var JoesClubDCPopup = L.popup([38.929508, -77.033577], {content: `<h3 id="joes-club-header-container" class="header-container">Joe's Club DC</h3><div class="header-icon-container" id="joes-club-header-icon-container"></div><div style="width:300px;height:300px;">
+        <button id="martins-bbq-chips-option-container" class="option-button-container"></button>
+        <button id="martins-sea-salted-chips-option-container" class="option-button-container"></button>
+        <button id="natty-boh-0-option-container" class="option-button-container"></button>
+        <button id="pbr-0-option-container" class="option-button-container"></button></div>`});
+            
+            JoesClubDC.bindPopup(JoesClubDCPopup);
+            
+            JoesClubDC.on("popupopen", function(){
+                document.getElementById("member-options-container").innerHTML = "<h3>Joe's Club DC</h3><p class='popup-description-container'>Aerial Grocery & Pharmacy Delivery Service eliminating food deserts one flight at a time.</p><p>👻 🔪 Hours</p><h5>12:00AM to 6:00AM</h5>";
+               
+                maidenPop[3] = true;
+
+                document.getElementById("martins-bbq-chips-option-container").addEventListener("click", function(){
+                    document.getElementById("member-options-container").innerHTML = "<h3>Martin's BBQ Wavy Chips</h3><h5>⏰ 15 to 30 min</h5><p class='popup-description-container'>Our waffle cut potato chips are made from the highest quality potatoes and drench in a deliciously sweet and zesty barbeque coating to give them the best flavor.</p><p>1 bag</p><p class='popup-description-container'>150 Calories | 9g Fat | 15g Carbs | 2g Protein</p><button class='add-item-to-order-queue-button-container'>Order Now</button>";
+                });
+
+                document.getElementById("martins-sea-salted-chips-option-container").addEventListener("click", function(){
+                    document.getElementById("member-options-container").innerHTML = "<h3>Martin's Sea Salted Chips</h3><h5>⏰ 15 to 30 min</h5><p class='popup-description-container'>Slowly cooked to perfection using only the highest quality potatoes and natural sea salt, these savory potato chips have the perfect balance of natural potato flavor, savoriness, and crunch.</p><p>2 count</p><p class='popup-description-container'>150 Calories | 9g Fat | 15g Carbs | 2g Protein</p><button class='add-item-to-order-queue-button-container'>Order Now</button>";
+                });
+
+                document.getElementById("natty-boh-0-option-container").addEventListener("click", function(){
+                    document.getElementById("member-options-container").innerHTML = "Natty Boh Info In View";
+                });
+
+                document.getElementById("pbr-0-option-container").addEventListener("click", function(){
+                    document.getElementById("member-options-container").innerHTML = "<h3>Pabts Blue Ribbon</h3><h5>⏰ 15 to 30 min</h5><p class='popup-description-container'>Slowly cooked to perfection using only the highest quality potatoes and natural sea salt, these savory potato chips have the perfect balance of natural potato flavor, savoriness, and crunch.</p><p>2 count</p><p class='popup-description-container'>145 Calories | 0g Fat | 12g Carbs | 0g Protein | 13.6 g Alcohol | </p><button class='add-item-to-order-queue-button-container'>Order Now</button>";
+                });
+                
+            });
+            
+            JoesClubDC.on("popupclose", function(){
+                document.getElementById("member-options-container").innerHTML = "<h3>Public Augmented Reality Kinectome</h3><p>Click on an icon to start</p>"
+            });
+            
+            
+            var DronePongPopup = L.popup([38.926350, -77.036692], {
+                content: `<h3 id="dronepong-header-container" class="header-container">DronePong</h3><div class="header-icon-container" id="dronepong-header-icon-container"></div><div style="width:300px;height:300px;">
+        <button id="table-tennis-balls-option-container" class="option-button-container"></button>
+        <button id="natty-boh-1-option-container" class="option-button-container"></button>
+        <button id="pbr-1-option-container" class="option-button-container"></button></div>`
+            });
+            
+            DronePong.bindPopup(DronePongPopup);
+            
+            DronePong.on("popupopen", function(){
+                document.getElementById("member-options-container").innerHTML = "<h3>DronePong</h3><p class='popup-description-container'>Party On New Generation . New Season Begins Labor Day Weekend!</p><p>👻 🔪 Hours</p><h5>12:00AM to 6:00AM</h5>";
+                
+                
+                maidenPop[4] = true;
+
+                document.getElementById("natty-boh-1-option-container").addEventListener("click", function(){
+                    document.getElementById("member-options-container").innerHTML = "<h3>Natty Boh</h3><p class='popup-description-container'></p><p>1 count</p><p  class='popup-description-container'></p><button class='add-item-to-order-queue-button-container'>Order Now</button>";
+                });
+
+                document.getElementById("pbr-1-option-container").addEventListener("click", function(){
+                    document.getElementById("member-options-container").innerHTML = "<h3>PBR</h3><p class='popup-description-container'></p><p>1 count</p><p  class='popup-description-container'></p><button class='add-item-to-order-queue-button-container'>Order Now</button>";
+                });
+                
+            });
+            
+            DronePong.on("popupclose", function(){
+                document.getElementById("member-options-container").innerHTML = "<h3>Public Augmented Reality Kinectome</h3><p>Click on an icon to start</p>"
+            });
             
             McDonalds.addTo(map);
-            Seven11.addTo(map)
-            ChikFilA.addTo(map)
+            Seven11.addTo(map);
+            ChikFilA.addTo(map);
+            JoesClubDC.addTo(map);
+            
+            DronePong.addTo(map);
+            PatriceMorgansLibrary.addTo(map)
+            
+            var maidenPop = [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ];
             //loadMarkers();
+            
+           var memberOptionsContainer = document.createElement("div");
+            memberOptionsContainer.setAttribute("id", "member-options-container");
+            memberOptionsContainer.innerHTML = "<h3>Hello World</h3><p>Public Augmented Reality Kinectome</p><p>Click on an icon to start</p>";
+            document.getElementById("main-app-container").append(memberOptionsContainer);
+            
+            document.getElementById("user-access-layer-container").style.display = "none";
+            document.getElementById("user-access-layer-container").style.zIndex = "-1";
         }
         
         function onMapClick(e) {
@@ -464,14 +855,12 @@
 
         document.addEventListener("DOMContentLoaded", function(){
             console.log("attaching button handlers");
-            attachButtonHandlers();
+            //attachButtonHandlers();
             setTimeout(function(){
                 initMap()
-            }, 2500);
+            }, 4500);
         });
 
     </script>
-    <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6HuVCIAlzfnKNNoFCvWEdE5dBkLcPu_c&callback=initMap"
-async defer></script>-->
 </body>
 </html>
