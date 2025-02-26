@@ -6,27 +6,27 @@ export function TrendingApplicationList (numOfItems){
             src: "./media/img/pong-logo.png",
             bgSize: "auto 80%",
             bgPosition: "center center",
-            target: "./dronepong",
+            target: "./pong-title",
             color: "rgba(255,255,255,0)",
             type: "Application",
             ranking: 1
         },       
          {
-            name: "AI THE LABEL",
-            src: "../media/img/YO-NO-SE-COVER.png",
-            bgSize: "auto 90%",
+            name: "RUBIN",
+            src: "../media/img/IMSAIAN.png",
+            bgSize: "auto 100%",
             bgPosition: "center center",
-            target: "./ai-the-label",
+            target: "./rubin-title",
             color: "rgba(255,255,255,0)",
             type: "Application",
             ranking: 2
         },
         {
-            name: "AVATAR SAM",
-            src: "./media/img/avatar-sam-cover.png",
+            name: "JOE'S CLUB DC",
+            src: "./media/img/md-heart-icon.png",
             bgSize: "auto 80%",
             bgPosition: "center center",
-            target: "./sam",/*"./avatar-sam",*/
+            target: "./deserve-title",/*"./avatar-sam",*/
             color: "rgba(255, 255, 255, 0)",
             type: "Application",
             ranking: 3

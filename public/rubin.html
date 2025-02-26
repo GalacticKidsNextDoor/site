@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>"Avatar Sam" by oldrowmaryland</title>
+    <title>"AI The Label" by oldrowmaryland</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Braah+One&display=swap" rel="stylesheet">
@@ -11,13 +11,13 @@
     <link rel="icon" type="image/png" sizes="32x32" href="./media/img/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./media/img/favicon/favicon-16x16.png">
     <link rel="manifest" href="./media/img/favicon/site.webmanifest">
-   <link rel="stylesheet" href="./css/avatar-sam-landing-page.css" type="text/css" />
+    <link rel="stylesheet" href="./css/atl-landing-page.css">
   </head>
   <body>
-      <input id="gknd-logo-button-container" class="return-home-button-container" type="button" value=""/>
+          <input type="button" id="gknd-logo-button-container" class="return-home-button-container" value="" />
       <div id="go-to-all-apps-button-container" class="member-button-hidden"></div>
+          <input type="button" id="profile-button-container" value="" />
       
-      <input id="profile-button-container" type="button" value="">
       <div id="token-button-container" class="hidden-option"></div>
       <form id="token-atm-overlay-container">
             <p id="token-atm-title-container">Wallet</p>
@@ -30,6 +30,8 @@
             <input type="button" value="activate" id="activate-creator-pass-button-container" class="update-overlay-button-container"/>
             <input type="button" value="close" id="close-token-atm-button-container" class="update-overlay-button-container"/>
         </form>
+      
+      
       <div id="main-app-container">
           <div id="album-cover-container">
           </div>
@@ -38,40 +40,50 @@
           <div id="feature-block-container">
               <div style="text-align: center;">Author: <a class="artist-link-container" href="https://www.instagram.com/oldrowmaryland">@oldrowmaryland</a></div>
               <br>
-              <h2 style="text-align: center; line-height: 35px;">Practice Your Oratory As the President of the United States of America</h2>
+              <h1 style="text-align: center; line-height: 35px;">R.U.B.I.N. </h1>
+              <h2 style="text-align: center; line-height: 30px;">Human + A.I. AudioVisual Productions </h2>
               <br>
               <br>
-              <h3>Explore a range of speech synthesis methods using the voice of Uncle Sam himself.</h3>
+              <h3>A spectrum of artificial intelligence tools that complement human creativity and augment your music making process.</h3>
               <br>
               <br>
               <h3>Tools include:</h3>
               <br>
-              <ul class="sam-features-list-container">
-                <li>Text-to-Speech Synthesis</li>
-                <li>Voice Filters</li>
+              <ul class="atl-features-list-container">
+                <li>Sample Expansion</li>
+                <li>Interpolation</li>
+                <li>Generation</li>
+                <li>Chorus Writing</li>
+                <li>Premise Building</li>
                 <li>Personas</li>
               </ul>
               <br>
               <br>
               <h3>Featuring the following AI Personas:</h3>
-              <ul class="sam-features-list-container">
-                  <li>Trump AI</li>
-                  <li>Obama AI</li>
-                  <li>Biden AI</li>
-                  <li>Bush AI (coming soon)</li>
-                  <li>Clinton AI (coming soon)</li>
+              <ul class="atl-features-list-container">
+                  <li>Beyonce AI</li>
+                  <li>Doja AI</li>
+                  <li>Drake AI</li>
+                  <li>Eminem AI</li>
+                  <li>Sia AI</li>
+                  <li>Ye AI</li>
+                  <li>Yelle AI</li>
+                  <li>and more!</li>
               </ul>
               <br>
-              <div style="text-align: center;">Description provided by <a class="artist-link-container" href="https://www.instagram.com/oldrowmaryland">oldrowmaryland</a> © 2023</div>
+              <br>
+              <div style="text-align: center;">Description provided by <a class="artist-link-container" href="https://www.instagram.com/oldrowmaryland">oldrowmaryland</a> © 2025</div>
         </div>
       </div>
       <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
       <script>
-          var UserAccessGranted = false, tokenATMVisible = false, database, dbRefObject, currentUser;
           
+          var storage, database, dbObjectRef, UserAccessGranted = false;
+          
+            
           const firebaseConfig = {
                 apiKey: "AIzaSyDb25cWx6pMmh2xt54c_G5hS_rTDzpnpKw",
                 authDomain: "galactic-kids-next-door.firebaseapp.com",
@@ -81,8 +93,8 @@
                 messagingSenderId: "273360155490",
                 appId: "1:273360155490:web:a752b1c28ad6156791f23b",
                 measurementId: "G-6Z2LK6Z05H"
-            };
-            
+          };
+          
           firebase.initializeApp(firebaseConfig);
           
           function loadTokenATM(forceBool){
@@ -127,30 +139,33 @@
                 }
             }
           
-          document.addEventListener("DOMContentLoaded", function(){
+        document.addEventListener("DOMContentLoaded", function(){
             firebase.auth().onAuthStateChanged((user) => {
-                currentUser = user;
-              if (currentUser) {
-                  const displayName = currentUser.displayName;
-                  const email = currentUser.email;
-                  const photoURL = currentUser.photoURL;
-                  const emailVerified = currentUser.emailVerified;
-                // User is signed in, see docs for a list of available properties
-                // https://firebase.google.com/docs/reference/js/v8/firebase.User
-                var uid = currentUser.uid;
-                  console.log(`Currently signed in as ${displayName} \n email: ${email}\n verified> ${emailVerified}\n photo: ${photoURL}`);
-                    UserAccessGranted = true;
+                    currentUser = user;
+                  if (currentUser) {
+                      const displayName = currentUser.displayName;
+                      const email = currentUser.email;
+                      const photoURL = currentUser.photoURL;
+                      const emailVerified = currentUser.emailVerified;
+                      const phoneNum = currentUser.phoneNumber;
+                    // User is signed in, see docs for a list of available properties
+                    // https://firebase.google.com/docs/reference/js/v8/firebase.User
+                    var uid = user.uid;
+                      console.log(`Currently signed in as ${displayName} \n email: ${email}\n verified> ${emailVerified}\n photo: ${photoURL}\n phone: ${phoneNum}`);
+
+                    document.getElementById("profile-button-container").style.backgroundImage = `url(${photoURL})`;
+                      
+                      UserAccessGranted = true;
+
+                      document.getElementById("go-to-all-apps-button-container").classList.remove("member-button-hidden");
                   
-                  document.getElementById("go-to-all-apps-button-container").classList.remove("member-button-hidden");
-                  document.getElementById("go-to-all-apps-button-container").classList.add("member-button-visible");
+                      document.getElementById("go-to-all-apps-button-container").classList.add("member-button-visible");
                   
-                  document.getElementById("go-to-all-apps-button-container").addEventListener("click", function(){
-                      window.location.href = "./all-apps";
-                  });
-                  
-                document.getElementById("profile-button-container").style.backgroundImage = `url(${photoURL})`;
-                  
-                  document.getElementById("token-button-container").classList.remove("hidden-option");
+                      document.getElementById("go-to-all-apps-button-container").addEventListener("click", function(){
+                          window.location.href = "./all-apps";
+                      });
+                      
+                      document.getElementById("token-button-container").classList.remove("hidden-option");
                      
                   database = firebase.database();
                   dbRefObject = database.ref();
@@ -167,43 +182,39 @@
                     }).catch((error) => {
                         console.error(error);
                     });
-                // ...
-              } else {
-                // User is signed out
-                // ...
-                  console.log('no user signed in ');
-                  UserAccessGranted = false;
-              }
-            });
-
+                      
+                    // ...
+                  } else {
+                    // User is signed out
+                    // ...
+                      UserAccessGranted = false;
+                      
+                  }
+                });
+            
             document.getElementById("gknd-logo-button-container").addEventListener("click", function(){
                 window.location.href = "./";
             });
-
+            
+            
+            document.getElementById("profile-button-container").addEventListener("click", function(){
+                window.location.href = "./profile";
+            });
+            
             document.getElementById("download-album-button-container").addEventListener("click", function(){
+                //window.open("./ai-the-label-dia", "_blank");
                 if(UserAccessGranted){
-                    window.location.replace("./avatar-sam-dia");
+                    window.location.replace("./ai-the-label-dia");
                 }
                 else{
                     window.alert("Sign in to your account to get started!");
                 }
-                //window.location.href = "./avatar-sam-dia"
             });
             
-             document.getElementById("profile-button-container").addEventListener("click", function(){
-                if(UserAccessGranted){
-                    window.location.href = "./profile";
-                }
-                else{
-                    window.location.href = "./sign-in";
-                }
-                //window.location.href = "./avatar-sam-dia"
-            });
-
             document.getElementById("play-album-button-container").addEventListener("click", function(){
-                window.open("https://www.patreon.com/AvatarSamPodcast", "_blank");
+                window.open("./orm-ranking", "_blank");
             });
-              
+            
             document.getElementById("token-button-container").addEventListener("click", function(){
                 if(UserAccessGranted){
                     loadTokenATM(true);
@@ -217,6 +228,6 @@
                 if(UserAccessGranted)loadTokenATM(false);
             });
         });  
-    </script>
+      </script>
   </body>
 </html>

@@ -2,15 +2,14 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <title>Pricing: GKND</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Sponsors: GKND</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="apple-touch-icon" sizes="180x180" href="./media/img/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./media/img/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./media/img/favicon/favicon-16x16.png">
-    <link rel="manifest" href="./media/img/favicon/site.webmanifest">
     <link href="https://fonts.googleapis.com/css2?family=Braah+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/pricing.css" type="text/css" />
 </head>
@@ -19,9 +18,8 @@
         <input id="gknd-logo-button-container" class="loading-screen-logo-container" value="" type="button"/>
         <input id="sign-in-button-container" type="button" value="" />
         <div id="desktop-navigation-options-container">
-            <input type="button" value="Home" id="home-navigation-button-container" class="navigation-button-container" />
-            <input type="button" value="Tech" id="features-navigation-button-container" class="navigation-button-container" />
-            <input type="button" value="Pricing" id="pricing-navigation-button-container" class="navigation-button-container" />
+            <input type="button" value="Network" id="home-navigation-button-container" class="navigation-button-container" />
+            <input type="button" value="Sponsors" id="pricing-navigation-button-container" class="navigation-button-container" />
         </div>
         
         <div id="main-scene-container" class="hidden-scene">
@@ -54,7 +52,7 @@
         
         var trendingApps = [
             {
-                name: "Tokens 🪙",
+                name:"Non-Resident 🪙",
                 src: "",
                 bgSize: "110% auto",
                 bgPosition: "center center",
@@ -63,16 +61,16 @@
                 color: "rgba(0, 0, 0, 1.0)",
                 type: "Subscription Tier",
                 ranking: 1,
-                price: "$9.99",
-                priceAddendum: "/30 Tokens",
+                price: "$12.99",
+                priceAddendum: "/Card",
                 features: [
-                    "Tokens Never Expire",
+                    "Lyokoin - Variable Rate",
+                    "Never Expires",
                     "One Time Purchase",
-                    "Access Public Voice Apps",
-                    "30 Tokens ➛ 30 Tasks"
+                    "Access Public Drone Apps"
                 ]
             },{
-                name: "Creator 💻",
+                name: "Host 💻",
                 src: "",
                 bgSize: "auto 100%",
                 bgPosition: "center center",
@@ -84,8 +82,8 @@
                 price: "$29.99",
                 priceAddendum: "/month",
                 features: [
-                    "Unlimited Tokens",
-                    "Priority Access to New Voice Apps",
+                    "Generate Cards",
+                    "Priority Access to New Drone Apps",
                     "Private Folder for Productions",
                     "Tech Support"
                 ]
@@ -103,7 +101,7 @@
                 price: "Pay",
                 priceAddendum: "-as-you-go/month",
                 features: [
-                    "All Creator-tier Features",
+                    "All Host-Tier Features",
                     "Developer Access to DARIA",
                     "Early Access to New Features"
                 ]
@@ -144,20 +142,17 @@
             document.getElementById("sign-in-button-container").addEventListener("click", function(){
                 window.location.href = "./sign-in";
             })
-            document.getElementById("features-navigation-button-container").addEventListener("click", function(){
-                window.location.href = "./features";
-            });
             
             document.getElementById("pricing-navigation-button-container").addEventListener("click", function(){
                 window.location.href = "./pricing";
             });
             
             document.getElementById("home-navigation-button-container").addEventListener("click", function(){
-                window.location.href = "https://galactickidsnextdoor.com";
+                window.location.href = "./network";
             });
             
             document.getElementById("gknd-logo-button-container").addEventListener("click", function(){
-                window.location.href = "https://galactickidsnextdoor.com";
+                window.location.href = "./";
             });
             
             
@@ -184,7 +179,7 @@
                     
                     tierAccessButton.value = "Get Started";
                     
-                    if(appCount===0)tierAccessButton.value = "Buy Tokens";
+                    if(appCount===0)tierAccessButton.value = "Buy Cards";
                     
                     if(appCount===1)tierAccessButton.classList.add("most-popular-tier-highlight");
                     

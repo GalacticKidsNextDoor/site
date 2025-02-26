@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painting With Drones</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="./media/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./media/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./media/img/favicon/favicon-16x16.png">
+    <link rel="icon" type="image/png" href="./media/img/favicon/favicon.png">
+    <link rel="stylesheet" href="./css/painting.css" type="text/css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Braah+One&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="painting-module-container">
+        <h1 id="painting-header-container">Painting with drones</h1>
+        <h3 id="painting-subheader-container">Pick a point on the canvas below to splatter paint remotely using Daria</h3>
+        <div id="painting-map-container">
+            <canvas id="mascot-0-container" class="mascot-container highlighted-mascot-container"></canvas>
+            <canvas id="painting-canvas-container" width="100" height="50"></canvas>
+            <canvas id="mascot-1-container" class="mascot-container"></canvas>
+        </div>
+        <textarea id="message-input-container" name="message" rows="4" cols="50">Leave a message...</textarea>
+       
+        <input id="access-code-input-container" class="submission-input-container" type="text" name="access-code" placeholder="Access Code">
+        
+        <input id="submit-button-input-container" class="submission-input-container" type="submit" value="Submit">
+    </div>
+    <script>
+        var canvas;
+        var ctx;
+        var mascot0 = {
+            x: 0,
+            y: 0,
+            width: 100,
+            height: 100,
+            image: new Image()
+        };
+
+        var mascot1 = {
+            x: 0,
+            y: 0,
+            width: 100,
+            height: 100,
+            image: new Image()
+        };
+
+
+        function initializeCanvas(){
+            canvas = document.getElementById("painting-canvas-container");    
+            context = canvas.getContext("2d");
+
+            const dpr = window.devicePixelRatio;
+            const rect = canvas.getBoundingClientRect();
+
+            // Set the "actual" size of the canvas
+            canvas.width = rect.width * dpr;
+            canvas.height = rect.height * dpr;
+
+            // Scale the context to ensure correct drawing operations
+            context.scale(dpr, dpr);
+
+            // Set the "drawn" size of the canvas
+            canvas.style.width = `${rect.width}px`;
+            canvas.style.height = `${rect.height}px`;
+        }
+
+        document.addEventListener("DOMContentLoaded", function(){
+            initializeCanvas();
+            var colorOption0 = document.getElementById("mascot-0-container");
+            var colorOption1 = document.getElementById("mascot-1-container");
+            var selectedFillColor = "#ff0000";
+            var selectedMascot = 0;
+
+            colorOption0.addEventListener("click", function(){
+                colorOption0.classList.add("highlighted-mascot-container");
+
+                colorOption1.classList.remove("highlighted-mascot-container");
+
+                selectedFillColor = "#ff0000";
+                selectedMascot = 0;
+            });
+
+            colorOption1.addEventListener("click", function(){
+                colorOption1.classList.add("highlighted-mascot-container");
+
+                colorOption0.classList.remove("highlighted-mascot-container");
+
+                selectedFillColor = "#ffff00";
+                selectedMascot = 1;
+            });
+            // Get the mouse position
+            function  getMousePos(canvas, evt) {
+                var rect = canvas.getBoundingClientRect(); // abs. size of element
+                    /*scaleX = canvas.width / rect.width,    // relationship bitmap vs. element for x
+                    scaleY = canvas.height / rect.height;  // relationship bitmap vs. element for y
+*/
+                return {
+                    x: (evt.clientX - rect.left) * 1,//scaleX,   // scale mouse coordinates after they have
+                    y: (evt.clientY - rect.top) * 1//scaleY     // been adjusted to be relative to element
+                }
+            }
+
+            /*function draw(evt) {
+            }*/
+
+
+            canvas.addEventListener("click", function(event){
+                //Draw the rectangle
+                //draw(event);
+                
+                var pos = getMousePos(canvas, event);
+                // Send the data to the server
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "/painting", true);
+                xhr.setRequestHeader("Content-Type", "application/json");
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        if (xhr.status === 200) {
+            /*
+                            context.fillStyle = "#000000";
+                            context.fillRect (pos.x, pos.y, 4, 4);
+            */
+                            context.fillStyle = selectedFillColor;
+                            context.beginPath();
+                            context.arc(pos.x, pos.y, 10, 0, 2 * Math.PI);
+                            context.fill();
+
+                            console.log("Paint splatter sent successfully");
+                        } else {
+                            console.error("Error sending paint splatter");
+                        }
+                    }
+                };
+                
+                xhr.send(JSON.stringify(pos));
+            })
+        });
+    </script>
+</body>
+</html>
