@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..900&display=swap');
+
+.golos {
+    font-family: "Golos", sans-serif;
+}
+.navbar-toggler{
+    position: absolute;
+    right: 5%;
+}
+
+#caas-header-container, #contact-header-container{
+    font-weight: 700;;
+}
+.links {
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.description {
+    font-size: 22px;
+    font-weight: normal;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.sync {
+    font-size: 96px;
+    font-weight: bold;
+    text-align: center;
+}
+.tag {
+    font-size: 22px;
+    font-weight: normal;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    text-align: center;;
+}
+.email-form{
+    width: auto;
+}
+.join{
+    background-color: #BD0027;
+    color: #F6F6F6;
+}
+
+h1{
+    font-size: large;
+    font-weight: bold;
+}
+
+.col-6 {
+    flex: 0 0 auto;
+    width: 60%;
+}
+
+@media only screen and (max-width: 648px) {
+    .description {
+        font-size: 16px;
+    }
+
+    .col-6 {
+        width: 70% !important;
+    }
+}

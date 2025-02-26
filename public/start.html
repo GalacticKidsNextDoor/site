@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Galactic Kids Next Door</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Braah+One&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="./media/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./media/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./media/img/favicon/favicon-16x16.png">
+    <link rel="stylesheet" href="./css/store-landing-page.css" type="text/css" />
+</head>
+<body>
+    <div id="main-app-container">
+        <button id="gknd-logo-button-container" class="loading-screen-logo-container"></button>
+        <button id="sign-in-button-container"></button>
+        <div id="desktop-navigation-options-container">
+            <input type="button" value="Network" id="home-navigation-button-container" class="navigation-button-container" />
+            <input type="button" value="Sponsors" id="pricing-navigation-button-container" class="navigation-button-container" />
+        </div>
+        <div id="get-started-main-container">
+            <div id="create-anything-text-container">
+                <div id="current-media-type-container">We Are The Internet</div>
+            </div>
+            <div id="get-started-description-container">
+                <p>The World Is Our Desktop</p>
+            </div>
+            <input id="get-started-button-container" type="button" value="Explore Now"/>
+            <div id="avatar-sam-container">
+                <video id="ai-loader-container" width="240" height="135" muted autoplay loop>
+                    <source src="./media/img/loading-anim.webm" type="video/webm">
+                </video>
+            </div>
+        </div>
+        <div id="main-scene-container" class="hidden-scene">
+            <div id="trending-list-title-container">
+                Top 3 DApps
+            </div>
+            <div id="trending-list-post-container">
+            </div>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="./js/Lyoko.Personas.js" type="module"></script>
+    <script src="./js/Lyoko.MediaTypes.js" type="module"></script>
+    <script src="./js/Lyoko.TrendingApplicationList.js" type="module"></script>
+    <script type="module">
+        import { Personas } from "./js/Lyoko.Personas.js";
+        import { MediaTypes } from "./js/Lyoko.MediaTypes.js";
+        import { TrendingApplicationList } from "./js/Lyoko.TrendingApplicationList.js";
+        var personas = Personas(5);
+        var mediaTypes = MediaTypes(6);
+        var trendingApps = TrendingApplicationList(3);
+        var onPersona = 0;
+        var loggedIn, currentUser, storage, database, dbRefObject, uploadPic, uploadPicReady = false;
+            
+        const firebaseConfig = {
+            apiKey: "AIzaSyDb25cWx6pMmh2xt54c_G5hS_rTDzpnpKw",
+            authDomain: "galactic-kids-next-door.firebaseapp.com",
+            databaseURL: "https://galactic-kids-next-door-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "galactic-kids-next-door",
+            storageBucket: "galactic-kids-next-door.appspot.com",
+            messagingSenderId: "273360155490",
+            appId: "1:273360155490:web:a752b1c28ad6156791f23b",
+            measurementId: "G-6Z2LK6Z05H"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        
+        document.addEventListener("DOMContentLoaded", function(){
+                
+            firebase.auth().onAuthStateChanged((user) => {
+                currentUser = user;
+              if (currentUser) {
+                  const displayName = currentUser.displayName;
+                  const email = currentUser.email;
+                  const photoURL = currentUser.photoURL;
+                  const phoneNum = currentUser.phoneNumber;
+                  const emailVerified = currentUser.emailVerified;
+                // User is signed in, see docs for a list of available properties
+                // https://firebase.google.com/docs/reference/js/v8/firebase.User
+                var uid = currentUser.uid;
+                  console.log(`Currently signed in as ${displayName} \n
+                            email: ${email}\n
+                            verified? ${emailVerified}\n
+                            photo: ${photoURL}\n
+                            phone: ${phoneNum}\n`);
+
+                  document.getElementById("sign-in-button-container").style.backgroundImage = `url(${photoURL})`;
+                  loggedIn = true;
+                // ...
+              } else {
+                // User is signed out
+                // ...
+                  loggedIn = false;
+                  console.log('no user signed in\n keep sign in button as is');
+              }
+            });
+            
+            document.getElementById("sign-in-button-container").addEventListener("click", function(){
+                window.location.replace("./sign-in");
+            });
+
+            document.getElementById("pricing-navigation-button-container").addEventListener("click", function(){
+                window.location.href = "./pricing";
+            });
+            
+            document.getElementById("home-navigation-button-container").addEventListener("click", function(){
+                window.location.href = "./network";
+            });
+            
+            
+            document.getElementById("gknd-logo-button-container").addEventListener("click", function(){
+                window.location.href = "./";
+            });
+            
+            document.getElementById("get-started-button-container").addEventListener("click", function(){
+               // if(loggedIn){
+                    window.location.href = "./park-preview";
+               /* }
+                else{
+                    document.getElementById("pricing-navigation-button-container").click();
+                }*/
+            });
+            
+            document.getElementById("gknd-logo-button-container").classList.remove("loading-screen-logo-container");
+            document.getElementById("gknd-logo-button-container").classList.add("corner-logo-container");
+            
+            document.getElementById("main-scene-container").classList.remove("hidden-scene")
+            document.getElementById("main-scene-container").classList.add("visible-scene")
+
+            var pLoop = setInterval(function(){
+                onPersona++;
+                document.getElementById("avatar-sam-container").style.backgroundImage = `url(${personas[onPersona].src})`;
+                document.getElementById("avatar-sam-container").style.backgroundSize = personas[onPersona].bgSize;
+                
+                let rem = onPersona % mediaTypes.length;
+                document.getElementById("current-media-type-container").innerText = mediaTypes[rem].action;
+                
+                if(onPersona===personas.length-1)onPersona = -1;
+                
+               // console.log(onPersona);
+                //console.log(rem)
+            }, 6000);
+            
+            for(var appCount = 0; appCount < trendingApps.length; appCount++){
+                let counterA = appCount;
+                (function(){
+                    //console.log(trendingApps[appCount].src);
+                    let curr = document.createElement("div");
+                    curr.classList.add("trending-post-container");
+                    
+                    curr.setAttribute("id", `trending-post-${counterA}-container`);
+                    
+                    curr.style.backgroundImage = `url(${trendingApps[counterA].src})`;
+                    
+                    curr.style.backgroundSize = trendingApps[counterA].bgSize;
+                    
+                    curr.style.backgroundPosition = trendingApps[counterA].bgPosition;
+                    
+                    curr.innerText = trendingApps[counterA].name;
+                    
+                    curr.addEventListener("click", function(){
+                        window.location.href = trendingApps[counterA].target;
+                    });
+                    
+                    if(trendingApps[counterA].color)curr.style.color = trendingApps[counterA].color;
+                    
+                    document.getElementById("trending-list-post-container").appendChild(curr);
+                })();
+            }
+        });
+    </script>
+</body>
+</html>

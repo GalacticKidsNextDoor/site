@@ -3,15 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>"Avatar Sam" by oldrowmaryland</title>
+    <title>"Joe's Club DC" by joesclubdc</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Braah+One&display=swap" rel="stylesheet">
     <link rel="apple-touch-icon" sizes="180x180" href="./media/img/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./media/img/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./media/img/favicon/favicon-16x16.png">
-    <link rel="manifest" href="./media/img/favicon/site.webmanifest">
-   <link rel="stylesheet" href="./css/avatar-sam-landing-page.css" type="text/css" />
+   <link rel="stylesheet" href="./css/joesclubdc-landing-page.css" type="text/css" />
   </head>
   <body>
       <input id="gknd-logo-button-container" class="return-home-button-container" type="button" value=""/>
@@ -33,36 +32,37 @@
       <div id="main-app-container">
           <div id="album-cover-container">
           </div>
-          <input type="button" value="listen" id="play-album-button-container" />
-          <input type="button" value="create" id="download-album-button-container" />
+          <input type="button" value="Order Now" id="play-album-button-container" />
           <div id="feature-block-container">
-              <div style="text-align: center;">Author: <a class="artist-link-container" href="https://www.instagram.com/oldrowmaryland">@oldrowmaryland</a></div>
+              <div style="text-align: center;">Author: <a class="artist-link-container" href="https://www.instagram.com/joesclubdc">@joesclubdc</a></div>
               <br>
-              <h2 style="text-align: center; line-height: 35px;">Practice Your Oratory As the President of the United States of America</h2>
-              <br>
-              <br>
-              <h3>Explore a range of speech synthesis methods using the voice of Uncle Sam himself.</h3>
+              <h1 style="text-align: center; line-height: 35px;">D.E.S.E.R.V.E.</h1>
+              <h2 style="text-align: center; line-height: 30px;">Eradicating Need</h2>
               <br>
               <br>
-              <h3>Tools include:</h3>
+              <h3>By Delivering Healthy Food</h3>
+              <h3>From: Farm; To: Home</h3>
               <br>
-              <ul class="sam-features-list-container">
-                <li>Text-to-Speech Synthesis</li>
-                <li>Voice Filters</li>
+              <br>
+              <h3>Service includes:</h3>
+              <br>
+              <ul class="joesclubdc-features-list-container">
+                <li>Drone Delivery to Window for Apartments</li>
+                <li>Drone Delivery to Window for Room Occupying Home Residents (ROHRs)</li>
+                <li>Ground Drone Delivery to Front Door for Qualifying Orders</li>
                 <li>Personas</li>
               </ul>
               <br>
               <br>
-              <h3>Featuring the following AI Personas:</h3>
-              <ul class="sam-features-list-container">
-                  <li>Trump AI</li>
-                  <li>Obama AI</li>
-                  <li>Biden AI</li>
-                  <li>Bush AI (coming soon)</li>
-                  <li>Clinton AI (coming soon)</li>
+              <h3>Sourced from the following farms, stores, and pharmacies:</h3>
+              <ul class="joesclubdc-features-list-container">
+                  <li>Lemba Farms</li>
+                  <li>Giant #0152PH + Pharmacy</li>
+                  <li>Walgreens #18255 + Pharmacy</li>
+                  <li>TJ's #652</li>
               </ul>
               <br>
-              <div style="text-align: center;">Description provided by <a class="artist-link-container" href="https://www.instagram.com/oldrowmaryland">oldrowmaryland</a> © 2023</div>
+              <div style="text-align: center;">Description provided by <a class="artist-link-container" href="https://www.instagram.com/joesclubdc">joesclubdc</a> © 2025</div>
         </div>
       </div>
       <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
@@ -179,16 +179,6 @@
             document.getElementById("gknd-logo-button-container").addEventListener("click", function(){
                 window.location.href = "./";
             });
-
-            document.getElementById("download-album-button-container").addEventListener("click", function(){
-                if(UserAccessGranted){
-                    window.location.replace("./avatar-sam-dia");
-                }
-                else{
-                    window.alert("Sign in to your account to get started!");
-                }
-                //window.location.href = "./avatar-sam-dia"
-            });
             
              document.getElementById("profile-button-container").addEventListener("click", function(){
                 if(UserAccessGranted){
@@ -197,14 +187,9 @@
                 else{
                     window.location.href = "./sign-in";
                 }
-                //window.location.href = "./avatar-sam-dia"
             });
-
+            
             document.getElementById("play-album-button-container").addEventListener("click", function(){
-                window.open("https://www.patreon.com/AvatarSamPodcast", "_blank");
-            });
-              
-            document.getElementById("token-button-container").addEventListener("click", function(){
                 if(UserAccessGranted){
                     loadTokenATM(true);
                 }

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="icon" type="image/png" href="../media/icon/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Braah+One&display=swap" rel="stylesheet">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        #map-description-container{
+            display: block;
+            position: absolute;
+            z-index: 100;
+            top: 30px;
+            /* right: 50px; */
+            left: 560px;
+            background-color: rgba(255, 255, 255, 1.0);
+            width: 150px;
+            height: 40px;
+            font-size: 22px;
+            color: black;
+            font-family: "Braah One", sans-serif;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 10px;
+        }
+    </style>
+    <script type="text/javascript" src="./js/MapConfig.js"> </script>
+    <script type="text/javascript" src="./js/Map.js"> </script>
+</head>
+<body onload="map_main();" >
+    <div id="map-description-container">
+        Welcome to the map!
+    </div>
+    <canvas id="map_canvas" width="800" height="480" style="position:relative;" ></canvas>
+</body>
+</html        

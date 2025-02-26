@@ -2,22 +2,22 @@ export function MediaTypes (numOfTypes){
     console.log(numOfTypes);
     return [
         {
-        action: "The World",
+        action: "We Are The Internet",
     },
         {
-        action: "The World",
+        action: "Nous Sommes L'Internet",
     },
         {
-        action: "The World",
+        action: "Nosotros Somos El Internet",
     },
         {
-        action: "The World",
+        action: "Sisi Ni Internet",
     },
         {
-        action: "The World",
+        action: "我們是互聯網",
     },
         {
-       action: "The World",
+       action: "Vi Er Internettet",
     }
     ];
 };

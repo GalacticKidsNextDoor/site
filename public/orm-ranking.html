@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Our Network: City-as-a-Service</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Braah+One&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="./media/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./media/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./media/img/favicon/favicon-16x16.png">
+    <link rel="stylesheet" href="./css/network.css" type="text/css" />
+    <style>
+        .production-button-container{
+            width: 75px;
+            height: 75px;
+            border: 1px solid black;
+            border-radius: 50%;
+            cursor: pointer;
+            background-size: auto 100%;
+            background-repeat: no-repeat;
+            transition: background-size 0.25s;
+        }
+
+        .production-button-container:hover{
+            background-size: auto 120%;
+        }
+
+        #yo-no-se-button-container{
+            background-image: url(./media/img/YO-NO-SE-COVER.png);
+        }
+
+        #ai-9-album-button-container{
+            background-image: url(./media/img/infinite.gif);
+        }
+
+        #im-saian-button-container{
+            background-image: url(./media/img/IMSAIAN.png);
+        }
+        #sincerely-aubrey-button-container{
+            background-image: url(./media/img/sincerely-aubrey-cover.png);
+        }
+
+        #delincuente-button-container{
+            background-image: url(./media/img/doja-head-black-and-white.png);
+        }
+
+        .production-button-column-container{
+            display: inline-block;
+            text-align: center;
+            width: 12%;
+            min-width: 85px;
+            height: 105px;
+            border: 0;
+            padding: 5px;
+        }
+
+        .description-column-container{
+            display: inline-block;
+            text-align: center;
+            width: 50%;
+            min-width: 300px;
+            height: 105px;
+            border: 0;
+            padding: 5px;
+        }
+
+        .shares-column-container{
+            text-align: left;
+            display: inline-block;
+            width: 12.5%;
+            min-width: 85px;
+            height: 105px;
+            border: 0;
+            padding: 5px;
+        }
+
+        .value-column-container{
+            text-align: right;
+            display: inline-block;
+            width: 12.5%;
+            min-width: 85px;
+            height: 105px;
+            border: 0;
+            padding: 5px;
+        }
+
+        .table-column-title-container{
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="main-app-container">
+        <input id="gknd-logo-button-container" class="loading-screen-logo-container" value="" type="button"/>
+        <input id="sign-in-button-container" type="button" value="" />
+        <div id="desktop-navigation-options-container">
+            <input type="button" value="Library" id="home-navigation-button-container" class="navigation-button-container" />
+            <input type="button" value="Park" id="park-navigation-button-container" class="navigation-button-container" />
+        </div>
+        
+        <div id="main-scene-container" class="hidden-scene">
+            <h1 id="caas-header-title-container">Productions</h1>
+            <div>
+                <div class="table-column-title-container production-button-column-container">Rank</div>
+                <div class="table-column-title-container description-column-container">Description</div>
+                <div class="table-column-title-container shares-column-container">Shares</div>
+                <div class="table-column-title-container value-column-container">Value</div>
+            </div>
+    </div>
+    <script>
+
+        var Productions = [
+        {
+                title: "I'm Saian",
+                description: "A.I. remix produced by Old Row Maryland of \"J'adore Ça\" by Saian Supa Crew; broke network records for shares on ledger and out of network distribution | Published 2023",
+                shares: 1125,
+                value: "1125*(=2)",
+                buttonId: "im-saian-button-container",
+                url: "./im-saian"
+            },
+            {
+                title: "Delincuente",
+                description: "A.I. remix produced by Old Row Maryland of \"Delincuente\" by Tokischa et al.; broke network records for shares on ledger and out of network distribution | Published 2023",
+                shares: 1084,
+                value: "1084*(=2)",
+                buttonId: "delincuente-button-container",
+                url: "./delincuente"
+            },
+            {
+                title: "Yo No Se",
+                description: "Old Row Maryland in house A.I. remix of \"Yo No Se\" by Luis Enriques; broke network records for shares on ledger and out of network distribution | Published 2023",
+                shares: 1083,
+                value: "1083*(=2)",
+                buttonId: "yo-no-se-button-container",
+                url: "./yo-no-se"
+            },
+            {
+                title: "\"9\" The AI Compilation Album",
+                description: "A selection of our label's favorite Drake A.I. songs released by internet artists in the Spring and Summer of 2023. We included one of our own. The entire track list resulted from a prompt of DARIA. | Published 2023",
+                shares: 1851,
+                value: "780*(=2) + 1071(+50)",
+                buttonId: "ai-9-album-button-container",
+                url: "./9-ai"
+            },
+            {
+                title: "Sincerely, Aubrey",
+                description: "Ghostwriter's dedication to the late rap persona of the cultural impersonator Aubrey Graham; a collection of songs that were written for Drake but never released. The man's career is dead in America, so this is the only fresh memory of his allowed after summer 2023. | Published 2023",
+                shares: 209,
+                value: "209(+50)",
+                buttonId: "sincerely-aubrey-button-container",
+                url: "./sincerely-aubrey"
+            }
+        ];
+
+        var loggedIn = false;
+        
+        var onPersona = 0;
+    
+        document.addEventListener("DOMContentLoaded", function(){
+
+            document.getElementById("park-navigation-button-container").addEventListener("click", function(){
+                    window.location.href = "./park-preview";
+            });
+            
+            document.getElementById("home-navigation-button-container").addEventListener("click", function(){
+                window.location.href = "./library";
+            });
+            
+            document.getElementById("gknd-logo-button-container").addEventListener("click", function(){
+                window.location.href = "./";
+            });
+            
+            document.getElementById("gknd-logo-button-container").classList.remove("loading-screen-logo-container");
+            document.getElementById("gknd-logo-button-container").classList.add("corner-logo-container");
+            
+            document.getElementById("main-scene-container").classList.remove("hidden-scene")
+            document.getElementById("main-scene-container").classList.add("visible-scene")
+
+            for(var i = 0; i < Productions.length; i++){
+                let counter = i;
+                (function(){
+                    var currProduction = document.createElement("div");
+                    currProduction.innerHTML = `
+                        <div class="production-button-column-container">
+                            <button id="${Productions[counter].buttonId}" class="production-button-container"></button>
+                            ${Productions[counter].title}
+                        </div>
+                        <div class="description-column-container">${Productions[counter].description}</div>
+                        <div class="shares-column-container">${Productions[counter].shares}</div>
+                        <div class="value-column-container">${Productions[counter].value}</div>
+                    `;
+                    document.getElementById("main-scene-container").appendChild(currProduction)
+                    document.getElementById(Productions[counter].buttonId).addEventListener("click", function(){
+                        window.location.href = `./${Productions[counter].url}`;
+                    });
+                })();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -63,6 +63,22 @@ body, html, #main-app-container{
     height: 60px;
 }
 
+.park-feature-item-container{
+    font-family: "Braah One", sans-serif;
+    font-size: 24px;
+    height: 300px;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+    margin: 0 5px 20px 5px;
+    border-radius: 52px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(112,42,187,.4), 0 1px 3px rgba(112,42,187,.1);
+    border: 2px solid #702abb;
+    display: flex;
+    flex-direction: column;
+    min-width: 250px;
+}
 
 #gknd-logo-button-container{
     position: absolute;
@@ -86,8 +102,8 @@ body, html, #main-app-container{
 }
 
 .corner-logo-container{
-    width: 50px;
-    height: 50px;
+    width: 75px;
+    height: 75px;
     top: 4%;
     left: 6%;
     margin: -25px 0 0 -25px;
@@ -111,38 +127,31 @@ body, html, #main-app-container{
     margin: 2% auto 0 auto;
 }
 
-#get-started-main-container{
-    position: relative;
+#caas-header-title-container{
     font-family: "Braah One", sans-serif;
-    width: 500px;
-    height: 225px;
-    border-radius: 50px;
-    background-color: rgba(255, 255, 255, 1.0);
-    color: darkblue;
-    margin: 10% auto 0 auto;
-}
-
-#create-anything-text-container{
-    padding: 5% 0% 0% 0%;
-    text-align: center;
-    font-size: 32px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    cursor: pointer;
-}
-
-#get-started-description-container{
-    width: 90%;
-    margin: 10px auto 2% auto;
-    text-align: center;
-    font-size: 18px;
-    letter-spacing: 0px;
-    text-transform: uppercase;
 }
 
 #current-media-type-container{
     display: inline;
+}
+
+.large-paragraph-text-container{
+    font-family: "Braah One", sans-serif;
+    font-size: 20px;
+    line-height: 30px;
+    opacity: 1.0;
+    margin: 16px auto;
+}
+
+.large-paragraph-text-container:hover{
+    opacity: 0.9;
+}
+
+#access-title-paragraph-container{
+    width: 100%;
+    text-align: center;
+    font-style: italic;
+    color: rgba(5, 250, 50, 1.0);
 }
 
 .navigation-button-container{
@@ -152,14 +161,35 @@ body, html, #main-app-container{
     text-align: center;
     line-height: 42px;
     height: 42px;
-    width: 30%;
+    width: 40%;
     outline: none;
     cursor: pointer;
     color: white;
     border: 0;
     background-color: black;
     display: inline-block;
-    margin: 0;
+    margin: 0 0 0 6%;
+}
+
+#park-feature-item-0-container{
+    background-size: cover;
+    background-image: url(../media/img/delivery-horizon-drone-delivery.avif);
+}
+
+#park-feature-item-1-container{
+    background-image: url(../media/img/sunflower-security-drone.webp);
+    background-size: cover;
+}
+
+#park-feature-item-2-container{
+    background-image: url(../media/img/dronepong-third-space.png);
+    background-size: cover;
+    padding-left: 38px;
+}
+
+#park-feature-item-3-container{
+    background-image: url(../media/img/gcbf-snapshot.jpg);
+    background-size: cover;
 }
 
 #ai-loader-container{
@@ -219,63 +249,15 @@ body, html, #main-app-container{
 }
 
 #main-scene-container{
-    width: 95%;
+    font-family: "Braah One", sans-serif;
+    width: 85%;
+    max-width: 750px;
+    background-color: rgba(255, 255, 255, 0.2);
     display: block;
     margin: 4% auto 0 auto;
     transition: opacity 0.5s;
-}
-
-#all-features-block-container{
-    font-family: "Braah One", sans-serif;
-    display: block;
-    width: 90%;
-    margin: 2% auto;
-}
-
-.llm-block-container{
-    font-family: "Braah One", sans-serif;
-    font-size: 22px;
-    display: block;
-    width: 90%;
-    margin: 0 auto;
-}
-
-.llm-block-container:link, .llm-block-container:visited{
-    color: white;
-    text-decoration: none;
-    cursor: pointer;
-    transition: margin 0.25s, font-size 0.25s, font-style 0.25s;
-}
-
-.llm-block-container:hover{
-    color: salmon;
-    font-style: italic;
-    font-size: 26px;
-}
-
-.tier-title-container{
-    border-radius: 14px;
-    text-align: center;
-    border: 2px solid transparent;
-    display: inline-flex;
-    flex-shrink: 0;
-    vertical-align: middle;
-    position: relative;
-    overflow: visible;
-}
-
-.tier-price-container{
-    /*display: inline-block;*/
-    width: auto;
-    font-size: 40px;
-    font-weight: 700;
-}
-
-.tier-price-addendum-container{
-    /*display: inline-block;*/
-    width: auto;
-    font-size: 18px;
-    font-weight: 300;
+    padding: 25px;
+    border-radius: 25px;
 }
 
 .inline-feature-item{
