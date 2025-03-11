@@ -1,6 +1,13 @@
-//2.0.1.6
+//3.0.a
 //Patrice-Morgan O. de Goma
+// Last updated: Tuesday, March 11, 2025
 
+/* This file handles the Hand processing from DARIA's visual feed
+* members must activate the hand processing if it isn't already turned on,
+* this can be done by:
+* toggling the manual hand processing module button (DONE)
+* telling DARIA to watch my hands with audio (TODO)
+*/
 //const model =  await handTrack.load();
 //const predictions = await model.detect(img);
 
@@ -63,33 +70,71 @@ var HandActionTracker = {
   closedCount: -1,
 };
 
-function processHandMotions(){
+function processHandMotions(itemBox){
+  var currentPotential = itemBox;
+/*
+  currentPotential contains the hand motion and associated processing data
+
+  bounding box
+      an array containing the origin (x,y), width, and height of the bounding box surrounding the hand gesture (in that order)
+  label
+      the name of the gesture recognized by the handtrack algorithm
+  class
+      a number corresponding to the label
+  score
+      the confidence the algorithm assigns to the classification of this gestrue
+  */
+
+      /*TODO
+
+      * move your hand around to determine the edges of the visual field for the webcam
+      * 
+      * 
+      * 
+      * 
+  */
+ 
   if(HandActionTracker.openCount>50){
     if(!DARIA.active){
       console.log("Connecting...\n Code? LYOKO.");
       HandActionTracker.pointCount = 0;
       HandActionTracker.closedCount = 0;
 
+        //This initializes LYOKO
       document.getElementById("toggle-audio-playback-button-container").click();
     }
     else{
-
+        console.log("Stopping current behavior");
     }
     HandActionTracker.openCount = 0;
   }
 
   if(HandActionTracker.pointCount>30){
+      console.log("Threshold Item");
+      console.log(currentPotential)
       console.log("POINTING");
       HandActionTracker.pointCount = 0;
 
   }
 
   if(HandActionTracker.closedCount>30){
+    console.log("Threshold Item");
+    console.log(currentPotential);
     console.log("CLOSED FIST");
     HandActionTracker.closedCount = 0
   }
 
 }
+
+// This function receives predictions from the core handtracking cv module
+// these PREDICTIONs are an array of ITEMs
+// each ITEM contains:
+// the LABEL says what type of feature the algorithm has spotted (closed fist, open hand, pointing hand, pinching hand, or face)
+// a SCORE giving how certain the algorithm is of the accuracy of its prediction
+//  
+// After receiving the predictions it processes them as potentials, when a potential reaches a 
+// certain threshold an action is triggered on the backend
+//
 
 function processPredictions(predictions){
   currentFaceCount = 0;
@@ -117,7 +162,7 @@ function processPredictions(predictions){
           HandActionTracker.closedCount++;
         }
 
-        processHandMotions();
+        processHandMotions(item);
       }
     });
   }

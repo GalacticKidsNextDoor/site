@@ -1,6 +1,9 @@
 //2.0.1.6
 //Patrice-Morgan O. de Goma
-
+/**
+ * 
+ * FIREBASE CODE GOES HERE
+ *
 var storage, database;
 
 var config = {
@@ -28,6 +31,7 @@ dbPrimaryFunctions.once("value").then(function(snap){
 dbSecondaryFunctions.once("value").then(function(snap){
     DefenseAugmentedRealityIntelligentAssistant.secondary = snap.val();
 });
+*/
 
 function processWT(meaningInput, currentTerm){
   NodeClientSenses.processWrittenText(meaningInput, currentTerm);
@@ -396,6 +400,20 @@ class Senses{
 
 var NodeClientSenses;
 
+function showImmersiveDesktop(){
+  /*show the default desktop for DARIA control
+
+  * Model of the User
+  * TikTok Link
+  * IG Link
+  * Library Link
+  *
+  */ 
+  document.getElementById("ig-menu-button-object-container").setAttribute("visible", "true");
+  document.getElementById("tiktok-menu-button-object-container").setAttribute("visible", "true");
+  document.getElementById("library-menu-button-object-container").setAttribute("visible", "true");
+}
+
 document.addEventListener("DOMContentLoaded", function(){
     NodeClientSenses = new Senses({name: "Vision", on: true}, {name: "Hearing/Balance", on: true}, {name: "Olfaction", on: true}, {name: "Taste", on: true}, {name: "Touch", on: true});
 
@@ -406,25 +424,24 @@ document.addEventListener("DOMContentLoaded", function(){
 
         if(!DARIA.active){
           document.getElementById("landing-object-container").setAttribute("visible", "false");
+          
 
           document.getElementById("dia-entry-screen-0-container").setAttribute("visible", "true");
           document.getElementById("dia-entry-screen-title-0-container").setAttribute("visible", "true");
           document.getElementById("dia-entry-screen-title-1-container").setAttribute("visible", "true");
 
           setTimeout(function(){
-            document.getElementById("dia-entry-screen-0-container").setAttribute("visible", "false");
-            document.getElementById("dia-entry-screen-1-container").setAttribute("visible", "true");
+            document.getElementById("dia-entry-screen-title-0-container").setAttribute("visible", "false");
+            document.getElementById("dia-entry-screen-title-1-container").setAttribute("value", "initializing...");
           }, 6000);
 
           setTimeout(function(){
-            document.getElementById("dia-entry-screen-title-0-container").setAttribute("visible", "false");
-            document.getElementById("dia-entry-screen-title-1-container").setAttribute("value", "initializing...");
-          }, 9000);
 
-          setTimeout(function(){
-            document.getElementById("dia-entry-screen-1-container").setAttribute("visible", "false");
+          document.getElementById("dia-entry-screen-0-container").setAttribute("visible", "false");
             document.getElementById("dia-entry-screen-title-1-container").setAttribute("visible", "false");
-          }, 12000);
+            
+            showImmersiveDesktop();
+          }, 9000);
 
           DARIA.active = true;
         }

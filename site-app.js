@@ -80,6 +80,14 @@ app.get('/dronepong', (req, res) => {
     res.sendFile(path.join(__dirname, './public/dronepong.html'));
 });
 
+app.get('/daria', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/daria.html'));
+});
+
+app.get('/lyoko', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/lyoko.html'));
+});
+
 app.get('/lyoko-dev', (req, res) => {
     res.sendFile(path.join(__dirname, './public/lyoko-dev.html'));
 });
@@ -180,6 +188,16 @@ app.get('/css/Fonts/:fontId/', (req, res) => {
 app.get('/media/img/:imgId/', (req, res) => {
     let imgId = req.params.imgId;
     res.sendFile(path.join(__dirname, './public/media/img/'+imgId));
+})
+
+app.get('/media/img/favicon/:faviconId/', (req, res) => {
+    let faviconId = req.params.faviconId;
+    res.sendFile(path.join(__dirname, './public/media/img/favicon'+faviconId));
+})
+
+app.get('/media/texture/:textureId/', (req, res) => {
+    let textureId = req.params.textureId;
+    res.sendFile(path.join(__dirname, './public/media/texture/'+textureId));
 })
 
 app.get('/media/aud/SincerelyAubrey/:audId/', (req, res) => {
