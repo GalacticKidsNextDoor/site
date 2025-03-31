@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>DARIA: The Moonbase A.I.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Braah+One&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="./media/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./media/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./media/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="./media/img/favicon/site.webmanifest">
+    <link rel="stylesheet" href="./css/daria.css" type="text/css" />
+</head>
+<body>
+    <input id="gknd-logo-button-container" class="loading-screen-logo-container" value="" type="button"/>
+    <input id="sign-in-button-container" type="button" value="" />    
+    <div id="main-app-container">
+        <div id="main-scene-container" class="hidden-scene">
+            <div id="daria-app-header-container">
+                Defensive Autonomous Robotic Integrated Assistants
+            </div>
+            <div class="app-sub-header-container"> An Embodied Swarm Powered by Lyoko
+            </div>
+            <div id="llm-ai-block-container">
+                <a id="author-0-block-container" href="./">
+                    de Goma, P-M. O.
+                </a>
+            </div>
+            <div id="main-options-block-container">
+                <button id="paper-option-block-container" class="option-block-container">
+                    Paper
+                </button>
+                <button id="demos-option-block-container" class="option-block-container">
+                    Demos
+                </button>
+            </div>
+            <div id="public-apps-block-container">
+            </div>
+            
+        </div>
+        <div id="life-stream-overlay-container">
+            <video id="video-stream-0-container" class="video-stream-container" src="./media/vid/black-marble-preview.mp4" autoplay muted loop></video>
+            <video id="video-stream-1-container" class="video-stream-container" src="./media/vid/black-marble-preview.mp4" autoplay muted loop></video>
+            <video id="video-stream-2-container" class="video-stream-container" src="./media/vid/black-marble-preview.mp4" autoplay muted loop></video>
+            <video id="video-stream-3-container" class="video-stream-container" src="./media/vid/black-marble-preview.mp4" autoplay muted loop></video>
+            <div id="cell-meta-data-container">
+                <div id="sentiment-array-container"></div>
+                <div id="logged-tags-container"></div>
+            </div>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script>
+        var storage, database, dbObjectRef, LifeStreamRequest;
+
+        var UserAccessGranted = false, loggedIn = false, memberCheck = [
+            "bz",
+            "aa"
+        ];
+        
+        const firebaseConfig = {
+            apiKey: "AIzaSyDb25cWx6pMmh2xt54c_G5hS_rTDzpnpKw",
+            authDomain: "galactic-kids-next-door.firebaseapp.com",
+            databaseURL: "https://galactic-kids-next-door-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "galactic-kids-next-door",
+            storageBucket: "galactic-kids-next-door.appspot.com",
+            messagingSenderId: "273360155490",
+            appId: "1:273360155490:web:a752b1c28ad6156791f23b",
+            measurementId: "G-6Z2LK6Z05H"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        
+        function loadExampleLifeStreamOverlay(taskId){
+            console.log(taskId);
+            switch(parseInt(taskId)){
+                case 0:
+                    document.getElementById("life-stream-overlay-container").style.display = "block";
+                    break;
+                case 1:
+                    // Create a reference with an initial file path and name
+                    storage = firebase.storage();
+                    var pathRef0 = storage.ref('vid/miami.MP4');
+                    var pathRef1 = storage.ref('vid/pretakeoff.MP4');
+                    var pathRef2 = storage.ref('vid/swarm.MP4');
+                    var pathRef3 = storage.ref('vid/silver-spring.MP4');
+
+                    pathRef0.getDownloadURL()
+                      .then((url) => {
+                        // Or inserted into an <img> element
+                        var vid0 = document.getElementById('video-stream-0-container');
+                        console.log("success video 0")
+                        vid0.setAttribute('src', url);
+                      })
+                      .catch((error) => {
+                        // Handle any errors
+                        console.log("error video 0")
+                      });
+                    
+                    pathRef1.getDownloadURL()
+                      .then((url) => {
+                        // Or inserted into an <img> element
+                        var vid1 = document.getElementById('video-stream-1-container');
+                        vid1.setAttribute('src', url);
+                        console.log("success video 1");
+                      })
+                      .catch((error) => {
+                        // Handle any errors
+                        console.log("error video 1");
+                      });
+                    
+                    pathRef2.getDownloadURL()
+                      .then((url) => {
+                        // Or inserted into an <img> element
+                        var vid2 = document.getElementById('video-stream-2-container');
+                        vid2.setAttribute('src', url);
+                        console.log("success video 2")
+                      })
+                      .catch((error) => {
+                        // Handle any errors
+                        console.log("error video 2");
+                      });
+                    
+                    pathRef3.getDownloadURL()
+                      .then((url) => {
+                        // Or inserted into an <img> element
+                        var vid3 = document.getElementById('video-stream-3-container');
+                        vid3.setAttribute('src', url);
+                        console.log("success video 3");
+                      })
+                      .catch((error) => {
+                        // Handle any errors
+                        console.log("error video 3");
+                      });
+                    document.getElementById("life-stream-overlay-container").style.display = "block";
+                    setTimeout(function(){
+                        document.getElementById("life-stream-overlay-container").style.opacity = 1.0;
+                    }, 50);
+                    break;
+                case 2:
+                    // Create a reference with an initial file path and name
+                    storage = firebase.storage();
+                    
+                    var pathRef1 = storage.ref('vid/pretakeoff.MP4');
+                    
+                    
+                    pathRef1.getDownloadURL()
+                      .then((url) => {
+                        // Or inserted into an <img> element
+                        var vid1 = document.getElementById('video-stream-1-container');
+                        vid1.setAttribute('src', url);
+                        vid1.classList.add("large-video-stream-container");
+                        console.log("success video 1");
+                      })
+                      .catch((error) => {
+                        // Handle any errors
+                        console.log("error video 1");
+                      });
+                    document.getElementById("life-stream-overlay-container").style.display = "block";
+                    setTimeout(function(){
+                        document.getElementById("life-stream-overlay-container").style.opacity = 1.0;
+                    }, 50);
+                    break;
+                default:
+                    break;
+            }    
+        }
+        
+        document.addEventListener("DOMContentLoaded", function(){
+            const params = new Proxy(new URLSearchParams(window.location.search), {
+              get: (searchParams, prop) => searchParams.get(prop),
+            });
+
+            LifeStreamRequest = {
+                member: params.member,
+                taskId: params.taskId,
+            };
+            
+            console.log(LifeStreamRequest);
+            
+            loadExampleLifeStreamOverlay(LifeStreamRequest.taskId);
+            
+            document.getElementById("gknd-logo-button-container").addEventListener("click", function(){
+                window.location.href = "https://galactickidsnextdoor.com";
+            });
+            
+            document.getElementById("gknd-logo-button-container").classList.remove("loading-screen-logo-container");
+            document.getElementById("gknd-logo-button-container").classList.add("corner-logo-container");
+            
+            document.getElementById("main-scene-container").classList.remove("hidden-scene")
+            document.getElementById("main-scene-container").classList.add("visible-scene")
+
+            document.getElementById("video-stream-0-container").addEventListener("click", function(){
+                window.open("./d/cell?cellId=0&video=true", "_blank");
+            });
+            
+            document.getElementById("video-stream-1-container").addEventListener("click", function(){
+                window.open("./d/cell?cellId=1&video=true", "_blank");
+            });
+            
+            document.getElementById("video-stream-2-container").addEventListener("click", function(){
+                window.open("./d/cell?cellId=2&video=true", "_blank");
+            });
+            
+            document.getElementById("video-stream-3-container").addEventListener("click", function(){
+                window.open("./d/cell?cellId=3&video=true", "_blank");
+            });
+            
+        });
+    </script>
+</body>
+</html>

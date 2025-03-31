@@ -254,11 +254,23 @@ window.addEventListener('load', function(){
       toggleVideo();
   });
 
+
+  var settingsVisible = true;
   document.getElementById("toggle-handtracking-button-container").addEventListener("click", function(){
-      document.getElementById("special-hand-tracking-box-container").style.display = "block";
-      setTimeout(function(){
-          let trackerNowOpen = document.getElementById("special-hand-tracking-box-container").classList.toggle("special-tracker-open");
-          console.log(`tracker open? ${trackerNowOpen}`);
-      }, 50);
+      if(settingsVisible){
+
+        document.getElementById("settings-container").style.opacity = 0;
+        setTimeout(function(){
+          document.getElementById("settings-container").style.display = "none";
+        }, 500);
+        settingsVisible = false;
+      }
+      else{
+        document.getElementById("settings-container").style.display = "block";
+        setTimeout(function(){
+          document.getElementById("settings-container").style.opacity = 1.0;
+        }, 50);
+        settingsVisible = true;
+      }
   });
 });

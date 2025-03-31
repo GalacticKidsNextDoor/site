@@ -3,6 +3,81 @@
     padding: 0;
 }
 
+#daria-app-header-container{
+    font-family: "Braah One", sans-serif;
+    width: 500px;
+    margin: 5% auto;
+    height: 80px;
+    line-height: 40px;
+    color: white;
+    font-size: 24px;
+    text-align: center;
+    font-weight: 700;
+}
+
+.app-sub-header-container{
+    font-family: "Braah One", sans-serif;
+    width: 100%;
+    height: 35px;
+    line-height: 50px;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    font-weight: 700;
+}
+
+#llm-ai-block-container{
+    font-family: "Braah One", sans-serif;
+    width: 250px;
+    height: 35px;
+    display: block;
+    font-size: 20px;
+    text-align: center;
+    margin: 0 auto;
+    outline: none;
+    text-decoration: none;
+}
+
+#author-0-block-container{
+    font-family: "Braah One", sans-serif;
+    width: 100%;
+    height: 100%; 
+    display: block;
+    font-size: 20px;
+    text-align: center;
+    outline: none;
+    text-decoration: none;
+    cursor: pointer;
+    margin-top: 5%;
+}
+
+a:hover{
+    color: blue;
+    font-style: italic;
+}
+
+a:visited{
+    text-decoration: none;
+    color: white;
+}
+
+#main-options-block-container{
+    width: 260px;
+    margin: 1% auto;    
+}
+
+.option-block-container{
+    font-family: "Braah One", sans-serif;
+    width: 125px;
+    height: 50px;
+    border: 0;
+    border-radius: 5px;
+    background-color: white;
+    color: black;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
 body, html, #main-app-container{
     width: 100%;
     height: 100%;
